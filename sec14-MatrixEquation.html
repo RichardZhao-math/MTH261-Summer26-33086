@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: salem                          *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The Matrix Equation A\v{x} = \v{b}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="MTH 261 Applied Linear Algebra I: Summer 2026">
+<meta property="og:title" content="MTH 261 Applied Linear Algebra I: Summer 2026">
+<meta property="book:title" content="MTH 261 Applied Linear Algebra I: Summer 2026">
+<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.42"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.13.7';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.52176322e2c1dde5.bundle.js"></script><script src="_static/prefix-713.de0ab26248766350.bundle.js"></script><script src="_static/prefix-runestone.2f713d2360adcee7.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-713.f43ced6a6134ea74.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="changeme" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="MTH261_Summer26_33086.html"><span class="title">MTH 261 Applied Linear Algebra I</span> <span class="subtitle">Summer 2026</span></a></h1>
+<p class="byline">Richard Zhao</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search book" commandfor="ptx-search-dialog" command="show-modal"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog" closedby="closerequest"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close search" id="ptx-search-close" class="ptx-search-close" commandfor="ptx-search-dialog" command="close"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec13-VectorEquations.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch1-LinearEquations.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="backmatter.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N} 
+\newcommand{\Z}{\mathbb Z} 
+\newcommand{\Q}{\mathbb Q} 
+\newcommand{\R}{\mathbb R} 
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\v}[1]{\mathbf{#1}}
+\newcommand{\c}[1]{\mathcal{#1}}
+
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\adj}{\text{adj}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\Nul}{\text{Nul}}
+\newcommand{\Col}{\text{Col}}
+\newcommand{\im}{\text{im}}
+\newcommand{\span}{\text{span}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter"><div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div></li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch1-LinearEquations.html" class="internal"><span class="codenumber">1</span> <span class="title">Linear Equations in Linear Algebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec11-SystemLinearEquations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Systems of Linear Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-SolvingSystemsEquations" class="internal"><span class="title">Solving Systems of Linear Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-AugmentedMatrices" class="internal"><span class="title">Augmented Matrices and Elementary Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-NumberOfSolution" class="internal"><span class="title">How many solutions can a linear system have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-ExistenceUniqueness-SystemEquations" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec12-RowReduction.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Row Reduction and Echelon Forms</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsubsec-NumberOfParameters" class="internal"><span class="title">How many parameters does the solution have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsec-ExistenceUniqueness-AugmentedMatrices" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec13-VectorEquations.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Vector Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-VectorsNotation" class="internal"><span class="title">What is a vector?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-LinearCombinations" class="internal"><span class="title">Linear Combinations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-Span" class="internal"><span class="title">Span</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec14-MatrixEquation.html" class="internal"><span class="codenumber">1.4</span> <span class="title">The Matrix Equation <span class="process-math">\(A\v{x} = \v{b}\)</span></span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DecodeAugmentedMatrix" class="internal"><span class="title">What exactly is an Augmented Matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-MultiplyingMatrixVector" class="internal"><span class="title">Multiplying a Matrix by a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ExistenceUniqueness-Rank" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-VectorEquations" class="internal"><span class="title">Vector Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DotProduct-Intro" class="internal"><span class="title">Intro to the Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ZeroMatrix-IdentityMatrix" class="internal"><span class="title">Two Special Matrices</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter"><div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="section" id="sec14-MatrixEquation">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Matrix Equation <span class="process-math">\(A\v{x} = \v{b}\)</span></span>
+</h2>
+<section class="introduction" id="sec14-MatrixEquation-2">
+<div class="para logical" id="sec14-MatrixEquation-2-1">
+<div class="para">Now we get to the cool part! We are going to learn how to multiply a matrix by a vector. This is SUPER IMPORTANT for three reasons:</div>
+<ol class="decimal ol-marker-1" id="sec14-MatrixEquation-2-1-1">
+<li id="sec14-MatrixEquation-2-1-1-1">
+<div class="para" id="sec14-MatrixEquation-2-1-1-1-1">This corresponds to evaluating a linear transformation at a point which leads to tons of cool geometry stuff. Much more about this in the future!<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1"><a href="#sec14-MatrixEquation-2-1-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="sec14-MatrixEquation-2-1-1-2">
+<div class="para" id="sec14-MatrixEquation-2-1-1-2-1">It is the foundation for multiplying matrices (which is probably the most important thing in Matrix Algebra and corresponds to composing linear transformations).<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2"><a href="#sec14-MatrixEquation-2-1-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="sec14-MatrixEquation-2-1-1-3">
+<div class="para" id="sec14-MatrixEquation-2-1-1-3-1">It gives us new ways to think about systems of equations!<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-1-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 3"><a href="#sec14-MatrixEquation-2-1-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="para">Takeaway: make sure you are an expert at multiplying a vector by a matrix!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="objectives goal-like" id="sec14-MatrixEquation-2-2"><h3 class="heading"><span class="type">Objectives</span></h3>
+<div class="introduction" id="sec14-MatrixEquation-2-2-1">
+<div class="para" id="sec14-MatrixEquation-2-2-1-1">After this section, students will be able to:<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul class="disc" id="sec14-MatrixEquation-2-2-2">
+<li id="sec14-MatrixEquation-2-2-2-1">
+<div class="para" id="sec14-MatrixEquation-2-2-2-1-1">represent a system of linear equations in four equivalent forms: a system of equations, an augmented matrix, a matrix equation, and a vector equation.<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-2-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec14-MatrixEquation-2-2-2-1" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec14-MatrixEquation-2-2-2-2">
+<div class="para" id="sec14-MatrixEquation-2-2-2-2-1">multiply a matrix by a vector using both the dot product method and the linear combination method.<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec14-MatrixEquation-2-2-2-2" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec14-MatrixEquation-2-2-2-3">
+<div class="para" id="sec14-MatrixEquation-2-2-2-3-1">determine the existence of solutions for a system of linear equations by comparing the rank of the coefficient matrix and the rank of the augmented matrix.<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec14-MatrixEquation-2-2-2-3" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec14-MatrixEquation-2-2-2-4">
+<div class="para" id="sec14-MatrixEquation-2-2-2-4-1">see the connection between matrix-vector multiplication and linear transformations.<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-2-2-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec14-MatrixEquation-2-2-2-4" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec14-MatrixEquation-2-2-2-5">
+<div class="para" id="sec14-MatrixEquation-2-2-2-5-1">identify and apply the properties of two special matrices: the identity matrix and the zero matrix, in the context of multiplying a matrix by a vector.<div class="autopermalink" data-description="Paragraph"><a href="#sec14-MatrixEquation-2-2-2-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec14-MatrixEquation-2-2-2-5" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Objectives"><a href="#sec14-MatrixEquation-2-2" title="Copy heading and permalink for Objectives" aria-label="Copy heading and permalink for Objectives">🔗</a></div>
+</article></section>
+<section class="subsection" id="subsec-DecodeAugmentedMatrix">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">What exactly is an Augmented Matrix?</span>
+</h3>
+<div class="para logical" id="subsec-DecodeAugmentedMatrix-2">
+<div class="para">Consider the augmented matrix</div>
+<div class="displaymath process-math" id="subsec-DecodeAugmentedMatrix-2-1">
+\begin{equation*}
+\begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \amp \mid b_1 \\ a_{21} \amp a_{22} \amp a_{23} \amp \mid b_2 \\ a_{31} \amp a_{32} \amp a_{33} \amp \mid b_3 \\ a_{41} \amp a_{42} \amp a_{43} \amp \mid b_4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">You may have heard Richard saying that an augmented matrix is a "fake" matrix but is really just a shorthand notation to represent a system of linear equations. It turns out that an augmented matrix actually hides <em class="emphasis">three</em> matrices, two of which are vectors (aka. column matrices). Hence, an augmented matrix is really three matrices smashed together to represent a system of linear equations in a convenient way.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-DecodeAugmentedMatrix-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-DecodeAugmentedMatrix-3">The left side of an augmented matrix is the <dfn class="terminology">coefficient matrix</dfn>. For our (general) example above, the coefficient matrix is <span class="process-math">\(A = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-DecodeAugmentedMatrix-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-DecodeAugmentedMatrix-4">The right side of an augmented matrix is the <dfn class="terminology">constant matrix</dfn> or <dfn class="terminology">constant (column) vector</dfn>. For our example, the constant vector is <span class="process-math">\(\v{b} = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-DecodeAugmentedMatrix-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-DecodeAugmentedMatrix-5">
+<div class="para">To figure out what the third matrix/vector is, let’s convert the augmented matrix to a system of linear equations! For our example, we get</div>
+<div class="displaymath process-math" id="subsec-DecodeAugmentedMatrix-5-1">
+\begin{equation*}
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2 \\
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3 \\
+a_{41}x_1 + a_{42}x_2 + a_{43}x_3 = b_4
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">First, notice that this system of equations can be seen as <em class="alert">one</em> equation involving two matrices/vectors!</div>
+<div class="displaymath process-math" id="subsec-DecodeAugmentedMatrix-5-3">
+\begin{equation*}
+\begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+=
+\begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">You may have noticed that the solution <span class="process-math">\((x_1, x_2, x_3)\)</span> is the one part of our system that we haven’t talked about as a matrix/vector yet. Well let’s fix that now!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-DecodeAugmentedMatrix-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-DecodeAugmentedMatrix-6">
+<div class="para">The vector on the left-hand side is the one that we get when we multiply the coefficient matrix <span class="process-math">\(A\)</span> by the <em class="alert">solution vector</em> <span class="process-math">\(\v{x} = (x_1, x_2, x_3)\)</span> when represented as a column vector:</div>
+<div class="displaymath process-math" id="subsec-DecodeAugmentedMatrix-6-4">
+\begin{equation*}
+A\v{x} = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+= \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">In other words our system of equations can be represented by the <dfn class="terminology">matrix equation</dfn>:</div>
+<div class="displaymath process-math" id="subsec-DecodeAugmentedMatrix-6-6">
+\begin{equation*}
+\begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+= \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Or using the names of the matrices: <span class="process-math">\(A\v{x} = \v{b}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-DecodeAugmentedMatrix-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: What exactly is an Augmented Matrix?"><a href="#subsec-DecodeAugmentedMatrix" title="Copy heading and permalink for Subsection: What exactly is an Augmented Matrix?" aria-label="Copy heading and permalink for Subsection: What exactly is an Augmented Matrix?">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-MultiplyingMatrixVector">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Multiplying a Matrix by a Vector</span>
+</h3>
+<div class="para logical" id="subsec-MultiplyingMatrixVector-2">
+<div class="para">Now let’s take a deeper look at the product <span class="process-math">\(A\v{x}\)</span> and try to figure out how to multiply a matrix by a vector. For our example, we had</div>
+<div class="displaymath process-math" id="subsec-MultiplyingMatrixVector-2-2">
+\begin{equation*}
+A\v{x} = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+= \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">So what is happening?</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-MultiplyingMatrixVector-3">
+<div class="para">First notice that we are multiplying a <span class="process-math">\(4 \times 3\)</span> matrix by a <span class="process-math">\(3 \times 1\)</span> matrix and getting a <span class="process-math">\(4 \times 1\)</span> matrix. Also, notice that the first (top) entry of the answer is achieved by multiplying each entry in the <em class="emphasis">first</em> row of the matrix <span class="process-math">\(A\)</span> by the corresponding entry of the column vector <span class="process-math">\(\v{x}\)</span> and adding the results. First thing in the row times first thing in the column <em class="emphasis">plus</em> second thing in the row times second thing in the column and so on...</div>
+<ul class="no-marker" id="subsec-MultiplyingMatrixVector-3-8">
+<li id="subsec-MultiplyingMatrixVector-3-8-1">
+<div class="para" id="subsec-MultiplyingMatrixVector-3-8-1-1">The first entry is <span class="process-math">\(a_{11}x_1 + a_{12}x_2 + a_{13}x_3\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-3-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-MultiplyingMatrixVector-3-8-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">Then the second entry in the answer is achieved in the same way but using the <em class="emphasis">second</em> row of the matrix <span class="process-math">\(A\text{:}\)</span>
+</div>
+<ul class="no-marker" id="subsec-MultiplyingMatrixVector-3-11">
+<li id="subsec-MultiplyingMatrixVector-3-11-1">
+<div class="para" id="subsec-MultiplyingMatrixVector-3-11-1-1">The second entry is <span class="process-math">\(a_{21}x_1 + a_{22}x_2 + a_{23}x_3\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-3-11-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-MultiplyingMatrixVector-3-11-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">Then the third entry in the answeris achieved in the same way but using the <em class="emphasis">third</em> row of the matrix <span class="process-math">\(A\text{:}\)</span>
+</div>
+<ul class="no-marker" id="subsec-MultiplyingMatrixVector-3-14">
+<li id="subsec-MultiplyingMatrixVector-3-14-1">
+<div class="para" id="subsec-MultiplyingMatrixVector-3-14-1-1">The third entry is <span class="process-math">\(a_{31}x_1 + a_{32}x_2 + a_{33}x_3\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-3-14-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-MultiplyingMatrixVector-3-14-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">And finally the fourth entry in the answer is achieved in the same way but using the <em class="emphasis">fourth</em> row of the matrix <span class="process-math">\(A\text{:}\)</span>
+</div>
+<ul class="no-marker" id="subsec-MultiplyingMatrixVector-3-17">
+<li id="subsec-MultiplyingMatrixVector-3-17-1">
+<div class="para" id="subsec-MultiplyingMatrixVector-3-17-1-1">The fourth entry is <span class="process-math">\(a_{41}x_1 + a_{42}x_2 + a_{43}x_3\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-3-17-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-MultiplyingMatrixVector-3-17-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">When we run out of rows of <span class="process-math">\(A\text{,}\)</span> we are done!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-MultiplyingMatrixVector-4"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-MultiplyingMatrixVector-4-1">
+<div class="para">Let’s try this out with the following product of a matrix and a vector:</div>
+<div class="displaymath process-math" id="subsec-MultiplyingMatrixVector-4-1-1">
+\begin{equation*}
+\begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 0 \\ 5 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-MultiplyingMatrixVector-4-2">
+<div class="para">First, we take the first row of the matrix and multiply each entry by the corresponding entry in the column vector and add the results:</div>
+<div class="displaymath process-math" id="subsec-MultiplyingMatrixVector-4-2-1">
+\begin{equation*}
+3 \times 2 + 5 \times 1 + 6 \times 0 + 2 \times 5 = 21
+\end{equation*}
+</div>
+<div class="para">Next, we take the second row of the matrix and do the same thing:</div>
+<div class="displaymath process-math" id="subsec-MultiplyingMatrixVector-4-2-2">
+\begin{equation*}
+1 \times 2 + (-1) \times 1 + 2 \times 0 + 3 \times 5 = 16
+\end{equation*}
+</div>
+<div class="para">Finally, we take the third row of the matrix and do the same thing:</div>
+<div class="displaymath process-math" id="subsec-MultiplyingMatrixVector-4-2-3">
+\begin{equation*}
+0 \times 2 + 5 \times 1 + 1 \times 0 + (-1) \times 5 = 0
+\end{equation*}
+</div>
+<div class="para">So the answer is</div>
+<div class="displaymath process-math" id="subsec-MultiplyingMatrixVector-4-2-4">
+\begin{equation*}
+\begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 0 \\ 5 \end{bmatrix} = \begin{bmatrix} 21 \\ 16 \\ 0 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 1.4.1"><a href="#subsec-MultiplyingMatrixVector-4" title="Copy heading and permalink for Example 1.4.1" aria-label="Copy heading and permalink for Example 1.4.1">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="subsec-MultiplyingMatrixVector-5"><h4 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-MultiplyingMatrixVector-5-1">
+<div class="para">Multiply! If it is impossible, say why!</div>
+<ol class="lower-alpha ol-marker-3" id="subsec-MultiplyingMatrixVector-5-1-1">
+<li id="subsec-MultiplyingMatrixVector-5-1-1-1">
+<div class="para" id="subsec-MultiplyingMatrixVector-5-1-1-1-1">
+<span class="process-math">\(\displaystyle \begin{bmatrix} 1 \amp 5 \amp 2 \\ 3 \amp 2 \amp 1 \\ 0 \amp 2 \amp -3 \\ 1 \amp 1 \amp 1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 5 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-5-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1.4.2.a"><a href="#subsec-MultiplyingMatrixVector-5-1-1-1" title="Copy heading and permalink for Item 1.4.2.a" aria-label="Copy heading and permalink for Item 1.4.2.a">🔗</a></div>
+</li>
+<li id="subsec-MultiplyingMatrixVector-5-1-1-2">
+<div class="para" id="subsec-MultiplyingMatrixVector-5-1-1-2-1">
+<span class="process-math">\(\displaystyle \begin{bmatrix} 1 \amp 5 \amp 2 \\ 3 \amp 2 \amp 1 \\ 0 \amp 2 \amp -3 \\ 1 \amp 1 \amp 1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 5 \\ 7 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-5-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1.4.2.b"><a href="#subsec-MultiplyingMatrixVector-5-1-1-2" title="Copy heading and permalink for Item 1.4.2.b" aria-label="Copy heading and permalink for Item 1.4.2.b">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-MultiplyingMatrixVector-5-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="subsec-MultiplyingMatrixVector-5-2-1">a. <span class="process-math">\(\begin{bmatrix} 1 \amp 5 \amp 2 \\ 3 \amp 2 \amp 1 \\ 0 \amp 2 \amp -3 \\ 1 \amp 1 \amp 1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 5 \end{bmatrix} 
+= \begin{bmatrix} 1 \times 2 + 5 \times 1 + 2 \times 5 \\ 3 \times 2 + 2 \times 1 + 1 \times 5 \\ 0 \times 2 + 2 \times 1 + (-3) \times 5 \\ 1 \times 2 + 1 \times 1 + 1 \times 5 \end{bmatrix}
+= \begin{bmatrix} 17 \\ 13 \\ -13 \\ 8 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MultiplyingMatrixVector-5-2-2">b. This is impossible! There are three things in each row of the matrix but four things in the vector. There is nothing to multiply by the <span class="process-math">\(7\text{!}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MultiplyingMatrixVector-5-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 1.4.2.1"><a href="#subsec-MultiplyingMatrixVector-5-2" title="Copy heading and permalink for Solution 1.4.2.1" aria-label="Copy heading and permalink for Solution 1.4.2.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Checkpoint 1.4.2"><a href="#subsec-MultiplyingMatrixVector-5" title="Copy heading and permalink for Checkpoint 1.4.2" aria-label="Copy heading and permalink for Checkpoint 1.4.2">🔗</a></div>
+</article><div class="autopermalink" data-description="Subsection: Multiplying a Matrix by a Vector"><a href="#subsec-MultiplyingMatrixVector" title="Copy heading and permalink for Subsection: Multiplying a Matrix by a Vector" aria-label="Copy heading and permalink for Subsection: Multiplying a Matrix by a Vector">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-ExistenceUniqueness-Rank">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Existence and Uniqueness Questions</span>
+</h3>
+<div class="para logical" id="subsec-ExistenceUniqueness-Rank-2">
+<div class="para">Recall a <dfn class="terminology">consistent</dfn> system of linear equations has at least one solution and an <dfn class="terminology">inconsistent</dfn> system of linear equations has no solutions. We have looked at the existence question in the past in three different ways:</div>
+<ul class="no-marker" id="subsec-ExistenceUniqueness-Rank-2-3">
+<li id="subsec-ExistenceUniqueness-Rank-2-3-1">
+<div class="para" id="subsec-ExistenceUniqueness-Rank-2-3-1-1">In <a href="sec11-SystemLinearEquations.html" class="internal" title="Section 1.1: Systems of Linear Equations">Section 1.1</a>, when converting an augmented matrix to a system of linear equations and there is one equation that is always false (like <span class="process-math">\(0 = 1\)</span>), then the system is <em class="alert">inconsistent</em>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-2-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-ExistenceUniqueness-Rank-2-3-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="subsec-ExistenceUniqueness-Rank-2-3-2">
+<div class="para" id="subsec-ExistenceUniqueness-Rank-2-3-2-1">In <a href="sec12-RowReduction.html" class="internal" title="Section 1.2: Row Reduction and Echelon Forms">Section 1.2</a>, when an augmented matrix has a pivot position in the rightmost column (aka the constant column), then the system is <em class="alert">inconsistent</em>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-2-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-ExistenceUniqueness-Rank-2-3-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">We will look at the same question again but in a new perspective. Back in <a href="sec12-RowReduction.html" class="internal" title="Section 1.2: Row Reduction and Echelon Forms">Section 1.2</a>, we define the <dfn class="terminology">rank</dfn> of a matrix to be the number of pivot positions (aka the leading <span class="process-math">\(1\)</span>s) in the matrix. Now that we have two different matrices: the augmented matrix and the coefficient matrix, how do their ranks relate to the existence question?</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-ExistenceUniqueness-Rank-3">
+<div class="para">Consider the following system of equations:</div>
+<div class="displaymath process-math" id="subsec-ExistenceUniqueness-Rank-3-1">
+\begin{equation*}
+\begin{cases}
+3x + 2y = 5 \\
+-6x - 4y = 7
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">The augmented matrix is...</div>
+<div class="displaymath process-math" id="subsec-ExistenceUniqueness-Rank-3-2">
+\begin{equation*}
+\begin{bmatrix} 3 \amp 2 \amp \mid 5 \\ -6 \amp -4 \amp \mid 7 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">If we put this matrix into row echelon form, we get</div>
+<div class="displaymath process-math" id="subsec-ExistenceUniqueness-Rank-3-3">
+\begin{equation*}
+\begin{bmatrix} 1 \amp \frac{2}{3} \amp \mid \frac{5}{3} \\ 0 \amp 0 \amp \mid 1 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Notice that the rank of this augmented matrix (if we pretend it is a real matrix) is <span class="process-math">\(2\)</span> because there are two leading <span class="process-math">\(1\)</span>s. But if we look only at the coefficient matrix (the part to the left of the vertical lines) we see that the rank is <span class="process-math">\(1\)</span> because there is only one leading <span class="process-math">\(1\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceUniqueness-Rank-4">
+<em class="alert">Those ranks are different! Maybe that means something?</em><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-ExistenceUniqueness-Rank-5">
+<div class="para">Let’s write this nice (row echelon) version of the system as a matrix equation! The coefficient matrix is <span class="process-math">\(A = \begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp 0 \end{bmatrix}\)</span> and the constant vector is <span class="process-math">\(\v{b} = \begin{bmatrix} \frac{5}{3} \\ 1 \end{bmatrix}\text{.}\)</span> This is a two-variable system, so the solution matrix looks like <span class="process-math">\(\begin{bmatrix} x \\ y \end{bmatrix}\text{.}\)</span> So as a matrix equation, our system is</div>
+<div class="displaymath process-math" id="subsec-ExistenceUniqueness-Rank-5-4">
+\begin{equation*}
+\begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp 0 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} \frac{5}{3} \\ 1 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceUniqueness-Rank-6">Okay... so now let’s think about what will happen when we multiply our vector <span class="process-math">\(\begin{bmatrix} x \\ y \end{bmatrix}\)</span> by the coefficient matrix <span class="process-math">\(\begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp 0 \end{bmatrix}\text{.}\)</span> When we get to the second row (to find the second entry in the answer), we will multiply both <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> by zero. That means we will get <span class="process-math">\(0\)</span> not <span class="process-math">\(1\)</span> like we are supposed to get! So this system has no solution! In other words, it is <em class="alert">inconsistent</em>!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceUniqueness-Rank-7">
+<em class="alert">Notice that this happened because the rank of the augmented matrix was BIGGER than the rank of the coefficient matrix!</em><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceUniqueness-Rank-8">That can only happen if there is a leading <span class="process-math">\(1\)</span> in the last column of the augmented matrix (the constant vector). And that will always result in no solution because it will always give you <span class="process-math">\(0 = 1\)</span> when you convert back to a system of equations (see how things are connected back to the two perspectives of the existence questions).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceUniqueness-Rank-9">
+<em class="alert">You will investigate further about the relationship between the rank and the system of linear equations further in Lab Report #1.</em><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceUniqueness-Rank-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Existence and Uniqueness Questions"><a href="#subsec-ExistenceUniqueness-Rank" title="Copy heading and permalink for Subsection: Existence and Uniqueness Questions" aria-label="Copy heading and permalink for Subsection: Existence and Uniqueness Questions">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-VectorEquations">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Vector Equations</span>
+</h3>
+<div class="para" id="subsec-VectorEquations-2">So far we have three different ways to represent a system of linear equations: (1) as a system of equations, (2) as an augmented matrix, and (3) as a matrix equation. There is actually a fourth way to represent a system of linear equations: as a <dfn class="terminology">vector equation</dfn>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-VectorEquations-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-VectorEquations-3">
+<div class="para">Let’s again consider the system of linear equations</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-3-1">
+\begin{equation*}
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2 \\
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3 \\
+a_{41}x_1 + a_{42}x_2 + a_{43}x_3 = b_4
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">Remember that we can think of our original system of equations as representing an equation involving two vectors:</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-3-2">
+\begin{equation*}
+\begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+=
+\begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Now let’s do the same technique we used to write a solution as a linear combination of basic vectors. Specifically, let’s first break up the vector on the left-hand side into three vectors. One with <span class="process-math">\(x_1\)</span> in it, one with <span class="process-math">\(x_2\)</span> in it, and one with <span class="process-math">\(x_3\)</span> in it:</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-3-6">
+\begin{equation*}
+\begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+=
+\begin{bmatrix} a_{11}x_1 \\ a_{21}x_1 \\ a_{31}x_1 \\ a_{41}x_1 \end{bmatrix}
++
+\begin{bmatrix} a_{12}x_2 \\ a_{22}x_2 \\ a_{32}x_2 \\ a_{42}x_2 \end{bmatrix}
++
+\begin{bmatrix} a_{13}x_3 \\ a_{23}x_3 \\ a_{33}x_3 \\ a_{43}x_3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Now let’s factor out the scalars <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\text{,}\)</span> and <span class="process-math">\(x_3\)</span> to get:</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-3-10">
+\begin{equation*}
+\begin{bmatrix} a_{11}x_1 \\ a_{21}x_1 \\ a_{31}x_1 \\ a_{41}x_1 \end{bmatrix}
++
+\begin{bmatrix} a_{12}x_2 \\ a_{22}x_2 \\ a_{32}x_2 \\ a_{42}x_2 \end{bmatrix}
++
+\begin{bmatrix} a_{13}x_3 \\ a_{23}x_3 \\ a_{33}x_3 \\ a_{43}x_3 \end{bmatrix}
+= 
+x_1 \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ a_{41} \end{bmatrix}
++
+x_2 \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \\ a_{42} \end{bmatrix}
++
+x_3 \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \\ a_{43} \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Substituting this last version into our original equation, we get the <dfn class="terminology">vector equation</dfn>:</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-3-12">
+\begin{equation*}
+x_1 \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ a_{41} \end{bmatrix}
++
+x_2 \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \\ a_{42} \end{bmatrix}
++
+x_3 \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \\ a_{43} \end{bmatrix}
+=
+\begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Notice that this vector equation tells us that <em class="alert">we get a solution to a system of linear equations precisely when the constant vector is a linear combination of the columns of the coefficient matrix</em>. See how the column vectors on the left-hand side are just the columns of the coefficient matrix?!?! See how the solution vector is just the set of scalars (coefficients) used to write this linear combination of the column vectors?!?! This observation will be important to keep in mind!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-VectorEquations-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="subsec-VectorEquations-4"><h4 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-VectorEquations-4-1">
+<div class="para">Consider the following system of linear equations:</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-4-1-1">
+\begin{equation*}
+\begin{cases}
+2x + 3y - 5z = 7 \\
+x - z = 5
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">Write this system as a (1) Augmented Matrix, (2) a Matrix Equation, and (3) a Vector Equation.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-VectorEquations-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-VectorEquations-4-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-VectorEquations-4-2-1">
+<div class="para">The augmented matrix is</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-4-2-1-1">
+\begin{equation*}
+\begin{bmatrix} 2 \amp 3 \amp -5 \amp \mid 7 \\ 1 \amp 0 \amp -1 \amp \mid 5 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-VectorEquations-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-VectorEquations-4-2-2">
+<div class="para">The matrix equation is</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-4-2-2-1">
+\begin{equation*}
+\begin{bmatrix} 2 \amp 3 \amp -5 \\ 1 \amp 0 \amp -1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 7 \\ 5 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-VectorEquations-4-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-VectorEquations-4-2-3">
+<div class="para">The vector equation is</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-4-2-3-1">
+\begin{equation*}
+x \begin{bmatrix} 2 \\ 1 \end{bmatrix} + y \begin{bmatrix} 3 \\ 0 \end{bmatrix} + z \begin{bmatrix} -5 \\ -1 \end{bmatrix} = \begin{bmatrix} 7 \\ 5 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-VectorEquations-4-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 1.4.3.1"><a href="#subsec-VectorEquations-4-2" title="Copy heading and permalink for Solution 1.4.3.1" aria-label="Copy heading and permalink for Solution 1.4.3.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Checkpoint 1.4.3"><a href="#subsec-VectorEquations-4" title="Copy heading and permalink for Checkpoint 1.4.3" aria-label="Copy heading and permalink for Checkpoint 1.4.3">🔗</a></div>
+</article>
+<div class="para logical" id="subsec-VectorEquations-5">
+<div class="para">The Vector Equation gives us yet another way to multiply a vector by a matrix! Let’s compare the Matrix Equation and the Vector Equation for a <span class="process-math">\(4 \times 3\)</span> system of linear equations:</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-5-2">
+\begin{equation*}
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2 \\
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3 \\
+a_{41}x_1 + a_{42}x_2 + a_{43}x_3 = b_4
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">The Matrix Equation is</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-5-3">
+\begin{equation*}
+\begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+= \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">The Vector Equation is</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-5-4">
+\begin{equation*}
+x_1 \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ a_{41} \end{bmatrix}
++
+x_2 \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \\ a_{42} \end{bmatrix}
++
+x_3 \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \\ a_{43} \end{bmatrix}
+=
+\begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">This means that</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-5-5">
+\begin{equation*}
+\begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+=
+x_1 \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ a_{41} \end{bmatrix}
++
+x_2 \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \\ a_{42} \end{bmatrix}
++
+x_3 \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \\ a_{43} \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">So that means that the left-hand side of the Vector Equation actually gives us a second way to multiply a vector by a matrix. You just compute the linear combination of the columns using the vector to get your scalars.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-VectorEquations-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-VectorEquations-6"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-VectorEquations-6-1">
+<div class="para">Let’s multiply the following matrix and vector in this new way:</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-6-1-1">
+\begin{equation*}
+\begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 0 \\ 5 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-VectorEquations-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-VectorEquations-6-2">
+<div class="para">We treat the columns of the matrix as vectors and compute the linear combination of those vectors using the entries of the column vector as our scalars.</div>
+<div class="displaymath process-math" id="subsec-VectorEquations-6-2-1">
+\begin{align*}
+\begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 0 \\ 5 \end{bmatrix} 
+\amp= 
+2 \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix} + 1 \begin{bmatrix} 5 \\ -1 \\ 5 \end{bmatrix} + 0 \begin{bmatrix} 6 \\ 2 \\ 1 \end{bmatrix} + 5 \begin{bmatrix} 2 \\ 3 \\ -1 \end{bmatrix}\\
+\amp= \begin{bmatrix} 6 \\ 2 \\ 0 \end{bmatrix} + \begin{bmatrix} 5 \\ -1 \\ 5 \end{bmatrix} + \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} + \begin{bmatrix} 10 \\ 15 \\ -5 \end{bmatrix} \\
+\amp= \begin{bmatrix} 21 \\ 16 \\ 0 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="para">This is the same answer as before!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-VectorEquations-6-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 1.4.4"><a href="#subsec-VectorEquations-6" title="Copy heading and permalink for Example 1.4.4" aria-label="Copy heading and permalink for Example 1.4.4">🔗</a></div>
+</article><div class="autopermalink" data-description="Subsection: Vector Equations"><a href="#subsec-VectorEquations" title="Copy heading and permalink for Subsection: Vector Equations" aria-label="Copy heading and permalink for Subsection: Vector Equations">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-DotProduct-Intro">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Intro to the Dot Product</span>
+</h3>
+<div class="para" id="subsec-DotProduct-Intro-2">The first method of multiplying matrices that we learned was actually based on the <dfn class="terminology">dot product</dfn> which is an operation performed on two vectors (of the same size) and the produces a <em class="emphasis">scalar</em>. Sometimes it is actually called a <dfn class="terminology">scalar product</dfn> to emphasize the fact that the output is a scalar.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-DotProduct-Intro-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-DotProduct-Intro-3">
+<div class="para">So how does it work? Let’s look at the formula for multiplying a vector by a matrix. For the case of a general <span class="process-math">\(4 \times 3\)</span> matrix, we saw that we could multiply by a <span class="process-math">\(3 \times 1\)</span> column vector.</div>
+<div class="displaymath process-math" id="subsec-DotProduct-Intro-3-3">
+\begin{equation*}
+A\v{x} = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+= \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Notice that this result actually comes from performing the same process four different times (once for each row of the matrix).</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-DotProduct-Intro-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-DotProduct-Intro-4">What we were actually doing was taking the <dfn class="terminology">dot product</dfn> of each row with the column vector. So our multiplication computation consisted of four dot products each of which gave us one of the entries in our answer.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-DotProduct-Intro-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="def-DotProduct-Intro"><h4 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Dot Product.</span>
+</h4>
+<div class="para logical" id="def-DotProduct-Intro-2-1">
+<div class="para">Let <span class="process-math">\(\v{a} = (a_1, a_2, \ldots, a_n)\)</span> and <span class="process-math">\(\v{b} = (b_1, b_2, \ldots, b_n)\)</span> be two vectors in <span class="process-math">\(\R^n\text{.}\)</span> The <dfn class="terminology">dot product</dfn> of <span class="process-math">\(\v{a}\)</span> and <span class="process-math">\(\v{b}\text{,}\)</span> denoted by <span class="process-math">\(\v{a} \cdot \v{b}\text{,}\)</span> is the scalar given by the formula</div>
+<div class="displaymath process-math" id="def-DotProduct-Intro-2-1-8">
+\begin{equation*}
+\v{a} \cdot \v{b} = (a_1, a_2, \ldots, a_n) \cdot (b_1, b_2, \ldots, b_n) = a_1 b_1 + a_2 b_2 + \ldots + a_n b_n
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#def-DotProduct-Intro-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Definition 1.4.5: Dot Product"><a href="#def-DotProduct-Intro" title="Copy heading and permalink for Definition 1.4.5: Dot Product" aria-label="Copy heading and permalink for Definition 1.4.5: Dot Product">🔗</a></div>
+</article>
+<article class="example example-like" id="subsec-DotProduct-Intro-6"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-DotProduct-Intro-6-1">
+<div class="para">Let’s compute the dot product of the vectors <span class="process-math">\(\v{a} = (1,3,5)\)</span> and <span class="process-math">\(\v{b} = (2,-1,10)\text{.}\)</span>
+</div>
+<div class="displaymath process-math" id="subsec-DotProduct-Intro-6-1-3">
+\begin{equation*}
+\v{a} \cdot \v{b} = (1,3,5) \cdot (2,-1,10) = 1\times 2 + 3\times -1 + 5\times 10 = 2 - 3 + 50 = 49
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-DotProduct-Intro-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 1.4.6"><a href="#subsec-DotProduct-Intro-6" title="Copy heading and permalink for Example 1.4.6" aria-label="Copy heading and permalink for Example 1.4.6">🔗</a></div>
+</article>
+<div class="para" id="subsec-DotProduct-Intro-7">Scroll up a bit and you will see the dot product formula show up in each entry where we multiplied the general <span class="process-math">\(4\times 3\)</span> matrix by a vector. To get the <span class="process-math">\(n\)</span>th entry of the answer, we can take the dot product of the <span class="process-math">\(n\)</span>th row of the matrix and the vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-DotProduct-Intro-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-DotProduct-Intro-8">We will talk more about this soon when we learn how to multiply two matrices together.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-DotProduct-Intro-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Intro to the Dot Product"><a href="#subsec-DotProduct-Intro" title="Copy heading and permalink for Subsection: Intro to the Dot Product" aria-label="Copy heading and permalink for Subsection: Intro to the Dot Product">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-ZeroMatrix-IdentityMatrix">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Two Special Matrices</span>
+</h3>
+<div class="para" id="subsec-ZeroMatrix-IdentityMatrix-2">Recall there are two special numbers in arithmetic: <span class="process-math">\(0\)</span> and <span class="process-math">\(1\text{,}\)</span> in the sense that (1) <span class="process-math">\(0\)</span> times any number is <span class="process-math">\(0\)</span> and (2) <span class="process-math">\(1\)</span> times any number is that same number. There are also two special matrices in matrix arithmetic that play the same role as <span class="process-math">\(0\)</span> and <span class="process-math">\(1\)</span> do in regular arithmetic.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ZeroMatrix-IdentityMatrix-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-ZeroMatrix-IdentityMatrix-3">
+<div class="para">In the last section, we defined the <dfn class="terminology">zero matrix</dfn> to be the matrix with all entries equal to <span class="process-math">\(0\text{.}\)</span> If <span class="process-math">\(A\)</span> is the zero <span class="process-math">\(m\times n\)</span> matrix then for any <span class="process-math">\(n\times 1\)</span> vector <span class="process-math">\(\v{x}\text{,}\)</span> we have</div>
+<div class="displaymath process-math" id="subsec-ZeroMatrix-IdentityMatrix-3-7">
+\begin{equation*}
+A\v{x} = \v{0}
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(\v{0}\)</span> is the zero vector in <span class="process-math">\(\R^m\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ZeroMatrix-IdentityMatrix-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ZeroMatrix-IdentityMatrix-4">That is because each time you compute a dot product to get an entry of the answer, you are taking a dot product with a row vector where all entries are zero. So you are always just adding up a bunch of zeros. So you will always get zero for every entry in the product.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ZeroMatrix-IdentityMatrix-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ZeroMatrix-IdentityMatrix-5">The matrix equivalent of <span class="process-math">\(1\)</span> is called the <dfn class="terminology">identity matrix</dfn>. That is, when we multiply the identity matrix by a vector, we get the same vector back.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ZeroMatrix-IdentityMatrix-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ZeroMatrix-IdentityMatrix-6">For every positive integer <span class="process-math">\(n\text{,}\)</span> there is a special <span class="process-math">\(n \times n\)</span> matrix called the <dfn class="terminology">identity matrix</dfn> of size <span class="process-math">\(n\text{.}\)</span> The identity matrix has a <span class="process-math">\(1\)</span> in every entry of the main diagonal and a <span class="process-math">\(0\)</span> in every other spot.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ZeroMatrix-IdentityMatrix-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-ZeroMatrix-IdentityMatrix-7">
+<div class="para">For example, the identity matrix of size <span class="process-math">\(2\)</span> is</div>
+<div class="displaymath process-math" id="subsec-ZeroMatrix-IdentityMatrix-7-2">
+\begin{equation*}
+I_2 = \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">and the identity matrix of size <span class="process-math">\(3\)</span> is</div>
+<div class="displaymath process-math" id="subsec-ZeroMatrix-IdentityMatrix-7-4">
+\begin{equation*}
+I_3 = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">When the size is obvious from context, we don’t need the little subscript in the name for the identity matrix. We just call it <span class="process-math">\(I\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ZeroMatrix-IdentityMatrix-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-ZeroMatrix-IdentityMatrix-8">
+<div class="para">But why does the identity matrix look like that? Imagine we multiply <span class="process-math">\(I_3\)</span> by an arbitrary <span class="process-math">\(3 \times 1\)</span> vector <span class="process-math">\(\begin{bmatrix} x \\ y \\ z \end{bmatrix}\text{.}\)</span> We get</div>
+<div class="displaymath process-math" id="subsec-ZeroMatrix-IdentityMatrix-8-4">
+\begin{equation*}
+\begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+= \begin{bmatrix} x_1 + 0x_2 + 0x_3 \\ 0x_1 + x_2 + 0x_3 \\ 0x_1 + 0x_2 + x_3 \end{bmatrix}
+= \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ZeroMatrix-IdentityMatrix-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Two Special Matrices"><a href="#subsec-ZeroMatrix-IdentityMatrix" title="Copy heading and permalink for Subsection: Two Special Matrices" aria-label="Copy heading and permalink for Subsection: Two Special Matrices">🔗</a></div>
+</section><div class="autopermalink" data-description="Section 1.4: The Matrix Equation A\v{x} = \v{b}"><a href="#sec14-MatrixEquation" title="Copy heading and permalink for Section 1.4: The Matrix Equation A\v{x} = \v{b}" aria-label="Copy heading and permalink for Section 1.4: The Matrix Equation A\v{x} = \v{b}">🔗</a></div>
+</section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec13-VectorEquations.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="backmatter.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>

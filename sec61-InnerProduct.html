@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: salem                          *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Inner Product, Length, and Orthogonality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="og:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="book:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.42"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.13.7';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.52176322e2c1dde5.bundle.js"></script><script src="_static/prefix-713.de0ab26248766350.bundle.js"></script><script src="_static/prefix-runestone.2f713d2360adcee7.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-713.f43ced6a6134ea74.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="changeme" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="my-great-book.html"><span class="title">MTH 261 Applied Linear Algebra I</span> <span class="subtitle">Spring 2026</span></a></h1>
+<p class="byline">Richard Zhao</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search book" commandfor="ptx-search-dialog" command="show-modal"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog" closedby="closerequest"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close search" id="ptx-search-close" class="ptx-search-close" commandfor="ptx-search-dialog" command="close"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="ch6-Orthogonality.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch6-Orthogonality.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec62-OrthogonalSets.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N} 
+\newcommand{\Z}{\mathbb Z} 
+\newcommand{\Q}{\mathbb Q} 
+\newcommand{\R}{\mathbb R} 
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\v}[1]{\mathbf{#1}}
+\newcommand{\c}[1]{\mathcal{#1}}
+
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\adj}{\text{adj}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\Nul}{\text{Nul}}
+\newcommand{\Col}{\text{Col}}
+\newcommand{\im}{\text{im}}
+\newcommand{\span}{\text{span}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter"><div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch1-LinearEquations.html" class="internal"><span class="codenumber">1</span> <span class="title">Linear Equations in Linear Algebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec11-SystemLinearEquations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Systems of Linear Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-SolvingSystemsEquations" class="internal"><span class="title">Solving Systems of Linear Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-AugmentedMatrices" class="internal"><span class="title">Augmented Matrices and Elementary Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-NumberOfSolution" class="internal"><span class="title">How many solutions can a linear system have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-ExistenceUniqueness-SystemEquations" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec12-RowReduction.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Row Reduction and Echelon Forms</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsubsec-NumberOfParameters" class="internal"><span class="title">How many parameters does the solution have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsec-ExistenceUniqueness-AugmentedMatrices" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec13-VectorEquations.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Vector Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-VectorsNotation" class="internal"><span class="title">What is a vector?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-LinearCombinations" class="internal"><span class="title">Linear Combinations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-Span" class="internal"><span class="title">Span</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec13-VectorEquations.html#ws-sec13" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec14-MatrixEquation.html" class="internal"><span class="codenumber">1.4</span> <span class="title">The Matrix Equation <span class="process-math">\(A\v{x} = \v{b}\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DecodeAugmentedMatrix" class="internal"><span class="title">What exactly is an Augmented Matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-MultiplyingMatrixVector" class="internal"><span class="title">Multiplying a Matrix by a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ExistenceUniqueness-Rank" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-VectorEquations" class="internal"><span class="title">Vector Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-LinearTransformations-Intro" class="internal"><span class="title">Intro to Linear Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DotProduct-Intro" class="internal"><span class="title">Intro to the Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ZeroMatrix-IdentityMatrix" class="internal"><span class="title">Two Special Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#ws-sec14" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec15-SolutionSets.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Solution Sets of Linear Systems</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-HomogeneousSystem" class="internal"><span class="title">Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-NonHomogeneousSystem" class="internal"><span class="title">Non-Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec15-SolutionSets.html#ws-sec15" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec17-LinearIndependence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec17-LinearIndependence.html#ws-sec17" class="internal"><span class="codenumber">1.6</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Linear Transformations</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html#ws-sec18" class="internal"><span class="codenumber">1.7</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch2-MatrixAlgebra.html" class="internal"><span class="codenumber">2</span> <span class="title">Matrix Algebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec21-MatrixOperations.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Matrix Operations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixIntro" class="internal"><span class="title">What exactly is a matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-BasicMatrixOperations" class="internal"><span class="title">Basic Matrix Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-SubscriptNotationMatrices" class="internal"><span class="title">Subscript Notation for Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-MatrixAdditionScalarMultiplication" class="internal"><span class="title">Rules for Matrix Addition and Scalar Multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-TransposeMatrices" class="internal"><span class="title">Rules for Transposes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixMultiplication" class="internal"><span class="title">Matrix Multiplication</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#ws-sec21" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec22-InverseMatrix.html" class="internal"><span class="codenumber">2.2</span> <span class="title">The Inverse of a Matrix</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-InverseMatrices" class="internal"><span class="title">Inverse of a Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ImportantTheorems-Inverses" class="internal"><span class="title">Important Theorems and Facts about Inverses</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ElementaryMatrices" class="internal"><span class="title">Elementary Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#ws-sec22" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec23-InvertibleMatrix.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Characterizations of Invertible Matrices</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec23-InvertibleMatrix.html#ws-sec23" class="internal"><span class="codenumber">2.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec28-Subspaces.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Subspaces of <span class="process-math">\(\R^n\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-SubspaceIntro" class="internal"><span class="title">What is a Subspace?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-FundamentalSubspaces" class="internal"><span class="title">Fundamental Subspaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-Span" class="internal"><span class="title">Span and Spanning Sets</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec28-Subspaces.html#ws-sec28" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec29-DimensionRank.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Dimension and Rank</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Basis" class="internal"><span class="title">Basis</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Dimensions" class="internal"><span class="title">Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Rank-NullityTheorem" class="internal"><span class="title">A Fundamental Theorem of Linear Algebra: Rank-Nullity Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-ExtendedInvertibleMatrixTheorem" class="internal"><span class="title">Extending Our Invertible Matrix Theorem!</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec29-DimensionRank.html#ws-sec29" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch3-Determinants.html" class="internal"><span class="codenumber">3</span> <span class="title">Determinants</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec31-IntroDeterminants.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec31-IntroDeterminants.html#ws-sec31" class="internal"><span class="codenumber">3.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Properties of Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html#ws-sec32" class="internal"><span class="codenumber">3.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch5-EigenvaluesEigenvectors.html" class="internal"><span class="codenumber">4</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvectors and Eigenvalues</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html#ws-sec51" class="internal"><span class="codenumber">4.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec52-CharacteristicEquation.html" class="internal"><span class="codenumber">4.2</span> <span class="title">The Characteristic Equation</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec52-CharacteristicEquation.html#ws-sec52" class="internal"><span class="codenumber">4.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec53-Diagonalization.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Diagonalization</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec53-Diagonalization.html#ws-sec53" class="internal"><span class="codenumber">4.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch6-Orthogonality.html" class="internal"><span class="codenumber">5</span> <span class="title">Orthogonality</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec61-InnerProduct.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Inner Product, Length, and Orthogonality</span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Length" class="internal"><span class="title">Length of a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-InnerProduct" class="internal"><span class="title">Inner Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Orthogonality-Intro" class="internal"><span class="title">Orthogonality</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec61-InnerProduct.html#ws-sec61" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec62-OrthogonalSets.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Orthogonal Sets</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec62-OrthogonalSets.html#ws-sec62" class="internal"><span class="codenumber">5.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec63-OrthogonalProjection.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-InnerProduct-Angles" class="internal"><span class="title">Angle between Two Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-OrthogonalProjection" class="internal"><span class="title">Orthogonal Projection</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#ws-sec63" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec64-GramSchmit.html" class="internal"><span class="codenumber">5.4</span> <span class="title">The Gram-Schmidt Process</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendixA-ExamReviews.html" class="internal"><span class="codenumber">A</span> <span class="title">Exam Reviews Page</span></a></div></li>
+<li class="toc-item toc-backmatter"><div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<div class="print-preview-header">
+<h2 class="print-preview">Print preview</h2>
+<div class="print-controls">
+<div class="print-controls-toggles">
+<form class="papersize-select" id="papersize-select">
+<span class="name">Paper size</span><label><input type="radio" name="papersize" value="a4">A4
+        </label><label><input type="radio" name="papersize" value="letter">Letter
+        </label>
+</form>
+<details class="print-options"><summary>Additional printing options</summary><div class="hide-solutions-options">
+<div class="hide-option">
+<label for="hide-hint-checkbox">Hide hints</label><input type="checkbox" id="hide-hint-checkbox">
+</div>
+<div class="hide-option">
+<label for="hide-solution-checkbox">Hide solutions</label><input type="checkbox" id="hide-solution-checkbox">
+</div>
+</div>
+<div class="header-footer-options">
+<div class="header-option">
+<span class="title">Print headers</span><label>First page<input type="checkbox" id="print-first-page-header-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-header-checkbox" checked></label>
+</div>
+<div class="footer-option">
+<span class="title">Print footers</span><label>First page<input type="checkbox" id="print-first-page-footer-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-footer-checkbox" checked></label>
+</div>
+</div>
+<div class="highlight-workspace-option">
+<label for="highlight-workspace-checkbox">Highlight workspace</label><input type="checkbox" id="highlight-workspace-checkbox">
+</div></details>
+</div>
+<button class="print-button" title="Print" onClick="window.print()"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span><span class="name">Print</span></button>
+</div>
+</div>
+<section class="section" id="sec61-InnerProduct">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Inner Product, Length, and Orthogonality</span>
+</h2>
+<section class="subsection" id="subsec-Length">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Length of a Vector</span>
+</h3>
+<div class="para" id="subsec-Length-2">The <dfn class="terminology">length</dfn> of a vector, (aka the <dfn class="terminology">magnitude</dfn> or the <dfn class="terminology">norm</dfn>), can be computed using the Pythagorean Theorem (in <span class="process-math">\(\R^2\)</span> or <span class="process-math">\(\R^3\)</span> for possible visualization).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Length-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="def-Length"><h4 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Length of a Vector.</span>
+</h4>
+<div class="para logical" id="def-Length-2-1">
+<div class="para">Let <span class="process-math">\(\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}\in \R^n\text{.}\)</span> Its <dfn class="terminology">length</dfn>, denoted <span class="process-math">\(\|\v{v}\|\text{,}\)</span> is</div>
+<div class="displaymath process-math" id="def-Length-2-1-4">
+\begin{equation*}
+\|\v{v}\| = \sqrt{v_1^2 + v_2^2 + \cdots v_n^2}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#def-Length-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Definition 5.1.1: Length of a Vector"><a href="#def-Length" title="Copy heading and permalink for Definition 5.1.1: Length of a Vector" aria-label="Copy heading and permalink for Definition 5.1.1: Length of a Vector">🔗</a></div>
+</article>
+<div class="para" id="subsec-Length-4">Using this formula, we can define the <em class="emphasis">distance</em> between two vectors, which is essentially the difference between the tip of two vectors.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Length-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="def-DistanceVector"><h4 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Distance between two Vectors.</span>
+</h4>
+<div class="para logical" id="def-DistanceVector-2-1">
+<div class="para">Let <span class="process-math">\(\v{v}, \v{w} \in \R^n\)</span> such that <span class="process-math">\(\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}\)</span> and <span class="process-math">\(\v{w} = \begin{bmatrix} w_1 \\ w_2 \\ \vdots \\ w_n \end{bmatrix}\text{.}\)</span> The <dfn class="terminology">distance</dfn> between them, denoted <span class="process-math">\(\dist(\v{v}, \v{w})\text{,}\)</span> is</div>
+<div class="displaymath process-math" id="def-DistanceVector-2-1-6">
+\begin{equation*}
+\dist(\v{v}, \v{w}) = \sqrt{\lp v_1 - w_1 \rp^2 + \lp v_2 - w_2 \rp^2 + \cdots + \lp v_n - w_n \rp^2}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#def-DistanceVector-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Definition 5.1.2: Distance between two Vectors"><a href="#def-DistanceVector" title="Copy heading and permalink for Definition 5.1.2: Distance between two Vectors" aria-label="Copy heading and permalink for Definition 5.1.2: Distance between two Vectors">🔗</a></div>
+</article><div class="autopermalink" data-description="Subsection: Length of a Vector"><a href="#subsec-Length" title="Copy heading and permalink for Subsection: Length of a Vector" aria-label="Copy heading and permalink for Subsection: Length of a Vector">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-InnerProduct">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Inner Product</span>
+</h3>
+<div class="para" id="subsec-InnerProduct-2">You may recall that you learned the concept called the <dfn class="terminology">inner product</dfn> before.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="def-InnerProduct"><h4 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Inner Product.</span>
+</h4>
+<div class="para logical" id="def-InnerProduct-2-1">
+<div class="para">The <dfn class="terminology">inner product</dfn> <span class="process-math">\(\boldsymbol{\v{v}, \v{w}}\)</span> of two vectors</div>
+<div class="displaymath process-math" id="def-InnerProduct-2-1-3">
+\begin{equation*}
+\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots v_n \end{bmatrix} \, , \qquad \v{w} = \begin{bmatrix} w_1 \\ w_2 \\ \vdots w_n \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">is the scalar defined by</div>
+<div class="displaymath process-math" id="def-InnerProduct-2-1-4">
+\begin{equation*}
+\v{v}, \v{w} = v_1 w_1 + v_2 w_2 + \cdots + v_n w_n
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#def-InnerProduct-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Definition 5.1.3: Inner Product"><a href="#def-InnerProduct" title="Copy heading and permalink for Definition 5.1.3: Inner Product" aria-label="Copy heading and permalink for Definition 5.1.3: Inner Product">🔗</a></div>
+</article>
+<div class="para logical" id="subsec-InnerProduct-4">
+<div class="para">Let <span class="process-math">\(\v{v}, \v{w} \in \R^n\)</span> be two vectors defined as</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-4-2">
+\begin{equation*}
+\v{v} = \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix} 
+\, , \qquad 
+\v{w} = \begin{pmatrix} w_1 \\ w_2 \\ \vdots \\ w_n \end{pmatrix}
+\end{equation*}
+</div>
+<div class="para">Then the standard inner product of <span class="process-math">\(\v{v}\)</span> and <span class="process-math">\(\v{w}\)</span> , denoted by <span class="process-math">\(\v{v}, \v{w} \text{,}\)</span> is defined as</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-4-6">
+\begin{equation*}
+\v{v}, \v{w}  = \v{v}^T \v{w} = \begin{pmatrix} v_1 \amp v_2 \amp \cdots \amp v_n \end{pmatrix} \begin{pmatrix} w_1 \\ w_2 \\ \vdots \\ w_n \end{pmatrix} = v_1 w_1 + v_2 w_2 + \cdots + v_n w_n
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-5">Observe that we can find the inner product of two vectors by <em class="emphasis">multiplying their corresponding components and adding the results</em>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-InnerProduct-6"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-InnerProduct-6-1">
+<div class="para">Compute the following inner products:</div>
+<ol class="lower-alpha ol-marker-5" id="subsec-InnerProduct-6-1-1">
+<li id="subsec-InnerProduct-6-1-1-1">
+<div class="para" id="subsec-InnerProduct-6-1-1-1-1">
+<span class="process-math">\(\displaystyle \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 4 \\ 3 \\ 5 \end{bmatrix} \)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-6-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item a"><a href="#subsec-InnerProduct-6-1-1-1" title="Copy heading and permalink for Item a" aria-label="Copy heading and permalink for Item a">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-6-1-1-2">
+<div class="para" id="subsec-InnerProduct-6-1-1-2-1">
+<span class="process-math">\(\displaystyle \begin{bmatrix} -3 \\ 1 \end{bmatrix}, \begin{bmatrix} 4 \\ 6 \end{bmatrix} \)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-6-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item b"><a href="#subsec-InnerProduct-6-1-1-2" title="Copy heading and permalink for Item b" aria-label="Copy heading and permalink for Item b">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-InnerProduct-6-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-InnerProduct-6-2-1">
+<ol class="lower-alpha ol-marker-5" id="subsec-InnerProduct-6-2-1-1">
+<li id="subsec-InnerProduct-6-2-1-1-1">
+<div class="para" id="subsec-InnerProduct-6-2-1-1-1-1">
+<span class="process-math">\(\displaystyle \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}\cdot \begin{bmatrix} 4 \\ 3 \\ 5 \end{bmatrix} = 1\cdot 4 + 2\cdot 3 + 1\cdot 5 = 4 + 6 + 5 = 15\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-6-2-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item a"><a href="#subsec-InnerProduct-6-2-1-1-1" title="Copy heading and permalink for Item a" aria-label="Copy heading and permalink for Item a">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-6-2-1-1-2">
+<div class="para" id="subsec-InnerProduct-6-2-1-1-2-1">
+<span class="process-math">\(\displaystyle \begin{bmatrix} -3 \\ 1 \end{bmatrix}\cdot \begin{bmatrix} 4 \\ 6 \end{bmatrix} = -3\cdot 4 + 1\cdot 6 = -12 + 6 = -6\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-6-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item b"><a href="#subsec-InnerProduct-6-2-1-1-2" title="Copy heading and permalink for Item b" aria-label="Copy heading and permalink for Item b">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.1.4.1"><a href="#subsec-InnerProduct-6-2" title="Copy heading and permalink for Solution 5.1.4.1" aria-label="Copy heading and permalink for Solution 5.1.4.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.1.4"><a href="#subsec-InnerProduct-6" title="Copy heading and permalink for Example 5.1.4" aria-label="Copy heading and permalink for Example 5.1.4">🔗</a></div>
+</article>
+<div class="para" id="subsec-InnerProduct-7">Remember that the inner product of two vectors results in a <em class="emphasis">scalar</em> (a real number) and not another vector. The inner product has several useful properties that we summarize in the following theorem.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="thm-InnerProductProperties"><h4 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Properties of the Inner Product.</span>
+</h4>
+<div class="para logical" id="thm-InnerProductProperties-2-1">
+<ol class="lower-roman ol-marker-7" id="thm-InnerProductProperties-2-1-1">
+<li id="thm-InnerProductProperties-2-1-1-1">
+<div class="para" id="thm-InnerProductProperties-2-1-1-1-1">
+<span class="process-math">\(\v{0}\cdot \v{v} = 0\text{,}\)</span> where <span class="process-math">\(\v{0}\)</span> is the zero vector.<div class="autopermalink" data-description="Paragraph"><a href="#thm-InnerProductProperties-2-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item i"><a href="#thm-InnerProductProperties-2-1-1-1" title="Copy heading and permalink for Item i" aria-label="Copy heading and permalink for Item i">🔗</a></div>
+</li>
+<li id="thm-InnerProductProperties-2-1-1-2">
+<div class="para" id="thm-InnerProductProperties-2-1-1-2-1">
+<dfn class="terminology">Commutativity:</dfn> <span class="process-math">\(\v{v}\cdot \v{w} = \v{w} \cdot \v{v}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-InnerProductProperties-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item ii"><a href="#thm-InnerProductProperties-2-1-1-2" title="Copy heading and permalink for Item ii" aria-label="Copy heading and permalink for Item ii">🔗</a></div>
+</li>
+<li id="thm-InnerProductProperties-2-1-1-3">
+<div class="para" id="thm-InnerProductProperties-2-1-1-3-1">
+<dfn class="terminology">Pulling out scalars:</dfn> <span class="process-math">\((\lambda \v{v}) \cdot \v{w} = \v{v}, xxzx``\lambda \v{w} = \lambda \v{v}\cdot \v{w}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-InnerProductProperties-2-1-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item iii"><a href="#thm-InnerProductProperties-2-1-1-3" title="Copy heading and permalink for Item iii" aria-label="Copy heading and permalink for Item iii">🔗</a></div>
+</li>
+<li id="thm-InnerProductProperties-2-1-1-4">
+<div class="para" id="thm-InnerProductProperties-2-1-1-4-1">
+<dfn class="terminology">Distributive Law:</dfn> <span class="process-math">\(\v{u}\cdot \v{v} + \v{w} = \v{u}\cdot \v{v} + \v{u}\cdot \v{w} \)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-InnerProductProperties-2-1-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item iv"><a href="#thm-InnerProductProperties-2-1-1-4" title="Copy heading and permalink for Item iv" aria-label="Copy heading and permalink for Item iv">🔗</a></div>
+</li>
+<li id="thm-InnerProductProperties-2-1-1-5">
+<div class="para" id="thm-InnerProductProperties-2-1-1-5-1">
+<dfn class="terminology">Relation with length:</dfn> <span class="process-math">\(\v{v}, \v{v} = \|\v{v}\|^2\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-InnerProductProperties-2-1-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item v"><a href="#thm-InnerProductProperties-2-1-1-5" title="Copy heading and permalink for Item v" aria-label="Copy heading and permalink for Item v">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#thm-InnerProductProperties-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Theorem 5.1.5: Properties of the Inner Product"><a href="#thm-InnerProductProperties" title="Copy heading and permalink for Theorem 5.1.5: Properties of the Inner Product" aria-label="Copy heading and permalink for Theorem 5.1.5: Properties of the Inner Product">🔗</a></div>
+</article>
+<details id="subsec-InnerProduct-9" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="title">Proof(ish) of the above theorem.</span></h4></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="subsec-InnerProduct-9-2">The proofs of the properties are pretty straightforward using the definition of the inner product. Richard will prove some of them in <span class="process-math">\(\R^3\)</span> and leave the rest as exercises for you to verify (especially if you are thinking about majoring in math). You may also want to see if you are convinced that Richard’s proofs can be generalized to <span class="process-math">\(\R^n\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-9-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-InnerProduct-9-3">
+<ol class="lower-roman ol-marker-7" id="subsec-InnerProduct-9-3-1">
+<li id="subsec-InnerProduct-9-3-1-1">
+<div class="para logical" id="subsec-InnerProduct-9-3-1-1-1">
+<div class="para">Let <span class="process-math">\(\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}\text{.}\)</span> Then</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-9-3-1-1-1-2">
+\begin{equation*}
+\v{0}, \v{v} = 0 \cdot v_1 + 0 \cdot v_2 + 0 \cdot v_3 = 0
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-9-3-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item i"><a href="#subsec-InnerProduct-9-3-1-1" title="Copy heading and permalink for Item i" aria-label="Copy heading and permalink for Item i">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-9-3-1-2">
+<div class="para logical" id="subsec-InnerProduct-9-3-1-2-1">
+<div class="para">Let <span class="process-math">\(\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}\)</span> and <span class="process-math">\(\v{w} = \begin{bmatrix} w_1 \\ w_2 \\ w_3 \end{bmatrix}\text{.}\)</span> Then</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-9-3-1-2-1-3">
+\begin{align*}
+\v{v}, \v{w} \amp= v_1 w_1 + v_2 w_2 + v_3 w_3 \\
+\amp= w_1 v_1 + w_2 v_2 + w_3 v_3 \\
+\amp= \v{w}, \v{v} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-9-3-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item ii"><a href="#subsec-InnerProduct-9-3-1-2" title="Copy heading and permalink for Item ii" aria-label="Copy heading and permalink for Item ii">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-9-3-1-3">
+<div class="para" id="subsec-InnerProduct-9-3-1-3-1">The proof is left as an exercise for the reader.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-9-3-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item iii"><a href="#subsec-InnerProduct-9-3-1-3" title="Copy heading and permalink for Item iii" aria-label="Copy heading and permalink for Item iii">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-9-3-1-4">
+<div class="para" id="subsec-InnerProduct-9-3-1-4-1">The proof is left as an exercise for the reader.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-9-3-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item iv"><a href="#subsec-InnerProduct-9-3-1-4" title="Copy heading and permalink for Item iv" aria-label="Copy heading and permalink for Item iv">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-9-3-1-5">
+<div class="para logical" id="subsec-InnerProduct-9-3-1-5-1">
+<div class="para">Let <span class="process-math">\(\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}\text{.}\)</span> Then</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-9-3-1-5-1-2">
+\begin{equation*}
+\v{v}, \v{v} = v_1^2 + v_2^2 + v_3^2 = \|\v{v}\|^2
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-9-3-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item v"><a href="#subsec-InnerProduct-9-3-1-5" title="Copy heading and permalink for Item v" aria-label="Copy heading and permalink for Item v">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-9-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 1: Proof(ish) of the above theorem"><a href="#subsec-InnerProduct-9" title="Copy heading and permalink for Proof 1: Proof(ish) of the above theorem" aria-label="Copy heading and permalink for Proof 1: Proof(ish) of the above theorem">🔗</a></div>
+</article></details>
+<div class="para" id="subsec-InnerProduct-10">Using these properties, we can prove some cool results! For example, do you know that the sum of the squares of the lengths of the four sides of a parallelogram is equal to the sum of the squares of the lengths of its two diagonals? This is also known as the <dfn class="terminology">parallelogram law</dfn>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="thm-ParallelogramLaw"><h4 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Parallelogram Law.</span>
+</h4>
+<div class="para logical" id="thm-ParallelogramLaw-2-1">
+<div class="displaymath process-math" id="thm-ParallelogramLaw-2-1-1">
+\begin{equation*}
+\|\v{u} + \v{v}\|^2 + \|\v{u} - \v{v}\|^2 = 2\|\v{u}\|^2 + 2\|\v{v}\|^2
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#thm-ParallelogramLaw-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Theorem 5.1.6: Parallelogram Law"><a href="#thm-ParallelogramLaw" title="Copy heading and permalink for Theorem 5.1.6: Parallelogram Law" aria-label="Copy heading and permalink for Theorem 5.1.6: Parallelogram Law">🔗</a></div>
+</article>
+<article class="example example-like" id="subsec-InnerProduct-12"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-InnerProduct-12-1">Prove the parallelogram law using the properties of the inner product. The diagram below shows a parallelogram formed by the vectors <span class="process-math">\(\v{u}\)</span> and <span class="process-math">\(\v{v}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-12-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-InnerProduct-12-2"><div class="image-box" style="width: 65%; margin-left: 17.5%; margin-right: 17.5%;"><img src="external/sec123-ParallelogramLaw-Diagram.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.8<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Parallelogram formed by vectors <span class="process-math">\(\v{u}\)</span> and <span class="process-math">\(\v{v}\)</span><div class="autopermalink" data-description="Figure 5.1.8"><a href="#subsec-InnerProduct-12-2" title="Copy heading and permalink for Figure 5.1.8" aria-label="Copy heading and permalink for Figure 5.1.8">🔗</a></div></figcaption>
+</figure>
+<details id="subsec-InnerProduct-12-3" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="hint solution-like knowl__content">
+<div class="para" id="subsec-InnerProduct-12-3-1">The parallelogram has two diagonals with the lengths of <span class="process-math">\(\|\v{u} + \v{v}\|\)</span> and <span class="process-math">\(\|\v{u} - \v{v}\|\text{.}\)</span> Also, the sides have lengths of <span class="process-math">\(\|\v{u}\|\)</span> and <span class="process-math">\(\|\v{v}\|\text{,}\)</span> respectively.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-12-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-12-3-2">We are learning about the inner product so let’s get some inner products involved! One of the inner product properties states that <span class="process-math">\(\|\v{v}\|^2 = \v{v}, \v{v}\)</span> so converting all the lengths into inner products is a good start!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-12-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 5.1.7.1"><a href="#subsec-InnerProduct-12-3" title="Copy heading and permalink for Hint 5.1.7.1" aria-label="Copy heading and permalink for Hint 5.1.7.1">🔗</a></div>
+</div></details>
+<details id="subsec-InnerProduct-12-4" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-InnerProduct-12-4-1">
+<div class="displaymath process-math" id="subsec-InnerProduct-12-4-1-1">
+\begin{align*}
+\|\v{u} + \v{v}\|^2 + \|\v{u} - \v{v}\|^2 \amp= \v{u} + \v{v}, \v{u} + \v{v} + \la \v{u} - \v{v}, \v{u} - \v{v} \\
+\amp= \v{u}, \v{u} + 2 \v{u}, \v{v} + \v{v}, \v{v} + \v{u}, \v{u} - 2\v{u}, \v{v} + \v{v}, \v{v}\\
+\amp= 2 \v{u}, \v{u} + 2 \v{v}, \v{v} \\
+\amp= 2\|\v{u}\|^2 + 2\|\v{v}\|^2 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-12-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.1.7.1"><a href="#subsec-InnerProduct-12-4" title="Copy heading and permalink for Solution 5.1.7.1" aria-label="Copy heading and permalink for Solution 5.1.7.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.1.7"><a href="#subsec-InnerProduct-12" title="Copy heading and permalink for Example 5.1.7" aria-label="Copy heading and permalink for Example 5.1.7">🔗</a></div>
+</article>
+<div class="para" id="subsec-InnerProduct-13">Now that we know what the inner product is and some of its properties, we will next explore why we care about it.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Inner Product"><a href="#subsec-InnerProduct" title="Copy heading and permalink for Subsection: Inner Product" aria-label="Copy heading and permalink for Subsection: Inner Product">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-Orthogonality-Intro">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Orthogonality</span>
+</h3>
+<div class="para" id="subsec-Orthogonality-Intro-2">Long story short, two vectors are <dfn class="terminology">orthogonal</dfn> if their inner product is zero. But what does it look like? We will explore it more in <a href="sec63-OrthogonalProjection.html" class="internal" title="Section 5.3: Orthogonal Projection">Section 5.3</a>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Orthogonality-Intro-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Orthogonality"><a href="#subsec-Orthogonality-Intro" title="Copy heading and permalink for Subsection: Orthogonality" aria-label="Copy heading and permalink for Subsection: Orthogonality">🔗</a></div>
+</section>
+<section class="worksheet" id="ws-sec61" data-margins="0.75in 0.75in 0.75in 0.75in">
+<h3 class="heading hide-type">
+<span class="type">Worksheet</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Some Exercises for This Section</span><div class="print-links"><a href="?printpreview=ws-sec61" class="print-link" title="Print preview"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span></a></div>
+</h3>
+<section class="introduction" id="ws-sec61-2">
+<div class="para" id="ws-sec61-2-1">Richard included some practice problems that cover some main concepts in this section. You don’t need to turn it in, but you are highly encouraged to work on this with your classmates. The problems here may end up being in-class practice problems, homework problems, and/or exam problems. Reach out to Richard for help if you get stuck or have any questions.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="ws-sec61-2-2">Only the final answers are included to some of the problems for you to check your result. If you want to check your work, talk to Richard and he is happy to discuss the process with you.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></section>
+<div class="exercisegroup" id="ws-sec61-3">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec61-3-1">
+<div class="para logical" id="ws-sec61-3-1-1">
+<div class="para">Compute the quantities the following exercises using the vectors</div>
+<div class="displaymath process-math" id="ws-sec61-3-1-1-1">
+\begin{equation*}
+u=\begin{bmatrix}-1\\ 2\end{bmatrix}, \quad v=\begin{bmatrix}2\\ 3\end{bmatrix}, \quad w=\begin{bmatrix}3\\ -1\\ -5\end{bmatrix}, \quad x=\begin{bmatrix}6\\ -2\\ 3\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec61-3-2"><h5 class="heading"><span class="codenumber">6.1.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec61-3-2-1-1">
+\begin{equation*}
+\frac{1}{w\cdot w}w
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.3"><a href="#ws-sec61-3-2" title="Copy heading and permalink for Worksheet Exercise 6.1.3" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.3">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec61-3-3"><h5 class="heading"><span class="codenumber">6.1.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec61-3-3-1-1">
+\begin{equation*}
+\left(\frac{u\cdot v}{v\cdot v}\right)v
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.5"><a href="#ws-sec61-3-3" title="Copy heading and permalink for Worksheet Exercise 6.1.5" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.5">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 6.1.3–6.1.5"><a href="#ws-sec61-3" title="Copy heading and permalink for Exercise Group 6.1.3–6.1.5" aria-label="Copy heading and permalink for Exercise Group 6.1.3–6.1.5">🔗</a></div>
+</div>
+<div class="exercisegroup" id="ws-sec61-4">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec61-4-1">
+<div class="para" id="ws-sec61-4-1-1">In the following exercise, find a unit vector in the direction of the given vector.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec61-4-2"><h5 class="heading"><span class="codenumber">6.1.9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec61-4-2-1-1">
+\begin{equation*}
+\begin{bmatrix}-30\\ 40\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.9"><a href="#ws-sec61-4-2" title="Copy heading and permalink for Worksheet Exercise 6.1.9" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.9">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec61-4-3"><h5 class="heading"><span class="codenumber">6.1.11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec61-4-3-1-1">
+\begin{equation*}
+\begin{bmatrix}\frac{7}{4}\\ \frac{1}{2}\\ 1\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.11"><a href="#ws-sec61-4-3" title="Copy heading and permalink for Worksheet Exercise 6.1.11" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.11">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 6.1.9–6.1.11"><a href="#ws-sec61-4" title="Copy heading and permalink for Exercise Group 6.1.9–6.1.11" aria-label="Copy heading and permalink for Exercise Group 6.1.9–6.1.11">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="ws-sec61-5"><h4 class="heading"><span class="codenumber">6.1.13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec61-5-1-1">Find the distance between <span class="process-math">\(x=\begin{bmatrix}10\\ -3\end{bmatrix}\)</span> and <span class="process-math">\(y=\begin{bmatrix}-1\\ -5\end{bmatrix}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.13"><a href="#ws-sec61-5" title="Copy heading and permalink for Worksheet Exercise 6.1.13" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.13">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec61-6"><h4 class="heading"><span class="codenumber">6.1.17<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para logical" id="ws-sec61-6-1-1">
+<div class="para">Determine if the following pair of vectors is orthogonal.</div>
+<div class="displaymath process-math" id="ws-sec61-6-1-1-1">
+\begin{equation*}
+u=\begin{bmatrix}3\\ 2\\ -5\\ 0\end{bmatrix}, \quad v=\begin{bmatrix}-4\\ 1\\ -2\\ 6\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.17"><a href="#ws-sec61-6" title="Copy heading and permalink for Worksheet Exercise 6.1.17" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.17">🔗</a></div>
+</article>
+<div class="exercisegroup" id="ws-sec61-7">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec61-7-1">
+<div class="para" id="ws-sec61-7-1-1">In Exercises 19-27, all vectors are in <span class="process-math">\(\mathbb{R}^{n}\text{.}\)</span> Mark each statement True or False (T/F). Justify each answer.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec61-7-2"><h5 class="heading"><span class="codenumber">6.1.19<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec61-7-2-1-1">(T/F) <span class="process-math">\(v\cdot v=||v||^{2}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-7-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.19"><a href="#ws-sec61-7-2" title="Copy heading and permalink for Worksheet Exercise 6.1.19" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.19">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec61-7-3"><h5 class="heading"><span class="codenumber">6.1.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec61-7-3-1-1">(T/F) If the distance from <span class="process-math">\(u\)</span> to <span class="process-math">\(v\)</span> equals the distance from <span class="process-math">\(u\)</span> to <span class="process-math">\(-v\text{,}\)</span> then <span class="process-math">\(u\)</span> and <span class="process-math">\(v\)</span> are orthogonal.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-7-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.21"><a href="#ws-sec61-7-3" title="Copy heading and permalink for Worksheet Exercise 6.1.21" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.21">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec61-7-4"><h5 class="heading"><span class="codenumber">6.1.23<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec61-7-4-1-1">(T/F) If vectors <span class="process-math">\(v_{1},...,v_{p}\)</span> span a subspace <span class="process-math">\(W\)</span> and if <span class="process-math">\(x\)</span> is orthogonal to each <span class="process-math">\(v_{j}\)</span> for <span class="process-math">\(j=1,...,p\)</span> then <span class="process-math">\(x\)</span> is in <span class="process-math">\(W^{\perp}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-7-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.23"><a href="#ws-sec61-7-4" title="Copy heading and permalink for Worksheet Exercise 6.1.23" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.23">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec61-7-5"><h5 class="heading"><span class="codenumber">6.1.25<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec61-7-5-1-1">(T/F) For any scalar <span class="process-math">\(c\text{,}\)</span> <span class="process-math">\(||cv||=c||v||\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-7-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.25"><a href="#ws-sec61-7-5" title="Copy heading and permalink for Worksheet Exercise 6.1.25" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.25">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec61-7-6"><h5 class="heading"><span class="codenumber">6.1.27<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec61-7-6-1-1">(T/F) For a square matrix <span class="process-math">\(A\text{,}\)</span> vectors in Col <span class="process-math">\(A\)</span> are orthogonal to vectors in Nul <span class="process-math">\(A\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec61-7-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.1.27"><a href="#ws-sec61-7-6" title="Copy heading and permalink for Worksheet Exercise 6.1.27" aria-label="Copy heading and permalink for Worksheet Exercise 6.1.27">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 6.1.19–6.1.27"><a href="#ws-sec61-7" title="Copy heading and permalink for Exercise Group 6.1.19–6.1.27" aria-label="Copy heading and permalink for Exercise Group 6.1.19–6.1.27">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet: Some Exercises for This Section"><a href="#ws-sec61" title="Copy heading and permalink for Worksheet: Some Exercises for This Section" aria-label="Copy heading and permalink for Worksheet: Some Exercises for This Section">🔗</a></div>
+</section><div class="autopermalink" data-description="Section 5.1: Inner Product, Length, and Orthogonality"><a href="#sec61-InnerProduct" title="Copy heading and permalink for Section 5.1: Inner Product, Length, and Orthogonality" aria-label="Copy heading and permalink for Section 5.1: Inner Product, Length, and Orthogonality">🔗</a></div>
+</section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="ch6-Orthogonality.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec62-OrthogonalSets.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>

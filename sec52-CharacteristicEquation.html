@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: salem                          *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The Characteristic Equation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="og:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="book:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.42"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.13.7';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.52176322e2c1dde5.bundle.js"></script><script src="_static/prefix-713.de0ab26248766350.bundle.js"></script><script src="_static/prefix-runestone.2f713d2360adcee7.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-713.f43ced6a6134ea74.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="changeme" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="my-great-book.html"><span class="title">MTH 261 Applied Linear Algebra I</span> <span class="subtitle">Spring 2026</span></a></h1>
+<p class="byline">Richard Zhao</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search book" commandfor="ptx-search-dialog" command="show-modal"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog" closedby="closerequest"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close search" id="ptx-search-close" class="ptx-search-close" commandfor="ptx-search-dialog" command="close"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec51-EigenvectorsEigenvalues.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch5-EigenvaluesEigenvectors.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec53-Diagonalization.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N} 
+\newcommand{\Z}{\mathbb Z} 
+\newcommand{\Q}{\mathbb Q} 
+\newcommand{\R}{\mathbb R} 
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\v}[1]{\mathbf{#1}}
+\newcommand{\c}[1]{\mathcal{#1}}
+
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\adj}{\text{adj}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\Nul}{\text{Nul}}
+\newcommand{\Col}{\text{Col}}
+\newcommand{\im}{\text{im}}
+\newcommand{\span}{\text{span}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter"><div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch1-LinearEquations.html" class="internal"><span class="codenumber">1</span> <span class="title">Linear Equations in Linear Algebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec11-SystemLinearEquations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Systems of Linear Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-SolvingSystemsEquations" class="internal"><span class="title">Solving Systems of Linear Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-AugmentedMatrices" class="internal"><span class="title">Augmented Matrices and Elementary Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-NumberOfSolution" class="internal"><span class="title">How many solutions can a linear system have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-ExistenceUniqueness-SystemEquations" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec12-RowReduction.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Row Reduction and Echelon Forms</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsubsec-NumberOfParameters" class="internal"><span class="title">How many parameters does the solution have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsec-ExistenceUniqueness-AugmentedMatrices" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec13-VectorEquations.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Vector Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-VectorsNotation" class="internal"><span class="title">What is a vector?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-LinearCombinations" class="internal"><span class="title">Linear Combinations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-Span" class="internal"><span class="title">Span</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec13-VectorEquations.html#ws-sec13" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec14-MatrixEquation.html" class="internal"><span class="codenumber">1.4</span> <span class="title">The Matrix Equation <span class="process-math">\(A\v{x} = \v{b}\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DecodeAugmentedMatrix" class="internal"><span class="title">What exactly is an Augmented Matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-MultiplyingMatrixVector" class="internal"><span class="title">Multiplying a Matrix by a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ExistenceUniqueness-Rank" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-VectorEquations" class="internal"><span class="title">Vector Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-LinearTransformations-Intro" class="internal"><span class="title">Intro to Linear Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DotProduct-Intro" class="internal"><span class="title">Intro to the Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ZeroMatrix-IdentityMatrix" class="internal"><span class="title">Two Special Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#ws-sec14" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec15-SolutionSets.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Solution Sets of Linear Systems</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-HomogeneousSystem" class="internal"><span class="title">Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-NonHomogeneousSystem" class="internal"><span class="title">Non-Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec15-SolutionSets.html#ws-sec15" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec17-LinearIndependence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec17-LinearIndependence.html#ws-sec17" class="internal"><span class="codenumber">1.6</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Linear Transformations</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html#ws-sec18" class="internal"><span class="codenumber">1.7</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch2-MatrixAlgebra.html" class="internal"><span class="codenumber">2</span> <span class="title">Matrix Algebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec21-MatrixOperations.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Matrix Operations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixIntro" class="internal"><span class="title">What exactly is a matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-BasicMatrixOperations" class="internal"><span class="title">Basic Matrix Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-SubscriptNotationMatrices" class="internal"><span class="title">Subscript Notation for Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-MatrixAdditionScalarMultiplication" class="internal"><span class="title">Rules for Matrix Addition and Scalar Multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-TransposeMatrices" class="internal"><span class="title">Rules for Transposes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixMultiplication" class="internal"><span class="title">Matrix Multiplication</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#ws-sec21" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec22-InverseMatrix.html" class="internal"><span class="codenumber">2.2</span> <span class="title">The Inverse of a Matrix</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-InverseMatrices" class="internal"><span class="title">Inverse of a Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ImportantTheorems-Inverses" class="internal"><span class="title">Important Theorems and Facts about Inverses</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ElementaryMatrices" class="internal"><span class="title">Elementary Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#ws-sec22" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec23-InvertibleMatrix.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Characterizations of Invertible Matrices</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec23-InvertibleMatrix.html#ws-sec23" class="internal"><span class="codenumber">2.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec28-Subspaces.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Subspaces of <span class="process-math">\(\R^n\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-SubspaceIntro" class="internal"><span class="title">What is a Subspace?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-FundamentalSubspaces" class="internal"><span class="title">Fundamental Subspaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-Span" class="internal"><span class="title">Span and Spanning Sets</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec28-Subspaces.html#ws-sec28" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec29-DimensionRank.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Dimension and Rank</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Basis" class="internal"><span class="title">Basis</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Dimensions" class="internal"><span class="title">Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Rank-NullityTheorem" class="internal"><span class="title">A Fundamental Theorem of Linear Algebra: Rank-Nullity Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-ExtendedInvertibleMatrixTheorem" class="internal"><span class="title">Extending Our Invertible Matrix Theorem!</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec29-DimensionRank.html#ws-sec29" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch3-Determinants.html" class="internal"><span class="codenumber">3</span> <span class="title">Determinants</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec31-IntroDeterminants.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec31-IntroDeterminants.html#ws-sec31" class="internal"><span class="codenumber">3.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Properties of Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html#ws-sec32" class="internal"><span class="codenumber">3.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch5-EigenvaluesEigenvectors.html" class="internal"><span class="codenumber">4</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvectors and Eigenvalues</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html#ws-sec51" class="internal"><span class="codenumber">4.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec52-CharacteristicEquation.html" class="internal"><span class="codenumber">4.2</span> <span class="title">The Characteristic Equation</span></a></div>
+<ul class="structural toc-item-list active"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec52-CharacteristicEquation.html#ws-sec52" class="internal"><span class="codenumber">4.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec53-Diagonalization.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Diagonalization</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec53-Diagonalization.html#ws-sec53" class="internal"><span class="codenumber">4.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch6-Orthogonality.html" class="internal"><span class="codenumber">5</span> <span class="title">Orthogonality</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec61-InnerProduct.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Inner Product, Length, and Orthogonality</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Length" class="internal"><span class="title">Length of a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-InnerProduct" class="internal"><span class="title">Inner Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Orthogonality-Intro" class="internal"><span class="title">Orthogonality</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec61-InnerProduct.html#ws-sec61" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec62-OrthogonalSets.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Orthogonal Sets</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec62-OrthogonalSets.html#ws-sec62" class="internal"><span class="codenumber">5.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec63-OrthogonalProjection.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-InnerProduct-Angles" class="internal"><span class="title">Angle between Two Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-OrthogonalProjection" class="internal"><span class="title">Orthogonal Projection</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#ws-sec63" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec64-GramSchmit.html" class="internal"><span class="codenumber">5.4</span> <span class="title">The Gram-Schmidt Process</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendixA-ExamReviews.html" class="internal"><span class="codenumber">A</span> <span class="title">Exam Reviews Page</span></a></div></li>
+<li class="toc-item toc-backmatter"><div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<div class="print-preview-header">
+<h2 class="print-preview">Print preview</h2>
+<div class="print-controls">
+<div class="print-controls-toggles">
+<form class="papersize-select" id="papersize-select">
+<span class="name">Paper size</span><label><input type="radio" name="papersize" value="a4">A4
+        </label><label><input type="radio" name="papersize" value="letter">Letter
+        </label>
+</form>
+<details class="print-options"><summary>Additional printing options</summary><div class="header-footer-options">
+<div class="header-option">
+<span class="title">Print headers</span><label>First page<input type="checkbox" id="print-first-page-header-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-header-checkbox" checked></label>
+</div>
+<div class="footer-option">
+<span class="title">Print footers</span><label>First page<input type="checkbox" id="print-first-page-footer-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-footer-checkbox" checked></label>
+</div>
+</div>
+<div class="highlight-workspace-option">
+<label for="highlight-workspace-checkbox">Highlight workspace</label><input type="checkbox" id="highlight-workspace-checkbox">
+</div></details>
+</div>
+<button class="print-button" title="Print" onClick="window.print()"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span><span class="name">Print</span></button>
+</div>
+</div>
+<section class="section" id="sec52-CharacteristicEquation">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Characteristic Equation</span>
+</h2>
+<div class="para" id="sec52-CharacteristicEquation-2">Now that we know how to find the eigenvectors corresponding to a specific eigenvalue, the next question is: <em class="alert">How do we find the eigenvalues of a matrix?</em><div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec52-CharacteristicEquation-3">
+<div class="para">We can find the eigenvalues of a matrix by, again, observing this equation</div>
+<div class="displaymath process-math" id="sec52-CharacteristicEquation-3-1">
+\begin{equation*}
+(A - \lambda I)\v{x} = \v{0}
+\end{equation*}
+</div>
+<div class="para">Recall that eigenvectors are <em class="emphasis">non-trivial</em> solutions to this homogeneous equation, so this equation must have infinitely many solutions. That is, the matrix <span class="process-math">\(A - \lambda I\)</span> must be singular (not invertible).</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec52-CharacteristicEquation-4">We can say a lot about a non-invertible matrix. The fact that will be super useful to us is that a matrix is non-invertible if and only if its determinant is zero. So <em class="alert">we can find all eigenvalues of a matrix by solving the equation <span class="process-math">\(\det(A - \lambda I) = 0\text{.}\)</span></em><div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="sec52-CharacteristicEquation-5"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.2.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sec52-CharacteristicEquation-5-1">Let <span class="process-math">\(A = \begin{bmatrix} 3 \amp 2 \\ -2 \amp -2 \end{bmatrix}\)</span> and we want to find all the eigenvalues of this matrix.<div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec52-CharacteristicEquation-5-2">Let <span class="process-math">\(\lambda\)</span> be an eigenvalue of <span class="process-math">\(A\text{.}\)</span> Then we want the matrix <span class="process-math">\(A - \lambda I\)</span> be non-invertible to guarantee non-trivial solutions to the equation <span class="process-math">\((A - \lambda I)\v{x} = \v{0}\text{.}\)</span> That is, we want the <span class="process-math">\(\lambda\)</span> values such that <span class="process-math">\(\det(A - \lambda I) = 0\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-5-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec52-CharacteristicEquation-5-3">
+<div class="para">Let’s start by computing the determinant of the matrix <span class="process-math">\(A - \lambda I\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="sec52-CharacteristicEquation-5-3-2">
+\begin{align*}
+\det(A - \lambda I) \amp= \begin{vmatrix} 3 - \lambda \amp 2 \\ -2 \amp -2 - \lambda \end{vmatrix} \\
+\amp= (3 - \lambda)(-2 - \lambda) - (2)(-2) \\
+\amp= -6 - 3\lambda + 2\lambda + \lambda^2 + 4 \\
+\amp= \lambda^2 - \lambda - 2 
+\end{align*}
+</div>
+<div class="para">This is essentially a quadratic equation in terms of <span class="process-math">\(\lambda\)</span> and we can totally solve it! Factoring the quadratic, we have</div>
+<div class="displaymath process-math" id="sec52-CharacteristicEquation-5-3-4">
+\begin{equation*}
+(\lambda - 2)(\lambda + 1) = 0
+\qquad \implies \quad
+\lambda = 2 \quad \text{or} \quad \lambda = -1
+\end{equation*}
+</div>
+<div class="para">Hence, the eigenvalues of the matrix <span class="process-math">\(A\)</span> are <span class="process-math">\(2\)</span> and <span class="process-math">\(-1\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-5-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 4.2.1"><a href="#sec52-CharacteristicEquation-5" title="Copy heading and permalink for Example 4.2.1" aria-label="Copy heading and permalink for Example 4.2.1">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="sec52-CharacteristicEquation-6"><h3 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.2.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sec52-CharacteristicEquation-6-1">Find the eigenvalues of the matrix <span class="process-math">\(B = \begin{bmatrix} 1 \amp 1 \\ 1 \amp 1 \end{bmatrix}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Checkpoint 4.2.2"><a href="#sec52-CharacteristicEquation-6" title="Copy heading and permalink for Checkpoint 4.2.2" aria-label="Copy heading and permalink for Checkpoint 4.2.2">🔗</a></div>
+</article>
+<div class="para" id="sec52-CharacteristicEquation-7">Since the equation <span class="process-math">\(\det(A - \lambda I) = 0\)</span> captures the <em class="emphasis">characteristics</em> of the matrix <span class="process-math">\(A - \lambda I\)</span> that this matrix must be non-invertible, we call this equation the <dfn class="terminology">characteristic equation</dfn> of the matrix <span class="process-math">\(A\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="def-CharacteristicEquation"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.2.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Characteristic Equations.</span>
+</h3>
+<div class="para logical" id="def-CharacteristicEquation-2-1">
+<div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(n \times n\)</span> matrix. The equation</div>
+<div class="displaymath process-math" id="def-CharacteristicEquation-2-1-3">
+\begin{equation*}
+\det (A - \lambda I) = 0
+\end{equation*}
+</div>
+<div class="para">is called the <dfn class="terminology">characteristic equation</dfn> of the matrix <span class="process-math">\(A\text{.}\)</span> A scalar <span class="process-math">\(\lambda\)</span> is an eigenvalue of <span class="process-math">\(A\)</span> if and only if it is a solution to the characteristic equation of <span class="process-math">\(A\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#def-CharacteristicEquation-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<div class="para" id="def-CharacteristicEquation-2-2">The characteristic equation will always be a polynomial equation, so <span class="process-math">\(\det(A - \lambda I)\)</span> is called the <dfn class="terminology">characteristic polynomial</dfn> of the matrix <span class="process-math">\(A\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#def-CharacteristicEquation-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Definition 4.2.3: Characteristic Equations"><a href="#def-CharacteristicEquation" title="Copy heading and permalink for Definition 4.2.3: Characteristic Equations" aria-label="Copy heading and permalink for Definition 4.2.3: Characteristic Equations">🔗</a></div>
+</article>
+<div class="para" id="sec52-CharacteristicEquation-9">In practice, finding the eigenvalues of an <span class="process-math">\(n \times n\)</span> matrix results in solving a polynomial equation of degree <span class="process-math">\(n\text{.}\)</span> This is almost always difficult as <span class="process-math">\(n\)</span> gets larger. So we will leave this to computers, except in the <span class="process-math">\(2 \times 2\)</span> case and some easy <span class="process-math">\(3 \times 3\)</span> cases.<div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="sec52-CharacteristicEquation-10"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.2.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sec52-CharacteristicEquation-10-1">Let <span class="process-math">\(A = \begin{bmatrix} 1 \amp 3 \amp 3 \\ -3 \amp -5 \amp -3 \\ 3 \amp 3 \amp 1 \end{bmatrix}\text{.}\)</span> What are the eigenvalues of this matrix?<div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-10-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec52-CharacteristicEquation-10-2">
+<div class="para">We can find the eigenvalues by solving the characteristic equation <span class="process-math">\(\det(A - \lambda I) = 0\text{,}\)</span> so let’s start by computing the determinant of the matrix <span class="process-math">\(A - \lambda I\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="sec52-CharacteristicEquation-10-2-3">
+\begin{align*}
+\det(A - \lambda I) \amp= \begin{vmatrix} 1 - \lambda \amp 3 \amp 3 \\ -3 \amp -5 - \lambda \amp -3 \\ 3 \amp 3 \amp 1 - \lambda \end{vmatrix} \\
+\amp= (1 - \lambda) \begin{vmatrix} -5 - \lambda \amp -3 \\ 3 \amp 1 - \lambda \end{vmatrix} - 3 \begin{vmatrix} -3 \amp -3 \\ 3 \amp 1 - \lambda \end{vmatrix} + 3 \begin{vmatrix} -3 \amp -5 - \lambda \\ 3 \amp 3 \end{vmatrix} \\
+\amp= (1 - \lambda)((-5 - \lambda)(1 - \lambda) + 9) - 3((-3)(1 - \lambda) + 9) + 3(-9 - 3(-5 - \lambda)) \\
+\amp= (1 - \lambda)(\lambda^2 + 4\lambda + 4) - 3(3\lambda + 6) + 3(-9 + 15 + 3\lambda) \\
+\amp= (1 - \lambda)(\lambda + 2)^2 - 3(3\lambda + 6) + 3(3\lambda + 6) \\
+\amp= (1 - \lambda)(\lambda + 2)^2 
+\end{align*}
+</div>
+<div class="para">Since <span class="process-math">\(\det (A - \lambda I)\)</span> is already factored, we can easily solve the characteristic equation <span class="process-math">\(\det(A - \lambda I) = 0\)</span> and find the eigenvalues:</div>
+<div class="displaymath process-math" id="sec52-CharacteristicEquation-10-2-6">
+\begin{equation*}
+(1 - \lambda)(\lambda + 2)^2 = 0 
+\qquad \implies \qquad 
+\lambda = 1 \quad \text{or} \quad \lambda = -2
+\end{equation*}
+</div>
+<div class="para">Hence, the eigenvalues of the matrix <span class="process-math">\(A\)</span> are <span class="process-math">\(1\)</span> and <span class="process-math">\(-2\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec52-CharacteristicEquation-10-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 4.2.4"><a href="#sec52-CharacteristicEquation-10" title="Copy heading and permalink for Example 4.2.4" aria-label="Copy heading and permalink for Example 4.2.4">🔗</a></div>
+</article>
+<section class="worksheet" id="ws-sec52" data-margins="0.75in 0.75in 0.75in 0.75in">
+<h3 class="heading hide-type">
+<span class="type">Worksheet</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Some Exercises for This Section</span><div class="print-links"><a href="?printpreview=ws-sec52" class="print-link" title="Print preview"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span></a></div>
+</h3>
+<section class="introduction" id="ws-sec52-2">
+<div class="para" id="ws-sec52-2-1">Richard included some practice problems that cover some main concepts in this section. You don’t need to turn it in, but you are highly encouraged to work on this with your classmates. The problems here may end up being in-class practice problems, homework problems, and/or exam problems. Reach out to Richard for help if you get stuck or have any questions.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="ws-sec52-2-2">Only the final answers are included to some of the problems for you to check your result. If you want to check your work, talk to Richard and he is happy to discuss the process with you.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></section>
+<div class="exercisegroup" id="ws-sec52-3">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec52-3-1">
+<div class="para" id="ws-sec52-3-1-1">Find the characteristic polynomial and the eigenvalues of the matrices in the following exercises.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec52-3-2"><h5 class="heading"><span class="codenumber">5.2.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec52-3-2-1-1">
+\begin{equation*}
+\begin{bmatrix} 2 \amp 1 \\ -1 \amp 4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.5"><a href="#ws-sec52-3-2" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.5" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.5">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec52-3-3"><h5 class="heading"><span class="codenumber">5.2.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec52-3-3-1-1">
+\begin{equation*}
+\begin{bmatrix} 5 \amp 3 \\ -4 \amp 4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.7"><a href="#ws-sec52-3-3" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.7" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.7">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 4.2.5.2.5–5.2.7"><a href="#ws-sec52-3" title="Copy heading and permalink for Exercise Group 4.2.5.2.5–5.2.7" aria-label="Copy heading and permalink for Exercise Group 4.2.5.2.5–5.2.7">🔗</a></div>
+</div>
+<div class="exercisegroup" id="ws-sec52-4">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec52-4-1">
+<div class="para" id="ws-sec52-4-1-1">In the following exercises, find the characteristic polynomial of each matrix<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec52-4-2"><h5 class="heading"><span class="codenumber">5.2.9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec52-4-2-1-1">
+\begin{equation*}
+\begin{bmatrix} 1 \amp 0 \amp -1 \\ 2 \amp 3 \amp -1 \\ 0 \amp 6 \amp 0 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.9"><a href="#ws-sec52-4-2" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.9" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.9">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec52-4-3"><h5 class="heading"><span class="codenumber">5.2.11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec52-4-3-1-1">
+\begin{equation*}
+\begin{bmatrix} 4 \amp 0 \amp 0 \\ 5 \amp 3 \amp 2 \\ -2 \amp 0 \amp 2 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.11"><a href="#ws-sec52-4-3" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.11" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.11">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 4.2.5.2.9–5.2.11"><a href="#ws-sec52-4" title="Copy heading and permalink for Exercise Group 4.2.5.2.9–5.2.11" aria-label="Copy heading and permalink for Exercise Group 4.2.5.2.9–5.2.11">🔗</a></div>
+</div>
+<div class="exercisegroup" id="ws-sec52-5">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec52-5-1">
+<div class="para" id="ws-sec52-5-1-1">For the matrix in Exercise 17, list the eigenvalues, repeated according to their multiplicities.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec52-5-2"><h5 class="heading"><span class="codenumber">5.2.17<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec52-5-2-1-1">List the eigenvalues, repeated according to their multiplicities, of the matrix <span class="process-math">\(\begin{bmatrix} 3 \amp 0 \amp 0 \amp 0 \amp 0 \\ -5 \amp 1 \amp 0 \amp 0 \amp 0 \\ 3 \amp 8 \amp 0 \amp 0 \amp 0 \\ 0 \amp -7 \amp 2 \amp 1 \amp 0 \\ -4 \amp 1 \amp 9 \amp -2 \amp 3 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-5-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.17"><a href="#ws-sec52-5-2" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.17" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.17">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 4.2.5.2.17–5.2.17"><a href="#ws-sec52-5" title="Copy heading and permalink for Exercise Group 4.2.5.2.17–5.2.17" aria-label="Copy heading and permalink for Exercise Group 4.2.5.2.17–5.2.17">🔗</a></div>
+</div>
+<div class="exercisegroup" id="ws-sec52-6">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec52-6-1">
+<div class="para" id="ws-sec52-6-1-1">In the following exercises, <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are <span class="process-math">\(n \times n\)</span> matrices. Mark each statement True or False (T/F). Justify each answer.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec52-6-2"><h5 class="heading"><span class="codenumber">5.2.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec52-6-2-1-1">(T/F) If <span class="process-math">\(0\)</span> is an eigenvalue of <span class="process-math">\(A\text{,}\)</span> then <span class="process-math">\(A\)</span> is invertible.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-6-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.21"><a href="#ws-sec52-6-2" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.21" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.21">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec52-6-3"><h5 class="heading"><span class="codenumber">5.2.23<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec52-6-3-1-1">(T/F) The matrix <span class="process-math">\(A\)</span> and its transpose, <span class="process-math">\(A^{T}\text{,}\)</span> have different sets of eigenvalues.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-6-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.23"><a href="#ws-sec52-6-3" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.23" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.23">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec52-6-4"><h5 class="heading"><span class="codenumber">5.2.25<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec52-6-4-1-1">(T/F) If <span class="process-math">\(2\)</span> is an eigenvalue of <span class="process-math">\(A\text{,}\)</span> then <span class="process-math">\(A-2I\)</span> is not invertible.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-6-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.25"><a href="#ws-sec52-6-4" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.25" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.25">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec52-6-5"><h5 class="heading"><span class="codenumber">5.2.27<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec52-6-5-1-1">(T/F) If <span class="process-math">\(\lambda+5\)</span> is a factor of the characteristic polynomial of <span class="process-math">\(A\text{,}\)</span> then <span class="process-math">\(5\)</span> is an eigenvalue of <span class="process-math">\(A\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-6-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.27"><a href="#ws-sec52-6-5" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.27" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.27">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec52-6-6"><h5 class="heading"><span class="codenumber">5.2.29<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec52-6-6-1-1">(T/F) The eigenvalue of the <span class="process-math">\(n \times n\)</span> identity matrix is <span class="process-math">\(1\)</span> with algebraic multiplicity <span class="process-math">\(n\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec52-6-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 4.2.5.2.29"><a href="#ws-sec52-6-6" title="Copy heading and permalink for Worksheet Exercise 4.2.5.2.29" aria-label="Copy heading and permalink for Worksheet Exercise 4.2.5.2.29">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 4.2.5.2.21–5.2.29"><a href="#ws-sec52-6" title="Copy heading and permalink for Exercise Group 4.2.5.2.21–5.2.29" aria-label="Copy heading and permalink for Exercise Group 4.2.5.2.21–5.2.29">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet 4.2: Some Exercises for This Section"><a href="#ws-sec52" title="Copy heading and permalink for Worksheet 4.2: Some Exercises for This Section" aria-label="Copy heading and permalink for Worksheet 4.2: Some Exercises for This Section">🔗</a></div>
+</section><div class="autopermalink" data-description="Section 4.2: The Characteristic Equation"><a href="#sec52-CharacteristicEquation" title="Copy heading and permalink for Section 4.2: The Characteristic Equation" aria-label="Copy heading and permalink for Section 4.2: The Characteristic Equation">🔗</a></div>
+</section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec51-EigenvectorsEigenvalues.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec53-Diagonalization.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: salem                          *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Solution Sets of Linear Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="og:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="book:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.42"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.13.7';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.52176322e2c1dde5.bundle.js"></script><script src="_static/prefix-713.de0ab26248766350.bundle.js"></script><script src="_static/prefix-runestone.2f713d2360adcee7.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-713.f43ced6a6134ea74.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="changeme" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="my-great-book.html"><span class="title">MTH 261 Applied Linear Algebra I</span> <span class="subtitle">Spring 2026</span></a></h1>
+<p class="byline">Richard Zhao</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search book" commandfor="ptx-search-dialog" command="show-modal"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog" closedby="closerequest"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close search" id="ptx-search-close" class="ptx-search-close" commandfor="ptx-search-dialog" command="close"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec14-MatrixEquation.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch1-LinearEquations.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec17-LinearIndependence.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N} 
+\newcommand{\Z}{\mathbb Z} 
+\newcommand{\Q}{\mathbb Q} 
+\newcommand{\R}{\mathbb R} 
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\v}[1]{\mathbf{#1}}
+\newcommand{\c}[1]{\mathcal{#1}}
+
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\adj}{\text{adj}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\Nul}{\text{Nul}}
+\newcommand{\Col}{\text{Col}}
+\newcommand{\im}{\text{im}}
+\newcommand{\span}{\text{span}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter"><div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div></li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch1-LinearEquations.html" class="internal"><span class="codenumber">1</span> <span class="title">Linear Equations in Linear Algebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec11-SystemLinearEquations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Systems of Linear Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-SolvingSystemsEquations" class="internal"><span class="title">Solving Systems of Linear Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-AugmentedMatrices" class="internal"><span class="title">Augmented Matrices and Elementary Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-NumberOfSolution" class="internal"><span class="title">How many solutions can a linear system have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-ExistenceUniqueness-SystemEquations" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec12-RowReduction.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Row Reduction and Echelon Forms</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsubsec-NumberOfParameters" class="internal"><span class="title">How many parameters does the solution have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsec-ExistenceUniqueness-AugmentedMatrices" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec13-VectorEquations.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Vector Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-VectorsNotation" class="internal"><span class="title">What is a vector?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-LinearCombinations" class="internal"><span class="title">Linear Combinations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-Span" class="internal"><span class="title">Span</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec13-VectorEquations.html#ws-sec13" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec14-MatrixEquation.html" class="internal"><span class="codenumber">1.4</span> <span class="title">The Matrix Equation <span class="process-math">\(A\v{x} = \v{b}\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DecodeAugmentedMatrix" class="internal"><span class="title">What exactly is an Augmented Matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-MultiplyingMatrixVector" class="internal"><span class="title">Multiplying a Matrix by a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ExistenceUniqueness-Rank" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-VectorEquations" class="internal"><span class="title">Vector Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-LinearTransformations-Intro" class="internal"><span class="title">Intro to Linear Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DotProduct-Intro" class="internal"><span class="title">Intro to the Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ZeroMatrix-IdentityMatrix" class="internal"><span class="title">Two Special Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#ws-sec14" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec15-SolutionSets.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Solution Sets of Linear Systems</span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-HomogeneousSystem" class="internal"><span class="title">Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-NonHomogeneousSystem" class="internal"><span class="title">Non-Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec15-SolutionSets.html#ws-sec15" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec17-LinearIndependence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec17-LinearIndependence.html#ws-sec17" class="internal"><span class="codenumber">1.6</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Linear Transformations</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html#ws-sec18" class="internal"><span class="codenumber">1.7</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch2-MatrixAlgebra.html" class="internal"><span class="codenumber">2</span> <span class="title">Matrix Algebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec21-MatrixOperations.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Matrix Operations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixIntro" class="internal"><span class="title">What exactly is a matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-BasicMatrixOperations" class="internal"><span class="title">Basic Matrix Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-SubscriptNotationMatrices" class="internal"><span class="title">Subscript Notation for Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-MatrixAdditionScalarMultiplication" class="internal"><span class="title">Rules for Matrix Addition and Scalar Multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-TransposeMatrices" class="internal"><span class="title">Rules for Transposes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixMultiplication" class="internal"><span class="title">Matrix Multiplication</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#ws-sec21" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec22-InverseMatrix.html" class="internal"><span class="codenumber">2.2</span> <span class="title">The Inverse of a Matrix</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-InverseMatrices" class="internal"><span class="title">Inverse of a Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ImportantTheorems-Inverses" class="internal"><span class="title">Important Theorems and Facts about Inverses</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ElementaryMatrices" class="internal"><span class="title">Elementary Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#ws-sec22" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec23-InvertibleMatrix.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Characterizations of Invertible Matrices</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec23-InvertibleMatrix.html#ws-sec23" class="internal"><span class="codenumber">2.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec28-Subspaces.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Subspaces of <span class="process-math">\(\R^n\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-SubspaceIntro" class="internal"><span class="title">What is a Subspace?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-FundamentalSubspaces" class="internal"><span class="title">Fundamental Subspaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-Span" class="internal"><span class="title">Span and Spanning Sets</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec28-Subspaces.html#ws-sec28" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec29-DimensionRank.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Dimension and Rank</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Basis" class="internal"><span class="title">Basis</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Dimensions" class="internal"><span class="title">Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Rank-NullityTheorem" class="internal"><span class="title">A Fundamental Theorem of Linear Algebra: Rank-Nullity Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-ExtendedInvertibleMatrixTheorem" class="internal"><span class="title">Extending Our Invertible Matrix Theorem!</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec29-DimensionRank.html#ws-sec29" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch3-Determinants.html" class="internal"><span class="codenumber">3</span> <span class="title">Determinants</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec31-IntroDeterminants.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec31-IntroDeterminants.html#ws-sec31" class="internal"><span class="codenumber">3.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Properties of Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html#ws-sec32" class="internal"><span class="codenumber">3.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch5-EigenvaluesEigenvectors.html" class="internal"><span class="codenumber">4</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvectors and Eigenvalues</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html#ws-sec51" class="internal"><span class="codenumber">4.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec52-CharacteristicEquation.html" class="internal"><span class="codenumber">4.2</span> <span class="title">The Characteristic Equation</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec52-CharacteristicEquation.html#ws-sec52" class="internal"><span class="codenumber">4.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec53-Diagonalization.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Diagonalization</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec53-Diagonalization.html#ws-sec53" class="internal"><span class="codenumber">4.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch6-Orthogonality.html" class="internal"><span class="codenumber">5</span> <span class="title">Orthogonality</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec61-InnerProduct.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Inner Product, Length, and Orthogonality</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Length" class="internal"><span class="title">Length of a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-InnerProduct" class="internal"><span class="title">Inner Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Orthogonality-Intro" class="internal"><span class="title">Orthogonality</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec61-InnerProduct.html#ws-sec61" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec62-OrthogonalSets.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Orthogonal Sets</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec62-OrthogonalSets.html#ws-sec62" class="internal"><span class="codenumber">5.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec63-OrthogonalProjection.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-InnerProduct-Angles" class="internal"><span class="title">Angle between Two Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-OrthogonalProjection" class="internal"><span class="title">Orthogonal Projection</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#ws-sec63" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec64-GramSchmit.html" class="internal"><span class="codenumber">5.4</span> <span class="title">The Gram-Schmidt Process</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendixA-ExamReviews.html" class="internal"><span class="codenumber">A</span> <span class="title">Exam Reviews Page</span></a></div></li>
+<li class="toc-item toc-backmatter"><div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<div class="print-preview-header">
+<h2 class="print-preview">Print preview</h2>
+<div class="print-controls">
+<div class="print-controls-toggles">
+<form class="papersize-select" id="papersize-select">
+<span class="name">Paper size</span><label><input type="radio" name="papersize" value="a4">A4
+        </label><label><input type="radio" name="papersize" value="letter">Letter
+        </label>
+</form>
+<details class="print-options"><summary>Additional printing options</summary><div class="hide-solutions-options">
+<div class="hide-option">
+<label for="hide-answer-checkbox">Hide answers</label><input type="checkbox" id="hide-answer-checkbox">
+</div>
+<div class="hide-option">
+<label for="hide-solution-checkbox">Hide solutions</label><input type="checkbox" id="hide-solution-checkbox">
+</div>
+</div>
+<div class="header-footer-options">
+<div class="header-option">
+<span class="title">Print headers</span><label>First page<input type="checkbox" id="print-first-page-header-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-header-checkbox" checked></label>
+</div>
+<div class="footer-option">
+<span class="title">Print footers</span><label>First page<input type="checkbox" id="print-first-page-footer-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-footer-checkbox" checked></label>
+</div>
+</div>
+<div class="highlight-workspace-option">
+<label for="highlight-workspace-checkbox">Highlight workspace</label><input type="checkbox" id="highlight-workspace-checkbox">
+</div></details>
+</div>
+<button class="print-button" title="Print" onClick="window.print()"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span><span class="name">Print</span></button>
+</div>
+</div>
+<section class="section" id="sec15-SolutionSets">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Solution Sets of Linear Systems</span>
+</h2>
+<section class="introduction" id="sec15-SolutionSets-2">
+<div class="para logical" id="sec15-SolutionSets-2-1">
+<div class="para">Now we get to the cool part! We are going to learn how to multiply a matrix by a vector. This is SUPER IMPORTANT for three reasons:</div>
+<ol class="decimal ol-marker-1" id="sec15-SolutionSets-2-1-1">
+<li id="sec15-SolutionSets-2-1-1-1">
+<div class="para" id="sec15-SolutionSets-2-1-1-1-1">This corresponds to evaluating a linear transformation at a point which leads to tons of cool geometry stuff. Much more about this in the future!<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1"><a href="#sec15-SolutionSets-2-1-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="sec15-SolutionSets-2-1-1-2">
+<div class="para" id="sec15-SolutionSets-2-1-1-2-1">It is the foundation for multiplying matrices (which is probably the most important thing in Matrix Algebra and corresponds to composing linear transformations).<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2"><a href="#sec15-SolutionSets-2-1-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="sec15-SolutionSets-2-1-1-3">
+<div class="para" id="sec15-SolutionSets-2-1-1-3-1">It gives us new ways to think about systems of equations!<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-1-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 3"><a href="#sec15-SolutionSets-2-1-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="para">Takeaway: make sure you are an expert at multiplying a vector by a matrix!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="objectives goal-like" id="sec15-SolutionSets-2-2"><h3 class="heading"><span class="type">Objectives</span></h3>
+<div class="introduction" id="sec15-SolutionSets-2-2-1">
+<div class="para" id="sec15-SolutionSets-2-2-1-1">After this section, students will be able to:<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul class="disc" id="sec15-SolutionSets-2-2-2">
+<li id="sec15-SolutionSets-2-2-2-1">
+<div class="para" id="sec15-SolutionSets-2-2-2-1-1">represent a system of linear equations in four equivalent forms: a system of equations, an augmented matrix, a matrix equation, and a vector equation.<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-2-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec15-SolutionSets-2-2-2-1" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec15-SolutionSets-2-2-2-2">
+<div class="para" id="sec15-SolutionSets-2-2-2-2-1">multiply a matrix by a vector using both the dot product method and the linear combination method.<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec15-SolutionSets-2-2-2-2" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec15-SolutionSets-2-2-2-3">
+<div class="para" id="sec15-SolutionSets-2-2-2-3-1">determine the existence of solutions for a system of linear equations by comparing the rank of the coefficient matrix and the rank of the augmented matrix.<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec15-SolutionSets-2-2-2-3" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec15-SolutionSets-2-2-2-4">
+<div class="para" id="sec15-SolutionSets-2-2-2-4-1">see the connection between matrix-vector multiplication and linear transformations.<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-2-2-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec15-SolutionSets-2-2-2-4" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec15-SolutionSets-2-2-2-5">
+<div class="para" id="sec15-SolutionSets-2-2-2-5-1">identify and apply the properties of two special matrices: the identity matrix and the zero matrix, in the context of multiplying a matrix by a vector.<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-2-2-2-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec15-SolutionSets-2-2-2-5" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Objectives"><a href="#sec15-SolutionSets-2-2" title="Copy heading and permalink for Objectives" aria-label="Copy heading and permalink for Objectives">🔗</a></div>
+</article></section>
+<div class="para" id="sec15-SolutionSets-3">There are two types of systems of linear equations if we consider the values of the constants terms: <dfn class="terminology">homogeneous system</dfn> and <dfn class="terminology">non-homogeneous system</dfn>. They are of course related and we will focus on the homogeneous systems first, then we will see how to use the results to understand the non-homogeneous systems.<div class="autopermalink" data-description="Paragraph"><a href="#sec15-SolutionSets-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<section class="subsection" id="subsec-HomogeneousSystem">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Homogeneous Linear System</span>
+</h3>
+<div class="para logical" id="subsec-HomogeneousSystem-2">
+<div class="para">Let’s start by looking at a quick task! Richard claims that the following system of linear equations has <em class="emphasis">at least one</em> solution (hence a consistent system) at the first glance.</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-2-2">
+\begin{equation*}
+\begin{cases}
+4x - 12y + 2z = 0 \\  
+2x - 6y = 0 \\
+3x - 9y + z = 0 \\
+-2x + 6y - z = 0
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">Why does Richard know about it quickly?</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-HomogeneousSystem-3">Recall something is called a solution if it satisfies all the equations in the system! Richard made a keen observation that all equations would work out if the variables are all zero. That is, <span class="process-math">\(x = 0\text{,}\)</span> <span class="process-math">\(y = 0\text{,}\)</span> and <span class="process-math">\(z = 0\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-HomogeneousSystem-4">To verify, Richard plugged in zero for every variable. He got zero on the left-hand side of every equation and solve all of them! So <span class="process-math">\((0,0,0)\)</span> is a solution to this system of linear equations.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-HomogeneousSystem-5">It turns out that this type of systems of linear equations is called a <dfn class="terminology">homogeneous system</dfn>!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="def-HomogeneousSystem"><h4 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="def-HomogeneousSystem-1-1">A <dfn class="terminology">homogeneous system of equations</dfn> (or a system of homogeneous equations) is a system of linear equations where all of the constants to the right of the equal sign are zero.<div class="autopermalink" data-description="Paragraph"><a href="#def-HomogeneousSystem-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Definition 1.5.1"><a href="#def-HomogeneousSystem" title="Copy heading and permalink for Definition 1.5.1" aria-label="Copy heading and permalink for Definition 1.5.1">🔗</a></div>
+</article>
+<div class="para logical" id="subsec-HomogeneousSystem-7">
+<div class="para">For example, we worked with the following system of linear equations in a previous section:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-7-1">
+\begin{equation*}
+\begin{cases}
+4x - 12y + 2z = -12 \\  
+2x - 6y = -10 \\
+3x - 9y + z = -11 \\
+-2x + 6y - z = 6
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">This is NOT a homogeneous system since the constants on the right-hand side are not all zero. We can make it homogeneous by changing the number on the right-hand side of every equation to a zero as follows:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-7-2">
+\begin{equation*}
+\begin{cases}
+4x - 12y + 2z = 0 \\  
+2x - 6y = 0 \\
+3x - 9y + z = 0 \\
+-2x + 6y - z = 0
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">Then we have a homogeneous system!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-HomogeneousSystem-8">
+<em class="emphasis">Note:</em> Just to be clear, this is a different system of linear equations. However, we will see later that it is actually related to the original one in an important way later on!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-HomogeneousSystem-9">Usually, a system of linear equations can have either (1) zero, (2) one, or (3) infinitely many solutions. But it is <em class="emphasis">impossible</em> for a homogeneous system to have zero solutions! As we figured out the very first question in this section, every homogeneous system has at least the <dfn class="terminology">trivial solution</dfn> (where all the variables are zero). So <em class="alert">a homogeneous system either has one solution (trivial) OR it has infinitely many solutions</em>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-10">
+<div class="para">Let’s solve our homogeneous system! First, we will write the augmented matrix for the system:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-10-1">
+\begin{equation*}
+\begin{bmatrix}
+4 \amp -12 \amp 2 \amp \mid \amp 0 \\
+2 \amp -6 \amp 0 \amp \mid \amp 0 \\
+3 \amp -9 \amp 1 \amp \mid \amp 0 \\
+-2 \amp 6 \amp -1 \amp \mid \amp 0
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">We can actually do the <em class="alert">exact same</em> steps that we did with the non-homogeneous version. The only difference is that the constant column doesn’t require any work since all the entries hold steady at zero.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-11">
+<div class="para">So if we put it into row echelon form, we get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-11-1">
+\begin{equation*}
+\begin{bmatrix}
+1 \amp -3 \amp \frac{1}{2} \amp \mid \amp 0 \\
+0 \amp 0 \amp 1 \amp \mid \amp 0 \\
+0 \amp 0 \amp 0 \amp \mid \amp 0 \\
+0 \amp 0 \amp 0 \amp \mid \amp 0
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Now we can convert back to a system of linear equations and we get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-11-2">
+\begin{equation*}
+\begin{cases}
+x - 3y + \frac{1}{2}z = 0 \\  
+z = 0 \\
+0 = 0 \\
+0 = 0
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">Just like with the regular version, <span class="process-math">\(x\)</span> and <span class="process-math">\(z\)</span> are the leading variables and <span class="process-math">\(y\)</span> is a free variable. We can back substitute <span class="process-math">\(z = 0\)</span> into the first equation to get <span class="process-math">\(x = 3y\)</span> and write the solution in parametric form:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-11-8">
+\begin{equation*}
+\begin{cases}
+x = 3y \\  
+y = y \\
+z = 0
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">or, using our linear algebra notation of vectors (which means in column vectors), an arbitrary vector in the solution set looks like: <span class="process-math">\(\begin{bmatrix} 3y \\ y \\ 0 \end{bmatrix}\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-HomogeneousSystem-12">Now, notice that we can factor out a <span class="process-math">\(y\)</span> in the solution and see that the set of solutions is of the form <span class="process-math">\(y\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}\)</span> where <span class="process-math">\(y\)</span> can be any real number. That means every solution of the system is a multiple of <span class="process-math">\(\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}\text{.}\)</span> Alternatively, we can say that every solution is in <span class="process-math">\(\span\left\{\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}\right\}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-HomogeneousSystem-13">We call this <span class="process-math">\(\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}\)</span> a "<dfn class="terminology">basis</dfn>" or "<dfn class="terminology">basic</dfn> vector" of the solution set (Actually "basis" is much more common, but some textbooks use "basic"...).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-HomogeneousSystem-14"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-HomogeneousSystem-14-1">
+<div class="para">Pretend that we had a (homogeneous) system of 4 linear equations in 5 variables <span class="process-math">\((x,y,z,u,z)\)</span> and we put the augmented matrix into row echelon form and got:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-14-1-2">
+\begin{equation*}
+\begin{bmatrix}
+1 \amp -3 \amp 5 \amp 2 \amp 7 \amp \mid \amp 0 \\
+0 \amp 0 \amp 1 \amp 0 \amp 1 \amp \mid \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 1 \amp \mid \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">The leading variables are <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(z\text{,}\)</span> and <span class="process-math">\(v\text{,}\)</span> so our free variables are <span class="process-math">\(y\)</span> and <span class="process-math">\(u\text{.}\)</span> That is, we should be able to solve for the other three variables in terms of <span class="process-math">\(y\)</span> and <span class="process-math">\(u\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-14-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-14-2">
+<div class="para">Let’s convert it to a system of linear equations:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-14-2-1">
+\begin{equation*}
+\begin{cases}
+x - 3y + 5z + 2u + 7v = 0 \\  
+z + v = 0 \\
+v = 0 \\
+0 = 0
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">We know that <span class="process-math">\(v = 0\)</span> and we can back substitute into the second equation to get <span class="process-math">\(z = 0\)</span> as well.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-14-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-14-3">
+<div class="para">Back substituting into the first equation, we get</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-14-3-1">
+\begin{equation*}
+x - 3y + 2u = 0 \qquad \implies \qquad x = 3y - 2u
+\end{equation*}
+</div>
+<div class="para">Now we can write an arbitrary point in the solution set as</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-14-3-2">
+\begin{equation*}
+\begin{bmatrix} 3y - 2u \\ y \\ 0 \\ u \\ 0 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Now we can split this up into two vectors, one with only <span class="process-math">\(y\)</span>’s and one with only <span class="process-math">\(u\)</span>’s:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-14-3-5">
+\begin{align*}
+\begin{bmatrix} 3y - 2u \\ y \\ 0 \\ u \\ 0 \end{bmatrix} \amp= \begin{bmatrix} 3y \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix} + \begin{bmatrix} -2u \\ 0 \\ 0 \\ u \\ 0 \end{bmatrix} \\
+\amp= y \begin{bmatrix} 3 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + u \begin{bmatrix} -2 \\ 0 \\ 0 \\ 1 \\ 0 \end{bmatrix} \amp\amp \text{factor out the $y$ and $u$} 
+\end{align*}
+</div>
+<div class="para">This means that every solution is a <dfn class="terminology">linear combination</dfn> of the "basic" solutions <span class="process-math">\(\begin{bmatrix} 3 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}\)</span> and <span class="process-math">\(\begin{bmatrix} -2 \\ 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}\text{.}\)</span> Hence, the solution set is <span class="process-math">\(\span\left\{\begin{bmatrix} 3 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} -2 \\ 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}\right\}\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-14-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-HomogeneousSystem-14-4">Just to be clear, the two basis vectors <span class="process-math">\(\begin{bmatrix} 3 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}\)</span> and <span class="process-math">\(\begin{bmatrix} -2 \\ 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}\)</span> are solutions as well! That is one reason why they called the basic solutions (it explains the "solution" part). You can also imagine that we can construct infinitely many solutions using these two vectors as building blocks, so they are the "basis vectors" for the solution set!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-14-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 1.5.2"><a href="#subsec-HomogeneousSystem-14" title="Copy heading and permalink for Example 1.5.2" aria-label="Copy heading and permalink for Example 1.5.2">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="subsec-HomogeneousSystem-15"><h4 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-HomogeneousSystem-15-1">
+<div class="para">Solve the following homogeneous system of linear equations and write an arbitrary solution as a linear combination of basic solutions (written as column vectors):</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-1-1">
+\begin{equation*}
+\begin{cases}
+3x - 2y + z + 5u = 0 \\  
+x - 6y + 2z + u = 0 \\
+x + 10y - 3z + 3u = 0 \\
+4x - 8y + 3z + 6u = 0
+\end{cases}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-HomogeneousSystem-15-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-HomogeneousSystem-15-2-1">
+<div class="para">Let’s start by writing the augmented matrix for the system:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-1-1">
+\begin{equation*}
+\begin{bmatrix}
+3 \amp -2 \amp 1 \amp 5 \amp \mid \amp 0 \\
+1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+1 \amp 10 \amp -3 \amp 3 \amp \mid \amp 0 \\
+4 \amp -8 \amp 3 \amp 6 \amp \mid \amp 0
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">We will solve the system using the Gaussian elimination algorithm.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-15-2-2">
+<div class="para">Step 1: Swap Row 1 and Row 2 so that we get a leading <span class="process-math">\(1\)</span> without using any fractions:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-2-2">
+\begin{equation*}
+\begin{bmatrix}
+1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+3 \amp -2 \amp 1 \amp 5 \amp \mid \amp 0 \\
+1 \amp 10 \amp -3 \amp 3 \amp \mid \amp 0 \\
+4 \amp -8 \amp 3 \amp 6 \amp \mid \amp 0
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-15-2-3">
+<div class="para">Step 2: Add <span class="process-math">\(-3\)</span> times Row 1 to Row 2 (and replace Row 2), add <span class="process-math">\(-1\)</span> times Row 1 to Row 3 (and replace Row 3), and add <span class="process-math">\(-4\)</span> times Row 1 to Row 4 (and replace Row 4) to get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-3-4">
+\begin{equation*}
+\begin{bmatrix}
+1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+0 \amp 16 \amp -5 \amp 2 \amp \mid \amp 0 \\
+0 \amp 16 \amp -5 \amp 2 \amp \mid \amp 0 \\
+0 \amp 16 \amp -5 \amp 2 \amp \mid \amp 0
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-15-2-4">
+<div class="para">Step 3: Multiply Row 2, Row 3, and Row 4 by <span class="process-math">\(\frac{1}{16}\)</span> (observe the last three rows are exactly the same!) to get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-4-2">
+\begin{equation*}
+\begin{bmatrix}
+1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0 \\
+0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0 \\
+0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-15-2-5">
+<div class="para">Step 4: Add <span class="process-math">\(-1\)</span> times Row 2 to Row 3 (and replace Row 3) and add <span class="process-math">\(-1\)</span> times Row 2 to Row 4 (and replace Row 4) to get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-5-3">
+\begin{equation*}
+\begin{bmatrix}
+1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-15-2-6">
+<div class="para">We can see from the leading <span class="process-math">\(1\)</span>s that <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are the leading variables and <span class="process-math">\(z\)</span> and <span class="process-math">\(u\)</span> are the free variables. We can also see this from converting back to a system of linear equations:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-6-6">
+\begin{equation*}
+\begin{cases}
+x - 6y + 2z + u = 0 \\  
+y - \frac{5}{16}z + \frac{1}{8}u = 0 \\
+0 = 0 \\
+0 = 0
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">We can solve for <span class="process-math">\(x\)</span> in terms of <span class="process-math">\(y\text{,}\)</span> <span class="process-math">\(z\text{,}\)</span> and <span class="process-math">\(u\)</span> to get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-6-11">
+\begin{equation*}
+x = 6y - 2z - u
+\end{equation*}
+</div>
+<div class="para">We can also solve for <span class="process-math">\(y\)</span> in terms of <span class="process-math">\(z\)</span> and <span class="process-math">\(u\)</span> to get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-6-15">
+\begin{equation*}
+y = \frac{5}{16}z - \frac{1}{8}u
+\end{equation*}
+</div>
+<div class="para">Then we can back substitute this expression for <span class="process-math">\(y\)</span> into the first equation to get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-6-17">
+\begin{align*}
+x \amp= 6 \lp \frac{5}{16}z - \frac{1}{8}u \rp - 2z - u \\
+\amp- \frac{15}{8}z - \frac{3}{4}u - 2z - u \\
+\amp= -\frac{1}{8}z - \frac{7}{4}u 
+\end{align*}
+</div>
+<div class="para">Now let’s write our general solution as a column vector! Every solution looks like</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-6-18">
+\begin{align*}
+\begin{bmatrix} -\frac{1}{8}z - \frac{7}{4}u \\ \frac{5}{16}z - \frac{1}{8}u \\ z \\ u \end{bmatrix} \amp= \begin{bmatrix} -\frac{1}{8}z \\ \frac{5}{16}z \\ z \\ 0 \end{bmatrix} + \begin{bmatrix} -\frac{7}{4}u \\ -\frac{1}{8}u \\ 0 \\ u \end{bmatrix} \\
+\amp= z \begin{bmatrix} -\frac{1}{8} \\ \frac{5}{16} \\ 1 \\ 0 \end{bmatrix} + u \begin{bmatrix} -\frac{7}{4} \\ -\frac{1}{8} \\ 0 \\ 1 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-HomogeneousSystem-15-2-7" class="note remark-like born-hidden-knowl"><summary class="knowl__link"><h6 class="heading">
+<span class="type">Note</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">If you want to turn the augmented matrix into reduced row echelon form....</span>
+</h6></summary>
+<article class="note remark-like knowl__content">
+<div class="para" id="subsec-HomogeneousSystem-15-2-7-2">To get the augmented matrix into reduced row echelon form, we will just need to do one more step after Step 4.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-7-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-15-2-7-3">
+<div class="para">Step 5: Add <span class="process-math">\(6\)</span> times Row 2 to Row 1 (and replace Row 1) to get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-7-3-2">
+\begin{equation*}
+\begin{bmatrix}
+1 \amp 0 \amp \frac{1}{8} \amp \frac{7}{4} \amp \mid \amp 0 \\
+0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-7-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-15-2-7-4">
+<div class="para">Converting it back to the system of linear equations, we get:</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-7-4-1">
+\begin{equation*}
+\begin{cases}
+x + \frac{1}{8}z + \frac{7}{4}u = 0 \\  
+y - \frac{5}{16}z + \frac{1}{8}u = 0 \\
+0 = 0 \\
+0 = 0
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">Similarly, we see that <span class="process-math">\(z\)</span> and <span class="process-math">\(u\)</span> are the free variables, and hence we will represent <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> in terms of <span class="process-math">\(z\)</span> and <span class="process-math">\(u\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-7-4-8">
+\begin{equation*}
+\begin{cases}
+x = -\frac{1}{8}z - \frac{7}{4}u \\  
+y = \frac{5}{16}z - \frac{1}{8}u 
+\end{cases}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-7-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-15-2-7-5">
+<div class="para">Then we can write our general solution as a column vector! Every solution looks like</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-15-2-7-5-1">
+\begin{equation*}
+\begin{bmatrix} -\frac{1}{8}z - \frac{7}{4}u \\ \frac{5}{16}z - \frac{1}{8}u \\ z \\ u \end{bmatrix} = z \begin{bmatrix} -\frac{1}{8} \\ \frac{5}{16} \\ 1 \\ 0 \end{bmatrix} + u \begin{bmatrix} -\frac{7}{4} \\ -\frac{1}{8} \\ 0 \\ 1 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-15-2-7-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Note 1.5.4: If you want to turn the augmented matrix into reduced row echelon form..."><a href="#subsec-HomogeneousSystem-15-2-7" title="Copy heading and permalink for Note 1.5.4: If you want to turn the augmented matrix into reduced row echelon form..." aria-label="Copy heading and permalink for Note 1.5.4: If you want to turn the augmented matrix into reduced row echelon form...">🔗</a></div>
+</article></details><div class="autopermalink" data-description="Solution 1.5.3.1"><a href="#subsec-HomogeneousSystem-15-2" title="Copy heading and permalink for Solution 1.5.3.1" aria-label="Copy heading and permalink for Solution 1.5.3.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Checkpoint 1.5.3"><a href="#subsec-HomogeneousSystem-15" title="Copy heading and permalink for Checkpoint 1.5.3" aria-label="Copy heading and permalink for Checkpoint 1.5.3">🔗</a></div>
+</article>
+<div class="para" id="subsec-HomogeneousSystem-16">Terminology! The way we write an arbitrary solution as a linear combination of basis vectors is called the <dfn class="terminology">parametric form</dfn> of the solution set. If you are instructed to write the solution set in parametric form, you should write it as a linear combination of basis vectors using free variables as parameters.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-16" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-HomogeneousSystem-17" class="note remark-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading">
+<span class="type">Note</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">But Richard... Are there only one set of basis vectors for a solution set?</span>
+</h4></summary>
+<article class="note remark-like knowl__content">
+<div class="para" id="subsec-HomogeneousSystem-17-2">The short answer is NO! There are many different ways to represent the basis vectors for a solution set. Sometimes we pick "nice" basis vectors to make the answer look pretty.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-17-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-17-3">
+<div class="para">For example, in the checkpoint problem earlier, the solution in parametric form is</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-17-3-1">
+\begin{equation*}
+z \begin{bmatrix} -\frac{1}{8} \\ \frac{5}{16} \\ 1 \\ 0 \end{bmatrix} + u \begin{bmatrix} -\frac{7}{4} \\ -\frac{1}{8} \\ 0 \\ 1 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">But the two basis vectors look messy because of the fractions.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-17-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-HomogeneousSystem-17-4">
+<div class="para">We can actually represent these two basis vectors differently. If <span class="process-math">\(z = 16\text{,}\)</span> then the first basis vector becomes</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-17-4-2">
+\begin{equation*}
+16 \begin{bmatrix} -\frac{1}{8} \\ \frac{5}{16} \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} -2 \\ 5 \\ 16 \\ 0 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">If <span class="process-math">\(u = 8\text{,}\)</span> then the second basis vector becomes</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-17-4-4">
+\begin{equation*}
+8 \begin{bmatrix} -\frac{7}{4} \\ -\frac{1}{8} \\ 0 \\ 1 \end{bmatrix} = \begin{bmatrix} -14 \\ -1 \\ 0 \\ 8 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">So we can also write the solution, in parametric form, as</div>
+<div class="displaymath process-math" id="subsec-HomogeneousSystem-17-4-5">
+\begin{equation*}
+z \begin{bmatrix} -2 \\ 5 \\ 16 \\ 0 \end{bmatrix} + u \begin{bmatrix} -14 \\ -1 \\ 0 \\ 8 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Look how much nicer this representation of the solution set is!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-17-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-HomogeneousSystem-17-5">In the next section, we will talk about a concept called "independence". Basically, the idea here is that we swap two messy linearly independent basis vectors for two nice linearly independent vectors that span the same solution set.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-17-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Note 1.5.5: But Richard... Are there only one set of basis vectors for a solution set?"><a href="#subsec-HomogeneousSystem-17" title="Copy heading and permalink for Note 1.5.5: But Richard... Are there only one set of basis vectors for a solution set?" aria-label="Copy heading and permalink for Note 1.5.5: But Richard... Are there only one set of basis vectors for a solution set?">🔗</a></div>
+</article></details>
+<div class="para logical" id="subsec-HomogeneousSystem-18">
+<div class="para">Recall the solution set to a homogeneous system can be represented as the span of the basis vectors. We know how spans look like geometrically!</div>
+<ul class="disc" id="subsec-HomogeneousSystem-18-1">
+<li id="subsec-HomogeneousSystem-18-1-1">
+<div class="para" id="subsec-HomogeneousSystem-18-1-1-1">If there are no free variables, then the only solution is the trivial solution, and <span class="process-math">\(\span\left\{\v{0}\right\} = \left\{\v{0}\right\}\)</span> (just a point).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-18-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-HomogeneousSystem-18-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="subsec-HomogeneousSystem-18-1-2">
+<div class="para" id="subsec-HomogeneousSystem-18-1-2-1">If there is one free variable, then the solution set is <span class="process-math">\(\span\left\{\v{v}_1\right\}\text{.}\)</span> We saw in the last section that this will be a line through the origin (since <span class="process-math">\(\v{0}\)</span> must be in the span).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-18-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-HomogeneousSystem-18-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="subsec-HomogeneousSystem-18-1-3">
+<div class="para" id="subsec-HomogeneousSystem-18-1-3-1">If there are two free variables, then the solution set is <span class="process-math">\(\span\left\{\v{v}_1, \v{v}_2\right\}\text{.}\)</span> We saw in the last section that this will be a plane through the origin (again, since <span class="process-math">\(\v{0}\)</span> must be in the span).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-18-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-HomogeneousSystem-18-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">And the list goes on if we have more free variables!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-HomogeneousSystem-18" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Homogeneous Linear System"><a href="#subsec-HomogeneousSystem" title="Copy heading and permalink for Subsection: Homogeneous Linear System" aria-label="Copy heading and permalink for Subsection: Homogeneous Linear System">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-NonHomogeneousSystem">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Non-Homogeneous Linear System</span>
+</h3>
+<div class="para" id="subsec-NonHomogeneousSystem-2">By contrast, a <dfn class="terminology">non-homogeneous system of equations</dfn> (or a system of non-homogeneous equations) is a system of linear equations where at least one of the constants to the right of the equal sign is NOT zero (so NOT a homogeneous system).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-NonHomogeneousSystem-3">
+<div class="para">There is a very important relationship between the solution set of a non-homogeneous system and the solution set of the corresponding homogeneous system! Let’s revisit a non-homogeneous system we worked with before:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sec12-RowReduction.html" id="subsec-NonHomogeneousSystem-3-1">
+\begin{equation*}
+\begin{cases}
+4x - 12y + 2z = -12 \\  
+2x - 6y = -10 \\
+3x - 9y + z = -11 \\
+-2x + 6y - z = 6
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">Skimming through <a href="sec12-RowReduction.html" class="internal" title="Section 1.2: Row Reduction and Echelon Forms">Section 1.2</a> will help us locate the solution set of this system as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sec12-RowReduction.html" id="subsec-NonHomogeneousSystem-3-3">
+\begin{equation*}
+x = 3y - 5\quad , \quad y = y \quad, \, \text{ and } \quad z = 4 
+\end{equation*}
+</div>
+<div class="para">Or, putting it in column vector form, we can write an arbitrary solution as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sec12-RowReduction.html" id="subsec-NonHomogeneousSystem-3-4">
+\begin{equation*}
+\begin{bmatrix} 3y - 5 \\ y \\ 4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Of course, we can do our previous trick of splitting this up into two vectors, one with only <span class="process-math">\(y\)</span>’s and one without any <span class="process-math">\(y\)</span>’s (so that we can factor out the <span class="process-math">\(y\)</span>):</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sec12-RowReduction.html" id="subsec-NonHomogeneousSystem-3-8">
+\begin{equation*}
+\begin{bmatrix} 3y - 5 \\ y \\ 4 \end{bmatrix} = \begin{bmatrix} 3y \\ y \\ 0 \end{bmatrix} + \begin{bmatrix} -5 \\ 0 \\ 4 \end{bmatrix} 
+= y \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix} + \begin{bmatrix} -5 \\ 0 \\ 4 \end{bmatrix} 
+\end{equation*}
+</div>
+<div class="para">Hmm... Does the first vector(s) <span class="process-math">\(y \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}\)</span> look familiar? This is actually the same as the solution set of the corresponding homogeneous system!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-NonHomogeneousSystem-4">One can verify quickly that the second vector <span class="process-math">\(\begin{bmatrix} -5 \\ 0 \\ 4 \end{bmatrix}\text{,}\)</span> by itself, is also a solution to the non-homogeneous system as well! This is our BIG theorem in this section!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="thm-HomogeneousSolutionSet"><h4 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="thm-HomogeneousSolutionSet-1-1">Suppose the equation <span class="process-math">\(A\v{x} = \v{b}\)</span> is consistent for some given <span class="process-math">\(\v{b}\text{,}\)</span> and let <span class="process-math">\(\v{p}\)</span> be a solution to this equation. Then the solution set of <span class="process-math">\(A\v{x} = \v{b}\)</span> is the set of all vectors of the form <span class="process-math">\(\v{w} = \v{p} + t\v{v}_h\text{,}\)</span> where <span class="process-math">\(t\)</span> is a parameter and <span class="process-math">\(\v{v}_h\)</span> is a solution to the homogeneous equation <span class="process-math">\(A\v{x} = \v{0}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-HomogeneousSolutionSet-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Theorem 1.5.6"><a href="#thm-HomogeneousSolutionSet" title="Copy heading and permalink for Theorem 1.5.6" aria-label="Copy heading and permalink for Theorem 1.5.6">🔗</a></div>
+</article>
+<div class="para" id="subsec-NonHomogeneousSystem-6">In general, we can solve a system of linear equations using the Gaussian Elimination algorithm. Assuming the system is consistent, we can write an arbitrary solution in parametric form using the same trick that we have been doing: <em class="alert">split up the vector by the variable (or lackof) and factor out the free variable</em> to get a linear combination of the basis vectors of the homogeneous solution set plus a particular solution to the non-homogeneous system.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="subsec-NonHomogeneousSystem-7"><h4 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-NonHomogeneousSystem-7-1">
+<div class="para">Describe all the solutions to the Matrix Equation <span class="process-math">\(A\v{x} = \v{b}\)</span> where</div>
+<div class="displaymath process-math" id="subsec-NonHomogeneousSystem-7-1-2">
+\begin{equation*}
+A = \begin{bmatrix} 1 \amp 3 \amp -5 \\ 1 \amp 4 \amp -8 \\ -3 \amp -7 \amp 9 \end{bmatrix} 
+\qquad \text{ and }\qquad
+\v{b} = \begin{bmatrix} 4 \\ 7 \\ -6 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">in parametric form.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-7-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-NonHomogeneousSystem-7-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="answer solution-like knowl__content">
+<div class="para" id="subsec-NonHomogeneousSystem-7-2-1">
+<span class="process-math">\(\v{x} = \begin{bmatrix} -5 \\ 3 \\ 0 \end{bmatrix} + t\begin{bmatrix} -4 \\ 3 \\ 1 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Answer 1.5.7.1"><a href="#subsec-NonHomogeneousSystem-7-2" title="Copy heading and permalink for Answer 1.5.7.1" aria-label="Copy heading and permalink for Answer 1.5.7.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Checkpoint 1.5.7"><a href="#subsec-NonHomogeneousSystem-7" title="Copy heading and permalink for Checkpoint 1.5.7" aria-label="Copy heading and permalink for Checkpoint 1.5.7">🔗</a></div>
+</article>
+<div class="para" id="subsec-NonHomogeneousSystem-8">We can also think about what it means in terms of geometry! Observe that the homogeneous equation <span class="process-math">\(A\v{x} = \v{0}\)</span> looks a lot like our linear equation <span class="process-math">\(y = mx\)</span> (in the sense that they are both linear and the constant term is zero). Then that means the non-homogeneous equation <span class="process-math">\(A\v{x} = \v{b}\)</span> is like the linear equation <span class="process-math">\(y = mx + b\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-NonHomogeneousSystem-9">How did we obtain <span class="process-math">\(y = mx + b\)</span> from <span class="process-math">\(y = mx\text{?}\)</span> The answer is <em class="alert">vertical translation</em> by <span class="process-math">\(b\text{!}\)</span> That is, we can think of the solution to the non-homogeneous equation as the solution to the corresponding homogeneous equation shifted a bit by a particular solution to the non-homogeneous equation.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-NonHomogeneousSystem-10">Geometrically, let’s think about <span class="process-math">\(\v{v}\)</span> as a solution to <span class="process-math">\(A\v{x} = \v{0}\)</span> and <span class="process-math">\(\v{p}\)</span> as a particular solution to <span class="process-math">\(A\v{x} = \v{b}\text{.}\)</span> Then we know that <span class="process-math">\(\v{p} + \v{v}\)</span> is also a solution to <span class="process-math">\(A\v{x} = \v{b}\text{!}\)</span> The diagram below shows the relationship between the two solutions to <span class="process-math">\(A\v{x} = \v{b}\text{:}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-NonHomogeneousSystem-11"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/sec15_NonHomogeneous-Translation-Diagram.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.8<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Adding <span class="process-math">\(\v{p}\)</span> to <span class="process-math">\(\v{v}\)</span> translates <span class="process-math">\(\v{v}\)</span> to <span class="process-math">\(\v{v} + \v{p}\)</span><div class="autopermalink" data-description="Figure 1.5.8"><a href="#subsec-NonHomogeneousSystem-11" title="Copy heading and permalink for Figure 1.5.8" aria-label="Copy heading and permalink for Figure 1.5.8">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-NonHomogeneousSystem-12">In addition, we can grab a vector from the span of <span class="process-math">\(\v{v}\)</span> and add it to <span class="process-math">\(\v{p}\)</span> to get another solution to <span class="process-math">\(A\v{x} = \v{b}\text{.}\)</span> To keep things simple, let’s just imagine there is only one free variable in the homogeneous solution set. That is, the span of <span class="process-math">\(\v{v}\)</span> is a line through the origin. Then the solution set of <span class="process-math">\(A\v{x} = \v{b}\)</span> is a line parallel to the span of <span class="process-math">\(\v{v}\)</span> that goes through the particular solution <span class="process-math">\(\v{p}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-NonHomogeneousSystem-13"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/sec15_NonHomogeneous_ParallelSolutionSet.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Parallel solution sets of <span class="process-math">\(A\v{x} = \v{b}\)</span> and <span class="process-math">\(A\v{x} = \v{0}\)</span> with one free variable<div class="autopermalink" data-description="Figure 1.5.9"><a href="#subsec-NonHomogeneousSystem-13" title="Copy heading and permalink for Figure 1.5.9" aria-label="Copy heading and permalink for Figure 1.5.9">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-NonHomogeneousSystem-14">Similarly, if there are two free variables in the homogeneous solution set, then the solution set of <span class="process-math">\(A\v{x} = \v{b}\)</span> is a plane parallel to the span of the two basis vectors that goes through the particular solution <span class="process-math">\(\v{p}\text{.}\)</span> And the list goes on if there are more free variables!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-NonHomogeneousSystem-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-NonHomogeneousSystem-15"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="external/sec15_NonHomogeneous_ParallelSolutionSet_Plane.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5.10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Parallel solution sets of <span class="process-math">\(A\v{x} = \v{b}\)</span> and <span class="process-math">\(A\v{x} = \v{0}\)</span> with two free variables<div class="autopermalink" data-description="Figure 1.5.10"><a href="#subsec-NonHomogeneousSystem-15" title="Copy heading and permalink for Figure 1.5.10" aria-label="Copy heading and permalink for Figure 1.5.10">🔗</a></div></figcaption>
+</figure><div class="autopermalink" data-description="Subsection: Non-Homogeneous Linear System"><a href="#subsec-NonHomogeneousSystem" title="Copy heading and permalink for Subsection: Non-Homogeneous Linear System" aria-label="Copy heading and permalink for Subsection: Non-Homogeneous Linear System">🔗</a></div>
+</section>
+<section class="worksheet" id="ws-sec15" data-margins="0.75in 0.75in 0.75in 0.75in">
+<h3 class="heading hide-type">
+<span class="type">Worksheet</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Some Exercises for This Section</span><div class="print-links"><a href="?printpreview=ws-sec15" class="print-link" title="Print preview"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span></a></div>
+</h3>
+<section class="introduction" id="ws-sec15-2">
+<div class="para" id="ws-sec15-2-1">Richard included some practice problems that cover some main concepts in this section. You don’t need to turn it in, but you are highly encouraged to work on this with your classmates. The problems here may end up being in-class practice problems, homework problems, and/or exam problems. Reach out to Richard for help if you get stuck or have any questions.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="ws-sec15-2-2">Only the final answers are included to some of the problems for you to check your result. If you want to check your work, talk to Richard and he is happy to discuss the process with you.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></section>
+<div class="exercisegroup" id="ws-sec15-3">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec15-3-1">
+<div class="para" id="ws-sec15-3-1-1">In the following systems, determine if it has a nontrivial solution. Try to use as few row operations as possible.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec15-3-2"><h5 class="heading"><span class="codenumber">1.5.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para logical" id="ws-sec15-3-2-1">
+<div class="displaymath process-math" id="ws-sec15-3-2-1-1">
+\begin{align*}
+2x_1 - 5x_2 + 8x_3 \amp = 0\\
+-2x_1 - 7x_2 + x_3 \amp = 0\\
+4x_1 + 2x_2 + 7x_3 \amp = 0
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.1"><a href="#ws-sec15-3-2" title="Copy heading and permalink for Worksheet Exercise 1.5.1" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.1">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-3-3"><h5 class="heading"><span class="codenumber">1.5.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para logical" id="ws-sec15-3-3-1">
+<div class="displaymath process-math" id="ws-sec15-3-3-1-1">
+\begin{align*}
+-3x_1 + 5x_2 - 7x_3 \amp = 0\\
+-6x_1 + 7x_2 + x_3 \amp = 0
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-3-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.3"><a href="#ws-sec15-3-3" title="Copy heading and permalink for Worksheet Exercise 1.5.3" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.3">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 1.5.1–1.5.3"><a href="#ws-sec15-3" title="Copy heading and permalink for Exercise Group 1.5.1–1.5.3" aria-label="Copy heading and permalink for Exercise Group 1.5.1–1.5.3">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="ws-sec15-4"><h4 class="heading"><span class="codenumber">1.5.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para logical" id="ws-sec15-4-1">
+<div class="para">Write the solution set of the given homogeneous system in parametric vector form.</div>
+<div class="displaymath process-math" id="ws-sec15-4-1-1">
+\begin{align*}
+x_1 + 3x_2 + x_3 \amp = 0\\
+-4x_1 - 9x_2 + 2x_3 \amp = 0\\
+-3x_2 - 6x_3 \amp = 0
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.5"><a href="#ws-sec15-4" title="Copy heading and permalink for Worksheet Exercise 1.5.5" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.5">🔗</a></div>
+</article>
+<div class="exercisegroup" id="ws-sec15-5">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec15-5-1">
+<div class="para" id="ws-sec15-5-1-1">Given the following matrix equivalent to some coefficient matrix <span class="process-math">\(A\text{,}\)</span> describe all solutions of <span class="process-math">\(A\v{x}= \v{0}\)</span> in parametric vector form.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec15-5-2"><h5 class="heading"><span class="codenumber">1.5.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec15-5-2-1">
+\begin{equation*}
+\begin{bmatrix} 
+1 \amp 3 \amp -3 \amp 7 \\ 
+0 \amp 1 \amp -4 \amp 5 
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.7"><a href="#ws-sec15-5-2" title="Copy heading and permalink for Worksheet Exercise 1.5.7" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.7">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-5-3"><h5 class="heading"><span class="codenumber">1.5.9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec15-5-3-1">
+\begin{equation*}
+\begin{bmatrix} 
+3 \amp -9 \amp 6 \\ 
+-1 \amp 3 \amp -2 
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.9"><a href="#ws-sec15-5-3" title="Copy heading and permalink for Worksheet Exercise 1.5.9" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.9">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-5-4"><h5 class="heading"><span class="codenumber">1.5.11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec15-5-4-1">
+\begin{equation*}
+\begin{bmatrix} 
+1 \amp -4 \amp -2 \amp 0 \amp 3 \amp -5 \\ 
+0 \amp 0 \amp 1 \amp 0 \amp 0 \amp -1 \\ 
+0 \amp 0 \amp 0 \amp 0 \amp 1 \amp -4 \\ 
+0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 
+\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.11"><a href="#ws-sec15-5-4" title="Copy heading and permalink for Worksheet Exercise 1.5.11" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.11">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 1.5.7–1.5.11"><a href="#ws-sec15-5" title="Copy heading and permalink for Exercise Group 1.5.7–1.5.11" aria-label="Copy heading and permalink for Exercise Group 1.5.7–1.5.11">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="ws-sec15-6"><h4 class="heading"><span class="codenumber">1.5.13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec15-6-1">Verify that the solutions you found to Exercise 9 are indeed homogeneous solutions.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.13"><a href="#ws-sec15-6" title="Copy heading and permalink for Worksheet Exercise 1.5.13" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.13">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-7"><h4 class="heading"><span class="codenumber">1.5.15<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec15-7-1">Verify that the solutions you found to Exercise 11 are indeed homogeneous solutions.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-7-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.15"><a href="#ws-sec15-7" title="Copy heading and permalink for Worksheet Exercise 1.5.15" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.15">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-8"><h4 class="heading"><span class="codenumber">1.5.17<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec15-8-1">Suppose the solution set of a certain system of linear equations can be described as <span class="process-math">\(x_1 = 5 + 4x_3\text{,}\)</span> <span class="process-math">\(x_2 = -2 - 7x_3\text{,}\)</span> with <span class="process-math">\(x_3\)</span> free. Use vectors to describe this set as a line in <span class="process-math">\(\R^3\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-8-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.17"><a href="#ws-sec15-8" title="Copy heading and permalink for Worksheet Exercise 1.5.17" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.17">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-9"><h4 class="heading"><span class="codenumber">1.5.19<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para logical" id="ws-sec15-9-1">
+<div class="para">Describe the solutions of the following system in parametric vector form. Also, give a geometric description of the solution set and compare it to that in Exercise 5.</div>
+<div class="displaymath process-math" id="ws-sec15-9-1-1">
+\begin{align*}
+x_1 + 3x_2 + x_3 \amp = 1\\
+-4x_1 - 9x_2 + 2x_3 \amp = -1\\
+-3x_2 - 6x_3 \amp = -3
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-9-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.19"><a href="#ws-sec15-9" title="Copy heading and permalink for Worksheet Exercise 1.5.19" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.19">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-10"><h4 class="heading"><span class="codenumber">1.5.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec15-10-1">Describe and compare the solution sets of <span class="process-math">\(x_1 + 9x_2 - 4x_3 = 0\)</span> and <span class="process-math">\(x_1 + 9x_2 - 4x_3 = -2\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-10-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.21"><a href="#ws-sec15-10" title="Copy heading and permalink for Worksheet Exercise 1.5.21" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.21">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-11"><h4 class="heading"><span class="codenumber">1.5.23<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec15-11-1">Find the parametric equation of the line through <span class="process-math">\(a\)</span> parallel to <span class="process-math">\(b\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-11-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" id="ws-sec15-11-2">
+\begin{equation*}
+\v{a} = \begin{bmatrix} -2 \\ 0 \end{bmatrix}, \quad 
+\v{b} = \begin{bmatrix} -5 \\ 3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.23"><a href="#ws-sec15-11" title="Copy heading and permalink for Worksheet Exercise 1.5.23" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.23">🔗</a></div>
+</article>
+<div class="exercisegroup" id="ws-sec15-12">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec15-12-1">
+<div class="para" id="ws-sec15-12-1-1">In Exercises 27-35, mark each statement True or False (T/F). Justify each answer.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-12-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec15-12-2"><h5 class="heading"><span class="codenumber">1.5.27<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec15-12-2-1">(T/F) A homogeneous equation is always consistent.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-12-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.27"><a href="#ws-sec15-12-2" title="Copy heading and permalink for Worksheet Exercise 1.5.27" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.27">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-12-3"><h5 class="heading"><span class="codenumber">1.5.29<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec15-12-3-1">(T/F) The equation <span class="process-math">\(Ax=0\)</span> gives an explicit description of its solution set.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-12-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.29"><a href="#ws-sec15-12-3" title="Copy heading and permalink for Worksheet Exercise 1.5.29" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.29">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-12-4"><h5 class="heading"><span class="codenumber">1.5.31<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec15-12-4-1">(T/F) The homogeneous equation <span class="process-math">\(Ax=0\)</span> has the trivial solution if and only if the equation has at least one free variable.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-12-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.31"><a href="#ws-sec15-12-4" title="Copy heading and permalink for Worksheet Exercise 1.5.31" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.31">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-12-5"><h5 class="heading"><span class="codenumber">1.5.33<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec15-12-5-1">(T/F) The equation <span class="process-math">\(x=p+tv\)</span> describes a line through <span class="process-math">\(v\)</span> parallel to <span class="process-math">\(p\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-12-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.33"><a href="#ws-sec15-12-5" title="Copy heading and permalink for Worksheet Exercise 1.5.33" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.33">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec15-12-6"><h5 class="heading"><span class="codenumber">1.5.35<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec15-12-6-1">(T/F) The solution set of <span class="process-math">\(Ax=b\)</span> is the set of all vectors of the form <span class="process-math">\(w=p+v_h\text{,}\)</span> where <span class="process-math">\(v_h\)</span> is any solution of the equation <span class="process-math">\(Ax=0\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec15-12-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 1.5.35"><a href="#ws-sec15-12-6" title="Copy heading and permalink for Worksheet Exercise 1.5.35" aria-label="Copy heading and permalink for Worksheet Exercise 1.5.35">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 1.5.27–1.5.35"><a href="#ws-sec15-12" title="Copy heading and permalink for Exercise Group 1.5.27–1.5.35" aria-label="Copy heading and permalink for Exercise Group 1.5.27–1.5.35">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet: Some Exercises for This Section"><a href="#ws-sec15" title="Copy heading and permalink for Worksheet: Some Exercises for This Section" aria-label="Copy heading and permalink for Worksheet: Some Exercises for This Section">🔗</a></div>
+</section><div class="autopermalink" data-description="Section 1.5: Solution Sets of Linear Systems"><a href="#sec15-SolutionSets" title="Copy heading and permalink for Section 1.5: Solution Sets of Linear Systems" aria-label="Copy heading and permalink for Section 1.5: Solution Sets of Linear Systems">🔗</a></div>
+</section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec14-MatrixEquation.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec17-LinearIndependence.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>

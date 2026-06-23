@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: salem                          *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Matrix Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="og:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="book:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.42"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.13.7';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.52176322e2c1dde5.bundle.js"></script><script src="_static/prefix-713.de0ab26248766350.bundle.js"></script><script src="_static/prefix-runestone.2f713d2360adcee7.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-713.f43ced6a6134ea74.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="changeme" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="my-great-book.html"><span class="title">MTH 261 Applied Linear Algebra I</span> <span class="subtitle">Spring 2026</span></a></h1>
+<p class="byline">Richard Zhao</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search book" commandfor="ptx-search-dialog" command="show-modal"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog" closedby="closerequest"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close search" id="ptx-search-close" class="ptx-search-close" commandfor="ptx-search-dialog" command="close"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="ch2-MatrixAlgebra.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch2-MatrixAlgebra.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec22-InverseMatrix.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N} 
+\newcommand{\Z}{\mathbb Z} 
+\newcommand{\Q}{\mathbb Q} 
+\newcommand{\R}{\mathbb R} 
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\v}[1]{\mathbf{#1}}
+\newcommand{\c}[1]{\mathcal{#1}}
+
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\adj}{\text{adj}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\Nul}{\text{Nul}}
+\newcommand{\Col}{\text{Col}}
+\newcommand{\im}{\text{im}}
+\newcommand{\span}{\text{span}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter"><div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch1-LinearEquations.html" class="internal"><span class="codenumber">1</span> <span class="title">Linear Equations in Linear Algebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec11-SystemLinearEquations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Systems of Linear Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-SolvingSystemsEquations" class="internal"><span class="title">Solving Systems of Linear Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-AugmentedMatrices" class="internal"><span class="title">Augmented Matrices and Elementary Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-NumberOfSolution" class="internal"><span class="title">How many solutions can a linear system have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-ExistenceUniqueness-SystemEquations" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec12-RowReduction.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Row Reduction and Echelon Forms</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsubsec-NumberOfParameters" class="internal"><span class="title">How many parameters does the solution have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsec-ExistenceUniqueness-AugmentedMatrices" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec13-VectorEquations.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Vector Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-VectorsNotation" class="internal"><span class="title">What is a vector?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-LinearCombinations" class="internal"><span class="title">Linear Combinations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-Span" class="internal"><span class="title">Span</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec13-VectorEquations.html#ws-sec13" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec14-MatrixEquation.html" class="internal"><span class="codenumber">1.4</span> <span class="title">The Matrix Equation <span class="process-math">\(A\v{x} = \v{b}\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DecodeAugmentedMatrix" class="internal"><span class="title">What exactly is an Augmented Matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-MultiplyingMatrixVector" class="internal"><span class="title">Multiplying a Matrix by a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ExistenceUniqueness-Rank" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-VectorEquations" class="internal"><span class="title">Vector Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-LinearTransformations-Intro" class="internal"><span class="title">Intro to Linear Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DotProduct-Intro" class="internal"><span class="title">Intro to the Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ZeroMatrix-IdentityMatrix" class="internal"><span class="title">Two Special Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#ws-sec14" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec15-SolutionSets.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Solution Sets of Linear Systems</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-HomogeneousSystem" class="internal"><span class="title">Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-NonHomogeneousSystem" class="internal"><span class="title">Non-Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec15-SolutionSets.html#ws-sec15" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec17-LinearIndependence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec17-LinearIndependence.html#ws-sec17" class="internal"><span class="codenumber">1.6</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Linear Transformations</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html#ws-sec18" class="internal"><span class="codenumber">1.7</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch2-MatrixAlgebra.html" class="internal"><span class="codenumber">2</span> <span class="title">Matrix Algebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec21-MatrixOperations.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Matrix Operations</span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixIntro" class="internal"><span class="title">What exactly is a matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-BasicMatrixOperations" class="internal"><span class="title">Basic Matrix Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-SubscriptNotationMatrices" class="internal"><span class="title">Subscript Notation for Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-MatrixAdditionScalarMultiplication" class="internal"><span class="title">Rules for Matrix Addition and Scalar Multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-TransposeMatrices" class="internal"><span class="title">Rules for Transposes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixMultiplication" class="internal"><span class="title">Matrix Multiplication</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#ws-sec21" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec22-InverseMatrix.html" class="internal"><span class="codenumber">2.2</span> <span class="title">The Inverse of a Matrix</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-InverseMatrices" class="internal"><span class="title">Inverse of a Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ImportantTheorems-Inverses" class="internal"><span class="title">Important Theorems and Facts about Inverses</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ElementaryMatrices" class="internal"><span class="title">Elementary Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#ws-sec22" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec23-InvertibleMatrix.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Characterizations of Invertible Matrices</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec23-InvertibleMatrix.html#ws-sec23" class="internal"><span class="codenumber">2.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec28-Subspaces.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Subspaces of <span class="process-math">\(\R^n\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-SubspaceIntro" class="internal"><span class="title">What is a Subspace?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-FundamentalSubspaces" class="internal"><span class="title">Fundamental Subspaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-Span" class="internal"><span class="title">Span and Spanning Sets</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec28-Subspaces.html#ws-sec28" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec29-DimensionRank.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Dimension and Rank</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Basis" class="internal"><span class="title">Basis</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Dimensions" class="internal"><span class="title">Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Rank-NullityTheorem" class="internal"><span class="title">A Fundamental Theorem of Linear Algebra: Rank-Nullity Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-ExtendedInvertibleMatrixTheorem" class="internal"><span class="title">Extending Our Invertible Matrix Theorem!</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec29-DimensionRank.html#ws-sec29" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch3-Determinants.html" class="internal"><span class="codenumber">3</span> <span class="title">Determinants</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec31-IntroDeterminants.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec31-IntroDeterminants.html#ws-sec31" class="internal"><span class="codenumber">3.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Properties of Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html#ws-sec32" class="internal"><span class="codenumber">3.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch5-EigenvaluesEigenvectors.html" class="internal"><span class="codenumber">4</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvectors and Eigenvalues</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html#ws-sec51" class="internal"><span class="codenumber">4.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec52-CharacteristicEquation.html" class="internal"><span class="codenumber">4.2</span> <span class="title">The Characteristic Equation</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec52-CharacteristicEquation.html#ws-sec52" class="internal"><span class="codenumber">4.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec53-Diagonalization.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Diagonalization</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec53-Diagonalization.html#ws-sec53" class="internal"><span class="codenumber">4.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch6-Orthogonality.html" class="internal"><span class="codenumber">5</span> <span class="title">Orthogonality</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec61-InnerProduct.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Inner Product, Length, and Orthogonality</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Length" class="internal"><span class="title">Length of a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-InnerProduct" class="internal"><span class="title">Inner Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Orthogonality-Intro" class="internal"><span class="title">Orthogonality</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec61-InnerProduct.html#ws-sec61" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec62-OrthogonalSets.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Orthogonal Sets</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec62-OrthogonalSets.html#ws-sec62" class="internal"><span class="codenumber">5.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec63-OrthogonalProjection.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-InnerProduct-Angles" class="internal"><span class="title">Angle between Two Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-OrthogonalProjection" class="internal"><span class="title">Orthogonal Projection</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#ws-sec63" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec64-GramSchmit.html" class="internal"><span class="codenumber">5.4</span> <span class="title">The Gram-Schmidt Process</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendixA-ExamReviews.html" class="internal"><span class="codenumber">A</span> <span class="title">Exam Reviews Page</span></a></div></li>
+<li class="toc-item toc-backmatter"><div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<div class="print-preview-header">
+<h2 class="print-preview">Print preview</h2>
+<div class="print-controls">
+<div class="print-controls-toggles">
+<form class="papersize-select" id="papersize-select">
+<span class="name">Paper size</span><label><input type="radio" name="papersize" value="a4">A4
+        </label><label><input type="radio" name="papersize" value="letter">Letter
+        </label>
+</form>
+<details class="print-options"><summary>Additional printing options</summary><div class="hide-solutions-options"><div class="hide-option">
+<label for="hide-solution-checkbox">Hide solutions</label><input type="checkbox" id="hide-solution-checkbox">
+</div></div>
+<div class="header-footer-options">
+<div class="header-option">
+<span class="title">Print headers</span><label>First page<input type="checkbox" id="print-first-page-header-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-header-checkbox" checked></label>
+</div>
+<div class="footer-option">
+<span class="title">Print footers</span><label>First page<input type="checkbox" id="print-first-page-footer-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-footer-checkbox" checked></label>
+</div>
+</div>
+<div class="highlight-workspace-option">
+<label for="highlight-workspace-checkbox">Highlight workspace</label><input type="checkbox" id="highlight-workspace-checkbox">
+</div></details>
+</div>
+<button class="print-button" title="Print" onClick="window.print()"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span><span class="name">Print</span></button>
+</div>
+</div>
+<section class="section" id="sec21-MatrixOperations">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Matrix Operations</span>
+</h2>
+<section class="introduction" id="sec21-MatrixOperations-2">
+<div class="para" id="sec21-MatrixOperations-2-1">So far, we have seen matrices popping up as we tackled systems of linear equations. Now, it is time to build our understanding from the ground up and formally define what a matrix is.<div class="autopermalink" data-description="Paragraph"><a href="#sec21-MatrixOperations-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec21-MatrixOperations-2-2">In this section, we will establish the core operations for matrices: addition, scalar multiplication, transposition, and matrix multiplication, as well as their properties!<div class="autopermalink" data-description="Paragraph"><a href="#sec21-MatrixOperations-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="objectives goal-like" id="sec21-MatrixOperations-2-3"><h3 class="heading"><span class="type">Objectives</span></h3>
+<div class="introduction" id="sec21-MatrixOperations-2-3-1">
+<div class="para" id="sec21-MatrixOperations-2-3-1-1">After this section, students will be able to:<div class="autopermalink" data-description="Paragraph"><a href="#sec21-MatrixOperations-2-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<ul class="disc" id="sec21-MatrixOperations-2-3-2">
+<li id="sec21-MatrixOperations-2-3-2-1">
+<div class="para" id="sec21-MatrixOperations-2-3-2-1-1">determine the size of a matrix and identify specific entries using subscript notation.<div class="autopermalink" data-description="Paragraph"><a href="#sec21-MatrixOperations-2-3-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec21-MatrixOperations-2-3-2-1" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec21-MatrixOperations-2-3-2-2">
+<div class="para" id="sec21-MatrixOperations-2-3-2-2-1">compute the sum, scalar multiple, and transpose of given matrices.<div class="autopermalink" data-description="Paragraph"><a href="#sec21-MatrixOperations-2-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec21-MatrixOperations-2-3-2-2" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec21-MatrixOperations-2-3-2-3">
+<div class="para" id="sec21-MatrixOperations-2-3-2-3-1">determine if two matrices can be multiplied based on their sizes and compute their product.<div class="autopermalink" data-description="Paragraph"><a href="#sec21-MatrixOperations-2-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec21-MatrixOperations-2-3-2-3" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="sec21-MatrixOperations-2-3-2-4">
+<div class="para" id="sec21-MatrixOperations-2-3-2-4-1">apply algebraic properties to simplify matrix expressions and demonstrate why matrix multiplication is generally non-commutative.<div class="autopermalink" data-description="Paragraph"><a href="#sec21-MatrixOperations-2-3-2-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#sec21-MatrixOperations-2-3-2-4" title="Copy heading and permalink for Objective" aria-label="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Objectives"><a href="#sec21-MatrixOperations-2-3" title="Copy heading and permalink for Objectives" aria-label="Copy heading and permalink for Objectives">🔗</a></div>
+</article></section>
+<div class="para" id="sec21-MatrixOperations-3">We actually have learned (or at least heard of) most of the matrix operations in class before. Let’s formally introduce the operations!<div class="autopermalink" data-description="Paragraph"><a href="#sec21-MatrixOperations-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<section class="subsection" id="subsec-MatrixIntro">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">What exactly is a matrix?</span>
+</h3>
+<div class="para" id="subsec-MatrixIntro-2">We have dealt with matrices in the last section. Let’s formally define what a matrix is since this chapter is all about matrices!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixIntro-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MatrixIntro-3">A <dfn class="terminology">matrix</dfn> is a rectangular array of entries (typically numbers). The <dfn class="terminology">size</dfn> of a matrix is determined by the number of rows and columns it has, and it is usually given in the form of <span class="process-math">\(m \times n\text{,}\)</span> where <span class="process-math">\(m\)</span> is the number of rows and <span class="process-math">\(n\)</span> is the number of columns.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixIntro-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-MatrixIntro-4">
+<div class="para">For example, the following matrix</div>
+<div class="displaymath process-math" id="subsec-MatrixIntro-4-1">
+\begin{equation*}
+\begin{bmatrix} 1 \amp 2 \amp 3 \\ 4 \amp 5 \amp 6 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">has 2 rows and 3 columns, so its size is <span class="process-math">\(2 \times 3\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixIntro-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="subsec-MatrixIntro-5"><h4 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-MatrixIntro-5-1">
+<div class="para">What are the sizes of each of the following matrices?</div>
+<div class="displaymath process-math" id="subsec-MatrixIntro-5-1-1">
+\begin{align*}
+\begin{bmatrix} 5 \amp -1 \amp 2 \\ -2 \amp 6 \amp 9 \\ -7 \amp 5 \amp -3 \end{bmatrix} \amp\qquad\qquad\qquad \begin{bmatrix} 5 \amp -1 \amp 2 \amp 7 \\ -2 \amp 6 \amp 9 \amp 0 \\ -7 \amp 5 \amp -3 \amp -7 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="displaymath process-math" id="subsec-MatrixIntro-5-1-2">
+\begin{align*}
+\begin{bmatrix} 0 \amp 2 \\ 0 \amp -1 \end{bmatrix} \amp\qquad\qquad\qquad\qquad \begin{bmatrix} \alpha \amp \beta \amp \gamma \\ \delta \amp \varepsilon \amp \zeta \\ \eta \amp \theta \amp \chi \end{bmatrix} 
+\end{align*}
+</div>
+<div class="displaymath process-math" id="subsec-MatrixIntro-5-1-3">
+\begin{align*}
+\begin{bmatrix} x \\ y \\ z \\ u \\ v \end{bmatrix} \amp\qquad\qquad\qquad\qquad \begin{bmatrix} 1 \amp 2 \amp 3 \amp 4 \amp 5 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixIntro-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Checkpoint 2.1.1"><a href="#subsec-MatrixIntro-5" title="Copy heading and permalink for Checkpoint 2.1.1" aria-label="Copy heading and permalink for Checkpoint 2.1.1">🔗</a></div>
+</article><div class="autopermalink" data-description="Subsection: What exactly is a matrix?"><a href="#subsec-MatrixIntro" title="Copy heading and permalink for Subsection: What exactly is a matrix?" aria-label="Copy heading and permalink for Subsection: What exactly is a matrix?">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-BasicMatrixOperations">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Basic Matrix Operations</span>
+</h3>
+<div class="para" id="subsec-BasicMatrixOperations-2">We will learn three operations on matrices: matrix addition, scalar multiplication, and transposition. Let’s introduce all of these operations using examples!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-BasicMatrixOperations-3">Suppose we have the matrices <span class="process-math">\(A = \begin{bmatrix} 3 \amp 2 \amp 5 \\ 5 \amp -8 \amp 14 \end{bmatrix}\)</span> and <span class="process-math">\(B = \begin{bmatrix} 1 \amp -3 \amp 0 \\ 3 \amp -2 \amp 5 \end{bmatrix}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-BasicMatrixOperations-4">
+<div class="para">To <em class="alert">add two matrices</em> together, we add all corresponding entries (those would be the things inside the brackets) and the sum is the corresponding entry in the answer.</div>
+<div class="displaymath process-math" id="subsec-BasicMatrixOperations-4-2">
+\begin{align*}
+A + B \amp= \begin{bmatrix} 3 \amp 2 \amp 5 \\ 5 \amp -8 \amp 14 \end{bmatrix} + \begin{bmatrix} 1 \amp -3 \amp 0 \\ 3 \amp -2 \amp 5 \end{bmatrix} \\
+\amp= \begin{bmatrix} 3+1 \amp 2+(-3) \amp 5+0 \\ 5+3 \amp -8+(-2) \amp 14+5 \end{bmatrix} \\
+\amp= \begin{bmatrix} 4 \amp -1 \amp 5 \\ 8 \amp -10 \amp 19 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-BasicMatrixOperations-5">
+<div class="para">To <em class="alert">multiply a scalar by a matrix</em>, we multiply the scalar by every entry of the matrix and that product is the corresponding entry in the answer.</div>
+<div class="displaymath process-math" id="subsec-BasicMatrixOperations-5-2">
+\begin{align*}
+7A \amp= 7 \begin{bmatrix} 3 \amp 2 \amp 5 \\ 5 \amp -8 \amp 14 \end{bmatrix} \\
+\amp= \begin{bmatrix} 7(3) \amp 7(2) \amp 7(5) \\ 7(5) \amp 7(-8) \amp 7(14) \end{bmatrix} \\
+\amp= \begin{bmatrix} 21 \amp 14 \amp 35 \\ 35 \amp -56 \amp 98 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-BasicMatrixOperations-6">
+<div class="para">The <em class="alert">transpose</em> of a matrix <span class="process-math">\(A\text{,}\)</span> denoted <span class="process-math">\(A^T\text{,}\)</span> is obtained by <em class="emphasis">flipping</em> it across the main diagonal. That is, every row of the original matrix becomes the corresponding column of the transpose and every column of the original matrix becomes the corresponding row of the transpose.</div>
+<div class="displaymath process-math" id="subsec-BasicMatrixOperations-6-5">
+\begin{align*}
+A^T \amp= \begin{bmatrix} 3 \amp 2 \amp 5 \\ 5 \amp -8 \amp 14 \end{bmatrix}^T \\
+\amp= \begin{bmatrix} 3 \amp 5 \\ 2 \amp -8 \\ 5 \amp 14 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-BasicMatrixOperations-7">And we can combine all of these operations in lots of ways!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-BasicMatrixOperations-8"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-BasicMatrixOperations-8-1">
+<div class="para">Let’s say we want to compute <span class="process-math">\(\lp A + 2B \rp^T\text{.}\)</span> Then we have</div>
+<div class="displaymath process-math" id="subsec-BasicMatrixOperations-8-1-2">
+\begin{align*}
+\lp A + 2B \rp^T \amp= \lp \begin{bmatrix} 3 \amp 2 \amp 5 \\ 5 \amp -8 \amp 14 \end{bmatrix} + 2 \begin{bmatrix} 1 \amp -3 \amp 0 \\ 3 \amp -2 \amp 5 \end{bmatrix} \rp^T \\
+\amp= \lp \begin{bmatrix} 3 \amp 2 \amp 5 \\ 5 \amp -8 \amp 14 \end{bmatrix} + \begin{bmatrix} 2 \amp -6 \amp 0 \\ 6 \amp -4 \amp 10 \end{bmatrix} \rp^T \\
+\amp= \begin{bmatrix} 3+2 \amp 2-6 \amp 5+0 \\ 5+6 \amp -8-4 \amp 14+10 \end{bmatrix}^T \\
+\amp= \begin{bmatrix} 5 \amp -4 \amp 5 \\ 11 \amp -12 \amp 24 \end{bmatrix}^T \\
+\amp= \begin{bmatrix} 5 \amp 11 \\ -4 \amp -12 \\ 5 \amp 24 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-8-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 2.1.2"><a href="#subsec-BasicMatrixOperations-8" title="Copy heading and permalink for Example 2.1.2" aria-label="Copy heading and permalink for Example 2.1.2">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="subsec-BasicMatrixOperations-9"><h4 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-BasicMatrixOperations-9-1">
+<div class="para">Let <span class="process-math">\(A = \begin{bmatrix} 2 \amp -6 \\ 3 \amp 0 \\ 6 \amp -4 \end{bmatrix}\)</span> and <span class="process-math">\(B = \begin{bmatrix} 4 \amp -2 \\ -3 \amp 1 \\ -5 \amp -4 \end{bmatrix}\text{.}\)</span> Compute the following (if impossible, explain why):</div>
+<ol class="decimal ol-marker-1" id="subsec-BasicMatrixOperations-9-1-3">
+<li id="subsec-BasicMatrixOperations-9-1-3-1">
+<div class="para" id="subsec-BasicMatrixOperations-9-1-3-1-1">
+<span class="process-math">\(\displaystyle A + B\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-1-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2.1.3.1"><a href="#subsec-BasicMatrixOperations-9-1-3-1" title="Copy heading and permalink for Item 2.1.3.1" aria-label="Copy heading and permalink for Item 2.1.3.1">🔗</a></div>
+</li>
+<li id="subsec-BasicMatrixOperations-9-1-3-2">
+<div class="para" id="subsec-BasicMatrixOperations-9-1-3-2-1">
+<span class="process-math">\(\displaystyle B - A\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-1-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2.1.3.2"><a href="#subsec-BasicMatrixOperations-9-1-3-2" title="Copy heading and permalink for Item 2.1.3.2" aria-label="Copy heading and permalink for Item 2.1.3.2">🔗</a></div>
+</li>
+<li id="subsec-BasicMatrixOperations-9-1-3-3">
+<div class="para" id="subsec-BasicMatrixOperations-9-1-3-3-1">
+<span class="process-math">\(\displaystyle A + B^T\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-1-3-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2.1.3.3"><a href="#subsec-BasicMatrixOperations-9-1-3-3" title="Copy heading and permalink for Item 2.1.3.3" aria-label="Copy heading and permalink for Item 2.1.3.3">🔗</a></div>
+</li>
+<li id="subsec-BasicMatrixOperations-9-1-3-4">
+<div class="para" id="subsec-BasicMatrixOperations-9-1-3-4-1">
+<span class="process-math">\(\displaystyle (A + B)^T\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-1-3-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2.1.3.4"><a href="#subsec-BasicMatrixOperations-9-1-3-4" title="Copy heading and permalink for Item 2.1.3.4" aria-label="Copy heading and permalink for Item 2.1.3.4">🔗</a></div>
+</li>
+<li id="subsec-BasicMatrixOperations-9-1-3-5">
+<div class="para" id="subsec-BasicMatrixOperations-9-1-3-5-1">
+<span class="process-math">\(\displaystyle 3B\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-1-3-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2.1.3.5"><a href="#subsec-BasicMatrixOperations-9-1-3-5" title="Copy heading and permalink for Item 2.1.3.5" aria-label="Copy heading and permalink for Item 2.1.3.5">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-BasicMatrixOperations-9-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-BasicMatrixOperations-9-2-1">
+<div class="para">1.</div>
+<div class="displaymath process-math" id="subsec-BasicMatrixOperations-9-2-1-1">
+\begin{align*}
+A + B \amp= \begin{bmatrix} 2 \amp -6 \\ 3 \amp 0 \\ 6 \amp -4 \end{bmatrix} + \begin{bmatrix} 4 \amp -2 \\ -3 \amp 1 \\ -5 \amp -4 \end{bmatrix} \\
+\amp= \begin{bmatrix} 2+4 \amp -6+(-2) \\ 3+(-3) \amp 0+1 \\ 6+(-5) \amp -4+(-4) \end{bmatrix} \\
+\amp= \begin{bmatrix} 6 \amp -8 \\ 0 \amp 1 \\ 1 \amp -8 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-BasicMatrixOperations-9-2-2">
+<div class="para">2.</div>
+<div class="displaymath process-math" id="subsec-BasicMatrixOperations-9-2-2-1">
+\begin{align*}
+B - A \amp= B + (-A) \\
+\amp= \begin{bmatrix} 4 \amp -2 \\ -3 \amp 1 \\ -5 \amp -4 \end{bmatrix} + \begin{bmatrix} -2 \amp 6 \\ -3 \amp 0 \\ -6 \amp 4 \end{bmatrix} \\
+\amp= \begin{bmatrix} 4+(-2) \amp -2+6 \\ -3+(-3) \amp 1+0 \\ -5+(-6) \amp -4+4 \end{bmatrix} \\
+\amp= \begin{bmatrix} 2 \amp 4 \\ -6 \amp 1 \\ -11 \amp 0 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="para">Observe that we can just subtract the corresponding entries of <span class="process-math">\(A\)</span> from the corresponding entries of <span class="process-math">\(B\)</span> to get the answer. Once we have addition and scalar multiplication, we can define subtraction as adding the negatives.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-BasicMatrixOperations-9-2-3">
+<div class="para">3.</div>
+<div class="displaymath process-math" id="subsec-BasicMatrixOperations-9-2-3-1">
+\begin{align*}
+A + B^T \amp= \begin{bmatrix} 2 \amp -6 \\ 3 \amp 0 \\ 6 \amp -4 \end{bmatrix} + \begin{bmatrix} 4 \amp -2 \\ -3 \amp 1 \\ -5 \amp -4 \end{bmatrix}^T \\
+\amp= \begin{bmatrix} 2 \amp -6 \\ 3 \amp 0 \\ 6 \amp -4 \end{bmatrix} + \begin{bmatrix} 4 \amp -3 \amp -5 \\ -2 \amp 1 \amp -4 \end{bmatrix} \\
+\amp= \cdots \cdots 
+\end{align*}
+</div>
+<div class="para">Observe that <span class="process-math">\(A\)</span> is a <span class="process-math">\(3 \times 2\)</span> matrix but <span class="process-math">\(B^T\)</span> is a <span class="process-math">\(2 \times 3\)</span> matrix. We cannot add these two matrices together because not every entry of <span class="process-math">\(A\)</span> has a corresponding entry in <span class="process-math">\(B^T\)</span> and vice versa.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-BasicMatrixOperations-9-2-4">
+<div class="para">4.</div>
+<div class="displaymath process-math" id="subsec-BasicMatrixOperations-9-2-4-1">
+\begin{align*}
+(A + B)^T \amp= \lp \begin{bmatrix} 2 \amp -6 \\ 3 \amp 0 \\ 6 \amp -4 \end{bmatrix} + \begin{bmatrix} 4 \amp -2 \\ -3 \amp 1 \\ -5 \amp -4 \end{bmatrix} \rp^T \\
+\amp= \begin{bmatrix} 6 \amp -8 \\ 0 \amp 1 \\ 1 \amp -8 \end{bmatrix}^T \\
+\amp= \begin{bmatrix} 6 \amp 0 \amp 1 \\ -8 \amp 1 \amp -8 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-BasicMatrixOperations-9-2-5">
+<div class="para">5.</div>
+<div class="displaymath process-math" id="subsec-BasicMatrixOperations-9-2-5-1">
+\begin{align*}
+3B \amp= 3 \begin{bmatrix} 4 \amp -2 \\ -3 \amp 1 \\ -5 \amp -4 \end{bmatrix} \\
+\amp= \begin{bmatrix} 3(4) \amp 3(-2) \\ 3(-3) \amp 3(1) \\ 3(-5) \amp 3(-4) \end{bmatrix} \\
+\amp= \begin{bmatrix} 12 \amp -6 \\ -9 \amp 3 \\ -15 \amp -12 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-9-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 2.1.3.1"><a href="#subsec-BasicMatrixOperations-9-2" title="Copy heading and permalink for Solution 2.1.3.1" aria-label="Copy heading and permalink for Solution 2.1.3.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Checkpoint 2.1.3"><a href="#subsec-BasicMatrixOperations-9" title="Copy heading and permalink for Checkpoint 2.1.3" aria-label="Copy heading and permalink for Checkpoint 2.1.3">🔗</a></div>
+</article>
+<div class="para logical" id="subsec-BasicMatrixOperations-10">
+<div class="para">We can make some observations about these operations:</div>
+<ol class="decimal ol-marker-1" id="subsec-BasicMatrixOperations-10-1">
+<li id="subsec-BasicMatrixOperations-10-1-1">
+<div class="para" id="subsec-BasicMatrixOperations-10-1-1-1">We can ONLY add two matrices when they are the <em class="emphasis">exact same size</em>. This makes sense because we do it by adding corresponding entries, so if they are different sizes, we won’t have those for all of the entries!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-10-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1"><a href="#subsec-BasicMatrixOperations-10-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="subsec-BasicMatrixOperations-10-1-2">
+<div class="para" id="subsec-BasicMatrixOperations-10-1-2-1">If <span class="process-math">\(A\)</span> is an <span class="process-math">\(m \times n\)</span> matrix, then <span class="process-math">\(A^T\)</span> is an <span class="process-math">\(n \times m\)</span> matrix. This makes sense because every row of <span class="process-math">\(A\)</span> becomes a column of <span class="process-math">\(A^T\)</span> which also forces every column of <span class="process-math">\(A\)</span> to become a row of <span class="process-math">\(A^T\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-10-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2"><a href="#subsec-BasicMatrixOperations-10-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="subsec-BasicMatrixOperations-10-1-3">
+<div class="para" id="subsec-BasicMatrixOperations-10-1-3-1">
+<span class="process-math">\(A\)</span> is called a <dfn class="terminology">square matrix</dfn> if it has the same number of rows as columns. Notice that the only way <span class="process-math">\(A^T\)</span> can be the same size as <span class="process-math">\(A\)</span> is if <span class="process-math">\(A\)</span> is a square matrix.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-10-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 3"><a href="#subsec-BasicMatrixOperations-10-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li id="subsec-BasicMatrixOperations-10-1-4">
+<div class="para" id="subsec-BasicMatrixOperations-10-1-4-1">When we transpose a matrix twice, we get back to the original matrix (you can "see" this if you imagine flipping it over the main diagonal twice).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-10-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-BasicMatrixOperations-10-1-4-2">Terminology: the <dfn class="terminology">main diagonal</dfn> of a matrix is the one going down from left to right.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-10-1-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 4"><a href="#subsec-BasicMatrixOperations-10-1-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-BasicMatrixOperations-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Basic Matrix Operations"><a href="#subsec-BasicMatrixOperations" title="Copy heading and permalink for Subsection: Basic Matrix Operations" aria-label="Copy heading and permalink for Subsection: Basic Matrix Operations">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-SubscriptNotationMatrices">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Subscript Notation for Matrices</span>
+</h3>
+<div class="para logical" id="subsec-SubscriptNotationMatrices-2">
+<div class="para">We can identify the location of any entry of a matrix by saying <em class="emphasis">which row and column</em> it lives in. For example, in our matrix</div>
+<div class="displaymath process-math" id="subsec-SubscriptNotationMatrices-2-2">
+\begin{equation*}
+A = \begin{bmatrix} 3 \amp 2 \amp 5 \\ 5 \amp -8 \amp 14 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">The entry in the <em class="emphasis">second row</em> and <em class="emphasis">third column</em> is <span class="process-math">\(14\text{.}\)</span> We can say this in symbol as: The <span class="process-math">\((2,3)\)</span> entry is <span class="process-math">\(14\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-SubscriptNotationMatrices-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-SubscriptNotationMatrices-3">We can also use subscript notation to denote the entries of a matrix. We indicate the row first and then the column using subscripts. For example, the <span class="process-math">\(14\)</span> in matrix <span class="process-math">\(A\)</span> can be denoted as <span class="process-math">\(a_{23}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-SubscriptNotationMatrices-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-SubscriptNotationMatrices-4">
+<div class="para">A generic <span class="process-math">\(2 \times 3\)</span> matrix would be denoted by</div>
+<div class="displaymath process-math" id="subsec-SubscriptNotationMatrices-4-2">
+\begin{equation*}
+\begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-SubscriptNotationMatrices-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-SubscriptNotationMatrices-5">And <em class="emphasis">any</em> matrix <span class="process-math">\(A\)</span> can be denoted in shorthand by <span class="process-math">\(\left[a_{ij}\right]\text{.}\)</span> If your matrix is named <span class="process-math">\(C\)</span> you would use <span class="process-math">\(c_{ij}\)</span> to denote the entry in the <span class="process-math">\(i\)</span>th row and the <span class="process-math">\(j\)</span>th column.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-SubscriptNotationMatrices-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-SubscriptNotationMatrices-6">
+<em class="emphasis">Note:</em> We always identify the row first and then the column when describing an entry of a matrix.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-SubscriptNotationMatrices-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-SubscriptNotationMatrices-7">Now we can describe the operations we learned using the subscript notation!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-SubscriptNotationMatrices-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-SubscriptNotationMatrices-8">
+<div class="para">Suppose <span class="process-math">\(A = [a_{ij}]\)</span> and <span class="process-math">\(B = [b_{ij}]\text{,}\)</span> and let <span class="process-math">\(k\)</span> be a scalar (you can just think of a scalar as a number since in this this class they always will be). Then</div>
+<div class="displaymath process-math" id="subsec-SubscriptNotationMatrices-8-4">
+\begin{equation*}
+A + B = [a_{ij}] + [b_{ij}] = \left[a_{ij} + b_{ij}\right]
+\end{equation*}
+</div>
+<div class="para">since we add two matrices by adding corresponding entries.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-SubscriptNotationMatrices-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-SubscriptNotationMatrices-9">
+<div class="para">Similarly,</div>
+<div class="displaymath process-math" id="subsec-SubscriptNotationMatrices-9-1">
+\begin{equation*}
+kA = k[a_{ij}] = [ka_{ij}]
+\end{equation*}
+</div>
+<div class="para">since we multiply a scalar by a matrix by multiplying it by every entry of a matrix, and</div>
+<div class="displaymath process-math" id="subsec-SubscriptNotationMatrices-9-2">
+\begin{equation*}
+A^T = [a_{ij}]^T = [a_{ji}]
+\end{equation*}
+</div>
+<div class="para">since we transpose a matrix by turning every row into a column (and every column into a row).</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-SubscriptNotationMatrices-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Subscript Notation for Matrices"><a href="#subsec-SubscriptNotationMatrices" title="Copy heading and permalink for Subsection: Subscript Notation for Matrices" aria-label="Copy heading and permalink for Subsection: Subscript Notation for Matrices">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-Rules-MatrixAdditionScalarMultiplication">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Rules for Matrix Addition and Scalar Multiplication</span>
+</h3>
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-2">
+<div class="para">Let <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> and <span class="process-math">\(C\)</span> be <span class="process-math">\(m \times n\)</span> matrices (<span class="process-math">\(m\)</span> and <span class="process-math">\(n\)</span> fixed), and let <span class="process-math">\(c\)</span> and <span class="process-math">\(k\)</span> be real numbers (scalars). Then the following properties hold:</div>
+<ol class="decimal ol-marker-1" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9">
+<li id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-1">
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-1-1">
+<div class="para">Matrix Addition is <dfn class="terminology">commutative</dfn>. That is,</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-1-1-2">
+\begin{equation*}
+A + B = B + A
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-2">
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-2-1">
+<div class="para">Matrix Addition is <dfn class="terminology">associative</dfn>. That is,</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-2-1-2">
+\begin{equation*}
+(A + B) + C = A + (B + C)
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-3">
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-3-1">
+<div class="para">There exists a <dfn class="terminology">zero matrix</dfn> <span class="process-math">\(0\)</span> such that</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-3-1-3">
+\begin{equation*}
+0 + A = A
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(0\)</span> is the <span class="process-math">\(m \times n\)</span> matrix in which every entry is <span class="process-math">\(0\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 3"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-4">
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-4-1">
+<div class="para">For every matrix <span class="process-math">\(A\text{,}\)</span> there exists a matrix <span class="process-math">\(-A\)</span> such that</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-4-1-3">
+\begin{equation*}
+A + (-A) = 0
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(-A\)</span> is called the <dfn class="terminology">additive inverse</dfn> of <span class="process-math">\(A\)</span> and is obtained by multiplying every entry of <span class="process-math">\(A\)</span> by <span class="process-math">\(-1\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 4"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+<li id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-5">
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-5-1">
+<div class="para">Scalar Multiplication distributes over Matrix Addition. That is,</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-5-1-1">
+\begin{equation*}
+c(A + B) = cA + cB
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 5"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-5" title="Copy heading and permalink for Item 5" aria-label="Copy heading and permalink for Item 5">🔗</a></div>
+</li>
+<li id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-6">
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-6-1">
+<div class="para">Scalar Multiplication distributes over Scalar Addition. That is,</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-6-1-1">
+\begin{equation*}
+(c + k)A = cA + kA
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 6"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-6" title="Copy heading and permalink for Item 6" aria-label="Copy heading and permalink for Item 6">🔗</a></div>
+</li>
+<li id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-7">
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-7-1">
+<div class="para">Scalar Multiplication by a Product of Two Scalars is the Same as Scalar Multiplication by One Scalar Followed by Scalar Multiplication by the Other Scalar. That is,</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-7-1-1">
+\begin{equation*}
+ck(A) = c(kA)
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-7-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 7"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-7" title="Copy heading and permalink for Item 7" aria-label="Copy heading and permalink for Item 7">🔗</a></div>
+</li>
+<li id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-8">
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-8-1">
+<div class="para">Scalar Multiplication by <span class="process-math">\(1\)</span> leaves a matrix unchanged. That is,</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-2-9-8-1-2">
+\begin{equation*}
+1A = A
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-8-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 8"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2-9-8" title="Copy heading and permalink for Item 8" aria-label="Copy heading and permalink for Item 8">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-Rules-MatrixAdditionScalarMultiplication-3">Let’s prove them all but only in the case for <span class="process-math">\(2 \times 3\)</span> matrices. <em class="emphasis">These proofs can easily be generalized using <span class="process-math">\(\cdots\)</span> and variables for subscripts to make the matrices completely general</em>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-Rules-MatrixAdditionScalarMultiplication-4" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="title">Proof of these Rules for <span class="process-math">\(2 \times 3\)</span> Matrices.</span></h4></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-2">Let <span class="process-math">\(A = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a{21} \amp a_{22} \amp a_{23} \end{bmatrix}\text{,}\)</span> <span class="process-math">\(B = \begin{bmatrix} b_{11} \amp b_{12} \amp b_{13} \\ b{21} \amp b_{22} \amp b_{23} \end{bmatrix}\text{,}\)</span> and <span class="process-math">\(C = \begin{bmatrix} c_{11} \amp c_{12} \amp c_{13} \\ c_{21} \amp c_{22} \amp c_{23} \end{bmatrix}\)</span> be arbitrary <span class="process-math">\(2 \times 3\)</span> matrices. And ket <span class="process-math">\(c\)</span> and <span class="process-math">\(k\)</span> be arbitrary real numbers (scalars).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-3">
+<div class="para">1. (Communitivity):</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-3-1">
+\begin{align*}
+A + B \amp= \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} + \begin{bmatrix} b_{11} \amp b_{12} \amp b_{13} \\ b_{21} \amp b_{22} \amp b_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11} + b_{11} \amp a_{12} + b_{12} \amp a_{13} + b_{13} \\ a_{21} + b_{21} \amp a_{22} + b_{22} \amp a_{23} + b_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} b_{11} + a_{11} \amp b_{12} + a_{12} \amp b_{13} + a_{13} \\ b_{21} + a_{21} \amp b_{22} + a_{22} \amp b_{23} + a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} b_{11} \amp b_{12} \amp b_{13} \\ b_{21} \amp b_{22} \amp b_{23} \end{bmatrix} + \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} \\
+\amp= B + A 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-4">
+<div class="para">2. (Associativity):</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-4-1">
+\begin{align*}
+(A + B) + C \amp= \lp \begin{bmatrix} a_{11} \amp a_{12}  \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} + \begin{bmatrix} b_{11} \amp b_{12} \amp b_{13} \\ b_{21} \amp b_{22} \amp b_{23} \end{bmatrix} \rp + \begin{bmatrix} c_{11} \amp c_{12} \amp c_{13} \\ c_{21} \amp c_{22} \amp c_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11} + b_{11} \amp a_{12} + b_{12} \amp a_{13} + b_{13} \\ a_{21} + b_{21} \amp a_{22} + b_{22} \amp a_{23} + b_{23} \end{bmatrix} + \begin{bmatrix} c_{11} \amp c_{12} \amp c_{13} \\ c_{21} \amp c_{22} \amp c_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} (a_{11}+b_{11})+c_{11} \amp (a_{12}+b_{12})+c_{12} \amp (a_{13}+b_{13})+c_{13} \\ (a_{21}+b_{21})+c_{21} \amp (a_{22}+b_{22})+c_{22} \amp (a_{23}+b_{23})+c_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11}+ (b_{11}+c_{11}) \amp a_{12}+ (b_{12}+c_{12}) \amp a_{13}+ (b_{13}+c_{13}) \\ a_{21}+ (b_{21}+c_{21}) \amp a_{22}+ (b_{22}+c_{22}) \amp a_{23}+ (b_{23}+c_{23}) \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} + \begin{bmatrix} b_{11}+c_{11} \amp b_{12}+c_{12} \amp b_{13}+c_{13}\\ b_{21}+c_{21}\amp b_{22}+c_{22}\amp b_{23}+c_{23}\end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} + \lp \begin{bmatrix} b_{11} \amp b_{12} \amp b_{13} \\ b_{21} \amp b_{22} \amp b_{23} \end{bmatrix} + \begin{bmatrix} c_{11} \amp c_{12} \amp c_{13} \\ c_{21} \amp c_{22} \amp c_{23} \end{bmatrix} \rp \\
+\amp= A + (B + C) 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-5">
+<div class="para">3. (Zero Matrix):</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-5-1">
+\begin{align*}
+0 + A \amp= \begin{bmatrix} 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \end{bmatrix} + \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} 0 + a_{11} \amp 0 + a_{12} \amp 0 + a_{13} \\ 0 + a_{21} \amp 0 + a_{22} \amp 0 + a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} \\
+\amp= A 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-6">
+<div class="para">4. (Additive Inverse):</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-6-1">
+\begin{align*}
+A + (-A) \amp= \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} + \begin{bmatrix} -a_{11} \amp -a_{12} \amp -a_{13} \\ -a_{21} \amp -a_{22} \amp -a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11}+(-a_{11}) \amp a_{12}+(-a_{12}) \amp a_{13}+(-a_{13}) \\ a_{21}+(-a_{21}) \amp a_{22}+(-a_{22}) \amp a_{23}+(-a_{23}) \end{bmatrix} \\
+\amp= \begin{bmatrix} 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \end{bmatrix} \\
+\amp= 0 
+\end{align*}
+</div>
+<div class="para">Then apply commutativity to get <span class="process-math">\(-A + A = 0\)</span> (Or just do a similar proof. Either way works!)</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-7">
+<div class="para">5. (Distributive Part 1):</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-7-1">
+\begin{align*}
+c(A + B) \amp= c \lp \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} + \begin{bmatrix} b_{11} \amp b_{12} \amp b_{13} \\ b_{21} \amp b_{22} \amp b_{23} \end{bmatrix} \rp \\
+\amp= c \begin{bmatrix} a_{11} + b_{11} \amp a_{12} + b_{12} \amp a_{13} + b_{13} \\ a_{21} + b_{21} \amp a_{22} + b_{22} \amp a_{23} + b_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} c(a_{11} + b_{11}) \amp c(a_{12} + b_{12}) \amp c(a_{13} + b_{13}) \\ c(a_{21} + b_{21}) \amp c(a_{22} + b_{22}) \amp c(a_{23} + b_{23}) \end{bmatrix} \\
+\amp= \begin{bmatrix} ca_{11} + cb_{11} \amp ca_{12} + cb_{12} \amp ca_{13} + cb_{13} \\ ca_{21} + cb_{21} \amp ca_{22} + cb_{22} \amp ca_{23} + cb_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} ca_{11} \amp ca_{12} \amp ca_{13} \\ ca_{21} \amp ca_{22} \amp ca_{23} \end{bmatrix} + \begin{bmatrix} cb_{11} \amp cb_{12} \amp cb_{13} \\ cb_{21} \amp cb_{22} \amp cb_{23} \end{bmatrix} \\
+\amp= cA + cB 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-8">
+<div class="para">6. (Distributive Part 2):</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-8-1">
+\begin{align*}
+(c + k)A \amp= (c + k) \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} (c + k)a_{11} \amp (c + k)a_{12} \amp (c + k)a_{13} \\ (c + k)a_{21} \amp (c + k)a_{22} \amp (c + k)a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} ca_{11} + ka_{11} \amp ca_{12} + ka_{12} \amp ca_{13} + ka_{13} \\ ca_{21} + ka_{21} \amp ca_{22} + ka_{22} \amp ca_{23} + ka_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} ca_{11} \amp ca_{12} \amp ca_{13}\\ ca_{21}\amp ca_{22}\amp ca_{23}\end{bmatrix}+ \begin{bmatrix} ka_{11}\amp ka_{12}\amp ka_{13}\\ ka_{21}\amp ka_{22}\amp ka_{23}\end{bmatrix}\\
+\amp= cA + kA 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-9">
+<div class="para">7. (Multiplication by Product of Scalars):</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-9-1">
+\begin{align*}
+ck(A) \amp= ck \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} (ck) a_{11} \amp (ck) a_{12} \amp (ck) a_{13} \\ (ck) a_{21} \amp (ck) a_{22} \amp (ck) a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} c(ka_{11}) \amp c(ka_{12}) \amp c(ka_{13}) \\ c(ka_{21}) \amp c(ka_{22}) \amp c(ka_{23}) \end{bmatrix} \\
+\amp= c \begin{bmatrix} ka_{11} \amp ka_{12} \amp ka_{13} \\ ka_{21} \amp ka_{22} \amp ka_{23} \end{bmatrix} \\
+\amp= c(kA) 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-10">
+<div class="para">8. (Scalar Multiplication by 1):</div>
+<div class="displaymath process-math" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-10-1">
+\begin{align*}
+1A \amp= 1 \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} 1a_{11} \amp 1a_{12} \amp 1a_{13} \\ 1a_{21} \amp 1a_{22} \amp 1a_{23} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \end{bmatrix} \\
+\amp= A 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-Rules-MatrixAdditionScalarMultiplication-4-11">Now try convincing yourself that these properties hold for matrices of any size by generalizing the above proofs!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 1: Proof of these Rules for 2 \times 3 Matrices"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication-4" title="Copy heading and permalink for Proof 1: Proof of these Rules for 2 \times 3 Matrices" aria-label="Copy heading and permalink for Proof 1: Proof of these Rules for 2 \times 3 Matrices">🔗</a></div>
+</article></details><div class="autopermalink" data-description="Subsection: Rules for Matrix Addition and Scalar Multiplication"><a href="#subsec-Rules-MatrixAdditionScalarMultiplication" title="Copy heading and permalink for Subsection: Rules for Matrix Addition and Scalar Multiplication" aria-label="Copy heading and permalink for Subsection: Rules for Matrix Addition and Scalar Multiplication">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-Rules-TransposeMatrices">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Rules for Transposes</span>
+</h3>
+<div class="para logical" id="subsec-Rules-TransposeMatrices-2">
+<div class="para">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be <span class="process-math">\(m \times n\)</span> matrices. (Note that this notation doesn’t mean the matrices aren’t square. It just means we aren’t assuming that they are). Then the following properties hold:</div>
+<ol class="decimal ol-marker-1" id="subsec-Rules-TransposeMatrices-2-4">
+<li id="subsec-Rules-TransposeMatrices-2-4-1">
+<div class="para" id="subsec-Rules-TransposeMatrices-2-4-1-1">
+<span class="process-math">\(A^T\)</span> will be an <span class="process-math">\(n \times m\)</span> matrix.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-Rules-TransposeMatrices-2-4-1-2">If you turn every row into a column then the number of columns of the new matrix is the same as the number of rows in the original (similar with columns and rows). You can also see this by imagining flipping the matrix across its main diagonal.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-2-4-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1"><a href="#subsec-Rules-TransposeMatrices-2-4-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="subsec-Rules-TransposeMatrices-2-4-2">
+<div class="para" id="subsec-Rules-TransposeMatrices-2-4-2-1">
+<span class="process-math">\(\lp A^T \rp^T = A\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-Rules-TransposeMatrices-2-4-2-2">If you turn every row into a column and then do that again, you put the matrix right back where you started. It is even more clear if you imagine reflecting the matrix across its main diagonal twice.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-2-4-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2"><a href="#subsec-Rules-TransposeMatrices-2-4-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="subsec-Rules-TransposeMatrices-2-4-3">
+<div class="para" id="subsec-Rules-TransposeMatrices-2-4-3-1">
+<span class="process-math">\(\lp kA \rp^T = k \lp A^T \rp\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-2-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-Rules-TransposeMatrices-2-4-3-2">It doesn’t matter whether you (1) multiply every entry by <span class="process-math">\(k\)</span> and then flip across the main diagonal OR (2) flip across the main diagonal and then multiply every entry by <span class="process-math">\(k\text{.}\)</span> In either case you turn <span class="process-math">\(a_{ij}\)</span> into <span class="process-math">\(ka_{ji}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-2-4-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 3"><a href="#subsec-Rules-TransposeMatrices-2-4-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li id="subsec-Rules-TransposeMatrices-2-4-4">
+<div class="para" id="subsec-Rules-TransposeMatrices-2-4-4-1">
+<span class="process-math">\(\lp A + B \rp^T = A^T + B^T\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-2-4-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-Rules-TransposeMatrices-2-4-4-2">It doesn’t matter whether you (1) add all the corresponding entries and then flip across the main diagonal OR (2) flip each matrix across the main diagonal and then add all the corresponding entries. In either case the <span class="process-math">\((i,j)\)</span> entry is <span class="process-math">\(a_{ji} + b_{ji}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-2-4-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 4"><a href="#subsec-Rules-TransposeMatrices-2-4-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-Rules-TransposeMatrices-3">Last but not least, we call a matrix <dfn class="terminology">symmetric</dfn> if it equals its own transpose. That is, <span class="process-math">\(A\)</span> is symmetric if <span class="process-math">\(A = A^T\text{.}\)</span> They are called symmetric because if you flip the matrix over the main diagonal it doesn’t change it!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-Rules-TransposeMatrices-4">One immediate consequence of this property is that if <span class="process-math">\(A\)</span> is symmetric, then <span class="process-math">\(A\)</span> must be a square matrix (or else, the two matrices won’t even be the same size, let alone equal).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-Rules-TransposeMatrices-5">
+<div class="para">For example, the matrix <span class="process-math">\(A = \begin{bmatrix} 3 \amp 5 \\ 5 \amp -8 \end{bmatrix}\)</span> is symmetric because</div>
+<div class="displaymath process-math" id="subsec-Rules-TransposeMatrices-5-2">
+\begin{equation*}
+A^T = \begin{bmatrix} 3 \amp 5 \\ 5 \amp -8 \end{bmatrix}^T = \begin{bmatrix} 3 \amp 5 \\ 5 \amp -8 \end{bmatrix} = A
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-Rules-TransposeMatrices-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Rules for Transposes"><a href="#subsec-Rules-TransposeMatrices" title="Copy heading and permalink for Subsection: Rules for Transposes" aria-label="Copy heading and permalink for Subsection: Rules for Transposes">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-MatrixMultiplication">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Matrix Multiplication</span>
+</h3>
+<div class="para" id="subsec-MatrixMultiplication-2">Recall when you multiply a column vector by a matrix, you just compute the dot product of that vector by each row vector of the matrix. Then you get a nice column vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MatrixMultiplication-3">If you want to multiply a matrix by another matrix, you just do that for <em class="alert">every column</em> of the matrix on the right and you get all of the columns in your answer matrix. And that is how you multiply matrices!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-MatrixMultiplication-4"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-MatrixMultiplication-4-1">
+<div class="para">Let’s multiply the following two matrices</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-4-1-1">
+\begin{equation*}
+\begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix}
+\begin{bmatrix} 2 \amp 1 \\ 1 \amp -3 \\ 0 \amp 5 \\ 5 \amp -2 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-MatrixMultiplication-4-2">
+<div class="para">Oberve that the matrix on the right consists of two columns. We know how to multiply the column (aka a column vector) by the matrix. Let’s do that!</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-4-2-1">
+\begin{equation*}
+\begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix}
+\begin{bmatrix} 2 \\ 1 \\ 0  \\ 5 \end{bmatrix}
+= 
+\begin{bmatrix} 3(2) + 5(1) + 6(0) + 2(5) \\ 1(2) + -1(1) + 2(0) + 3(5) \\ 0(2) + 5(1) + 1(0) + -1(5) \end{bmatrix}
+= 
+\begin{bmatrix} 21 \\ 16 \\ 0 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">and</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-4-2-2">
+\begin{equation*}
+\begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix}
+\begin{bmatrix} 1 \\ -3 \\ 5  \\ -2 \end{bmatrix}
+= 
+\begin{bmatrix} 3(1) + 5(-3) + 6(5) + 2(-2) \\ 1(1) + -1(-3) + 2(5) + 3(-2) \\ 0(1) + 5(-3) + 1(5) + -1(-2) \end{bmatrix}
+= 
+\begin{bmatrix} 14 \\ 8 \\ -8 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Then the first column vector we get is the first column in the answer matrix and the second column vector we get is the second column in the answer matrix. That is,</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-4-2-3">
+\begin{equation*}
+\begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix}
+\begin{bmatrix} 2 \amp 1 \\ 1 \amp -3 \\ 0 \amp 5 \\ 5 \amp -2 \end{bmatrix}
+= 
+\begin{bmatrix} 21 \amp 14 \\ 16 \amp 8 \\ 0 \amp -8 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 2.1.4"><a href="#subsec-MatrixMultiplication-4" title="Copy heading and permalink for Example 2.1.4" aria-label="Copy heading and permalink for Example 2.1.4">🔗</a></div>
+</article>
+<div class="para" id="subsec-MatrixMultiplication-5">Writing out the general formula for matrix multiplication using all the little subscripts would be horrible. But there is a clever way to write matrices that makes it a bit easier.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-MatrixMultiplication-6">
+<div class="para">Suppose you want to multiply a <span class="process-math">\(m \times n\)</span> matrix <span class="process-math">\(A\)</span> by the <span class="process-math">\(n\times k\)</span> matrix <span class="process-math">\(B\text{.}\)</span> Instead of writing down all the entries of <span class="process-math">\(B\)</span> using double subscripts, we can write the matrix as a collection of columns using single subscripts. So the matrix <span class="process-math">\(B\)</span> looks like this:</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-6-7">
+\begin{equation*}
+B = \begin{bmatrix} \v{b}_1 \amp \v{b}_2 \amp \cdots \amp \v{b}_k \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Then</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-6-8">
+\begin{align*}
+AB \amp= A \begin{bmatrix} \v{b}_1 \amp \v{b}_2 \amp \cdots \amp \v{b}_k \end{bmatrix} \\
+\amp= \begin{bmatrix} A\v{b}_1 \amp A\v{b}_2 \amp \cdots \amp A\v{b}_k \end{bmatrix} 
+\end{align*}
+</div>
+<div class="para">where each column of the answer is a product of <span class="process-math">\(A\)</span> with the corresponding column vector of <span class="process-math">\(B\text{.}\)</span> And each of those products are computed by taking the dot product of each row of <span class="process-math">\(A\)</span> with that column vector.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MatrixMultiplication-7">Summary: the <span class="process-math">\((i,j)\)</span> entry of the matrix <span class="process-math">\(AB\)</span> is computed by taking the dot product of the <span class="process-math">\(i\)</span>th row of <span class="process-math">\(A\)</span> with the <span class="process-math">\(j\)</span>-th column of <span class="process-math">\(B\)</span> (rows times columns).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="subsec-MatrixMultiplication-8"><h4 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-MatrixMultiplication-8-1">
+<div class="para">Multiply! If it is impossible, say why!</div>
+<ol class="decimal ol-marker-1" id="subsec-MatrixMultiplication-8-1-1">
+<li id="subsec-MatrixMultiplication-8-1-1-1">
+<div class="para" id="subsec-MatrixMultiplication-8-1-1-1-1">
+<span class="process-math">\(\displaystyle \begin{bmatrix} 1 \amp 5 \amp 2 \\ 3 \amp 2 \amp 1 \\ 0 \amp 2 \amp -3 \\ 1 \amp 1 \amp 1\end{bmatrix}
+\begin{bmatrix} 2 \amp -1 \amp 0 \\ 1 \amp 3 \amp 2 \\ 5 \amp -2 \amp 0 \end{bmatrix} \)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-8-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2.1.5.1"><a href="#subsec-MatrixMultiplication-8-1-1-1" title="Copy heading and permalink for Item 2.1.5.1" aria-label="Copy heading and permalink for Item 2.1.5.1">🔗</a></div>
+</li>
+<li id="subsec-MatrixMultiplication-8-1-1-2">
+<div class="para" id="subsec-MatrixMultiplication-8-1-1-2-1">
+<span class="process-math">\(\displaystyle \begin{bmatrix} 1 \amp 5 \amp 2 \\ 3 \amp 2 \amp 1 \\ 0 \amp 2 \amp -3 \\ 1 \amp 1 \amp 1\end{bmatrix}
+\begin{bmatrix} 2 \amp 3 \amp 1 \\ 1 \amp 7 \amp 2 \\ 5 \amp -2 \amp -2 \\ 7 \amp 8 \amp 9 \end{bmatrix} \)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-8-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2.1.5.2"><a href="#subsec-MatrixMultiplication-8-1-1-2" title="Copy heading and permalink for Item 2.1.5.2" aria-label="Copy heading and permalink for Item 2.1.5.2">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-8-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-MatrixMultiplication-8-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-MatrixMultiplication-8-2-1">
+<div class="para">1.</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-8-2-1-1">
+\begin{align*}
+\amp \begin{bmatrix} 1 \amp 5 \amp 2 \\ 3 \amp 2 \amp 1 \\ 0 \amp 2 \amp -3 \\ 1 \amp 1 \amp 1 \end{bmatrix} \begin{bmatrix} 2 \amp -1 \amp 0 \\ 1 \amp 3 \amp 2 \\ 5 \amp -2 \amp 0 \end{bmatrix} \\
+= \amp \begin{bmatrix} 1(2) + 5(1) + 2(5) \amp 1(-1) + 5(3) + 2(-2) \amp 1(0) + 5(2) + 2(0) \\ 3(2) + 2(1) + 1(5) \amp 3(-1) + 2(3) + 1(-2) \amp 3(0) + 2(2) + 1(0) \\ 0(2) + 2(1) + -3(5) \amp 0(-1) + 2(3) + -3(-2) \amp 0(0) + 2(2) + -3(0) \\ 1(2) + 1(1) + 1(5) \amp 1(-1) + 1(3) + 1(-2) \amp 1(0) + 1(2) + 1(0) \end{bmatrix} \\
+= \amp \begin{bmatrix} 17 \amp 10 \amp 10 \\ 13 \amp 1 \amp 4 \\ -13 \amp 12 \amp 4 \\ 8 \amp 0 \amp 2 \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MatrixMultiplication-8-2-2">2. This is impossible. You can’t multiply a <span class="process-math">\(4 \times 3\)</span> matrix by a <span class="process-math">\(4 \times 3\)</span> matrix. None of the dot products work!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-8-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MatrixMultiplication-8-2-3">For example, if you want to find the <span class="process-math">\((1,1)\)</span> entry in the answer matrix, then you would find the dot product of the first row of the matrix to the left and the first column of the matrix to the right. But... there are three entries in the first row vector and four entries in the column vector... The sizes don’t work out... (there is nothing we can multiply by the <span class="process-math">\(7\)</span>)...<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-8-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 2.1.5.1"><a href="#subsec-MatrixMultiplication-8-2" title="Copy heading and permalink for Solution 2.1.5.1" aria-label="Copy heading and permalink for Solution 2.1.5.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Checkpoint 2.1.5"><a href="#subsec-MatrixMultiplication-8" title="Copy heading and permalink for Checkpoint 2.1.5" aria-label="Copy heading and permalink for Checkpoint 2.1.5">🔗</a></div>
+</article>
+<div class="para" id="subsec-MatrixMultiplication-9">To make sure the dot products work out for matrix multiplication, we want to make sure the number of columns in the first matrix matches up with the number of rows in the second matrix. That is, to multiply two matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> with the size of <span class="process-math">\(A\)</span> being <span class="process-math">\(m\times n\text{,}\)</span> the size of <span class="process-math">\(B\)</span> must be <span class="process-math">\(n \times k\text{.}\)</span> The answer matrix is of the size of <span class="process-math">\(m\times k\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MatrixMultiplication-10">New operation means more rules! Here is a theorem that collects some rules about matrix multiplication.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="thm-RulesMatrixMultiplication"><h4 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Matrix Multiplication Rules.</span>
+</h4>
+<div class="para logical" id="thm-RulesMatrixMultiplication-2-1">
+<div class="para">Suppose <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> and <span class="process-math">\(C\)</span> are matrices that are the right size for the products to be defined. And suppose <span class="process-math">\(I\)</span> is the identity matrix that is the right size as well. The following properties hold:</div>
+<ol class="decimal ol-marker-1" id="thm-RulesMatrixMultiplication-2-1-5">
+<li id="thm-RulesMatrixMultiplication-2-1-5-1">
+<div class="para" id="thm-RulesMatrixMultiplication-2-1-5-1-1">
+<em class="alert">Identity Property</em>: <span class="process-math">\(IA = A\)</span> and <span class="process-math">\(AI = A\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-RulesMatrixMultiplication-2-1-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1"><a href="#thm-RulesMatrixMultiplication-2-1-5-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="thm-RulesMatrixMultiplication-2-1-5-2">
+<div class="para" id="thm-RulesMatrixMultiplication-2-1-5-2-1">
+<em class="alert">Associativity</em>: <span class="process-math">\(A(BC) = (AB)C\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-RulesMatrixMultiplication-2-1-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2"><a href="#thm-RulesMatrixMultiplication-2-1-5-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="thm-RulesMatrixMultiplication-2-1-5-3">
+<div class="para" id="thm-RulesMatrixMultiplication-2-1-5-3-1">(Left) <em class="alert">Distributive Property</em>: <span class="process-math">\(A(B + C) = AB + AC\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-RulesMatrixMultiplication-2-1-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 3"><a href="#thm-RulesMatrixMultiplication-2-1-5-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li id="thm-RulesMatrixMultiplication-2-1-5-4">
+<div class="para" id="thm-RulesMatrixMultiplication-2-1-5-4-1">(Right) <em class="alert">Distributive Property</em>: <span class="process-math">\((A + B)C = AC + BC\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-RulesMatrixMultiplication-2-1-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 4"><a href="#thm-RulesMatrixMultiplication-2-1-5-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+<li id="thm-RulesMatrixMultiplication-2-1-5-5">
+<div class="para" id="thm-RulesMatrixMultiplication-2-1-5-5-1">
+<em class="alert">Regrouping with Scalar Multiplication</em>; For any scalar <span class="process-math">\(c\text{,}\)</span> <span class="process-math">\(c(AB) = (cA)B = A(cB)\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-RulesMatrixMultiplication-2-1-5-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 5"><a href="#thm-RulesMatrixMultiplication-2-1-5-5" title="Copy heading and permalink for Item 5" aria-label="Copy heading and permalink for Item 5">🔗</a></div>
+</li>
+<li id="thm-RulesMatrixMultiplication-2-1-5-6">
+<div class="para" id="thm-RulesMatrixMultiplication-2-1-5-6-1">
+<em class="alert">Transpose of a Product</em>: <span class="process-math">\((AB)^T = B^T A^T\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-RulesMatrixMultiplication-2-1-5-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 6"><a href="#thm-RulesMatrixMultiplication-2-1-5-6" title="Copy heading and permalink for Item 6" aria-label="Copy heading and permalink for Item 6">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#thm-RulesMatrixMultiplication-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Theorem 2.1.6: Matrix Multiplication Rules"><a href="#thm-RulesMatrixMultiplication" title="Copy heading and permalink for Theorem 2.1.6: Matrix Multiplication Rules" aria-label="Copy heading and permalink for Theorem 2.1.6: Matrix Multiplication Rules">🔗</a></div>
+</article>
+<div class="para" id="subsec-MatrixMultiplication-12">The first five rules should not be surprising. Spend some time to convince yourself why they are true!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-MatrixMultiplication-13" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="title">Proof Ideas and Sketches Using Smaller Matrices.</span></h4></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="subsec-MatrixMultiplication-13-2">
+<ol class="decimal ol-marker-1" id="subsec-MatrixMultiplication-13-2-1">
+<li id="subsec-MatrixMultiplication-13-2-1-1">
+<div class="para" id="subsec-MatrixMultiplication-13-2-1-1-1">The first equation follows from multiplying the identify matrix by a column vector. You get that same column vector as the answer. Since that would happen for every column of <span class="process-math">\(A\text{,}\)</span> you will get <span class="process-math">\(A\)</span> as your answer.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-13-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MatrixMultiplication-13-2-1-1-2">The second equation is true because when you multiply <span class="process-math">\(A\)</span> by the <span class="process-math">\(k\)</span>th column of <span class="process-math">\(I\text{,}\)</span> the single <span class="process-math">\(1\)</span> in the <span class="process-math">\(k\)</span>th row of that column will reproduce the <span class="process-math">\(k\)</span>th column of the matrix.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-13-2-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1"><a href="#subsec-MatrixMultiplication-13-2-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="subsec-MatrixMultiplication-13-2-1-2">
+<div class="para logical" id="subsec-MatrixMultiplication-13-2-1-2-1">
+<div class="para">This one gets messy when the matrices start getting bigger, so let’s verify it in the <span class="process-math">\(2 \times 2\)</span> case. The proof in general works the same just with a lot more subscripts to juggle!</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-13-2-1-2-1-2">
+\begin{align*}
+A(BC) \amp= \begin{bmatrix} a_{11} \amp a_{12} \\ a_{21} \amp a_{22} \end{bmatrix} \lp \begin{bmatrix} b_{11} \amp b_{12} \\ b_{21} \amp b_{22} \end{bmatrix} \begin{bmatrix} c_{11} \amp c_{12} \\ c_{21} \amp c_{22} \end{bmatrix} \rp \\
+\amp= \begin{bmatrix} a_{11} \amp a_{12} \\ a_{21} \amp a_{22} \end{bmatrix} \begin{bmatrix} b_{11}c_{11} + b_{12}c_{21} \amp b_{11}c_{12} + b_{12}c_{22} \\ b_{21}c_{11} + b_{22}c_{21} \amp b_{21}c_{12} + b_{22}c_{22} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11}\lp b_{11}c_{11} + b_{12}c_{21}\rp + a_{12} \lp b_{21}c_{11} + b_{22}c_{21} \rp \amp a_{11}\lp b_{11}c_{12} + b_{12}c_{22}\rp + a_{12}\lp b_{21}c_{12} + b_{22}c_{22}\rp \\ a_{21}\lp b_{11}c_{11} + b_{12}c_{21}\rp + a_{22}\lp b_{21}c_{11} + b_{22}c_{21}\rp \amp a_{21}\lp b_{11}c_{12} + b_{12}c_{22}\rp + a_{22}\lp b_{21}c_{12} + b_{22}c_{22}\rp \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11}b_{11}c_{11} + a_{11}b_{12}c_{21} + a_{12}b_{21}c_{11} + a_{12}b_{22}c_{21} \amp a_{11}b_{11}c_{12} + a_{11}b_{12}c_{22} + a_{12}b_{21}c_{12} + a_{12}b_{22}c_{22} \\ a_{21}b_{11}c_{11} + a_{21}b_{12}c_{21} + a_{22}b_{21}c_{11} + a_{22}b_{22}c_{21} \amp a_{21}b_{11}c_{12} + a_{21}b_{12}c_{22} + a_{22}b_{21}c_{12} + a_{22}b_{22}c_{22} \end{bmatrix} 
+\end{align*}
+</div>
+<div class="para">and</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-13-2-1-2-1-3">
+\begin{align*}
+(AB)C \amp= \lp \begin{bmatrix} a_{11} \amp a_{12} \\ a_{21} \amp a_{22} \end{bmatrix} \begin{bmatrix} b_{11} \amp b_{12} \\ b_{21} \amp b_{22} \end{bmatrix} \rp \begin{bmatrix} c_{11} \amp c_{12} \\ c_{21} \amp c_{22} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11}b_{11} + a_{12}b_{21} \amp a_{11}b_{12} + a_{12}b_{22} \\ a_{21}b_{11} + a_{22}b_{21} \amp a_{21}b_{12} + a_{22}b_{22} \end{bmatrix} \begin{bmatrix} c_{11} \amp c_{12} \\ c_{21} \amp c_{22} \end{bmatrix} \\
+\amp= \begin{bmatrix} \lp a_{11}b_{11} + a_{12}b_{21} \rp c_{11} + \lp a_{11}b_{12} + a_{12}b_{22} \rp c_{21} \amp \lp a_{11}b_{11} + a_{12}b_{21} \rp c_{12} + \lp a_{11}b_{12} + a_{12}b_{22} \rp c_{22} \\ \lp a_{21}b_{11} + a_{22}b_{21} \rp c_{11} + \lp a_{21}b_{12} + a_{22}b_{22} \rp c_{21} \amp \lp a_{21}b_{11} + a_{22}b_{21} \rp c_{12} + \lp a_{21}b_{12} + a_{22}b_{22} \rp c_{22} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11}b_{11}c_{11} + a_{12}b_{21}c_{11} + a_{11}b_{12}c_{21} + a_{12}b_{22}c_{21} \amp a_{11}b_{11}c_{12} + a_{12}b_{21}c_{12} + a_{11}b_{12}c_{22} + a_{12}b_{22}c_{22} \\ a_{21}b_{11}c_{11} + a_{22}b_{21}c_{11} + a_{21}b_{12}c_{21} + a_{22}b_{22}c_{21} \amp a_{21}b_{11}c_{12} + a_{22}b_{21}c_{12} + a_{21}b_{12}c_{22} + a_{22}b_{22}c_{22} \end{bmatrix} 
+\end{align*}
+</div>
+<div class="para">Comparing the results, we can see that the matrix multiplication is associative because multiplication of numbers is!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-13-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2"><a href="#subsec-MatrixMultiplication-13-2-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="subsec-MatrixMultiplication-13-2-1-3">
+<div class="para logical" id="subsec-MatrixMultiplication-13-2-1-3-1">
+<div class="para">This one isn’t quite as messy as the previous one, but still warrants limiting to <span class="process-math">\(2 \times 2\)</span> case:</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-13-2-1-3-1-2">
+\begin{align*}
+A(B + C) \amp= \begin{bmatrix} a_{11} \amp a_{12} \\ a_{21} \amp a_{22} \end{bmatrix} \lp \begin{bmatrix} b_{11} \amp b_{12} \\ b_{21} \amp b_{22} \end{bmatrix} + \begin{bmatrix} c_{11} \amp c_{12} \\ c_{21} \amp c_{22} \end{bmatrix} \rp \\
+\amp= \begin{bmatrix} a_{11} \amp a_{12} \\ a_{21} \amp a_{22} \end{bmatrix} \begin{bmatrix} b_{11} + c_{11} \amp b_{12} + c_{12} \\ b_{21} + c_{21} \amp b_{22} + c_{22} \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11}\lp b_{11} + c_{11}\rp + a_{12}\lp b_{21} + c_{21}\rp \amp a_{11}\lp b_{12} + c_{12}\rp + a_{12}\lp b_{22} + c_{22}\rp \\ a_{21}\lp b_{11} + c_{11}\rp + a_{22}\lp b_{21} + c_{21}\rp \amp a_{21}\lp b_{12} + c_{12}\rp + a_{22}\lp b_{22} + c_{22}\rp \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11}b_{11} + a_{11}c_{11} + a_{12}b_{21} + a_{12}c_{21} \amp a_{11}b_{12} + a_{11}c_{12} + a_{12}b_{22} + a_{12}c_{22} \\ a_{21}b_{11} + a_{21}c_{11} + a_{22}b_{21} + a_{22}c_{21} \amp a_{21}b_{12} + a_{21}c_{12} + a_{22}b_{22} + a_{22}c_{22} \end{bmatrix} \\
+\amp= \begin{bmatrix} \lp a_{11}b_{11} + a_{12}b_{21}\rp + \lp a_{11}c_{11} + a_{12}c_{21}\rp \amp \lp a_{11}b_{12} + a_{12}b_{22}\rp + \lp a_{11}c_{12} + a_{12}c_{22}\rp \\ \lp a_{21}b_{11} + a_{22}b_{21}\rp + \lp a_{21}c_{11} + a_{22}c_{21}\rp \amp \lp a_{21}b_{12} + a_{22}b_{22}\rp + \lp a_{21}c_{12} + a_{22}c_{22}\rp \end{bmatrix} \\
+\amp= \begin{bmatrix} a_{11}b_{11} + a_{12}b_{21} \amp a_{11}b_{12} + a_{12}b_{22} \\ a_{21}b_{11} + a_{22}b_{21} \amp a_{21}b_{12} + a_{22}b_{22} \end{bmatrix} + \begin{bmatrix} a_{11}c_{11} + a_{12}c_{21} \amp a_{11}c_{12} + a_{12}c_{22} \\ a_{21}c_{11} + a_{22}c_{21} \amp a_{21}c_{12} + a_{22}c_{22} \end{bmatrix} \\
+\amp= \lp \begin{bmatrix} a_{11} \amp a_{12} \\ a_{21} \amp a_{22} \end{bmatrix} \begin{bmatrix} b_{11} \amp b_{12} \\ b_{21} \amp b_{22} \end{bmatrix} \rp + \lp \begin{bmatrix} a_{11} \amp a_{12} \\ a_{21} \amp a_{22} \end{bmatrix} \begin{bmatrix} c_{11} \amp c_{12} \\ c_{21} \amp c_{22} \end{bmatrix} \rp \\
+\amp= AB + AC 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-13-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 3"><a href="#subsec-MatrixMultiplication-13-2-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li id="subsec-MatrixMultiplication-13-2-1-4">
+<div class="para" id="subsec-MatrixMultiplication-13-2-1-4-1">The verification of this one works just like the previous one with the obvious changes. Again it comes down to the fact that we have the distributive property in basic arithmetic.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-13-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 4"><a href="#subsec-MatrixMultiplication-13-2-1-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+<li id="subsec-MatrixMultiplication-13-2-1-5">
+<div class="para" id="subsec-MatrixMultiplication-13-2-1-5-1">I encourage you to verify this for the <span class="process-math">\(2\times 2\)</span> case. This one is much less messy than the ones we have done!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-13-2-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 5"><a href="#subsec-MatrixMultiplication-13-2-1-5" title="Copy heading and permalink for Item 5" aria-label="Copy heading and permalink for Item 5">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-13-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 1: Proof Ideas and Sketches Using Smaller Matrices"><a href="#subsec-MatrixMultiplication-13" title="Copy heading and permalink for Proof 1: Proof Ideas and Sketches Using Smaller Matrices" aria-label="Copy heading and permalink for Proof 1: Proof Ideas and Sketches Using Smaller Matrices">🔗</a></div>
+</article></details>
+<div class="para" id="subsec-MatrixMultiplication-14">You may find the last rule a bit surprising. Why isn’t <span class="process-math">\((AB)^T\)</span> equal to <span class="process-math">\(A^T B^T\text{?}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MatrixMultiplication-15">This surprise should tell you that matrix multiplication is not commutative!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-MatrixMultiplication-16">
+<div class="para">Let’s verify this one for the <span class="process-math">\(2 \times 2\)</span> case!</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-16-2">
+\begin{align*}
+(AB)^T \amp= \lp \begin{bmatrix} a_{11} \amp a_{12} \\ a_{21} \amp a_{22} \end{bmatrix} \begin{bmatrix} b_{11} \amp b_{12} \\ b_{21} \amp b_{22} \end{bmatrix} \rp^T \\
+\amp= \begin{bmatrix} a_{11}b_{11} + a_{12}b_{21} \amp a_{11}b_{12} + a_{12}b_{22} \\ a_{21}b_{11} + a_{22}b_{21} \amp a_{21}b_{12} + a_{22}b_{22} \end{bmatrix}^T \\
+\amp= \begin{bmatrix} a_{11}b_{11} + a_{12}b_{21} \amp a_{21}b_{11} + a_{22}b_{21} \\ a_{11}b_{12} + a_{12}b_{22} \amp a_{21}b_{12} + a_{22}b_{22} \end{bmatrix} 
+\end{align*}
+</div>
+<div class="para">If you computed <span class="process-math">\(A^T B^T\)</span> and compare it to this you would find you would NOT get this result! But if we commute all of the products inside this matrix...</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-16-4">
+\begin{align*}
+\amp \qquad \, \, \, = \begin{bmatrix} b_{11}a_{11} + b_{21}a_{12} \amp b_{11}a_{21} + b_{21}a_{22} \\ b_{12}a_{11} + b_{22}a_{12} \amp b_{12}a_{21} + b_{22}a_{22} \end{bmatrix} 
+\end{align*}
+</div>
+<div class="para">This is what you would get for <span class="process-math">\(B^T A^T\text{!}\)</span>
+</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-16-6">
+\begin{align*}
+B^T A^T \amp= \begin{bmatrix} b_{11} \amp b_{12} \\ b_{21} \amp b_{22} \end{bmatrix}^T \begin{bmatrix} a_{11} \amp a_{12} \\ a_{21} \amp a_{22} \end{bmatrix}^T \\
+\amp= \begin{bmatrix} b_{11} \amp b_{21} \\ b_{12} \amp b_{22} \end{bmatrix} \begin{bmatrix} a_{11} \amp a_{21} \\ a_{12} \amp a_{22} \end{bmatrix} \\
+\amp= \begin{bmatrix} b_{11}a_{11} + b_{21}a_{12} \amp b_{11}a_{21} + b_{21}a_{22} \\ b_{12}a_{11} + b_{22}a_{12} \amp b_{12}a_{21} + b_{22}a_{22} \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-16" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-MatrixMultiplication-17">Observe that <em class="alert">commutativity</em> is not included in the theorem. That is because matrix multiplication is NOT commutative, which means in general it is NOT true that <span class="process-math">\(AB = BA\text{.}\)</span> Sometimes it happens that way but often it does not!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-17" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-MatrixMultiplication-18">
+<div class="para">A quick counter-example can show that matrix multiplication is non-commutative. Let <span class="process-math">\(A = \begin{bmatrix} 0 \amp 2 \\ 1 \amp -2 \end{bmatrix}\)</span> and <span class="process-math">\(B = \begin{bmatrix} 1 \amp 2 \\ -1 \amp 1 \end{bmatrix}\text{.}\)</span> Observe that</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-18-3">
+\begin{equation*}
+AB = \begin{bmatrix} 0 \amp 2 \\ 1 \amp -2 \end{bmatrix}
+\begin{bmatrix} 1 \amp 2 \\ -1 \amp 1 \end{bmatrix}
+= \begin{bmatrix} -2 \amp 2 \\ 3 \amp 0 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">but</div>
+<div class="displaymath process-math" id="subsec-MatrixMultiplication-18-4">
+\begin{equation*}
+BA = \begin{bmatrix} 1 \amp 2 \\ -1 \amp 1 \end{bmatrix}
+\begin{bmatrix} 0 \amp 2 \\ 1 \amp -2 \end{bmatrix}
+= \begin{bmatrix} 2 \amp -2 \\ 1 \amp -4 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Hence <span class="process-math">\(AB \neq BA\text{...}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-MatrixMultiplication-18" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection: Matrix Multiplication"><a href="#subsec-MatrixMultiplication" title="Copy heading and permalink for Subsection: Matrix Multiplication" aria-label="Copy heading and permalink for Subsection: Matrix Multiplication">🔗</a></div>
+</section>
+<section class="worksheet" id="ws-sec21" data-margins="0.75in 0.75in 0.75in 0.75in">
+<h3 class="heading hide-type">
+<span class="type">Worksheet</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Some Exercises for This Section</span><div class="print-links"><a href="?printpreview=ws-sec21" class="print-link" title="Print preview"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span></a></div>
+</h3>
+<section class="introduction" id="ws-sec21-2">
+<div class="para" id="ws-sec21-2-1">Richard included some practice problems that cover some main concepts in this section. You don’t need to turn it in, but you are highly encouraged to work on this with your classmates. The problems here may end up being in-class practice problems, homework problems, and/or exam problems. Reach out to Richard for help if you get stuck or have any questions.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="ws-sec21-2-2">Only the final answers are included to some of the problems for you to check your result. If you want to check your work, talk to Richard and he is happy to discuss the process with you.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></section>
+<article class="exercise exercise-like" id="ws-sec21-3"><h4 class="heading"><span class="codenumber">2.1.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec21-3-1-1">Let <span class="process-math">\(A=\begin{bmatrix} 4 \amp -1 \\ 5 \amp -2 \end{bmatrix}\text{.}\)</span> Compute <span class="process-math">\(3I_{2}-A\)</span> and <span class="process-math">\((3I_{2})A\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.3"><a href="#ws-sec21-3" title="Copy heading and permalink for Worksheet Exercise 2.1.3" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.3">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec21-4"><h4 class="heading"><span class="codenumber">2.1.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec21-4-1-1">Compute the product <span class="process-math">\(AB\)</span> in two ways: (1) by the definition, where <span class="process-math">\(A\v{b}_{1}\)</span> and <span class="process-math">\(A\v{b}_{2}\)</span> are computed separately, and (2) by the row-column rule.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="displaymath process-math" id="ws-sec21-4-1-2">
+\begin{equation*}
+A=\begin{bmatrix} -1 \amp 2 \\ 5 \amp 4 \\ 2 \amp -3 \end{bmatrix}, \quad B=\begin{bmatrix} 3 \amp -4 \\ -2 \amp 1 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.5"><a href="#ws-sec21-4" title="Copy heading and permalink for Worksheet Exercise 2.1.5" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.5">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec21-5"><h4 class="heading"><span class="codenumber">2.1.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec21-5-1-1">If a matrix <span class="process-math">\(A\)</span> is <span class="process-math">\(5 \times 3\)</span> and the product <span class="process-math">\(AB\)</span> is <span class="process-math">\(5 \times 7\text{,}\)</span> what is the size of <span class="process-math">\(B\text{?}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.7"><a href="#ws-sec21-5" title="Copy heading and permalink for Worksheet Exercise 2.1.7" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.7">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec21-6"><h4 class="heading"><span class="codenumber">2.1.11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec21-6-1-1">Let <span class="process-math">\(A=\begin{bmatrix} 1 \amp 1 \amp 1 \\ 1 \amp 2 \amp 3 \\ 1 \amp 4 \amp 5 \end{bmatrix}\)</span> and <span class="process-math">\(D=\begin{bmatrix} 2 \amp 0 \amp 0 \\ 0 \amp 3 \amp 0 \\ 0 \amp 0 \amp 5 \end{bmatrix}\text{.}\)</span> Compute <span class="process-math">\(AD\)</span> and <span class="process-math">\(DA\text{.}\)</span> Explain how the columns or rows of <span class="process-math">\(A\)</span> change when <span class="process-math">\(A\)</span> is multiplied by <span class="process-math">\(D\)</span> on the right or on the left.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<div class="para" id="ws-sec21-6-1-2">Find a <span class="process-math">\(3\times 3\)</span> matrix <span class="process-math">\(B\text{,}\)</span> not the identity matrix or the zero matrix, such that <span class="process-math">\(AB = BA\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-6-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.11"><a href="#ws-sec21-6" title="Copy heading and permalink for Worksheet Exercise 2.1.11" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.11">🔗</a></div>
+</article>
+<div class="exercisegroup" id="ws-sec21-7">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec21-7-1">
+<div class="para" id="ws-sec21-7-1-1">Mark each statement True or False (T/F). Justify each answer.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec21-7-2"><h5 class="heading"><span class="codenumber">2.1.15<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec21-7-2-1">(T/F) If <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are <span class="process-math">\(2 \times 2\)</span> with columns <span class="process-math">\(\v{a}_{1}\text{,}\)</span> <span class="process-math">\(\v{a}_{2}\text{,}\)</span> and <span class="process-math">\(\v{b}_{1}\text{,}\)</span> <span class="process-math">\(\v{b}_{2}\text{,}\)</span> respectively, then <span class="process-math">\(AB=[\v{a}_{1}\v{b}_{1} \quad \v{a}_{2}\v{b}_{2}]\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.15"><a href="#ws-sec21-7-2" title="Copy heading and permalink for Worksheet Exercise 2.1.15" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.15">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec21-7-3"><h5 class="heading"><span class="codenumber">2.1.17<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec21-7-3-1">(T/F) Each column of <span class="process-math">\(AB\)</span> is a linear combination of the columns of <span class="process-math">\(B\)</span> using weights from the corresponding column of <span class="process-math">\(A\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.17"><a href="#ws-sec21-7-3" title="Copy heading and permalink for Worksheet Exercise 2.1.17" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.17">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec21-7-4"><h5 class="heading"><span class="codenumber">2.1.19<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec21-7-4-1">(T/F) <span class="process-math">\(AB+AC=A(B+C)\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.19"><a href="#ws-sec21-7-4" title="Copy heading and permalink for Worksheet Exercise 2.1.19" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.19">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec21-7-5"><h5 class="heading"><span class="codenumber">2.1.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec21-7-5-1">(T/F) <span class="process-math">\((AB)C=(AC)B\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-7-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.21"><a href="#ws-sec21-7-5" title="Copy heading and permalink for Worksheet Exercise 2.1.21" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.21">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec21-7-6"><h5 class="heading"><span class="codenumber">2.1.23<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para" id="ws-sec21-7-6-1">(T/F) The transpose of a product of matrices equals the product of their transposes in the same order.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-7-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.23"><a href="#ws-sec21-7-6" title="Copy heading and permalink for Worksheet Exercise 2.1.23" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.23">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 2.1.15–2.1.23"><a href="#ws-sec21-7" title="Copy heading and permalink for Exercise Group 2.1.15–2.1.23" aria-label="Copy heading and permalink for Exercise Group 2.1.15–2.1.23">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="ws-sec21-8"><h4 class="heading"><span class="codenumber">2.1.35<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
+<div class="para" id="ws-sec21-8-1-1">Let <span class="process-math">\(\v{u}=\begin{bmatrix} -2 \\ 3 \\ -4 \end{bmatrix}\)</span> and <span class="process-math">\(\v{v}=\begin{bmatrix} a \\ b \\ c \end{bmatrix}\text{.}\)</span> Compute <span class="process-math">\(\v{u}^{T}\v{v}\text{,}\)</span> <span class="process-math">\(\v{v}^{T}\v{u}\text{,}\)</span> <span class="process-math">\(\v{u}\v{v}^{T}\text{,}\)</span> and <span class="process-math">\(\v{v}\v{u}^{T}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec21-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 2.1.35"><a href="#ws-sec21-8" title="Copy heading and permalink for Worksheet Exercise 2.1.35" aria-label="Copy heading and permalink for Worksheet Exercise 2.1.35">🔗</a></div>
+</article><div class="autopermalink" data-description="Worksheet: Some Exercises for This Section"><a href="#ws-sec21" title="Copy heading and permalink for Worksheet: Some Exercises for This Section" aria-label="Copy heading and permalink for Worksheet: Some Exercises for This Section">🔗</a></div>
+</section><div class="autopermalink" data-description="Section 2.1: Matrix Operations"><a href="#sec21-MatrixOperations" title="Copy heading and permalink for Section 2.1: Matrix Operations" aria-label="Copy heading and permalink for Section 2.1: Matrix Operations">🔗</a></div>
+</section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="ch2-MatrixAlgebra.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec22-InverseMatrix.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>

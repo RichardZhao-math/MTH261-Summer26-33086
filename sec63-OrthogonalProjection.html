@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: salem                          *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Orthogonal Projection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="og:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta property="book:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.42"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.13.7';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.52176322e2c1dde5.bundle.js"></script><script src="_static/prefix-713.de0ab26248766350.bundle.js"></script><script src="_static/prefix-runestone.2f713d2360adcee7.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-713.f43ced6a6134ea74.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="changeme" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="my-great-book.html"><span class="title">MTH 261 Applied Linear Algebra I</span> <span class="subtitle">Spring 2026</span></a></h1>
+<p class="byline">Richard Zhao</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search book" commandfor="ptx-search-dialog" command="show-modal"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog" closedby="closerequest"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close search" id="ptx-search-close" class="ptx-search-close" commandfor="ptx-search-dialog" command="close"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec62-OrthogonalSets.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch6-Orthogonality.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec64-GramSchmit.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N} 
+\newcommand{\Z}{\mathbb Z} 
+\newcommand{\Q}{\mathbb Q} 
+\newcommand{\R}{\mathbb R} 
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\v}[1]{\mathbf{#1}}
+\newcommand{\c}[1]{\mathcal{#1}}
+
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\adj}{\text{adj}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\Nul}{\text{Nul}}
+\newcommand{\Col}{\text{Col}}
+\newcommand{\im}{\text{im}}
+\newcommand{\span}{\text{span}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter"><div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch1-LinearEquations.html" class="internal"><span class="codenumber">1</span> <span class="title">Linear Equations in Linear Algebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec11-SystemLinearEquations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Systems of Linear Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-SolvingSystemsEquations" class="internal"><span class="title">Solving Systems of Linear Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-AugmentedMatrices" class="internal"><span class="title">Augmented Matrices and Elementary Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-NumberOfSolution" class="internal"><span class="title">How many solutions can a linear system have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec11-SystemLinearEquations.html#subsec-ExistenceUniqueness-SystemEquations" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec12-RowReduction.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Row Reduction and Echelon Forms</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsubsec-NumberOfParameters" class="internal"><span class="title">How many parameters does the solution have?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec12-RowReduction.html#subsec-ExistenceUniqueness-AugmentedMatrices" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec13-VectorEquations.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Vector Equations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-VectorsNotation" class="internal"><span class="title">What is a vector?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-LinearCombinations" class="internal"><span class="title">Linear Combinations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-Span" class="internal"><span class="title">Span</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec13-VectorEquations.html#ws-sec13" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec14-MatrixEquation.html" class="internal"><span class="codenumber">1.4</span> <span class="title">The Matrix Equation <span class="process-math">\(A\v{x} = \v{b}\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DecodeAugmentedMatrix" class="internal"><span class="title">What exactly is an Augmented Matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-MultiplyingMatrixVector" class="internal"><span class="title">Multiplying a Matrix by a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ExistenceUniqueness-Rank" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-VectorEquations" class="internal"><span class="title">Vector Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-LinearTransformations-Intro" class="internal"><span class="title">Intro to Linear Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DotProduct-Intro" class="internal"><span class="title">Intro to the Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ZeroMatrix-IdentityMatrix" class="internal"><span class="title">Two Special Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#ws-sec14" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec15-SolutionSets.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Solution Sets of Linear Systems</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-HomogeneousSystem" class="internal"><span class="title">Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-NonHomogeneousSystem" class="internal"><span class="title">Non-Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec15-SolutionSets.html#ws-sec15" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec17-LinearIndependence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec17-LinearIndependence.html#ws-sec17" class="internal"><span class="codenumber">1.6</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Linear Transformations</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html#ws-sec18" class="internal"><span class="codenumber">1.7</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch2-MatrixAlgebra.html" class="internal"><span class="codenumber">2</span> <span class="title">Matrix Algebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec21-MatrixOperations.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Matrix Operations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixIntro" class="internal"><span class="title">What exactly is a matrix?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-BasicMatrixOperations" class="internal"><span class="title">Basic Matrix Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-SubscriptNotationMatrices" class="internal"><span class="title">Subscript Notation for Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-MatrixAdditionScalarMultiplication" class="internal"><span class="title">Rules for Matrix Addition and Scalar Multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-TransposeMatrices" class="internal"><span class="title">Rules for Transposes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixMultiplication" class="internal"><span class="title">Matrix Multiplication</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#ws-sec21" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec22-InverseMatrix.html" class="internal"><span class="codenumber">2.2</span> <span class="title">The Inverse of a Matrix</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-InverseMatrices" class="internal"><span class="title">Inverse of a Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ImportantTheorems-Inverses" class="internal"><span class="title">Important Theorems and Facts about Inverses</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ElementaryMatrices" class="internal"><span class="title">Elementary Matrices</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#ws-sec22" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec23-InvertibleMatrix.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Characterizations of Invertible Matrices</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec23-InvertibleMatrix.html#ws-sec23" class="internal"><span class="codenumber">2.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec28-Subspaces.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Subspaces of <span class="process-math">\(\R^n\)</span></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-SubspaceIntro" class="internal"><span class="title">What is a Subspace?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-FundamentalSubspaces" class="internal"><span class="title">Fundamental Subspaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-Span" class="internal"><span class="title">Span and Spanning Sets</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec28-Subspaces.html#ws-sec28" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec29-DimensionRank.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Dimension and Rank</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Basis" class="internal"><span class="title">Basis</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Dimensions" class="internal"><span class="title">Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Rank-NullityTheorem" class="internal"><span class="title">A Fundamental Theorem of Linear Algebra: Rank-Nullity Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-ExtendedInvertibleMatrixTheorem" class="internal"><span class="title">Extending Our Invertible Matrix Theorem!</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec29-DimensionRank.html#ws-sec29" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch3-Determinants.html" class="internal"><span class="codenumber">3</span> <span class="title">Determinants</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec31-IntroDeterminants.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec31-IntroDeterminants.html#ws-sec31" class="internal"><span class="codenumber">3.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Properties of Determinants</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html#ws-sec32" class="internal"><span class="codenumber">3.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch5-EigenvaluesEigenvectors.html" class="internal"><span class="codenumber">4</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Eigenvectors and Eigenvalues</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec51-EigenvectorsEigenvalues.html#ws-sec51" class="internal"><span class="codenumber">4.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec52-CharacteristicEquation.html" class="internal"><span class="codenumber">4.2</span> <span class="title">The Characteristic Equation</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec52-CharacteristicEquation.html#ws-sec52" class="internal"><span class="codenumber">4.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec53-Diagonalization.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Diagonalization</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec53-Diagonalization.html#ws-sec53" class="internal"><span class="codenumber">4.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch6-Orthogonality.html" class="internal"><span class="codenumber">5</span> <span class="title">Orthogonality</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec61-InnerProduct.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Inner Product, Length, and Orthogonality</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Length" class="internal"><span class="title">Length of a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-InnerProduct" class="internal"><span class="title">Inner Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Orthogonality-Intro" class="internal"><span class="title">Orthogonality</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec61-InnerProduct.html#ws-sec61" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec62-OrthogonalSets.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Orthogonal Sets</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec62-OrthogonalSets.html#ws-sec62" class="internal"><span class="codenumber">5.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec63-OrthogonalProjection.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-InnerProduct-Angles" class="internal"><span class="title">Angle between Two Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-OrthogonalProjection" class="internal"><span class="title">Orthogonal Projection</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#ws-sec63" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec64-GramSchmit.html" class="internal"><span class="codenumber">5.4</span> <span class="title">The Gram-Schmidt Process</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendixA-ExamReviews.html" class="internal"><span class="codenumber">A</span> <span class="title">Exam Reviews Page</span></a></div></li>
+<li class="toc-item toc-backmatter"><div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<div class="print-preview-header">
+<h2 class="print-preview">Print preview</h2>
+<div class="print-controls">
+<div class="print-controls-toggles">
+<form class="papersize-select" id="papersize-select">
+<span class="name">Paper size</span><label><input type="radio" name="papersize" value="a4">A4
+        </label><label><input type="radio" name="papersize" value="letter">Letter
+        </label>
+</form>
+<details class="print-options"><summary>Additional printing options</summary><div class="hide-solutions-options">
+<div class="hide-option">
+<label for="hide-hint-checkbox">Hide hints</label><input type="checkbox" id="hide-hint-checkbox">
+</div>
+<div class="hide-option">
+<label for="hide-solution-checkbox">Hide solutions</label><input type="checkbox" id="hide-solution-checkbox">
+</div>
+</div>
+<div class="header-footer-options">
+<div class="header-option">
+<span class="title">Print headers</span><label>First page<input type="checkbox" id="print-first-page-header-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-header-checkbox" checked></label>
+</div>
+<div class="footer-option">
+<span class="title">Print footers</span><label>First page<input type="checkbox" id="print-first-page-footer-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-footer-checkbox" checked></label>
+</div>
+</div>
+<div class="highlight-workspace-option">
+<label for="highlight-workspace-checkbox">Highlight workspace</label><input type="checkbox" id="highlight-workspace-checkbox">
+</div></details>
+</div>
+<button class="print-button" title="Print" onClick="window.print()"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span><span class="name">Print</span></button>
+</div>
+</div>
+<section class="section" id="sec63-OrthogonalProjection">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Orthogonal Projection</span>
+</h2>
+<section class="subsection" id="subsec-InnerProduct-Angles">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Angle between Two Vectors</span>
+</h3>
+<div class="para" id="subsec-InnerProduct-Angles-2">Given two vectors, they form an angle between them. But how do we know how big this angle is? The inner product can help us figure this out!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-3">Let’s say we have two vectors, <span class="process-math">\(\v{v}\)</span> and <span class="process-math">\(\v{w}\text{.}\)</span> We call the angle between them <span class="process-math">\(\theta\)</span> and we can construct the vector <span class="process-math">\(\v{v} - \v{w}\)</span> as shown below:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-InnerProduct-Angles-4"><div class="image-box" style="width: 25%; margin-left: 37.5%; margin-right: 37.5%;"><img src="external/sec123-Proof-AngleInnerProduct-Diagram.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Vectors <span class="process-math">\(\v{v}\)</span> and <span class="process-math">\(\v{w}\)</span> with angle <span class="process-math">\(\theta\)</span> between them<div class="autopermalink" data-description="Figure 5.3.1"><a href="#subsec-InnerProduct-Angles-4" title="Copy heading and permalink for Figure 5.3.1" aria-label="Copy heading and permalink for Figure 5.3.1">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-InnerProduct-Angles-5">This is essentially a triangle if we drop all the direction arrows. That is, this triangle has sides of lengths <span class="process-math">\(\|\v{v}\|\text{,}\)</span> <span class="process-math">\(\|\v{w}\|\text{,}\)</span> and <span class="process-math">\(\|\v{v} - \v{w}\|\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-InnerProduct-Angles-6">
+<div class="para">A relation between the sides of the triangle and the angle <span class="process-math">\(\theta\)</span> is given by the <em class="emphasis">Law of Cosines</em> as follows:</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-6-3">
+\begin{equation*}
+\|\v{v} - \v{w}\|^2 = \|\v{v}\|^2 + \|\v{w}\|^2 - 2\|\v{v}\|\|\v{w}\| \cos(\theta) 
+\end{equation*}
+</div>
+<div class="para">Using the relation with length property of the inner product and FOIL-ing, we obtain</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-6-4">
+\begin{align*}
+\|\v{v} - \v{w}\|^2 \amp= \la \v{v} - \v{w}, \v{v} - \v{w} \ra \\
+\amp= \la \v{v}, \v{v} \ra - 2\la \v{v}, \v{w} \ra + \la \v{w}, \v{w} \ra \\
+\amp= \|\v{v}\|^2 + \|\v{w}\|^2 - 2\la \v{v}, \v{w} \ra 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-InnerProduct-Angles-7">
+<div class="para">We essentially found two ways to represent the quantity <span class="process-math">\(\|\v{v} - \v{w}\|^2\text{.}\)</span> Equating these two expressions together and canceling stuff, we obtain</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-7-2">
+\begin{align*}
+\|\v{v}\|^2 + \|\v{w}\|^2 - 2\la \v{v}, \v{w} \ra \amp= \|\v{v}\|^2 + \|\v{w}\|^2 - 2\|\v{v}\|\|\v{w}\| \cos(\theta)  \\
+\implies \qquad\qquad\qquad\qquad \la \v{v}, \v{w} \ra \amp= \|\v{v}\|\|\v{w}\| \cos(\theta) 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-InnerProduct-Angles-8">
+<div class="para">Observe that we can now solve for the angle <span class="process-math">\(\theta\)</span> between the two vectors by isolating <span class="process-math">\(\theta\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-8-3">
+\begin{equation*}
+\theta = \cos^{-1} \lp \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} \rp
+\end{equation*}
+</div>
+<div class="para">That is, the inner product gives us a way to compute the angle between two vectors!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="thm-InnerProductAngle"><h4 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Inner Product and the Angle.</span>
+</h4>
+<div class="para logical" id="thm-InnerProductAngle-2-1">
+<div class="para">Let <span class="process-math">\(\theta\)</span> be the angle between two non-zero vectors <span class="process-math">\(\v{v}\)</span> and <span class="process-math">\(\v{w}\text{.}\)</span> Then</div>
+<div class="displaymath process-math" id="thm-InnerProductAngle-2-1-4">
+\begin{equation*}
+\la \v{v}, \v{w} \ra = \|\v{v}\| \|\v{w}\| \cos(\theta)
+\qquad \text{ or } \qquad
+\theta = \cos^{-1} \lp \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} \rp
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#thm-InnerProductAngle-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Theorem 5.3.2: Inner Product and the Angle"><a href="#thm-InnerProductAngle" title="Copy heading and permalink for Theorem 5.3.2: Inner Product and the Angle" aria-label="Copy heading and permalink for Theorem 5.3.2: Inner Product and the Angle">🔗</a></div>
+</article>
+<div class="para" id="subsec-InnerProduct-Angles-10">Observe that the angle is being computed using the inverse cosine function. The range of the inverse cosine function is <span class="process-math">\([0,\pi]\text{.}\)</span> That is, we consider the angle between two vectors to be the smaller angle formed between them.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-InnerProduct-Angles-11"><div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;"><img src="external/sec123-AngleBetweenVectors-Diagram.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>By convention, the angle <span class="process-math">\(\theta\)</span> between two vectors is chosen so that <span class="process-math">\(0 \le \theta \le \pi\text{.}\)</span><div class="autopermalink" data-description="Figure 5.3.3"><a href="#subsec-InnerProduct-Angles-11" title="Copy heading and permalink for Figure 5.3.3" aria-label="Copy heading and permalink for Figure 5.3.3">🔗</a></div></figcaption>
+</figure>
+<article class="example example-like" id="subsec-InnerProduct-Angles-12"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-InnerProduct-Angles-12-1">Find the angle between the vectors <span class="process-math">\(\begin{bmatrix} 3 \\ 1 \\ 1 \end{bmatrix}\)</span> and <span class="process-math">\(\begin{bmatrix} 2 \\ -4 \\ 2 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-12-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-InnerProduct-Angles-12-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="hint solution-like knowl__content">
+<div class="para" id="subsec-InnerProduct-Angles-12-2-1">Richard coded a fancy diagram below to help you visualize how big the angle is. The goal here is to figure out the size of <span class="process-math">\(\theta\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-12-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-InnerProduct-Angles-12-2-2">
+<div class="sidebyside">
+<div class="sbsrow" style="margin-left:10%;margin-right:10%;grid-template-columns:100%;column-gap:0%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="interactive-iframe-container"><iframe id="subsec-InnerProduct-Angles-12-2-2-2-1" style="width:480px; height:480px; display: block; " src="subsec-InnerProduct-Angles-12-2-2-2-1-if.html"></iframe></div>
+<div class="interactive-iframe-container__opener"><a href="subsec-InnerProduct-Angles-12-2-2-2-1.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+</div>
+</div>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Vectors <span class="process-math">\(\mathbf{v}=\begin{bmatrix} 3 \\ 1 \\ 1 \end{bmatrix}\)</span> and <span class="process-math">\(\mathbf{w}=\begin{bmatrix} 2 \\ -4 \\ 2 \end{bmatrix}\)</span> with angle <span class="process-math">\(\theta\)</span><div class="autopermalink" data-description="Figure 5.3.5"><a href="#subsec-InnerProduct-Angles-12-2-2" title="Copy heading and permalink for Figure 5.3.5" aria-label="Copy heading and permalink for Figure 5.3.5">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-InnerProduct-Angles-12-2-3">It looks like the angle between the vectors is acute...<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-12-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 5.3.4.1"><a href="#subsec-InnerProduct-Angles-12-2" title="Copy heading and permalink for Hint 5.3.4.1" aria-label="Copy heading and permalink for Hint 5.3.4.1">🔗</a></div>
+</div></details>
+<details id="subsec-InnerProduct-Angles-12-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-InnerProduct-Angles-12-3-1">
+<div class="para">We denote <span class="process-math">\(\v{v} = \begin{bmatrix} 3 \\ 1 \\ 1 \end{bmatrix}\)</span> and <span class="process-math">\(\v{w} = \begin{bmatrix} 2 \\ -4 \\ 2 \end{bmatrix}\text{.}\)</span> To use the formula for the cosine of the angle <span class="process-math">\(\theta\)</span> between two vectors we need to compute the following values:</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-12-3-1-4">
+\begin{align*}
+\|\v{v}\| \amp= \sqrt{3^2 + 1^2 + 1^2} = \sqrt{11}\\
+\|\v{w}\| \amp= \sqrt{2^2 + (-4)^2 + 2^2} = \sqrt{24}\\
+\la \v{v}, \v{w} \ra \amp= 3 \cdot 2 + 1 \cdot (-4) + 1 \cdot 2 = 4
+\end{align*}
+</div>
+<div class="para">Hence,</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-12-3-1-5">
+\begin{equation*}
+\cos(\theta) = \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} = \frac{4}{\sqrt{11} \cdot \sqrt{24}} = \frac{2}{\sqrt{66}}
+\end{equation*}
+</div>
+<div class="para">and so,</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-12-3-1-6">
+\begin{equation*}
+\theta = \cos^{-1} \lp \frac{2}{\sqrt{66}} \rp \approx 1.322
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-12-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-12-3-2">The angle <span class="process-math">\(\theta\)</span> is approximately <span class="process-math">\(76^\circ\text{,}\)</span> which is indeed acute.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-12-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.3.4.1"><a href="#subsec-InnerProduct-Angles-12-3" title="Copy heading and permalink for Solution 5.3.4.1" aria-label="Copy heading and permalink for Solution 5.3.4.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.3.4"><a href="#subsec-InnerProduct-Angles-12" title="Copy heading and permalink for Example 5.3.4" aria-label="Copy heading and permalink for Example 5.3.4">🔗</a></div>
+</article>
+<article class="example example-like" id="subsec-InnerProduct-Angles-13"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-InnerProduct-Angles-13-1">Find the angle between the vectors <span class="process-math">\(\begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}\)</span> and <span class="process-math">\(\begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-13-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-InnerProduct-Angles-13-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="hint solution-like knowl__content">
+<div class="para" id="subsec-InnerProduct-Angles-13-2-1">Richard coded a fancy diagram below to help you visualize how big the angle is. The goal here is to figure out the size of <span class="process-math">\(\theta\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-13-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-InnerProduct-Angles-13-2-2">
+<div class="sidebyside">
+<div class="sbsrow" style="margin-left:10%;margin-right:10%;grid-template-columns:100%;column-gap:0%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="interactive-iframe-container"><iframe id="subsec-InnerProduct-Angles-13-2-2-2-1" style="width:480px; height:480px; display: block; " src="subsec-InnerProduct-Angles-13-2-2-2-1-if.html"></iframe></div>
+<div class="interactive-iframe-container__opener"><a href="subsec-InnerProduct-Angles-13-2-2-2-1.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+</div>
+</div>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Vectors <span class="process-math">\(\mathbf{v}=\begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}\)</span> and <span class="process-math">\(\mathbf{w}=\begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}\)</span> with angle <span class="process-math">\(\theta\)</span><div class="autopermalink" data-description="Figure 5.3.7"><a href="#subsec-InnerProduct-Angles-13-2-2" title="Copy heading and permalink for Figure 5.3.7" aria-label="Copy heading and permalink for Figure 5.3.7">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-InnerProduct-Angles-13-2-3">It looks like the angle between the vectors is obtuse...<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-13-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 5.3.6.1"><a href="#subsec-InnerProduct-Angles-13-2" title="Copy heading and permalink for Hint 5.3.6.1" aria-label="Copy heading and permalink for Hint 5.3.6.1">🔗</a></div>
+</div></details>
+<details id="subsec-InnerProduct-Angles-13-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-InnerProduct-Angles-13-3-1">
+<div class="para">We denote <span class="process-math">\(\v{v} = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}\)</span> and <span class="process-math">\(\v{w} = \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}\text{.}\)</span> To use the formula for the cosine of the angle <span class="process-math">\(\theta\)</span> between two vectors we need to compute the following values:</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-13-3-1-4">
+\begin{align*}
+\|\v{v}\| \amp= \sqrt{0^2 + 1^2 + 1^2} = \sqrt{2}\\
+\|\v{w}\| \amp= \sqrt{1^2 + (-1)^2 + 0^2} = \sqrt{2}\\
+\la \v{v}, \v{w} \ra \amp= 0 \cdot 1 + 1 \cdot (-1) + 1 \cdot 0 = -1
+\end{align*}
+</div>
+<div class="para">Hence,</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-13-3-1-5">
+\begin{equation*}
+\cos(\theta) = \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} = \frac{-1}{\sqrt{2} \cdot \sqrt{2}} = -\frac{1}{2}
+\end{equation*}
+</div>
+<div class="para">and so,</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-13-3-1-6">
+\begin{equation*}
+\theta = \cos^{-1} \lp -\frac{1}{2} \rp = \frac{2\pi}{3} = \frac{2\pi}{3}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-13-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-13-3-2">The angle <span class="process-math">\(\theta\)</span> is <span class="process-math">\(120^\circ\text{,}\)</span> which is indeed obtuse.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-13-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.3.6.1"><a href="#subsec-InnerProduct-Angles-13-3" title="Copy heading and permalink for Solution 5.3.6.1" aria-label="Copy heading and permalink for Solution 5.3.6.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.3.6"><a href="#subsec-InnerProduct-Angles-13" title="Copy heading and permalink for Example 5.3.6" aria-label="Copy heading and permalink for Example 5.3.6">🔗</a></div>
+</article>
+<article class="example example-like" id="subsec-InnerProduct-Angles-14"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-InnerProduct-Angles-14-1">Find the angle between the vectors <span class="process-math">\(\begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix}\)</span> and <span class="process-math">\(\begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-14-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-InnerProduct-Angles-14-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="hint solution-like knowl__content">
+<div class="para" id="subsec-InnerProduct-Angles-14-2-1">Richard coded a fancy diagram below to help you visualize how big the angle is. The goal here is to figure out the size of <span class="process-math">\(\theta\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-14-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-InnerProduct-Angles-14-2-2">
+<div class="sidebyside">
+<div class="sbsrow" style="margin-left:10%;margin-right:10%;grid-template-columns:100%;column-gap:0%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="interactive-iframe-container"><iframe id="subsec-InnerProduct-Angles-14-2-2-2-1" style="width:480px; height:480px; display: block; " src="subsec-InnerProduct-Angles-14-2-2-2-1-if.html"></iframe></div>
+<div class="interactive-iframe-container__opener"><a href="subsec-InnerProduct-Angles-14-2-2-2-1.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+</div>
+</div>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Vectors <span class="process-math">\(\mathbf{v}=\begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix}\)</span> and <span class="process-math">\(\mathbf{w}=\begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix}\)</span> with angle <span class="process-math">\(\theta\)</span><div class="autopermalink" data-description="Figure 5.3.9"><a href="#subsec-InnerProduct-Angles-14-2-2" title="Copy heading and permalink for Figure 5.3.9" aria-label="Copy heading and permalink for Figure 5.3.9">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-InnerProduct-Angles-14-2-3">It looks like the angle between the vectors is a right angle...<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-14-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 5.3.8.1"><a href="#subsec-InnerProduct-Angles-14-2" title="Copy heading and permalink for Hint 5.3.8.1" aria-label="Copy heading and permalink for Hint 5.3.8.1">🔗</a></div>
+</div></details>
+<details id="subsec-InnerProduct-Angles-14-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-InnerProduct-Angles-14-3-1">
+<div class="para">We denote <span class="process-math">\(\v{v} = \begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix}\)</span> and <span class="process-math">\(\v{w} = \begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix}\text{.}\)</span> To use the formula for the cosine of the angle <span class="process-math">\(\theta\)</span> between two vectors we need to compute the following values:</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-14-3-1-4">
+\begin{align*}
+\|\v{v}\| \amp= \sqrt{1^2 + 1^2 + (-1)^2} = \sqrt{3}\\
+\|\v{w}\| \amp= \sqrt{1^2 + (-2)^2 + (-1)^2} = \sqrt{6}\\
+\la \v{v}, \v{w} \ra \amp= 1 \cdot 1 + 1 \cdot (-2) + (-1) \cdot (-1) = 0
+\end{align*}
+</div>
+<div class="para">Hence,</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-14-3-1-5">
+\begin{equation*}
+\cos(\theta) = \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} = \frac{0}{\sqrt{3} \cdot \sqrt{6}} = 0
+\end{equation*}
+</div>
+<div class="para">and so,</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-14-3-1-6">
+\begin{equation*}
+\theta = \cos^{-1}(0) = \frac{\pi}{2}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-14-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-14-3-2">The angle <span class="process-math">\(\theta\)</span> is <span class="process-math">\(90^\circ\text{,}\)</span> which is indeed a right angle.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-14-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.3.8.1"><a href="#subsec-InnerProduct-Angles-14-3" title="Copy heading and permalink for Solution 5.3.8.1" aria-label="Copy heading and permalink for Solution 5.3.8.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.3.8"><a href="#subsec-InnerProduct-Angles-14" title="Copy heading and permalink for Example 5.3.8" aria-label="Copy heading and permalink for Example 5.3.8">🔗</a></div>
+</article>
+<div class="para logical" id="subsec-InnerProduct-Angles-15">
+<div class="para">We can find a pattern from the above examples.</div>
+<ul class="disc" id="subsec-InnerProduct-Angles-15-1">
+<li id="subsec-InnerProduct-Angles-15-1-1">
+<div class="para" id="subsec-InnerProduct-Angles-15-1-1-1">If the inner product is positive, then the angle between the vectors is acute.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-15-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-InnerProduct-Angles-15-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-Angles-15-1-2">
+<div class="para" id="subsec-InnerProduct-Angles-15-1-2-1">If the inner product is negative, then the angle between the vectors is obtuse.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-15-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-InnerProduct-Angles-15-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-Angles-15-1-3">
+<div class="para" id="subsec-InnerProduct-Angles-15-1-3-1">If the inner product is zero, then the angle between the vectors is a right angle.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-15-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-InnerProduct-Angles-15-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">This is true since we know that <span class="process-math">\(\cos(\theta)\)</span> is positive for acute angles, negative for obtuse angles, and zero for right angles. In addition, <span class="process-math">\(\cos(\theta) = 1\)</span> when <span class="process-math">\(\theta = 0^\circ\)</span> and <span class="process-math">\(\cos(\theta) = -1\)</span> when <span class="process-math">\(\theta = 180^\circ\text{.}\)</span> Let’s summarize this in a nice little diagram.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-InnerProduct-Angles-16"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/sec123-InnerProductAngles-Diagram.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Relation between the inner product and the angle between two vectors<div class="autopermalink" data-description="Figure 5.3.10"><a href="#subsec-InnerProduct-Angles-16" title="Copy heading and permalink for Figure 5.3.10" aria-label="Copy heading and permalink for Figure 5.3.10">🔗</a></div></figcaption>
+</figure>
+<div class="para logical" id="subsec-InnerProduct-Angles-17">
+<div class="para">This diagram is really demonstrating the famous <dfn class="terminology">Cauchy-Schwarz Inequality</dfn>, which states that <em class="emphasis">the absolute value of the inner product of two vectors is always less than or equal to the product of their individual lengths</em>. Symbolically, this is stated as</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-17-3">
+\begin{equation*}
+|\la \v{v}, \v{w} \ra| \le \|\v{v}\| \|\v{w}\| 
+\end{equation*}
+</div>
+<div class="para">Observe from the figure that <span class="process-math">\(-1 \lt \cos(\theta) \lt 1\text{,}\)</span> so <span class="process-math">\(\la \v{u}, \v{v} \ra\text{,}\)</span> which equals to <span class="process-math">\(\|\v{u}\| \|\v{v}\| \cos(\theta)\text{,}\)</span> cannot be greater than <span class="process-math">\(\|\v{u}\| \|\v{v}\|\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-17" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-InnerProduct-Angles-18"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-InnerProduct-Angles-18-1">
+<div class="para">Prove the triangle inequality: For any vectors <span class="process-math">\(\v{u}\)</span> and <span class="process-math">\(\v{v}\text{,}\)</span>
+</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-18-1-3">
+\begin{equation*}
+\|\v{u} + \v{v}\| \le \|\v{u}\| + \|\v{v}\|
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-18-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-InnerProduct-Angles-18-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="hint solution-like knowl__content">
+<div class="para" id="subsec-InnerProduct-Angles-18-2-1">Of course you can draw a picture to see why this is true but this way isn’t rigorous enough. True story, one of Richard’s students tried to prove the inequality by drawing a loosey-goosey triangle and "eyeballing" the lengths of the sides of the triangle... Not rigorous at all...<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-18-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-18-2-2">Also, just because the inequality holds for one triangle doesn’t mean it holds for all triangles!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-18-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-18-2-3">We want to show that this inequality is true for ALL triangles without relying on the accuracy of a drawing. Relying on definitions, properties, theorems, and algebraic manipulations is a better way to go!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-18-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-18-2-4">Richard will help you get started. We are learning about the inner product so let’s get some inner products involved! One of the inner product properties states that <span class="process-math">\(\|\v{v}\|^2 = \la \v{v}, \v{v} \ra\)</span> so converting all the lengths into inner products is a good start!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-18-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-18-2-5">Also, ... where does the inequality come from? Well the Cauchy Schwarz Inequality involves an inequality! Maybe we can use that somewhere...<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-18-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 5.3.11.1"><a href="#subsec-InnerProduct-Angles-18-2" title="Copy heading and permalink for Hint 5.3.11.1" aria-label="Copy heading and permalink for Hint 5.3.11.1">🔗</a></div>
+</div></details>
+<details id="subsec-InnerProduct-Angles-18-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-InnerProduct-Angles-18-3-1">
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-18-3-1-1">
+\begin{align*}
+\|\v{u} + \v{v}\|^2 \amp= \la \v{u} + \v{v}, \v{u} + \v{v} \ra \\
+\amp= \la \v{u}, \v{u} \ra + 2 \la \v{u}, \v{v} \ra + \la \v{v}, \v{v} \ra \amp\amp \text{FOIL-ing} \\
+\amp\le \|\v{u}\|^2 + 2 | \la \v{u}, \v{v} \ra | + \|\v{v}\|^2 \\
+\amp\le \|\v{u}\|^2 + 2 \|\v{u}\| \|\v{v}\| + \|\v{v}\|^2 \amp\amp \text{Cauchy-Schwarz} \\
+\amp= (\|\v{u}\| + \|\v{v}\|)^2 
+\end{align*}
+</div>
+<div class="para">The triangle inequality follows immediately by taking the square root of both sides.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-18-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.3.11.1"><a href="#subsec-InnerProduct-Angles-18-3" title="Copy heading and permalink for Solution 5.3.11.1" aria-label="Copy heading and permalink for Solution 5.3.11.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.3.11"><a href="#subsec-InnerProduct-Angles-18" title="Copy heading and permalink for Example 5.3.11" aria-label="Copy heading and permalink for Example 5.3.11">🔗</a></div>
+</article>
+<div class="para" id="subsec-InnerProduct-Angles-19">Observe that the inner product is zero when two vectors are <dfn class="terminology">orthogonal</dfn> (or perpendicular) to each other. This is how we define orthogonality in general.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-19" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="def-OrthogonalVectors"><h4 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Orthogonal Vectors.</span>
+</h4>
+<div class="para" id="def-OrthogonalVectors-2-1">Two vectors <span class="process-math">\(\v{v}\)</span> and <span class="process-math">\(\v{w}\)</span> are <dfn class="terminology">orthogonal</dfn> if and only if <span class="process-math">\(\la \v{v}, \v{w} \ra = 0\text{.}\)</span> We denote this by <span class="process-math">\(\v{v} \perp \v{w}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#def-OrthogonalVectors-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Definition 5.3.12: Orthogonal Vectors"><a href="#def-OrthogonalVectors" title="Copy heading and permalink for Definition 5.3.12: Orthogonal Vectors" aria-label="Copy heading and permalink for Definition 5.3.12: Orthogonal Vectors">🔗</a></div>
+</article>
+<div class="para" id="subsec-InnerProduct-Angles-21">Based on this definition, we see that the zero vector is orthogonal to every vector since the inner product with the zero vector is always zero.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-21" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-InnerProduct-Angles-22" class="note remark-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading">
+<span class="type">Note</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">But Richard... Isn’t "orthogonal" just another fancy way of saying perpendicular?</span>
+</h4></summary>
+<article class="note remark-like knowl__content">
+<div class="para" id="subsec-InnerProduct-Angles-22-2">Yes and no... They are for sure describing the same idea but with some subtle differences.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-22-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-22-3">
+<dfn class="terminology">Perpendicularity/Perpendicular</dfn> is a geometric term that describes two things (like lines, planes, etc.) intersect at a right angle (90°). This idea only makes sense in a geometric context where we can visualize angles.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-22-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-22-4">
+<dfn class="terminology">Orthogonality/Orthogonal</dfn> is an algebraic term that describes two vectors whose inner product is zero. This idea makes sense in any dimension and doesn’t rely on visualizing angles. For example, the zero vector is orthogonal to every vector but it doesn’t make sense to say that the zero vector is perpendicular to every vector since the zero vector doesn’t have a length (we don’t say a point is perpendicular to a line).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-22-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-InnerProduct-Angles-22-5">Surprise surprise, there is another term that describes the same idea in math: <dfn class="terminology">normality/normal</dfn>. Normality is often used to describe things that are orthogonal/perpendicular to a surface/plane/line. For example, a normal vector to a plane is a vector that is orthogonal to every vector lying in that plane.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-22-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description='Note 5.3.13: But Richard... Isn’t "orthogonal" just another fancy way of saying perpendicular?'><a href="#subsec-InnerProduct-Angles-22" title='Copy heading and permalink for Note 5.3.13: But Richard... Isn’t "orthogonal" just another fancy way of saying perpendicular?' aria-label='Copy heading and permalink for Note 5.3.13: But Richard... Isn’t "orthogonal" just another fancy way of saying perpendicular?'>🔗</a></div>
+</article></details>
+<article class="example example-like" id="subsec-InnerProduct-Angles-23"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-InnerProduct-Angles-23-1">
+<div class="para">Determine whether the following vectors are orthogonal and, if not, whether the angle between them is acute or obtuse.</div>
+<ol class="lower-alpha ol-marker-5" id="subsec-InnerProduct-Angles-23-1-1">
+<li id="subsec-InnerProduct-Angles-23-1-1-1">
+<div class="para" id="subsec-InnerProduct-Angles-23-1-1-1-1">
+<span class="process-math">\(\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}\)</span> and <span class="process-math">\(\begin{bmatrix} 7 \\ -3 \\ -1 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-23-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item a"><a href="#subsec-InnerProduct-Angles-23-1-1-1" title="Copy heading and permalink for Item a" aria-label="Copy heading and permalink for Item a">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-Angles-23-1-1-2">
+<div class="para" id="subsec-InnerProduct-Angles-23-1-1-2-1">
+<span class="process-math">\(\begin{bmatrix} 0 \\ 2 \\ 4 \end{bmatrix}\)</span> and <span class="process-math">\(\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-23-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item b"><a href="#subsec-InnerProduct-Angles-23-1-1-2" title="Copy heading and permalink for Item b" aria-label="Copy heading and permalink for Item b">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-Angles-23-1-1-3">
+<div class="para" id="subsec-InnerProduct-Angles-23-1-1-3-1">
+<span class="process-math">\(\begin{bmatrix} \dfrac{12}{5} \\ -\dfrac{4}{5} \end{bmatrix}\)</span> and <span class="process-math">\(\begin{bmatrix} \dfrac{1}{2} \\ \dfrac{7}{4} \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-23-1-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item c"><a href="#subsec-InnerProduct-Angles-23-1-1-3" title="Copy heading and permalink for Item c" aria-label="Copy heading and permalink for Item c">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-23-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-InnerProduct-Angles-23-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-InnerProduct-Angles-23-2-1">
+<div class="para">We can determine whether the vectors are orthogonal by computing their inner products.</div>
+<ol class="lower-alpha ol-marker-5" id="subsec-InnerProduct-Angles-23-2-1-1">
+<li id="subsec-InnerProduct-Angles-23-2-1-1-1">
+<div class="para logical" id="subsec-InnerProduct-Angles-23-2-1-1-1-1">
+<div class="para">Observe that</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-23-2-1-1-1-1-1">
+\begin{equation*}
+\la \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 7 \\ -3 \\ -1 \end{bmatrix} \ra = 1\cdot 7 + 2\cdot (-3) + 1\cdot (-1) = 7 - 6 - 1 = 0\text{.}
+\end{equation*}
+</div>
+<div class="para">Therefore, the vectors are orthogonal.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-23-2-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item a"><a href="#subsec-InnerProduct-Angles-23-2-1-1-1" title="Copy heading and permalink for Item a" aria-label="Copy heading and permalink for Item a">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-Angles-23-2-1-1-2">
+<div class="para logical" id="subsec-InnerProduct-Angles-23-2-1-1-2-1">
+<div class="para">Observe that</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-23-2-1-1-2-1-1">
+\begin{equation*}
+\la \begin{bmatrix} 0 \\ 2 \\ 4 \end{bmatrix}, \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix} \ra = 0\cdot 3 + 2\cdot 1 + 4\cdot 0 = 0 + 2 + 0 = 2\text{.}
+\end{equation*}
+</div>
+<div class="para">Since the inner product is positive, the angle between the vectors is acute.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-23-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item b"><a href="#subsec-InnerProduct-Angles-23-2-1-1-2" title="Copy heading and permalink for Item b" aria-label="Copy heading and permalink for Item b">🔗</a></div>
+</li>
+<li id="subsec-InnerProduct-Angles-23-2-1-1-3">
+<div class="para logical" id="subsec-InnerProduct-Angles-23-2-1-1-3-1">
+<div class="para">Observe that</div>
+<div class="displaymath process-math" id="subsec-InnerProduct-Angles-23-2-1-1-3-1-1">
+\begin{equation*}
+\la \begin{bmatrix} \dfrac{12}{5} \\ -\dfrac{4}{5} \end{bmatrix}, \begin{bmatrix} \dfrac{1}{2} \\ \dfrac{7}{4} \end{bmatrix} \ra = -\dfrac{1}{5}\text{.}
+\end{equation*}
+</div>
+<div class="para">Since the inner product is negative, the angle between the vectors is obtuse.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-23-2-1-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item c"><a href="#subsec-InnerProduct-Angles-23-2-1-1-3" title="Copy heading and permalink for Item c" aria-label="Copy heading and permalink for Item c">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-InnerProduct-Angles-23-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.3.14.1"><a href="#subsec-InnerProduct-Angles-23-2" title="Copy heading and permalink for Solution 5.3.14.1" aria-label="Copy heading and permalink for Solution 5.3.14.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.3.14"><a href="#subsec-InnerProduct-Angles-23" title="Copy heading and permalink for Example 5.3.14" aria-label="Copy heading and permalink for Example 5.3.14">🔗</a></div>
+</article><div class="autopermalink" data-description="Subsection: Angle between Two Vectors"><a href="#subsec-InnerProduct-Angles" title="Copy heading and permalink for Subsection: Angle between Two Vectors" aria-label="Copy heading and permalink for Subsection: Angle between Two Vectors">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-OrthogonalProjection">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Orthogonal Projection</span>
+</h3>
+<div class="para" id="subsec-OrthogonalProjection-2">Remember that the inner product should tell us something about how much one vector goes in the direction of another vector. You may get the idea that the sign of the inner product tells us whether the vectors point in similar directions (acute angle) or opposite directions (obtuse angle). But we can actually know more! The orthogonal projection of one vector onto another vector, which is obtained using the inner product, gives us a precise way to measure how much one vector goes in the direction of another vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-OrthogonalProjection-3">Let’s say we have two vectors <span class="process-math">\(\v{u}\)</span> and <span class="process-math">\(\v{v}\)</span> and we cast a shadow of <span class="process-math">\(\v{u}\)</span> on the light through <span class="process-math">\(\v{v}\text{.}\)</span> This shadow is called the <dfn class="terminology">orthogonal projection</dfn> of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\)</span> and is denoted by <span class="process-math">\(\proj_{\v{v}} \v{u}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-OrthogonalProjection-4"><div class="image-box" style="width: 35%; margin-left: 32.5%; margin-right: 32.5%;"><img src="external/sec123-Projection-Lighting.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.15<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The Projection of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\)</span><div class="autopermalink" data-description="Figure 5.3.15"><a href="#subsec-OrthogonalProjection-4" title="Copy heading and permalink for Figure 5.3.15" aria-label="Copy heading and permalink for Figure 5.3.15">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-OrthogonalProjection-5">But how do we find this projection vector? We can use the inner product to help us out!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-OrthogonalProjection-6">Let’s assume two vectors are pointing in the same(ish) direction, which means the angle between them is acute. The diagram is shown below and our goal is to find the <em class="emphasis">length</em> and the <em class="emphasis">direction</em> of the projection vector.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-OrthogonalProjection-7"><div class="image-box" style="width: 35%; margin-left: 32.5%; margin-right: 32.5%;"><img src="external/sec123-Projection-AcuteAngle.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.16<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The Projection of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\)</span> with an acute angle between them<div class="autopermalink" data-description="Figure 5.3.16"><a href="#subsec-OrthogonalProjection-7" title="Copy heading and permalink for Figure 5.3.16" aria-label="Copy heading and permalink for Figure 5.3.16">🔗</a></div></figcaption>
+</figure>
+<div class="para logical" id="subsec-OrthogonalProjection-8">
+<div class="para">Let’s tackle the length first. Using trigonometry (and yes there is a right triangle in there somewhere that allows us to use trig), we see that the length of the projection vector is</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-8-1">
+\begin{equation*}
+\|\proj_{\v{v}} \v{u}\| = \|\v{u}\| \cos(\theta)
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-OrthogonalProjection-9">Next, we need to find the direction of the projection vector. Clearly, the projection vector points in the same direction as <span class="process-math">\(\v{v}\text{.}\)</span> Yet, we can’t just simply multiply the length by <span class="process-math">\(\v{v}\text{.}\)</span> If we did that, the length of the projection vector would be off by a factor of <span class="process-math">\(\|\v{v}\|\text{.}\)</span> To fix this, we use the unit vector in the direction of <span class="process-math">\(\v{v}\text{,}\)</span> which is <span class="process-math">\(\v{e_v} = \dfrac{\v{v}}{\|\v{v}\|}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-OrthogonalProjection-10">
+<div class="para">Therefore, the projection vector is</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-10-1">
+\begin{align*}
+\proj_{\v{v}} \v{u} \amp= \|\v{u}\| \cos(\theta) \frac{\v{v}}{\|\v{v}\|} \\
+\amp= \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|} \frac{\v{v}}{\|\v{v}\|} \\
+\amp= \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|^2} \v{v} \\
+\amp= \frac{\la \v{u}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \v{v} 
+\end{align*}
+</div>
+<div class="para">This projection vector is also denoted by <span class="process-math">\(\v{u}_{\parallel \v{v}}\)</span> since we can think of it as the component of <span class="process-math">\(\v{u}\)</span> that is <em class="emphasis">parallel</em> to <span class="process-math">\(\v{v}\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="def-OrthogonalProjection"><h4 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.17</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Projection of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\)</span>.</span>
+</h4>
+<div class="para logical" id="def-OrthogonalProjection-2-1">
+<div class="para">Assume <span class="process-math">\(\v{v} \neq 0\text{.}\)</span> The <dfn class="terminology">projection</dfn> of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\)</span> is the vector</div>
+<div class="displaymath process-math" id="def-OrthogonalProjection-2-1-5">
+\begin{equation*}
+\v{u}_{\parallel \v{v}} = \lp \frac{\la \v{u}, \v{v} \ra}{\| \v{v}\|} \rp \v{e_v}
+= \lp \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|^2} \rp \v{v}
+= \lp \frac{\la \v{u}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \rp \v{v}
+\end{equation*}
+</div>
+<div class="para">This is sometimes denoted by <span class="process-math">\(\proj_{\v{v}} \v{u}\text{.}\)</span> The scalar <span class="process-math">\(\dfrac{\la \v{u}, \v{v} \ra}{\|\v{v}\|}\)</span> is called the <dfn class="terminology">scalar component</dfn> of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\)</span> and is sometimes denoted by <span class="process-math">\(\comp_{\v{v}} \v{u}\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#def-OrthogonalProjection-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Definition 5.3.17: Projection of \v{u} onto \v{v}"><a href="#def-OrthogonalProjection" title="Copy heading and permalink for Definition 5.3.17: Projection of \v{u} onto \v{v}" aria-label="Copy heading and permalink for Definition 5.3.17: Projection of \v{u} onto \v{v}">🔗</a></div>
+</article>
+<details id="subsec-OrthogonalProjection-12" class="note remark-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading">
+<span class="type">Note</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.18</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">But Richard... What if the angle between the vectors is obtuse?</span>
+</h4></summary>
+<article class="note remark-like knowl__content">
+<div class="para" id="subsec-OrthogonalProjection-12-2">The previous result was derived assuming the angle between the vectors is acute. But what if the angle is obtuse, like in the diagram below? Does the formula for the projection vector still hold?<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-12-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-OrthogonalProjection-12-3"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/sec123-Projection-ObtuseAngle.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.19<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The Projection of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\)</span> with an obtuse angle between them<div class="autopermalink" data-description="Figure 5.3.19"><a href="#subsec-OrthogonalProjection-12-3" title="Copy heading and permalink for Figure 5.3.19" aria-label="Copy heading and permalink for Figure 5.3.19">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-OrthogonalProjection-12-4">The answer is yes but the work is a bit different. Richard will encourage you to try proving the formula for the projection vector in this case as an exercise.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-12-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-OrthogonalProjection-12-5" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h5 class="heading"><span class="title">Richard’s proof if you want to check your proof.</span></h5></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="subsec-OrthogonalProjection-12-5-2">The work is almost identical to the acute angle case with one bit of difference.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-12-5-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-OrthogonalProjection-12-5-3">
+<div class="para">Let <span class="process-math">\(\theta\)</span> be an obtuse angle, which means <span class="process-math">\(\frac{\pi}{2} \lt \theta \lt \pi\text{.}\)</span> Using trigonometry, we can find the length of the projection vector as follows:</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-12-5-3-3">
+\begin{align*}
+\|\proj_{\v{v}} \v{u} \| \amp= \|\v{u}\|\cos \lp \pi - \theta \rp \\
+\amp= \|\v{u}\|\cdot -\cos(\theta) \\
+\amp= -\|\v{u}\| \cos(\theta) 
+\end{align*}
+</div>
+<div class="para">While there is a negative sign in front of the length, this is a positive quantity since <span class="process-math">\(\cos(\theta)\)</span> is negative for <span class="process-math">\(\frac{\pi}{2} \lt \theta \lt \pi\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-12-5-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-OrthogonalProjection-12-5-4">Next, we find the direction of the projection vector. Clearly, the projection vector points in the <em class="emphasis">opposite</em> direction as <span class="process-math">\(\v{v}\)</span> (look at the diagram!). Then the unit vector in the direction opposite to <span class="process-math">\(\v{v}\)</span> is <span class="process-math">\(-\dfrac{\v{v}}{\|\v{v}\|}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-12-5-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-OrthogonalProjection-12-5-5">
+<div class="para">Therefore, the projection vector is</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-12-5-5-1">
+\begin{align*}
+\proj_{\v{v}} \v{u} \amp= -\|\v{u}\| \cos(\theta) \lp -\frac{\v{v}}{\|\v{v}\|} \rp \\
+\amp= \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|} \frac{\v{v}}{\|\v{v}\|} \\
+\amp= \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|^2} \v{v} \\
+\amp= \frac{\la \v{u}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \v{v} 
+\end{align*}
+</div>
+<div class="para">which is the same formula as before.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-12-5-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 5.3.18.1: Richard’s proof if you want to check your proof"><a href="#subsec-OrthogonalProjection-12-5" title="Copy heading and permalink for Proof 5.3.18.1: Richard’s proof if you want to check your proof" aria-label="Copy heading and permalink for Proof 5.3.18.1: Richard’s proof if you want to check your proof">🔗</a></div>
+</article></details><div class="autopermalink" data-description="Note 5.3.18: But Richard... What if the angle between the vectors is obtuse?"><a href="#subsec-OrthogonalProjection-12" title="Copy heading and permalink for Note 5.3.18: But Richard... What if the angle between the vectors is obtuse?" aria-label="Copy heading and permalink for Note 5.3.18: But Richard... What if the angle between the vectors is obtuse?">🔗</a></div>
+</article></details>
+<div class="para" id="subsec-OrthogonalProjection-13">Observe that Richard didn’t bother with the case when the angle between the vectors is a right angle. This is because the projection vector is simply the zero vector in this case since <span class="process-math">\(\la \v{u}, \v{v} \ra = 0\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-OrthogonalProjection-14"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.20</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-OrthogonalProjection-14-1">Find the projection of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\)</span> where <span class="process-math">\(\v{u} = \begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}\)</span> and <span class="process-math">\(\v{v} = \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-14-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-OrthogonalProjection-14-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="hint solution-like knowl__content">
+<div class="para" id="subsec-OrthogonalProjection-14-2-1">To help you visualize the projection, Richard coded up the following fancy diagram:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-14-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-OrthogonalProjection-14-2-2">
+<div class="sidebyside">
+<div class="sbsrow" style="margin-left:10%;margin-right:10%;grid-template-columns:100%;column-gap:0%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="interactive-iframe-container"><iframe id="subsec-OrthogonalProjection-14-2-2-2-1" style="width:480px; height:480px; display: block; " src="subsec-OrthogonalProjection-14-2-2-2-1-if.html"></iframe></div>
+<div class="interactive-iframe-container__opener"><a href="subsec-OrthogonalProjection-14-2-2-2-1.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+</div>
+</div>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Projection of <span class="process-math">\(\mathbf{u}=\begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}\)</span> onto <span class="process-math">\(\mathbf{v}=\begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix}\)</span><div class="autopermalink" data-description="Figure 5.3.21"><a href="#subsec-OrthogonalProjection-14-2-2" title="Copy heading and permalink for Figure 5.3.21" aria-label="Copy heading and permalink for Figure 5.3.21">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-OrthogonalProjection-14-2-3">The goal is to find the green projection vector in the diagram above.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-14-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 5.3.20.1"><a href="#subsec-OrthogonalProjection-14-2" title="Copy heading and permalink for Hint 5.3.20.1" aria-label="Copy heading and permalink for Hint 5.3.20.1">🔗</a></div>
+</div></details>
+<details id="subsec-OrthogonalProjection-14-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-OrthogonalProjection-14-3-1">
+<div class="para">The projection of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\)</span> is the following vector</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-14-3-1-3">
+\begin{equation*}
+\proj_{\v{v}} \v{u} = \lp \frac{\la \v{u}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \rp \v{v}
+\end{equation*}
+</div>
+<div class="para">We compute the values in this expression:</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-14-3-1-4">
+\begin{align*}
+\la \v{u}, \v{v} \ra \amp= \la \begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix} \ra = 1\cdot(-2) + 1\cdot 3 + 2\cdot 1 = -2 + 3 + 2 = 3 \\
+\la \v{v}, \v{v} \ra \amp= \la \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix}, \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix} \ra = (-2)^2 + 3^2 + 1^2 = 4 + 9 + 1 = 14 
+\end{align*}
+</div>
+<div class="para">Hence,</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-14-3-1-5">
+\begin{equation*}
+\proj_{\v{v}} \v{u} = \lp \frac{3}{14} \rp \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix} = \begin{bmatrix} -\frac{3}{7} \\ \frac{9}{14} \\ \frac{3}{14} \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-14-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.3.20.1"><a href="#subsec-OrthogonalProjection-14-3" title="Copy heading and permalink for Solution 5.3.20.1" aria-label="Copy heading and permalink for Solution 5.3.20.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.3.20"><a href="#subsec-OrthogonalProjection-14" title="Copy heading and permalink for Example 5.3.20" aria-label="Copy heading and permalink for Example 5.3.20">🔗</a></div>
+</article>
+<div class="para" id="subsec-OrthogonalProjection-15">Now that we know what the projection looks like, the next question to consider is: <em class="emphasis">how different is the vector from its projection?</em> A quick subtraction <span class="process-math">\(\v{u} - \proj_{\v{v}} \v{u}\)</span> will give us the answer.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-OrthogonalProjection-16"><div class="image-box" style="width: 30%; margin-left: 35%; margin-right: 35%;"><img src="external/sec123-uMinusProju-Diagram.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.22<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Vector <span class="process-math">\(\v{u}\)</span> (red), <span class="process-math">\(\v{v}\)</span> (blue), <span class="process-math">\(\proj_{\v{v}} \v{u}\)</span> (green), and <span class="process-math">\(\v{u} - \proj_{\v{v}} \v{u}\)</span> (orange)<div class="autopermalink" data-description="Figure 5.3.22"><a href="#subsec-OrthogonalProjection-16" title="Copy heading and permalink for Figure 5.3.22" aria-label="Copy heading and permalink for Figure 5.3.22">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-OrthogonalProjection-17">Observe that this difference vector is <em class="emphasis">orthogonal</em> to <span class="process-math">\(\v{v}\text{.}\)</span> This is one way that we can <em class="alert">decompose</em> the vector <span class="process-math">\(\v{u}\)</span> into two components with respect to <span class="process-math">\(\v{v}\text{:}\)</span> one component that is parallel to <span class="process-math">\(\v{v}\)</span> (aka the projection vector) and another component that is orthogonal to <span class="process-math">\(\v{v}\text{.}\)</span> Remember we also denote the projection vector by <span class="process-math">\(\v{u}_{\parallel \v{v}}\)</span> (this is sometimes referred as the <em class="emphasis">parallel</em> component). Then we can denote the difference vector by <span class="process-math">\(\v{u}_{\perp \v{v}}\)</span> (this is sometimes referred to as the <em class="emphasis">normal</em> component).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-17" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-OrthogonalProjection-18">
+<div class="para">This gives us the following decomposition of <span class="process-math">\(\v{u}\)</span> with respect to <span class="process-math">\(\v{v}\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-18-3">
+\begin{equation*}
+\v{u} = \v{u}_{\parallel \v{v}} + \v{u}_{\perp \v{v}}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-18" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-OrthogonalProjection-19"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/sec123-DecomposingVector-Diagram.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.23<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Vector <span class="process-math">\(\v{u}\)</span> (red), <span class="process-math">\(\v{v}\)</span> (blue), <span class="process-math">\(\proj_{\v{v}} \v{u}\)</span> (green), and <span class="process-math">\(\v{u} - \proj_{\v{v}} \v{u}\)</span> (orange)<div class="autopermalink" data-description="Figure 5.3.23"><a href="#subsec-OrthogonalProjection-19" title="Copy heading and permalink for Figure 5.3.23" aria-label="Copy heading and permalink for Figure 5.3.23">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-OrthogonalProjection-20">This is actually the <dfn class="terminology">Orthogonal Decomposition Theorem</dfn> in linear algebra.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-20" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-OrthogonalProjection-21"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.24</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-OrthogonalProjection-21-1">Find the decomposition <span class="process-math">\(\v{u} = \v{u}_{\parallel \v{v}} + \v{u}_{\perp \v{v}}\)</span> for the vectors <span class="process-math">\(\v{u} = \begin{bmatrix} 4 \\ -1 \\ 5 \end{bmatrix}\)</span> and <span class="process-math">\(\v{v} = \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-21-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-OrthogonalProjection-21-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="hint solution-like knowl__content">
+<div class="para" id="subsec-OrthogonalProjection-21-2-1">To help you visualize the decomposition, Richard coded up the following fancy diagram:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-21-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-OrthogonalProjection-21-2-2">
+<div class="sidebyside">
+<div class="sbsrow" style="margin-left:10%;margin-right:10%;grid-template-columns:100%;column-gap:0%;">
+<div class="sbspanel sbspanel--top top" style="">
+<div class="interactive-iframe-container"><iframe id="subsec-OrthogonalProjection-21-2-2-2-1" style="width:480px; height:480px; display: block; " src="subsec-OrthogonalProjection-21-2-2-2-1-if.html"></iframe></div>
+<div class="interactive-iframe-container__opener"><a href="subsec-OrthogonalProjection-21-2-2-2-1.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+</div>
+</div>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.25<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Decomposition of <span class="process-math">\(\v{u}\)</span> with respect to <span class="process-math">\(\v{v}\)</span><div class="autopermalink" data-description="Figure 5.3.25"><a href="#subsec-OrthogonalProjection-21-2-2" title="Copy heading and permalink for Figure 5.3.25" aria-label="Copy heading and permalink for Figure 5.3.25">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-OrthogonalProjection-21-2-3">The goal is to find the two components <span class="process-math">\(\v{u}_{\parallel \v{v}}\)</span> and <span class="process-math">\(\v{u}_{\perp \v{v}}\)</span> in the diagram above.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-21-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 5.3.24.1"><a href="#subsec-OrthogonalProjection-21-2" title="Copy heading and permalink for Hint 5.3.24.1" aria-label="Copy heading and permalink for Hint 5.3.24.1">🔗</a></div>
+</div></details>
+<details id="subsec-OrthogonalProjection-21-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-OrthogonalProjection-21-3-1">
+<div class="para">We first compute <span class="process-math">\(\la \v{u}, \v{v} \ra\)</span> and <span class="process-math">\(\la \v{v}, \v{v} \ra\)</span> to find the projection of <span class="process-math">\(\v{u}\)</span> onto <span class="process-math">\(\v{v}\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-21-3-1-5">
+\begin{align*}
+\la \v{u}, \v{v} \ra \amp= \la \begin{bmatrix} 4 \\ -1 \\ 5 \end{bmatrix}, \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix} \ra = 4\cdot 2 + (-1)\cdot 1 + 5\cdot 1 = 8 - 1 + 5 = 12 \\
+\la \v{v}, \v{v} \ra \amp= \la \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix} \ra = 2^2 + 1^2 + 1^2 = 4 + 1 + 1 = 6 
+\end{align*}
+</div>
+<div class="para">Hence,</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-21-3-1-6">
+\begin{equation*}
+\v{u}_{\parallel \v{v}} = \proj_{\v{v}} \v{u} = \lp \frac{12}{6} \rp \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix} = 2 \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 4 \\ 2 \\ 2 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">We now find the vector <span class="process-math">\(\v{u}_{\perp \v{v}}\)</span> by computing the difference:</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-21-3-1-8">
+\begin{equation*}
+\v{u}_{\perp \v{v}} = \v{u} - \v{u}_{\parallel \v{v}} = \begin{bmatrix} 4 \\ -1 \\ 5 \end{bmatrix} - \begin{bmatrix} 4 \\ 2 \\ 2 \end{bmatrix} = \begin{bmatrix} 0 \\ -3 \\ 3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Thus, we have</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-21-3-1-9">
+\begin{equation*}
+\v{u} = \v{u}_{\parallel \v{v}} + \v{u}_{\perp \v{v}} = \begin{bmatrix} 4 \\ 2 \\ 2 \end{bmatrix} + \begin{bmatrix} 0 \\ -3 \\ 3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-21-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.3.24.1"><a href="#subsec-OrthogonalProjection-21-3" title="Copy heading and permalink for Solution 5.3.24.1" aria-label="Copy heading and permalink for Solution 5.3.24.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.3.24"><a href="#subsec-OrthogonalProjection-21" title="Copy heading and permalink for Example 5.3.24" aria-label="Copy heading and permalink for Example 5.3.24">🔗</a></div>
+</article>
+<div class="para" id="subsec-OrthogonalProjection-22">The ability to decompose vectors into orthogonal components is useful in many applications. For example, when an object rests on an inclined plane, the gravitational force acting on the object equals its weight, which is directly vertically downward. However, to analyze the motion of the object on the inclined plane, it is often helpful to decompose the gravitational force vector into two components: one <em class="emphasis">parallel</em> to the plane (which determines the tendency of the object to slide down the plane) and another <em class="emphasis">perpendicular</em> to the plane (which determines its tendency to "stick" to the plane).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-22" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-OrthogonalProjection-23"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/sec123-ForceDecomposition-Diagram.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.26<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Gravitational force decomposition on an inclined plane<div class="autopermalink" data-description="Figure 5.3.26"><a href="#subsec-OrthogonalProjection-23" title="Copy heading and permalink for Figure 5.3.26" aria-label="Copy heading and permalink for Figure 5.3.26">🔗</a></div></figcaption>
+</figure>
+<article class="example example-like" id="subsec-OrthogonalProjection-24"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.27</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-OrthogonalProjection-24-1">A 10-lb block rests on a plane that is inclined at 30° below the horizontal. Find the components of the gravitational force parallel and normal perpendicular to the plane.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-24-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-OrthogonalProjection-24-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="hint solution-like knowl__content">
+<div class="para" id="subsec-OrthogonalProjection-24-2-1">See below for the diagram of the situation:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-24-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-OrthogonalProjection-24-2-2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/sec123-ForceDecomposition-Example.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.28<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Gravitational force Vector (red), Parallel Component (green), and Perpendicular Component (orange)<div class="autopermalink" data-description="Figure 5.3.28"><a href="#subsec-OrthogonalProjection-24-2-2" title="Copy heading and permalink for Figure 5.3.28" aria-label="Copy heading and permalink for Figure 5.3.28">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-OrthogonalProjection-24-2-3">The goal here is to find the green and the orange vectors in the diagram above.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-24-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 5.3.27.1"><a href="#subsec-OrthogonalProjection-24-2" title="Copy heading and permalink for Hint 5.3.27.1" aria-label="Copy heading and permalink for Hint 5.3.27.1">🔗</a></div>
+</div></details>
+<details id="subsec-OrthogonalProjection-24-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="subsec-OrthogonalProjection-24-3-1">
+<div class="para">The gravitational force <span class="process-math">\(\v{F}\)</span> acting on the block equals the weight o the block. Using the coordinate system, the force acts in the negative <span class="process-math">\(y\)</span>-direction, so</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-24-3-1-3">
+\begin{equation*}
+\v{F} = \begin{bmatrix} 0 \\ -10 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-24-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-OrthogonalProjection-24-3-2">
+<div class="para">The direction <em class="emphasis">down</em> the plane is given by the vector is</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-24-3-2-2">
+\begin{equation*}
+\v{v} = \begin{bmatrix} \cos(-30^\circ) \\ \sin(-30^\circ) \end{bmatrix} = \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-24-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-OrthogonalProjection-24-3-3">
+<div class="para">Hence, the component of the force <em class="emphasis">parallel</em> to the plane is</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-24-3-3-2">
+\begin{align*}
+\v{F}_{\parallel \v{v}} \amp= \lp \frac{\la \v{F}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \rp \v{v} \\
+\amp= \lp \frac{\la \begin{bmatrix} 0 \\ -10 \end{bmatrix}, \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix} \ra}{\la \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix}, \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix} \ra} \rp \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix} \\
+\amp= 5 \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix} \\
+\amp= \begin{bmatrix} \frac{5\sqrt{3}}{2} \\ -\frac{5}{2} \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-24-3-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-OrthogonalProjection-24-3-4">
+<div class="para">Next, the component of the force <em class="emphasis">perpendicular</em> to the plane is</div>
+<div class="displaymath process-math" id="subsec-OrthogonalProjection-24-3-4-2">
+\begin{align*}
+\v{F}_{\perp \v{v}} \amp= \v{F} - \v{F}_{\parallel \v{v}} \\
+\amp= \begin{bmatrix} 0 \\ -10 \end{bmatrix} - \begin{bmatrix} \frac{5\sqrt{3}}{2} \\ -\frac{5}{2} \end{bmatrix} \\
+\amp= \begin{bmatrix} -\frac{5\sqrt{3}}{2} \\ -\frac{15}{2} \end{bmatrix} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-OrthogonalProjection-24-3-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 5.3.27.1"><a href="#subsec-OrthogonalProjection-24-3" title="Copy heading and permalink for Solution 5.3.27.1" aria-label="Copy heading and permalink for Solution 5.3.27.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Example 5.3.27"><a href="#subsec-OrthogonalProjection-24" title="Copy heading and permalink for Example 5.3.27" aria-label="Copy heading and permalink for Example 5.3.27">🔗</a></div>
+</article><div class="autopermalink" data-description="Subsection: Orthogonal Projection"><a href="#subsec-OrthogonalProjection" title="Copy heading and permalink for Subsection: Orthogonal Projection" aria-label="Copy heading and permalink for Subsection: Orthogonal Projection">🔗</a></div>
+</section>
+<section class="worksheet" id="ws-sec63" data-margins="0.75in 0.75in 0.75in 0.75in">
+<h3 class="heading hide-type">
+<span class="type">Worksheet</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Some Exercises for This Section</span><div class="print-links"><a href="?printpreview=ws-sec63" class="print-link" title="Print preview"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span></a></div>
+</h3>
+<section class="introduction" id="ws-sec63-2">
+<div class="para" id="ws-sec63-2-1">Richard included some practice problems that cover some main concepts in this section. You don’t need to turn it in, but you are highly encouraged to work on this with your classmates. The problems here may end up being in-class practice problems, homework problems, and/or exam problems. Reach out to Richard for help if you get stuck or have any questions.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec63-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="ws-sec63-2-2">Only the final answers are included to some of the problems for you to check your result. If you want to check your work, talk to Richard and he is happy to discuss the process with you.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec63-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></section>
+<div class="exercisegroup" id="ws-sec63-3">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec63-3-1">
+<div class="para" id="ws-sec63-3-1-1">In the following exercises, assume that <span class="process-math">\(\{u_{1},...,u_{4}\}\)</span> is an orthogonal basis for <span class="process-math">\(\mathbb{R}^{4}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec63-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec63-3-2"><h5 class="heading"><span class="codenumber">6.3.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="para logical" id="ws-sec63-3-2-1-1">
+<div class="para">Assume that <span class="process-math">\(\{u_{1},...,u_{4}\}\)</span> is an orthogonal basis for <span class="process-math">\(\mathbb{R}^{4}\text{,}\)</span> where</div>
+<div class="displaymath process-math" id="ws-sec63-3-2-1-1-3">
+\begin{equation*}
+u_{1}=\begin{bmatrix}0\\ 1\\ -4\\ -1\end{bmatrix}, \quad u_{2}=\begin{bmatrix}3\\ 5\\ 1\\ 1\end{bmatrix}, \quad u_{3}=\begin{bmatrix}1\\ 0\\ 1\\ -4\end{bmatrix}, \quad u_{4}=\begin{bmatrix}5\\ -3\\ -1\\ 1\end{bmatrix}, \quad \text{and} \quad x=\begin{bmatrix}10\\ -8\\ 2\\ 0\end{bmatrix}.
+\end{equation*}
+</div>
+<div class="para">Write <span class="process-math">\(x\)</span> as the sum of two vectors, one in Span <span class="process-math">\(\{u_{1},u_{2},u_{3}\}\)</span> and the other in Span <span class="process-math">\(\{u_{4}\}\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec63-3-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.3.1"><a href="#ws-sec63-3-2" title="Copy heading and permalink for Worksheet Exercise 6.3.1" aria-label="Copy heading and permalink for Worksheet Exercise 6.3.1">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 6.3.1–6.3.1"><a href="#ws-sec63-3" title="Copy heading and permalink for Exercise Group 6.3.1–6.3.1" aria-label="Copy heading and permalink for Exercise Group 6.3.1–6.3.1">🔗</a></div>
+</div>
+<div class="exercisegroup" id="ws-sec63-4">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec63-4-1">
+<div class="para" id="ws-sec63-4-1-1">In the following exercises, verify that <span class="process-math">\(\{u_{1},u_{2}\}\)</span> is an orthogonal set, and then find the orthogonal projection of <span class="process-math">\(y\)</span> onto Span <span class="process-math">\(\{u_{1},u_{2}\}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec63-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec63-4-2"><h5 class="heading"><span class="codenumber">6.3.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec63-4-2-1-1">
+\begin{equation*}
+y=\begin{bmatrix}-1\\ 4\\ 3\end{bmatrix}, \quad u_{1}=\begin{bmatrix}1\\ 1\\ 0\end{bmatrix}, \quad u_{2}=\begin{bmatrix}-1\\ 1\\ 0\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.3.3"><a href="#ws-sec63-4-2" title="Copy heading and permalink for Worksheet Exercise 6.3.3" aria-label="Copy heading and permalink for Worksheet Exercise 6.3.3">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec63-4-3"><h5 class="heading"><span class="codenumber">6.3.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec63-4-3-1-1">
+\begin{equation*}
+y=\begin{bmatrix}-1\\ 2\\ 6\end{bmatrix}, \quad u_{1}=\begin{bmatrix}3\\ -1\\ 2\end{bmatrix}, \quad u_{2}=\begin{bmatrix}1\\ -1\\ -2\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.3.5"><a href="#ws-sec63-4-3" title="Copy heading and permalink for Worksheet Exercise 6.3.5" aria-label="Copy heading and permalink for Worksheet Exercise 6.3.5">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 6.3.3–6.3.5"><a href="#ws-sec63-4" title="Copy heading and permalink for Exercise Group 6.3.3–6.3.5" aria-label="Copy heading and permalink for Exercise Group 6.3.3–6.3.5">🔗</a></div>
+</div>
+<div class="exercisegroup" id="ws-sec63-5">
+<h4 class="heading"><span class="title">Exercise Group.</span></h4>
+<div class="introduction" id="ws-sec63-5-1">
+<div class="para" id="ws-sec63-5-1-1">In the following exercises, let <span class="process-math">\(W\)</span> be the subspace spanned by the <span class="process-math">\(u\)</span>’s, and write <span class="process-math">\(y\)</span> as the sum of a vector in <span class="process-math">\(W\)</span> and a vector orthogonal to <span class="process-math">\(W\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec63-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<div class="exercisegroup-exercises">
+<article class="exercise exercise-like" id="ws-sec63-5-2"><h5 class="heading"><span class="codenumber">6.3.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec63-5-2-1-1">
+\begin{equation*}
+y=\begin{bmatrix}1\\ 3\\ 5\end{bmatrix}, \quad u_{1}=\begin{bmatrix}1\\ 3\\ -2\end{bmatrix}, \quad u_{2}=\begin{bmatrix}5\\ 1\\ 4\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.3.7"><a href="#ws-sec63-5-2" title="Copy heading and permalink for Worksheet Exercise 6.3.7" aria-label="Copy heading and permalink for Worksheet Exercise 6.3.7">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ws-sec63-5-3"><h5 class="heading"><span class="codenumber">6.3.9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
+<div class="displaymath process-math" id="ws-sec63-5-3-1-1">
+\begin{equation*}
+y=\begin{bmatrix}4\\ 3\\ 3\\ -1\end{bmatrix}, \quad u_{1}=\begin{bmatrix}1\\ 1\\ 0\\ 1\end{bmatrix}, \quad u_{2}=\begin{bmatrix}-1\\ 3\\ 1\\ -2\end{bmatrix}, \quad u_{3}=\begin{bmatrix}-1\\ 0\\ 1\\ 1\end{bmatrix}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Worksheet Exercise 6.3.9"><a href="#ws-sec63-5-3" title="Copy heading and permalink for Worksheet Exercise 6.3.9" aria-label="Copy heading and permalink for Worksheet Exercise 6.3.9">🔗</a></div>
+</article>
+</div>
+<div class="autopermalink" data-description="Exercise Group 6.3.7–6.3.9"><a href="#ws-sec63-5" title="Copy heading and permalink for Exercise Group 6.3.7–6.3.9" aria-label="Copy heading and permalink for Exercise Group 6.3.7–6.3.9">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Worksheet: Some Exercises for This Section"><a href="#ws-sec63" title="Copy heading and permalink for Worksheet: Some Exercises for This Section" aria-label="Copy heading and permalink for Worksheet: Some Exercises for This Section">🔗</a></div>
+</section><div class="autopermalink" data-description="Section 5.3: Orthogonal Projection"><a href="#sec63-OrthogonalProjection" title="Copy heading and permalink for Section 5.3: Orthogonal Projection" aria-label="Copy heading and permalink for Section 5.3: Orthogonal Projection">🔗</a></div>
+</section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec62-OrthogonalSets.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec64-GramSchmit.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>
