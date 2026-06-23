@@ -1,0 +1,1224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec22-InverseMatrix" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>The Inverse of a Matrix</title>
+
+  <introduction>
+    <p>
+      In our journey through linear algebra, we have explored how to multiply matrices and how to represent systems of equations as the matrix equation <m>A\v{x} = \v{b}</m>. 
+      A natural mathematical question arises: can we "undo" matrix multiplication? 
+      In the realm of real numbers, we solve algebraic equations like <m>ax = b</m> by multiplying by the reciprocal (or inverse) of <m>a</m>. 
+      In this section, we investigate whether a similar structural concept exists for matrices.
+    </p>
+
+    <objectives>
+      <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+          <p>
+            find the inverse of a <m>2 \times 2</m> invertible matrix using a formula; 
+          </p>
+        </li>
+        <li>
+          <p>
+            find the inverse of an invertible matrix using the Gaussian Elimination algorithm;
+          </p>
+        </li>
+        <li>
+          <p>
+            solve systems of linear equations using matrix inverses; 
+          </p>
+        </li>
+        <li>
+          <p>
+            construct elementary matrices and its inverse for each elementary row operation; 
+          </p>
+        </li>
+        <li>
+          <p>
+            express any invertible matrix, and its inverse, as a product of elementary matrices. 
+          </p>
+        </li>
+      </ul>
+    </objectives>
+  </introduction>
+
+  <investigation>
+    <p>
+      Let <m>A = \begin{bmatrix} 0 \amp 2 \\ 1 \amp -2 \end{bmatrix}</m>. 
+      Find a matrix <m>B</m> such that <m>AB = I</m> where <m>I</m> is the <m>2 \times 2</m> identity matrix. 
+    </p>
+
+    <hint>
+      <p>
+        There are two possible strategies: 
+      </p>
+
+      <p>
+        <alert>Strategy #1: </alert> Guess and check! 
+        This strategy is doable for a <m>2 \times 2</m> matrix but usually quite tedious. 
+        The matrix <m>A</m> is made special so that it isn't too bad at all. 
+      </p>
+
+      <p>
+        <alert>Strategy #2: </alert> Remember how matrix multiplication works: 
+        When we multiply <m>A</m> by <m>B</m>, each column of the answer is found by multiplying the corresponding column of <m>B</m> by <m>A</m>. 
+      </p>
+
+      <p>
+        So we know that if <m>\v{b}_1</m> is the first column of <m>B</m>, then we will need <m>A\v{b}_1</m> to be <m>\begin{bmatrix} 1 \\ 0 \end{bmatrix}</m> since that is the first column of the identity matrix. 
+        If we call the entries of that column <m>x</m> and <m>y</m>, then we can solve a system of equations to figure out what <m>x</m> and <m>y</m> are!
+      </p>
+
+      <p>
+        Then we can do a similar process to figure out what the second column of <m>B</m> is!
+      </p>
+    </hint>
+
+    <solution>
+      <title>Using Strategy #1...</title>
+      <p>
+        You probably discovered that the only way to get the <m>1</m> in the top left of the answer is to put a <m>\frac{1}{2}</m> in the bottom left of <m>B</m>. 
+        Then you can figure out that you need a <m>1</m> in the top left of <m>B</m> to get the <m>0</m> in the bottom left of the answer. 
+      </p>
+
+      <p>
+        Now you need a <m>0</m> in the top right of the answer. 
+        because of the <m>0</m> in <m>A</m>, your answer for this spot will be <m>2</m> times whatever you put in the bottom right of <m>B</m>. 
+        So that has to be a <m>0</m>. 
+      </p>
+
+      <p>
+        Finally that <m>0</m> in the bottom right of <m>B</m> means that you need a <m>1</m> in your top right spot in order to get the <m>1</m> you need in the bottom right of the identity matrix. 
+        So the matrix <m>B = \begin{bmatrix} 1 \amp 1 \\ \frac{1}{2} \amp 0 \end{bmatrix}</m>
+      </p>
+    </solution>
+
+    <solution>
+      <title>Using Strategy #2...</title>
+      <p>
+        If we call our first column of <m>B</m> <m>\v{b}_1 = \begin{bmatrix} x \\ y \end{bmatrix}</m>, then we know that we need
+        <md>
+          \begin{cases}
+            0x + 2y = 1 \\
+            1x - 2y = 0
+          \end{cases}
+        </md>
+        We can solve this using the substitution method easily since the top equation tells us <m>y = \frac{1}{2}</m> and substituting this into the second equation gives us 
+        <md>
+          x - 1 = 0 \qquad \implies \qquad x = 1
+        </md>
+        So the first column of <m>B</m> will have to be <m>\v{b}_1 = \begin{bmatrix} 1 \\ \frac{1}{2} \end{bmatrix}</m>. 
+      </p>
+
+      <p>
+        Now if we call our second column of <m>B</m> <m>\v{b}_2 = \begin{bmatrix} x \\ y \end{bmatrix}</m>, then we know that we need
+        <md>
+          \begin{cases}
+            0x + 2y = 0 \\
+            1x - 2y = 1
+          \end{cases}
+        </md>
+        This one is even quicker to solve because the top equation tells us <m>y = 0</m> and substituting this into the second equation gives us <m>x = 1</m>. 
+        So the second column of <m>B</m> will have to be <m>\v{b}_2 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}</m>. 
+      </p>
+
+      <p>
+        Therefore, the matrix <m>B = \begin{bmatrix} 1 \amp 1 \\ \frac{1}{2} \amp 0 \end{bmatrix}</m>.
+      </p>
+
+      <p>
+        And we can quickly verify that <m>AB = I</m>: 
+        <md>
+          \begin{bmatrix} 0 \amp 2 \\ 1 \amp -2 \end{bmatrix} \begin{bmatrix} 1 \amp 1 \\ \frac{1}{2} \amp 0 \end{bmatrix} = \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}
+        </md>
+      </p>
+    </solution>
+
+    <p>
+      Now that you found <m>B</m>, take a minute and compute <m>BA</m>. 
+    </p>
+
+    <solution>
+      <p>
+        <m>BA</m> is also <m>I</m>! 
+      </p>
+    </solution>
+  </investigation>
+  
+  <p>
+    This matrix <m>B</m> is a special buddy of <m>A</m>. 
+    This is called the <term>inverse</term> of <m>A</m>!
+  </p>
+
+  <subsection xml:id="subsec-InverseMatrices">
+    <title>Inverse of a Matrix</title>
+
+    <definition xml:id="def-inverse-matrix">
+      <title>Inverse of a Matrix</title>
+      <statement>
+        <p>
+          If <m>A</m> is a square matrix, a matrix <m>B</m> is called an <term>inverse</term> of <m>A</m> if and only if <m>AB=BA=I</m>. 
+          A matrix that has an inverse is called an <term>invertible matrix</term>. 
+        </p>
+      </statement>
+    </definition>
+
+    <example>
+      <p>
+        <alert>An exmaple: </alert>
+        <m>A=\begin{bmatrix}0\amp 2\\ 1\amp -2\end{bmatrix}</m> is invertible and <m>A^{-1}=\begin{bmatrix}1\amp 1\\ \frac{1}{2}\amp 0\end{bmatrix}</m> since... 
+        <md>
+          \begin{bmatrix}0\amp 2\\ 1\amp -2\end{bmatrix}\begin{bmatrix}1\amp 1\\ \frac{1}{2}\amp 0\end{bmatrix}=\begin{bmatrix}1\amp 1\\ \frac{1}{2}\amp 0\end{bmatrix}\begin{bmatrix}0\amp 2\\ 1\amp -2\end{bmatrix}=I
+        </md>
+      </p>
+
+      <p>
+        <alert>A non-example: </alert>
+        <m>A=\begin{bmatrix}0\amp 0\\ 1\amp -2\end{bmatrix}</m> is NOT invertible because no matter what matrix you try you will get a row of zeros: 
+        <md>
+          \begin{bmatrix}0\amp 0\\ 1\amp -2\end{bmatrix}\begin{bmatrix}a\amp b\\ c\amp d\end{bmatrix}=\begin{bmatrix}0\amp 0\\ \text{Doesn't}\amp \text{Matter}\end{bmatrix}
+        </md>
+      </p>
+    </example>
+
+    <theorem xml:id="thm-Uniqueness_Inverses">
+      <statement>
+        <p>
+          A matrix can only have one inverse. 
+        </p>
+      </statement>
+    </theorem>
+
+    <proof>
+      <p>
+        Suppose <m>B</m> and <m>C</m> are both inverses of <m>A</m>.
+        Then 
+        <md>
+          AB=I \qquad \text{ and } \qquad AC=I
+        </md>
+        This means <m>AB=AC</m>. 
+      </p>
+          
+      <p>
+        Multiplying both sides of equation (on the left) by <m>B</m>,  we get 
+        <md>
+          B(AB)=B(AC)
+        </md>
+        Using the associative property, we get
+        <md>
+          (BA)B=(BA)C
+        </md>
+        Since we also know that <m>BA=I</m>, then <m>IB=IC</m>. 
+      </p>
+
+      <p>
+        So by the identity property, <m>B=C</m>. 
+      </p>
+    </proof>
+
+    <p>
+      In the <m>2 \times 2</m> case, there is a quick way to find out if a matrix is invertible and there is a nice formula for the inverse. 
+      We just have to define two terms: 
+    </p>
+
+    <definition xml:id="def-Determinant-2x2Matrices">
+      <title>Determinant of <m>2\times 2</m> Matrices</title>
+      <statement>
+        <p>
+          Let <m>A</m> be a <m>2 \times 2</m> matrix. 
+          The <term>determinant</term> of the matrix <m>A</m> is defined by
+          <md>
+            \det A = \det \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix} = ad - bc
+          </md>
+        </p>
+      </statement>
+    </definition>
+
+    <definition xml:id="def-Adjugate-2x2Matrices">
+      <title>Adjugate of <m>2\times 2</m> Matrices</title>
+      <statement>
+        <p>
+          Let <m>A</m> be a <m>2 \times 2</m> matrix. 
+          The <term>adjugate</term> of the matrix <m>A</m> is 
+          <md>
+            \adj A = \begin{bmatrix} d \amp -b \\ -c \amp a \end{bmatrix}
+          </md>
+          The adjugate of <m>A</m> can be obtained by (1) swapping the elements in the main diagonal, and (2) changing the sign of the elements not on the main diagonal. 
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      The matrix <m>A = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m> is invertible if and only if <m>\det A \neq 0</m>. 
+      And<m>A^{-1}</m> is
+      <md>
+        A^{-1} = \frac{1}{\det A} \adj A = \frac{1}{\det A} \begin{bmatrix} d \amp -b \\ -c \amp a \end{bmatrix}
+      </md>
+    </p>
+
+    <example>
+      <p>
+        Let <m>A = \begin{bmatrix} 0 \amp 2 \\ 1 \amp -2 \end{bmatrix}</m>. 
+        Notice that
+        <md>
+          \det A = (0)(-2) - (2)(1) = -2
+        </md>
+        Since <m>\det A \neq 0</m>, we know that <m>A^{-1}</m> exists. 
+      </p>
+
+      <p>
+        We can also find <m>A^{-1}</m>. 
+        We know that <m>\adj A = \begin{bmatrix} -2 \amp -2 \\ -1 \amp 0 \end{bmatrix}</m>. 
+        Then
+        <md>
+          A^{-1} = \frac{1}{-2} \begin{bmatrix} -2 \amp -2 \\ -1 \amp 0 \end{bmatrix} = \begin{bmatrix} 1 \amp 1 \\ \frac{1}{2} \amp 0 \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        If you want to verify that <m>A^{-1}</m> is indeed the inverse of <m>A</m>, try multiplying them together and you should get back <m>I</m>. 
+      </p>
+    </example>
+    
+    <p>
+      Remember how we worked so hard to solve systems of linear equations in week 1? 
+      And remember that every system of linear equations can be written as a Matrix Equation <m>A \v{x} = \v{b}</m> in week 2? 
+      Well, if the coefficient matrix <m>A</m> is invertible, then we can solve this equation using <m>A^{-1}</m> just like back in Algebra 1! 
+    </p>
+
+    <p>
+      Let's assume that <m>A</m> is invertible, then <m>A^{-1}A = I</m>. 
+      Say we have a Matrix Equation <m>A\v{x} = \v{b}</m>. 
+      We certainly can multiply the same thing (say <m>A^{-1}</m>) on two sides of the equation. 
+      We get
+      <md>
+        <mrow>A^{-1} \lp A\v{x} \rp \amp= A^{-1}\v{b} </mrow>
+        <mrow>\implies \qquad \lp A^{-1} A \rp \v{x} \amp= A^{-1}\v{b} </mrow>
+        <mrow>\implies \qquad \qquad \quad \, \, \v{x} \amp= A^{-1} \v{b} </mrow>
+      </md>
+      So the solution to this equation must be <m>x\v{x} = A^{-1} \v{b}</m>. 
+    </p>
+
+    <p>
+      If you want to verify that this is indeed a solution, then we can plug in <m>\v{x} = A^{-1}\v{b}</m> into the left side of our equation. 
+      We see that
+      <md>
+        A\v{x} = A\lp A^{-1} \v{b} \rp = \lp AA^{-1} \rp \v{b} = I\v{b} = \v{b}
+      </md>
+      So this really is a solution to the equation! 
+      Let's make it a theorem!
+    </p>
+
+    <theorem xml:id="thm-UniqueSolution-InvertibleMatrix">
+      <statement>
+        <p>
+          If <m>A</m> is an invertible matrix, then the Matrix Equation <m>A\v{x} = \v{b}</m> has exactly one solution. 
+          The solution is <m>\v{x} = A^{-1} \v{b}</m>. 
+        </p>
+      </statement>
+    </theorem>
+    
+    <example>
+      <p>
+        Consider the following system of linear equations: 
+        <md>
+          \begin{cases}
+            3x + 2y = 5 \\
+            5x - 8y = 14
+          \end{cases}
+        </md>
+        The Matrix Equation version of this system is <m>A \v{x} = \v{b}</m>, where
+        <md>
+          A = \begin{bmatrix} 3 \amp 2 \\ 5 \amp -8 \end{bmatrix}
+          \qquad \text{ and } \qquad
+          \v{b} = \begin{bmatrix} 5 \\ 14 \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        Notice that 
+        <md>
+          \det A = 3(-8) - 2(5) = -34 \neq 0
+        </md>
+        So <m>A</m> is invertible! 
+        We can find the solution using the little theorem we just came up with! 
+      </p>
+
+      <p>
+        Since <m>\adj A = \begin{bmatrix} -8 \amp -2 \\ -5 \amp 3 \end{bmatrix}</m>, then we get
+        <md>
+          A^{-1} = \frac{1}{-34} \begin{bmatrix} -8 \amp -2 \\ -5 \amp 3 \end{bmatrix} = \begin{bmatrix} \frac{4}{17} \amp \frac{1}{17} \\ \frac{5}{34} \amp \frac{-3}{34} \end{bmatrix}
+        </md>
+        By our theorem, the solution to the system is
+        <md>
+          \v{x} = A^{-1}\v{b} 
+          = \begin{bmatrix} \frac{4}{17} \amp \frac{1}{17} \\ \frac{5}{34} \amp \frac{-3}{34} \end{bmatrix} \begin{bmatrix} 5 \\ 14 \end{bmatrix}
+          = \begin{bmatrix} 2 \\ -\frac{1}{2} \end{bmatrix}
+        </md>
+      </p>
+    </example>
+
+    <exercise>
+      <p>
+        Solve the following system of linear equation
+        <md>
+          \begin{cases}
+            2x - 3y = 3 \\
+            4x + 5y = 1
+          \end{cases}
+        </md>
+        by
+        <ol marker="1.">
+          <li>
+            <p>
+              writing the system as a Matrix Equation; 
+            </p>
+          </li>
+          <li>
+            <p>
+              finding the inverse of the coefficient matrix; 
+            </p>
+          </li>
+          <li>
+            <p>
+              using the inverse to solve the system. 
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <solution>
+        <p>
+          1. The matrix equation is <m>\begin{bmatrix}2\amp -3\\ 4\amp 5\end{bmatrix}\begin{bmatrix}x\\ y\end{bmatrix}=\begin{bmatrix}3\\ 1\end{bmatrix}</m>
+        </p>
+        <p>
+          2. The determinant is <m>22</m> and the adjugate matrix is <m>\begin{bmatrix}5\amp 3\\ -4\amp 2\end{bmatrix}</m>, so the inverse is 
+          <md>
+            \frac{1}{22}\begin{bmatrix}5\amp 3\\ -4\amp 2\end{bmatrix}=\begin{bmatrix}\frac{5}{22}\amp \frac{3}{22}\\ \frac{-4}{22}\amp \frac{2}{22}\end{bmatrix}
+          </md>
+        </p>
+        <p>
+          3. The solution is <m>\begin{bmatrix}\frac{5}{22}\amp \frac{3}{22}\\ \frac{-4}{22}\amp \frac{2}{22}\end{bmatrix}\begin{bmatrix}3\\ 1\end{bmatrix}=\begin{bmatrix}\frac{9}{11}\\ \frac{-5}{11}\end{bmatrix}</m>
+        </p>
+      </solution>
+    </exercise>
+
+    <p>
+      There is another way to compute inverse matrices efficiently, which is using the Gaussian Elimination algorithm we learned back in <xref ref="sec12-RowReduction"/>. 
+    </p>
+
+    <p>
+      Suppose we want to find the inverse of a <m>2 \times 2</m> matrix <m>\begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>. 
+      That is, we are looking for a <m>2 \times 2</m> matrix <m>\begin{bmatrix} x_1 \amp x_2 \\ y_1 \amp y_2 \end{bmatrix}</m> such that
+      <md>
+        \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}\begin{bmatrix} x_1 \amp x_2 \\ y_1 \amp y_2 \end{bmatrix} = \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}
+      </md>
+      Since we multiply these matrices by multiplying the <m>\begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m> by each of the column vectors <m>\begin{bmatrix} x_1 \\ y_1 \end{bmatrix}</m> and <m>\begin{bmatrix} x_2 \\ y_2 \end{bmatrix}</m>, 
+      the first matrix-vector product needs to give us the first column of <m>I</m> and the second matrix-vector product needs to give us the second column of <m>I</m>. 
+      That means that finding the inverse boils down to solving two systems of equations given by the matrix equations: 
+      <md>
+        \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix} \begin{bmatrix} x_1 \\ y_1 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+        \qquad \text{ and } \qquad 
+        \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix} \begin{bmatrix} x_2 \\ y_2 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+      </md>
+      Observe that these two systems of linear equations have the same coefficient matrix. 
+      So if we used augmented matrices, we would end up doing the same steps to put the matrices into reduced row echelon form. 
+    </p>
+
+    <p>
+      The technique based on this idea is to put these two equations into ONE giant augmented matrix:
+      <md>
+        \begin{bmatrix} a \amp b \amp \mid \amp 1 \amp 0 \\ c \amp d \amp \mid \amp 0 \amp 1 \end{bmatrix}
+      </md>
+      But it gets even better! Let's do an example...
+    </p>
+
+    <example>
+      <p>
+        Let's say we want to find the inverse of the matrix <m>A = \begin{bmatrix} 0 \amp 2 \\ 1 \amp -2 \end{bmatrix}</m>. 
+        We will first make our big augmented matrix: 
+        <md>
+          \begin{bmatrix} 0 \amp 2 \amp \mid \amp 1 \amp 0 \\ 1 \amp -2 \amp \mid \amp 0 \amp 1 \end{bmatrix}
+        </md>
+        Now we will put this thing into reduced row echelon form! 
+      </p>
+
+      <p>
+        Step 1: Swap Row 1 and Row 2, we get
+        <md>
+          \begin{bmatrix} 1 \amp -2 \amp \mid \amp 0 \amp 1 \\ 0 \amp 2 \amp \mid \amp 1 \amp 0 \end{bmatrix}
+        </md>
+        We have our first leading <m>1</m> and it already has a zero beneath it. 
+      </p>
+
+      <p>
+        Step 2: Multiply Row 2 by <m>\frac{1}{2}</m>, we get
+        <md>
+          \begin{bmatrix} 1 \amp -2 \amp \mid \amp 0 \amp 1 \\ 0 \amp 1 \amp \mid \amp \frac{1}{2} \amp 0 \end{bmatrix}
+        </md>
+        Now the matrix is in row echelon form. 
+        Let's get it into reduced row echelon form by getting a zero above the second leading <m>1</m>. 
+      </p>
+
+      <p>
+        Step 3: Multiply <m>2</m> times Row 2 to Row 1 (and replace Row 1), we get
+        <md>
+          \begin{bmatrix} 1 \amp 0 \amp \mid \amp 1 \amp 1 \\ 0 \amp 1 \amp \mid \amp \frac{1}{2} \amp 0 \end{bmatrix}
+        </md>
+        Notice that the part on the left is the <m>2 \times 2</m> identity matrix. 
+        And, notice that the part on the right is the inverse! 
+      </p>
+    </example>
+
+    <p>
+      That is basically the technique: 
+      <ul marker="">
+        <li>
+          <p>
+            Step 1: Make a big augmented matrix with <m>A</m> on the left side and <m>I</m> on the right side. 
+          </p>
+        </li>
+        <li>
+          <p>
+            Step 2: Put the augmented matrix into <alert>reduced</alert> row echelon form. 
+          </p>
+        </li>
+      </ul>
+      If the matrix is invertible, then the reduced row-echelon form will have <m>I</m> on the left side and <m>A^{-1}</m> on the right side. 
+    </p>
+
+    <exercise>
+      <p>
+        Use the Gaussian Elimination algorithm to find the inverse of the matrix
+        <md>
+          \begin{bmatrix} 1 \amp 0 \amp 3 \\ 4 \amp 2 \amp -5 \\ 3 \amp 1 \amp -2 \end{bmatrix}
+        </md>
+      </p>
+
+      <solution>
+        <p>
+          The big augmented matrix is 
+          <md>
+            \begin{bmatrix} 1 \amp 0 \amp 3 \amp \mid \amp 1 \amp 0 \amp 0 \\ 4 \amp 2 \amp -5  \amp \mid \amp 0 \amp 1 \amp 0 \\ 3 \amp 1 \amp -2  \amp \mid \amp 0 \amp 0 \amp 1 \end{bmatrix}
+          </md>
+        </p>
+        <p>First let's get zeros beneath our first leading <m>1</m>: 
+          <md>
+            \begin{bmatrix} 1 \amp 0 \amp 3 \amp \mid \amp 1 \amp 0 \amp 0 \\ 0 \amp 2 \amp -17 \amp \mid \amp -4 \amp 1 \amp 0 \\ 0 \amp 1 \amp -11 \amp \mid \amp -3 \amp 0 \amp 1 \end{bmatrix}
+          </md>
+        </p>
+        <p>
+          Now we need to get our second leading <m>1</m> by multiplying Row 2 by <m>\frac{1}{2}</m>: 
+          <md>
+            \begin{bmatrix} 1 \amp 0 \amp 3 \amp \mid \amp 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp \frac{-17}{2} \amp \mid \amp -2 \amp \frac{1}{2} \amp 0 \\ 0 \amp 1 \amp -11 \amp \mid \amp -3 \amp 0 \amp 1 \end{bmatrix}
+          </md>
+        </p>
+        <p>
+          Now we need a zero beneath our second leading <m>1</m>. 
+          We can multiply Row 2 by <m>-1</m> and adding it to Row 3: 
+          <md>
+            \begin{bmatrix} 1 \amp 0 \amp 3 \amp \mid \amp 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp \frac{-17}{2} \amp \mid \amp -2 \amp \frac{1}{2} \amp 0 \\ 0 \amp 0 \amp \frac{-5}{2} \amp \mid \amp -1 \amp \frac{-1}{2} \amp 1 \end{bmatrix}
+          </md>
+        </p>
+        <p>
+          Now to get our last leading <m>1</m>, we need to multiply Row 3 by <m>\frac{-2}{5}</m>: 
+          <md>
+            \begin{bmatrix} 1 \amp 0 \amp 3 \amp \mid \amp 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp \frac{-17}{2} \amp \mid \amp -2 \amp \frac{1}{2} \amp 0 \\ 0 \amp 0 \amp 1 \amp \mid \amp \frac{2}{5} \amp \frac{1}{5} \amp \frac{-2}{5} \end{bmatrix}
+          </md>
+        </p>
+        <p>
+          Then we need to get zeros above this third leading <m>1</m>. 
+          So, let's add <m>\frac{17}{2}</m> times Row 3 to Row 2 and -3 times Row 3 to Row 1: 
+          <md>
+            \begin{bmatrix} 1 \amp 0 \amp 0 \amp \mid \amp \frac{-1}{5} \amp \frac{-3}{5} \amp \frac{6}{5} \\ 0 \amp 1 \amp 0 \amp \mid \amp \frac{7}{5} \amp \frac{11}{5} \amp \frac{-17}{5} \\ 0 \amp 0 \amp 1 \amp \mid \amp \frac{2}{5} \amp \frac{1}{5} \amp \frac{-2}{5} \end{bmatrix}
+          </md>
+        </p>
+        <p>
+          So the inverse is
+          <md>
+            \begin{bmatrix} \frac{-1}{5} \amp \frac{-3}{5} \amp \frac{6}{5} \\ \frac{7}{5} \amp \frac{11}{5} \amp \frac{-17}{5} \\ \frac{2}{5} \amp \frac{1}{5} \amp \frac{-2}{5} \end{bmatrix}
+          </md>
+        </p>
+      </solution>
+    </exercise>
+  </subsection>
+
+  <subsection xml:id="subsec-ImportantTheorems-Inverses">
+    <title>Important Theorems and Facts about Inverses</title>
+    
+    <theorem xml:id="thm-CancellationLaw-Matrices">
+      <title>Cancellation Law for Matrices</title>
+      <statement>
+        <p>
+          Suppose <m>B</m> and <m>C</m> are matrices and <m>A</m> is an invertible matrix. 
+          Then the following holds: 
+          <ol marker="1.">
+            <li>
+              <p>
+                If <m>AB = AC</m>, then <m>B = C</m>. 
+              </p>
+            </li>
+            <li>
+              <p>
+                If <m>BA = CA</m>, then <m>B = C</m>. 
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+    </theorem>
+
+    <proof>
+      <p>
+        Part 1: Suppose <m>AB = AC</m>. 
+        Then 
+        <md>
+          <mrow> A^{-1} (AB) \amp= A^{-1} (AC) </mrow>
+          <mrow>\implies \qquad \lp A^{-1} A \rp B \amp= \lp A^{-1}A \rp C </mrow>
+          <mrow>\implies \qquad \qquad \quad \, \, IB \amp= IC \amp </mrow>
+        </md>
+        Therefore, <m>B = C</m>
+      </p>
+
+      <p>
+        The proof of Part 2 would be similar. 
+      </p>
+    </proof>
+
+    <theorem xml:id="thm-Transpose-Inverse">
+      <statement>
+        <p>
+          Suppose <m>A</m> is invertible. 
+          Then the inverse of <m>A^T</m> is the transpose of <m>A^{-1}</m>. 
+          That is, <md>\lp A^T \rp^{-1} = \lp A^{-1} \rp^T</md>
+        </p>
+      </statement>
+    </theorem>
+
+    <proof>
+      <p>
+        Suppose <m>A</m> is invertible. 
+        Then
+        <md>
+          A^{-1}A = I \qquad \implies \qquad \lp A^{-1}A \rp^T = I^T
+        </md>
+        But <m>I^T = I</m> and <m>\lp A^{-1} A \rp^T = A^T \lp A^{-1}\rp^T</m>. 
+        Substituting these into the above equation, we get
+        <md>
+          A^T \lp A^{-1} \rp^T = I
+        </md>
+        So the inverse of <m>A^T</m> is the transpose of <m>A^{-1}</m>.  
+      </p>
+    </proof>
+    
+    <theorem xml:id="thm-Product-Inverse">
+      <statement>
+        <p>
+          If <m>A</m> and <m>B</m> are invertible matrices and <m>AB</m> is defined, then
+          <md>
+            (AB)^{-1} = B^{-1}A^{-1}
+          </md>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      This is also called "shoes and socks" because you take off your shoes and socks in the reverse order in which you put them on.
+      That is what this theorem says about matrix inverses.
+    </p>
+    
+    <proof>
+      <p>
+        <md>
+          (AB)\lp B^{-1}A^{-1} \rp = A\lp BB^{-1} \rp A^{-1} = AIA^{-1} = AA^{-1} = I
+        </md>
+      </p>
+    </proof>
+
+    <p>
+      There are also a collection of a bunch of facts about inverses (including some of the ones we have just mentioned). 
+    </p>
+
+    <p>
+      Suppose the following matrices are all square and the same size. 
+      <ol marker="1.">
+        <li>
+          <p>
+            <m>I</m> is invertible and <m>I^{-1} = I</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            If <m>A</m> is invertible, so is <m>A^{-1}</m> and <m>\lp A^{-1} \rp^{-1} = A</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            If <m>A</m> and <m>B</m> are invertible, so is <m>AB</m>, and <m>(AB)^{-1} = B^{-1}A^{-1}</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            If <m>A_1, A_2, \ldots, A_k</m> are all invertible, so is their product <m>A_1A_2\ldots A_k</m>, and <m>\lp A_1A_2\ldots A_k \rp^{-1} = A_k^{-1}\ldots A_2^{-1}A_1^{-1}</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            If <m>A</m> is invertible, then so is <m>A^k</m>, and <m>\lp A^k \rp^{-1} = \lp A^{-1} \rp^k</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            If <m>A</m> is invertible and <m>k \neq 0</m> is a number, then <m>kA</m> is invertible and <m>\lp kA \rp^{-1} = \frac{1}{k} A^{-1}</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            If <m>A</m> is invertible, so is its transpose <m>A^T</m>, and <m>\lp A^T \rp^{-1} = \lp A^{-1} \rp^T</m>. 
+          </p>
+        </li>
+      </ol>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-ElementaryMatrices">
+    <title>Elementary Matrices</title>
+
+    <p>
+      There is an another way of finding the inverse of a matrix using <alert>elementary matrices</alert>. 
+      This is essentially the same as our Gaussian Elimination Algorithm but in another presentation using matrix multiplication. 
+    </p>
+
+    <p>
+      We've learned how to solve systems of equations and find matrix inverses by using the Gaussian Elimination algorithm.
+      And we learned how to multiply matrices. 
+      It turns out that these two things are related! 
+    </p>
+          
+    <p>
+      Each of the three elementary row operations can be performed by multiplying by an <term>elementary matrix</term>. 
+    </p>
+
+    <p>
+      Let's see this by looking at an example!
+    </p>
+
+    <example>
+      <p>
+        Consider the system: 
+        <md>
+          \begin{cases}
+            3x + 2y = 5 \\
+            5x - 8y = 14
+          \end{cases}
+        </md>
+        The augmented matrix is <m>\begin{bmatrix} 3 \amp 2 \amp \mid \amp 5 \\ 5 \amp -8 \amp \mid \amp 14 \end{bmatrix}</m>
+      </p>
+
+      <p>
+        Recall there are three elementary row operations we can perform to an augmented matrix. 
+        <ol marker="1.">
+          <li>
+            <p>
+              We could swap the two rows by multiplying by the matrix <m>\begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}</m>: 
+              <md>
+                \begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix} \begin{bmatrix} 3 \amp 2 \amp \mid \amp 5 \\ 5 \amp -8 \amp \mid \amp 14 \end{bmatrix} = \begin{bmatrix} 5 \amp -8 \amp \mid \amp 14 \\ 3 \amp 2 \amp \mid \amp 5 \end{bmatrix}
+              </md>
+            </p>
+          </li>
+          <li>
+            <p>
+              We could multiply Row 2 by <m>5</m> by multiplying by the matrix <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 5 \end{bmatrix}</m>: 
+              <md>
+                \begin{bmatrix} 1 \amp 0 \\ 0 \amp 5 \end{bmatrix} \begin{bmatrix} 3 \amp 2 \amp \mid \amp 5 \\ 5 \amp -8 \amp \mid \amp 14 \end{bmatrix} = \begin{bmatrix} 3 \amp 2 \amp \mid \amp 5 \\ 25 \amp -40 \amp \mid \amp 70 \end{bmatrix}
+              </md>
+            </p>
+          </li>
+          <li>
+            <p>
+              We could add <m>3</m> times Row 1 to Row 2 (and replace Row 2) by multiplying by the matrix <m>\begin{bmatrix} 1 \amp 0 \\ 3 \amp 1 \end{bmatrix}</m>: 
+              <md>
+                \begin{bmatrix} 1 \amp 0 \\ 3 \amp 1 \end{bmatrix} \begin{bmatrix} 3 \amp 2 \amp \mid \amp 5 \\ 5 \amp -8 \amp \mid \amp 14 \end{bmatrix} = \begin{bmatrix} 3 \amp 2 \amp \mid \amp 5 \\ 14 \amp -2 \amp \mid \amp 29 \end{bmatrix}
+              </md>
+            </p>
+          </li>
+        </ol>
+        Notice that in each case, the matrix that we used to do the elementary operation is exactly the matrix you would get by doing that same elementary operation to the identity matrix.
+        WHAT!??
+        <ol marker="1.">
+          <li>
+            <p>
+              If we swap the two rows of <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>, we get <m>\begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              If we multiply Row 2 of <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m> by <m>5</m>, we get <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 5 \end{bmatrix}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              If we add <m>3</m> times Row 1 of <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m> to Row 2 (and replace Row 2), we get <m>\begin{bmatrix} 1 \amp 0 \\ 3 \amp 1 \end{bmatrix}</m>
+            </p>
+          </li>
+        </ol>
+      </p>
+    </example>
+
+    <p>
+      <alert>Summary:</alert> Every elementary row operation corresponds to an <term>elementary matrix</term>, <m>E</m>, that can be created by performing that operation on the identity matrix. 
+      We can perform that operation on any matrix <m>A</m> by computing the product <m>EA</m>. 
+    </p>
+
+    <example>
+      <p>
+        Consider the matrix <m>A = \begin{bmatrix} 1 \amp 2 \\ 3 \amp 4 \end{bmatrix}</m>. 
+        Suppose we did the following two steps: 
+        <ol marker="1.">
+          <li>
+            <p>
+              Swap Row 1 and Row 2; 
+            </p>
+          </li>
+          <li>
+            <p>
+              Add <m>4</m> times Row 1 to Row 2 (and replace Row 2). 
+            </p>
+          </li>
+        </ol>
+        That would look like this: 
+        <md>
+          \begin{bmatrix} 1 \amp 2 \\ 3 \amp 4 \end{bmatrix} \rightarrow \begin{bmatrix} 3 \amp 4 \\ 1 \amp 2 \end{bmatrix} \rightarrow \begin{bmatrix} 3 \amp 4 \\ 13 \amp 18 \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        The first step corresponds to the elementary matrix 
+        <md>
+          E_1 = \begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}
+        </md> 
+        and the second step corresponds to the elementary matrix 
+        <md>
+          E_2 = \begin{bmatrix} 1 \amp 0 \\ 4 \amp 1 \end{bmatrix}
+        </md>
+        (<em>Note: </em> When we made <m>E_2</m>, we started with a brand new identity matrix rather than using <m>E_1</m>.)
+      </p>
+
+      <p>
+        Now notice that
+        <md>
+          E_2E_1A = \begin{bmatrix} 1 \amp 0 \\ 4 \amp 1 \end{bmatrix} \begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix} \begin{bmatrix} 1 \amp 2 \\ 3 \amp 4 \end{bmatrix}
+          = \begin{bmatrix} 3 \amp 4 \\ 13 \amp 18 \end{bmatrix}
+        </md>
+      </p>
+    </example>
+
+    <p>
+      The <alert>inverse</alert> of an elementary matrix <m>E</m>, <m>E^{-1}</m> is also an elementary matrix and can be used to perform the inverse of the elementary operation (the operation that would undo the original row operation). 
+    </p>
+
+    <example>
+      <p>
+        If <m>E</m> corresponds to adding <m>7</m> times Row 1 to Row 3, then the elementary matrix is
+        <me>
+          E = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 7 \amp 0 \amp 1 \end{bmatrix} 
+        </me>
+        Then <m>E^{-1} = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ -7 \amp 0 \amp 1 \end{bmatrix}</m> 
+        and this corresponds to adding <m>-7</m> times Row 1 to Row 3. 
+      </p>
+    </example>
+
+    <p>
+      Here is the claim: <alert>A matrix is invertible if and only if it is the product of elementary matrices</alert>. 
+    </p>
+
+    <p>
+      Let's think about our method for finding inverses using Gaussian Elimination algorithm. 
+      We create a big augmented matrix <m>\begin{bmatrix} A \mid I \end{bmatrix}</m> and then do elementary operations until we get to <m>\begin{bmatrix} I \mid A^{-1} \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+      Now we know that we could do this by multiplying the augmented matrix by the corresponding elementary matrices. 
+      Let's call those elementary matrices <m>E_1, E_2, \ldots, E_k</m>. 
+      Then if we just look at the right side of the big augmented matrix, we would see that 
+      <md>
+        E_k \ldots E_2E_1 I = A^{-1}
+      </md>
+      Take the inverse of both sides, and we get
+      <md>
+        E_1^{-1} E_2^{-1} \ldots E_{k}^{-1} = A
+      </md>
+    </p>
+
+    <p>
+      We can use what we just learned to describe a process that will always work to write any invertible matrix as a product of elementary matrices: 
+      <ol marker="Step 1:">
+        <li>
+          <p>
+            Put the matrix into reduced row echelon form. 
+            If it is invertible, then this form will be the identity matrix. 
+          </p>
+        </li>
+        <li>
+          <p>
+            For each step, write down the corresponding elementary matrix (writing them from right to left). 
+            Remember that each time we need to start with a brand new identity matrix to make our elementary matrix!
+          </p>
+
+          <p>
+            If you multiply the elementary matrices, you will get the inverse of the original matrix. 
+          </p>
+        </li>
+        <li>
+          <p>
+            Take the inverse of each of the elementary matrices and then write them down in the reverse order. 
+            Then we are done! 
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <example>
+      <p>
+        Consider this matrix <m>A = \begin{bmatrix} 3 \amp 2 \\ 5 \amp -8 \end{bmatrix}</m> and we want to find <m>A^{-1}</m>. 
+      </p>
+
+      <p>
+        First, let's multiply the top row by <m>\frac{1}{3}</m> to get our leading <m>1</m>: 
+        <md>
+          \begin{bmatrix} 1 \amp \frac{2}{3} \\ 5 \amp -8 \end{bmatrix}
+        </md>
+        This first step corresponds to the elementary matrix <m>E_1 = \begin{bmatrix} \frac{1}{3} \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>
+      </p>
+
+      <p>
+        Second, let's add <m>-5</m> times Row 1 to Row 2 (and replace Row 2) to get a zero below the first leading <m>1</m>: 
+        <md>
+          \begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp \frac{-34}{3} \end{bmatrix}
+        </md>
+        This second step corresponds to the elementary matrix <m>E_2 = \begin{bmatrix} 1 \amp 0 \\ -5 \amp 1 \end{bmatrix}</m>
+      </p>
+
+      <p>
+        Third, let's multiply the second row by <m>\frac{-3}{34}</m> to get our second leading <m>1</m>: 
+        <md>
+          \begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp 1 \end{bmatrix}
+        </md>
+        This third step corresponds to the elementary matrix <m>E_3 = \begin{bmatrix} 1 \amp 0 \\ 0 \amp \frac{-3}{34} \end{bmatrix}</m>
+      </p>
+
+      <p>
+        Fourth, let's add <m>\frac{-2}{3}</m> times Row 2 to Row 1 (and replace Row 1) to put the matrix into reduced row echelon form: 
+        <md>
+          \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}
+        </md>
+        This fourth step corresponds to the elementary matrix <m>E_4 = \begin{bmatrix} 1 \amp \frac{-2}{3} \\ 0 \amp 1 \end{bmatrix}</m>
+      </p>
+
+      <p>
+        So 
+        <md>
+          <mrow>A^{-1} \amp= E_4E_3E_2E_1 </mrow>
+          <mrow> \amp= \begin{bmatrix} 1 \amp \frac{-2}{3} \\ 0 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp 0 \\ 0 \amp \frac{-3}{34} \end{bmatrix} \begin{bmatrix} 1 \amp 0 \\ -5 \amp 1 \end{bmatrix} \begin{bmatrix} \frac{1}{3} \amp 0 \\ 0 \amp 1 \end{bmatrix} </mrow>
+          <mrow> \amp= \begin{bmatrix} \frac{4}{17} \amp \frac{1}{17} \\ \frac{5}{34} \amp \frac{-3}{34} \end{bmatrix} </mrow>
+        </md>
+      </p>
+
+      <p>
+        We can write all of the inverses of the elementary matrices by using the reverse operation on the identity matrix: 
+        <ul marker="">
+          <li>
+            <p>
+              The inverse of <m>E_4 = \begin{bmatrix} 1 \amp \frac{-2}{3} \\ 0 \amp 1 \end{bmatrix}</m> is <m>\begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp 1 \end{bmatrix}</m>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The inverse of <m>E_3 = \begin{bmatrix} 1 \amp 0 \\ 0 \amp \frac{-3}{34} \end{bmatrix}</m> is <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp \frac{34}{-3} \end{bmatrix}</m>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The inverse of <m>E_2 = \begin{bmatrix} 1 \amp 0 \\ -5 \amp 1 \end{bmatrix}</m> is <m>\begin{bmatrix} 1 \amp 0 \\ 5 \amp 1 \end{bmatrix}</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The inverse of <m>E_1 = \begin{bmatrix} \frac{1}{3} \amp 0 \\ 0 \amp 1 \end{bmatrix}</m> is <m>\begin{bmatrix} 3 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>.
+            </p>
+          </li>
+        </ul>
+        So
+        <md>
+          <mrow>A \amp= E_1^{-1}E_2^{-1}E_3^{-1}E_4^{-1} </mrow>
+          <mrow> \amp= \begin{bmatrix} 3 \amp 0 \\ 0 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp 0 \\ 5 \amp 1 \end{bmatrix}  \begin{bmatrix} 1 \amp 0 \\ 0 \amp \frac{34}{-3} \end{bmatrix} \begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp 1 \end{bmatrix}  </mrow>
+        </md>
+      </p>
+    </example>
+
+    <exercise>
+      <p>
+        Write the following matrix AND its inverse as a product of elementary matrices. 
+        <md>
+          A = \begin{bmatrix} 0 \amp 2 \amp 1 \\ 1 \amp 3 \amp -1 \\ -1 \amp -3 \amp 0 \end{bmatrix}
+        </md>
+      </p>
+
+      <solution>
+        <p>
+          Step 1: Swap Row 1 and Row 2 to get
+          <md>
+            \begin{bmatrix} 1 \amp 3 \amp -1 \\ 0 \amp 2 \amp 1 \\ -1 \amp -3 \amp 0 \end{bmatrix}
+          </md>
+          This corresponds to the elementary matrix <m>E_1 = \begin{bmatrix} 0 \amp 1 \amp 0 \\ 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>
+        </p>
+
+        <p>
+          Step 2: Add <m>1</m> times Row 1 to Row 3 (and replace Row 3) to get
+          <md>
+            \begin{bmatrix} 1 \amp 3 \amp -1 \\ 0 \amp 2 \amp 1 \\ 0 \amp 0 \amp -1 \end{bmatrix}
+          </md>
+          This corresponds to the elementary matrix <m>E_2 = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 1 \amp 0 \amp 1 \end{bmatrix}</m>
+        </p>
+
+        <p>
+          Step 3: Multiply Row 2 by <m>\frac{1}{2}</m> to get
+          <md>
+            \begin{bmatrix} 1 \amp 3 \amp -1 \\ 0 \amp 1 \amp \frac{1}{2} \\ 0 \amp 0 \amp -1 \end{bmatrix}
+          </md>
+          This corresponds to the elementary matrix <m>E_3 = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp \frac{1}{2} \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>
+        </p>
+
+        <p>
+          Step 4: Multiply Row 3 by <m>-1</m> to get
+          <md>
+            \begin{bmatrix} 1 \amp 3 \amp -1 \\ 0 \amp 1 \amp \frac{1}{2} \\ 0 \amp 0 \amp 1 \end{bmatrix}
+          </md>
+          This corresponds to the elementary matrix <m>E_4 = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp -1 \end{bmatrix}</m>
+        </p>
+
+        <p>
+          Step 5: Add <m>-3</m> times Row 2 to Row 1 (and replace Row 1) to get
+          <md>
+            \begin{bmatrix} 1 \amp 0 \amp -\frac{5}{2} \\ 0 \amp 1 \amp \frac{1}{2} \\ 0 \amp 0 \amp 1 \end{bmatrix}
+          </md>
+          This corresponds to the elementary matrix <m>E_5 = \begin{bmatrix} 1 \amp -3 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>
+        </p>
+
+        <p>
+          Step 6: Add <m>\frac{5}{2}</m> times Row 3 to Row 1 (and replace Row 1) to get
+          <md>
+            \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp \frac{1}{2} \\ 0 \amp 0 \amp 1 \end{bmatrix}
+          </md>
+          This corresponds to the elementary matrix <m>E_6 = \begin{bmatrix} 1 \amp 0 \amp \frac{5}{2} \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>
+        </p>
+
+        <p>
+          Step 7: Add <m>\frac{-1}{2}</m> times Row 3 to Row 2 (and replace Row 2) to get
+          <md>
+            \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}
+          </md>
+          This corresponds to the elementary matrix <m>E_7 = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp \frac{-1}{2} \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>
+        </p>
+
+        <p>
+          This tells us that
+          <md>
+            <mrow>A^{-1} \amp= E_7E_6E_5E_4E_3E_2E_1 </mrow>
+            <mrow> \amp= \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp \frac{-1}{2} \\ 0 \amp 0 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp 0 \amp \frac{5}{2} \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp -3 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp -1 \end{bmatrix} \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp \frac{1}{2} \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 1 \amp 0 \amp 1 \end{bmatrix} \begin{bmatrix} 0 \amp 1 \amp 0 \\ 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix} </mrow>
+          </md>
+          If we multiply those out we see that <m>A^{-1} = \begin{bmatrix} \frac{-3}{2} \amp \frac{-3}{2} \amp \frac{-5}{2} \\ \frac{1}{2} \amp \frac{1}{2} \amp \frac{1}{2} \\ 0 \amp -1 \amp -1 \end{bmatrix}</m>
+        </p>
+
+        <p>
+          And taking the inverse of both sides of the giant product (and using the "shoes and socks" rule), we see that
+          <md>
+            A = E_1^{-1}E_2^{-1}E_3^{-1}E_4^{-1}E_5^{-1}E_6^{-1}E_7^{-1}
+          </md>
+          So let's find the inverses of each of these matrices by performing the inverse operation on the identity matrix: 
+          <ul marker="">
+            <li>
+              <p>
+                <m>E_1</m> swaps Row 1 and Row 2 and that operation is its own inverse (do it twice and you get right back where you started), so <m>E_1^{-1} = \begin{bmatrix} 0 \amp 1 \amp 0 \\ 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>E_2</m> adds Row 1 to Row 3, and the inverse of that is adding <m>-1</m> times Row 1 to Row 2, so <m>E_2^{-1} = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ -1 \amp 0 \amp 1 \end{bmatrix}</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>E_3</m> multiplies Row 2 by <m>\frac{1}{2}</m>, and the inverse of that is multiplying Row 2 by <m>2</m>, so <m>E_3^{-1} = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 2 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>E_4</m> multiplies Row 3 by <m>-1</m>, and that operation is its own inverse, so <m>E_4^{-1} = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp -1 \end{bmatrix}</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>E_5</m> adds <m>-3</m> times Row 2 to Row 1, and the inverse of that is adding <m>3</m> times Row 2 to Row 1, so <m>E_5^{-1} = \begin{bmatrix} 1 \amp 3 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>E_6</m> adds <m>\frac{5}{2}</m> times Row 3 to Row 1, and the inverse of that is adding <m>\frac{-5}{2}</m> times Row 3 to Row 1, so <m>E_6^{-1} = \begin{bmatrix} 1 \amp 0 \amp \frac{-5}{2} \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>E_7</m> adds <m>\frac{-1}{2}</m> times Row 3 to Row 2, and the inverse of that is adding <m>\frac{1}{2}</m> times Row 3 to Row 2, so <m>E_7^{-1} = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp \frac{1}{2} \\ 0 \amp 0 \amp 1 \end{bmatrix}</m>.
+              </p>
+            </li>
+          </ul>
+          This means... 
+          <md>
+            <mrow> A \amp= E_1^{-1}E_2^{-1}E_3^{-1}E_4^{-1}E_5^{-1}E_6^{-1}E_7^{-1} </mrow>
+            <mrow> 
+              \amp= \begin{bmatrix} 0 \amp 1 \amp 0 \\ 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}
+              \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ -1 \amp 0 \amp 1 \end{bmatrix}
+              \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 2 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}
+              \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp -1 \end{bmatrix}
+              \begin{bmatrix} 1 \amp 3 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}
+              \begin{bmatrix} 1 \amp 0 \amp \frac{-5}{2} \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}
+              \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp \frac{1}{2} \\ 0 \amp 0 \amp 1 \end{bmatrix}
+            </mrow>
+          </md>
+        </p>
+      </solution>
+    </exercise>
+  </subsection>
+
+  <worksheet xml:id="ws-sec22">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+
+    <exercisegroup>
+        <introduction>
+            <p>Find the inverses of the matrices.</p>
+        </introduction>
+        
+        <exercise number="2.2.1">
+            <me>\begin{bmatrix} 8 \amp 3 \\ 5 \amp 2 \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="2.2.3">
+            <me>\begin{bmatrix} 8 \amp 3 \\ -7 \amp -3 \end{bmatrix}</me>
+        </exercise>
+    </exercisegroup>
+
+    <exercise number="2.2.5">
+        <statement>
+            <p>Verify that the inverse you found in Exercise 1 is correct.</p>
+        </statement>
+    </exercise>
+
+    <exercise number="2.2.9">
+        <statement>
+            <p>Let <m>A=\begin{bmatrix} 1 \amp 2 \\ 5 \amp 12 \end{bmatrix}</m>, <m>\v{b}_{1}=\begin{bmatrix} -1 \\ 3 \end{bmatrix}</m>, <m>\v{b}_{2}=\begin{bmatrix} 1 \\ -5 \end{bmatrix}</m>, <m>\v{b}_{3}=\begin{bmatrix} 2 \\ 6 \end{bmatrix}</m>, and <m>\v{b}_{4}=\begin{bmatrix} 3 \\ 5 \end{bmatrix}</m>.</p>
+            <ol marke="(a)">
+              <li>
+                <p>(a) Find <m>A^{-1}</m> and use it to solve the four equations <m>A\v{x}=\v{b}_{1}</m>, <m>A\v{x}=\v{b}_{2}</m>, <m>A\v{x}=\v{b}_{3}</m>, <m>A\v{x}=\v{b}_{4}</m>.</p>
+              </li>
+              <li>
+                <p>(b) The four equations in part (a) can be solved by the same set of row operations, since the coefficient matrix is the same in each case. Solve the four equations in part (a) by row reducing the augmented matrix <m>[A \quad \v{b}_1 \quad \v{b}_2 \quad \v{b}_3 \quad \v{b}_4]</m>.</p>
+              </li>
+            </ol>
+        </statement>
+    </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>Mark each statement True or False (T/F). Justify each answer.</p>
+        </introduction>
+
+        <exercise number="2.2.11">
+            <p>(T/F) In order for a matrix <m>B</m> to be the inverse of <m>A</m>, both equations <m>AB=I</m> and <m>BA=I</m> must be true.</p>
+        </exercise>
+
+        <exercise number="2.2.13">
+            <p>(T/F) If <m>A</m> and <m>B</m> are <m>n \times n</m> and invertible, then <m>A^{-1}B^{-1}</m> is the inverse of <m>AB</m>.</p>
+        </exercise>
+
+        <exercise number="2.2.15">
+            <p>(T/F) If <m>A=\begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m> and <m>ab-cd \neq 0</m>, then <m>A</m> is invertible.</p>
+        </exercise>
+
+        <exercise number="2.2.17">
+            <p>(T/F) If <m>A</m> is an invertible <m>n \times n</m> matrix, then the equation <m>A\v{x}=\v{b}</m> is consistent for each <m>\v{b}</m> in <m>\mathbb{R}^{n}</m>.</p>
+        </exercise>
+
+        <exercise number="2.2.19">
+            <p>(T/F) Each elementary matrix is invertible.</p>
+        </exercise>
+    </exercisegroup>
+
+    <exercise number="2.2.21">
+        <statement>
+            <p>Let <m>A</m> be an invertible <m>n \times n</m> matrix, and let <m>B</m> be an <m>n \times p</m> matrix. Show that the equation <m>AX=B</m> has a unique solution <m>A^{-1}B</m>.</p>
+        </statement>
+    </exercise>
+
+    <exercise number="2.2.23">
+        <statement>
+            <p>Suppose <m>AB=AC</m> where <m>B</m> and <m>C</m> are <m>n \times p</m> matrices and <m>A</m> is invertible. Show that <m>B=C</m>. Is this true, in general, when <m>A</m> is not invertible?</p>
+        </statement>
+    </exercise>
+
+    <exercise number="2.2.27">
+        <statement>
+            <p>Solve the equation <m>AB=BC</m> for <m>A</m>, assuming that <m>A</m>, <m>B</m>, and <m>C</m> are square and <m>B</m> is invertible.</p>
+        </statement>
+    </exercise>
+
+    <exercise number="2.2.31">
+        <statement>
+            <p>Explain why the columns of an <m>n \times n</m> matrix <m>A</m> are linearly independent when <m>A</m> is invertible.</p>
+        </statement>
+    </exercise>
+
+    <exercise number="2.2.33">
+        <statement>
+            <p>Suppose <m>A</m> is <m>n \times n</m> and the equation <m>A\v{x}=\v{0}</m> has only the trivial solution. 
+              Explain why <m>A</m> has <m>n</m> pivot columns and <m>A</m> is row equivalent to <m>I_{n}</m>. 
+              This shows that <m>A</m> must be invertible. </p>
+        </statement>
+    </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>Find the inverses of the matrices, if they exist. Use the algorithm introduced in this section.</p>
+        </introduction>
+        
+        <exercise number="2.2.39">
+            <me>\begin{bmatrix} 1 \amp 2 \\ 4 \amp 7 \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="2.2.41">
+            <me>\begin{bmatrix} 1 \amp 0 \amp -2 \\ -3 \amp 1 \amp 4 \\ 2 \amp -3 \amp 4 \end{bmatrix}</me>
+        </exercise>
+    </exercisegroup>
+
+  </worksheet>
+
+</section>

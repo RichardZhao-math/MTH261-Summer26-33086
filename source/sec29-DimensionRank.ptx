@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec29-DimensionRank" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Dimension and Rank</title>
+
+  <introduction>
+    <p>
+      In the previous section, we explored how to build a subspace using a spanning set. 
+      But this raises an important question for us to investigate: are all the vectors in a spanning set actually necessary? 
+      Sometimes, a set contains "redundant" vectors that don't add any new direction to the space. 
+    </p>
+
+    <p>
+      In this section, we are going to explore the concepts of linear independence and dimension. 
+    </p>
+  </introduction>
+
+  <objectives>
+    <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+            <p>
+                construct a basis for a subspace. 
+            </p>
+        </li>
+        <li>
+            <p>
+                determine the dimension of a subspace. 
+            </p>
+        </li>
+      </ul>
+  </objectives>
+  
+  <subsection xml:id="subsec-Basis">
+    <title>Basis</title>
+    
+    <p>
+        Recall that a span of a set of vectors is the <em>smallest</em> subspace containing those vectors, and the span of those vectors contains all possible linear combinations of those vectors. 
+        If the spanning set is linearly dependent, then it contains redundant vectors that don't contribute to the span. 
+        We can remove those redundant vectors and still have the same span.
+        For briefness, we only want to keep the necessary vectors that contribute to the span. 
+        That is, we want our spanning set to be linearly independent. 
+    </p>
+
+    <p>
+        This is essentially the <term>basis</term> of a subspace: a <em>linearly independent</em> spanning set that <em>spans the subspace</em>. 
+    </p>
+
+    <p>
+        That is, the two criteria for a basis are: (1) the set must span the subspace of interest, and (2) the set must be linearly independent. 
+        In a more math-y way, we can define a basis as follows: 
+    </p>
+
+    <definition xml:id="def-Basis">
+        <title>Basis of a Subspace of <m>\R^n</m></title>
+        <statement>
+            <p>
+                Let <m>U</m> be a subspace of <m>\R^n</m>. 
+                A set of vectors <m>\set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m> is called a <term>basis</term> of <m>U</m> if
+                <ol>
+                    <li>
+                        <p>
+                            <m>U = \span\set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m> is linearly independent.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </definition>
+
+    <p>
+        A basis should only include the necessary vectors that contribute to the span. 
+    </p>
+
+    <example>
+        <p>
+            Claim: The set <m>\left\{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}\right\}</m> is a basis for <m>\R^2</m>. 
+        </p>
+
+        <p>
+            This claim is true because (1) any vector in <m>\R^2</m> can be written as a linear combination of these two vectors (so it spans <m>\R^2</m>) and (2) these two vectors are linearly independent. 
+        </p>
+
+        <p>
+            Alternatively, <m>\left\{\begin{bmatrix} 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 2 \end{bmatrix}\right\}</m> is also a basis for <m>\R^2</m>. 
+            But why... Well this set of vectors also satisfies the two criteria for a basis.
+        </p>
+
+        <p>
+            (1) Any vector in <m>\R^2</m> can be written as a linear combination of these two vectors. 
+            Let <m>\v{v} = \begin{bmatrix} x \\ y \end{bmatrix}</m> be an arbitrary vector in <m>\R^2</m>.
+            We want to find scalars <m>c_1</m> and <m>c_2</m> such that
+            <md>
+            c_1 \begin{bmatrix} 1 \\ 1 \end{bmatrix} + c_2 \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} x \\ y \end{bmatrix}
+            </md>
+            Solving this system, we obtain:
+            <md>
+            \begin{cases}
+            c_1 = 2x - y \\
+            c_2 = y - x
+            \end{cases}
+            </md>
+            Therefore, any vector in <m>\R^2</m> can be written as a linear combination of these two vectors, so they span <m>\R^2</m>.
+        </p>
+
+        <p>
+            (2) These two vectors are linearly independent.
+            The set only contains two vectors and they are not scalar multiples of each other, so they are linearly independent.
+        </p>
+
+        <p>
+            <em>Amazing Fact about bases! </em> If <m>\set{\v{x}_1, \v{x}_2, \ldots, \v{x}_p}</m> and <m>\set{\v{y}_1, \v{y}_2, \ldots, \v{y}_k}</m> are both bases of a subspace <m>U</m>, then <m>p = k</m>. 
+            In other words, every basis of a given subspace contains exactly the same number of vectors. 
+        </p>
+
+        <p>
+            So for example, there is no such thing as a basis for <m>\R^2</m> that contains one or three vectors. 
+            They all must contain exactly two vectors! 
+        </p>
+
+        <note>
+            <title>But Richard... Why is it true? </title>
+
+            <p>
+                Well here is a very interesting approach to prove this fact (and this is also usually the approach to prove two quantities are equal in advanced mathematics!). 
+            </p>
+
+            <p>
+                Let's assume that <m>\mathcal{B}_1 = \set{\v{x}_1, \v{x}_2, \ldots, \v{x}_p}</m> and <m>\mathcal{B}_2 = \set{\v{y}_1, \v{y}_2, \ldots, \v{y}_k}</m> are both bases of a subspace <m>U</m>.
+                Then <m>\mathcal{B}_1</m> has <m>p</m> vectors in it and <m>\mathcal{B}_2</m> has <m>k</m> vectors in it.  
+            </p>
+
+            <p>
+                The approach goes like this: we want to show that <m>\mathcal{B}_1</m> cannot contain more vectors than <m>\mathcal{B}_2</m> (so <m>p \leq k</m>), and also that <m>\mathcal{B}_2</m> cannot contain more vectors than <m>\mathcal{B}_1</m> (so <m>k \leq p</m>). 
+                Then this will force <m>p = k</m> to be true!
+            </p>
+
+            <p>
+                Since <m>\mathcal{B}_1</m> is a basis of <m>U</m> and <m>\set{\v{y}_1, \v{y}_2, \ldots, \v{y}_k}</m> spans <m>U</m>, then <m>p \leq k</m>.  
+            </p>
+
+            <p>
+                And since <m>\mathcal{B}_2</m> is a basis of <m>U</m> and <m>\set{\v{x}_1, \v{x}_2, \ldots, \v{x}_p}</m> spans <m>U</m>, then <m>k \leq p</m>.  
+            </p>
+            
+            <p>
+                Together, that means <m>p = k</m>.
+            </p>
+        </note>
+    </example>
+  </subsection>
+
+    <subsection xml:id="subsec-Dimensions">
+        <title>Dimensions</title>
+        
+        <p>
+            Recall that the number of vectors in a basis is a fixed number for a given subspace, and we can generate the whole subspace by taking linear combinations of the vectors in the basis. 
+            Then we define the <term>dimension</term> of a subspace as the number of vectors in a basis for that subspace. 
+        </p>
+
+        <definition xml:id="def-Dimensions">
+            <title>Dimension of a Subspace of <m>\R^n</m></title>
+            <statement>
+                <p>
+                   Let <m>U</m> be a subspace and <m>\set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m> be a basis of <m>U</m>. 
+                   Then the <term>dimension</term> of <m>U</m>, denoted <m>\dim U</m>, is the number of vectors in the basis, which is <m>p</m>. 
+                   That is, <m>\dim U = p</m>.
+                </p>
+            </statement>
+        </definition>
+
+        <example>
+            <p>
+                It makes sense to say that the dimension of <m>\R^2</m> is <m>2</m> and the dimension of <m>\R^3</m> is <m>3</m>. 
+                But how does it match with our definition of dimension?
+            </p>
+
+            <p>
+                We can verify this by finding a basis for <m>\R^2</m> and <m>\R^3</m> easily. 
+                Earlier, we saw that <m>\left\{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix} \right\}</m> is a basis for <m>\R^2</m>, so <m>\dim \R^2 = 2</m>. 
+                The basis is called the <term>standard basis</term> for <m>\R^2</m>.
+            </p>
+
+            <p>
+                Similarly, <m>\left\{\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}\right\}</m> is a basis for <m>\R^3</m>, so <m>\dim \R^3 = 3</m>. 
+                This basis is called the <term>standard basis</term> for <m>\R^3</m>.
+            </p>
+
+            <p>
+                More generally, the dimension of <m>\R^n</m> is <m>n</m> since the standard basis for <m>\R^n</m> is
+                <md>
+                    \left\{\begin{bmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{bmatrix}, \ldots, \begin{bmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{bmatrix}\right\}
+                </md>
+                and there are exactly <m>n</m> vectors in this basis.
+            </p>
+        </example>
+
+       <p>
+            Recall we talked about two fundamental subspaces associated with a matrix in the last section: the null space and the column space. 
+            What about their basis and dimension? 
+       </p>
+
+       <p>
+            Good news! 
+            The technique we use to find a spanning set for the null space of a matrix will automatically give us a basis! 
+            So we can find a basis of a null space by just doing what we have been doing: solving the homogeneous equation <m>A\v{x} = \v{0}</m> and writing the solution in parametric form. 
+            The vectors corresponding to the free variables will form a basis for the null space. 
+       </p>
+
+       <p>
+            <em>NOTE:</em> The reason why the vectors corresponding to the free variables will automatically form a basis for the null space is because of the nature of the free variables (talk to Richard if you are super interested in it!). 
+            So the only way to end up with the wrong number of vectors in the basis is to have the wrong number of free variables. 
+       </p>
+
+       <p>
+            Yet the basis for the column space is a bit more tricky to find, as there is no guarantee that the columns of a matrix will be linearly independent. 
+            However, we can find a basis for the column space by <alert>only including the pivot columns</alert>, as these column vectors are guaranteed to be linearly independent (so we essentially take out the free variables to make sure <m>A\v{x} = \v{0}</m> only has the trivial solution). 
+       </p>
+
+       <example>
+            <p>
+                Let's say we have the matrix <m>A = \begin{bmatrix} -3 \amp 6 \amp -1 \amp 1 \amp 7 \\ 1 \amp -2 \amp 2 \amp 3 \amp -1 \\ 2 \amp -4 \amp 5 \amp 8 \amp -4 \end{bmatrix}</m> and this time we want to find a basis for the null space and the column space. 
+            </p>
+
+            <p>
+                In the last section, we solved the homogeneous equation <m>A\v{x} = \v{0}</m>. 
+                For our convenience, let's copy down the reduced row echelon form of the augmented matrix: 
+                <md>
+                    \begin{bmatrix} 1 \amp -2 \amp 0 \amp -1 \amp 0 \amp \mid \amp 0  \\ 0 \amp 0 \amp 1 \amp 2 \amp 0 \amp \mid \amp 0\\ 0 \amp 0 \amp 0 \amp 0 \amp 1 \amp \mid \amp 0 \end{bmatrix}
+                </md>
+                <em>P.S.: </em> Row echelon form is enough as well since all we need to identify are the pivot columns (or not the pivot columns).
+            </p>
+
+            <p>
+                Lets' start with the null space first! 
+                The solution to the homogeneous equation <m>A\v{x} = \v{0}</m>, in parametric form, looks like this:  
+                <md>
+                \v{x} = \begin{bmatrix} 2x_2 + x_4 \\ x_2 \\ -2x_4 \\ x_4 \\ 0 \end{bmatrix} = x_2\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + x_4 \begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}
+                </md>
+                where <m>x_2, x_4 \in \R</m>. 
+                Hence, the null space of <m>A</m> is
+                <md>          
+                    \Nul A = \span\left\{\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}\right\}
+                </md>
+                Since these vectors are linearly independent, then a basis for the null space is <m>\left\{\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}\right\}</m> and hence the null space has dimension <m>2</m>. 
+            </p>
+
+            <p>
+                What about a basis for the column space? 
+                Let's stare at the reduced row echelon form of the coefficient matrix part again! 
+            </p>
+
+            <p>
+                Notice that a pivot position appears in the first, third, and fifth columns. 
+                So they do NOT correspond to free variables. 
+                Imagine if we remove column 2 and column 4 from the coefficient matrix in the beginning, then we will end up with a homogeneous equation that has no free variable, and hence the columns are linearly independent. 
+                Therefore, we can span the column space by just including the first, third, and fifth columns. 
+                That is, 
+                <md>          
+                    \Col A = \span\left\{\begin{bmatrix} -3 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -1 \\ 2 \\ 5 \end{bmatrix}, \begin{bmatrix} 7 \\ -1 \\ -4 \end{bmatrix}\right\}
+                </md>
+                A basis for the column space is <m>\left\{\begin{bmatrix} -3 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -1 \\ 2 \\ 5 \end{bmatrix}, \begin{bmatrix} 7 \\ -1 \\ -4 \end{bmatrix}\right\}</m> and hence the column space has dimension <m>3</m>. 
+            </p>
+
+            <p>
+                <alert>Spoiler:</alert> You may have noticed that the dimension of the null space and the dimension of the column space add up to the number of columns in the matrix. 
+                This is a BIG theorem in linear algebra! 
+                We can sense that this is true because we take the columns with pivot positions to form a basis for the column space and use the columns without pivot positions to figure out a basis for the null space. 
+                We will focus on this theorem in section 5.4 (and this theorem is a fundamental theorem of linear algebra!) .
+            </p>
+       </example>
+
+       <exercise>
+            <p>
+                Let <m>B = \begin{bmatrix} -1 \amp -1 \amp -1 \amp -2 \amp -4 \\ 2 \amp 1 \amp 0 \amp 0 \amp 3 \\ 2 \amp 1 \amp 1 \amp 1 \amp 6 \end{bmatrix}</m>. 
+            </p>
+
+            <p>
+                Find a basis and the dimension for <m>\Nul A</m> and <m>\Col A</m>. 
+            </p>
+       </exercise>
+    </subsection>
+
+    <subsection xml:id="subsec-Rank-NullityTheorem">
+      <title>A Fundamental Theorem of Linear Algebra: Rank-Nullity Theorem</title>
+      
+      <p>
+        You may have noticed a pattern between the dimension of the null space and the dimension of a column space through the problems: 
+        we form a basis of the column space by taking the pivot columns and can construct a basis of the null space by focusing on the non-pivot columns. 
+        That is, we used every single columns when constructing the basis of the column space and the dimension of the null space. 
+        Their dimensions should add back up to the number of columns! 
+      </p>
+
+      <p>
+        <alert>Terminology! </alert> There are special terms to describe the dimensions here: 
+        <ul marker="">
+          <li>
+            <p>
+              The dimension of the null space is called the <term>nullity</term>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The dimension of the column space is called the <term>rank</term>. 
+            </p>
+          </li>
+        </ul>
+        A big theorem to connect the dimension of these two fundamental subspaces is called the <term>Rank-Nullity Theorem</term>! 
+        This is considered a fundamental theorem of linear algebra as it connects two fundamental subspaces in linear algebra together!
+      </p>
+
+      <theorem xml:id="thm-Rank-Nullity">
+        <title>Rank-Nullity Theorem</title>
+        <statement>
+          <p>
+            Let <m>A</m> be a <m>m \times n</m> matrix, then
+            <md>
+              \Rank A + \Nullity A = n
+            </md>
+          </p>
+        </statement>
+      </theorem>
+
+      <p>
+        Feel free to explore the other fundamental theorems of linear algebra as there are two more fundamental subspaces we did not discussed in class! 
+        A huge spoiler to explore the other fundamental theorem of linear algebra relies on the fact that the dimension of the row space is also called the rank!
+      </p>
+      
+    </subsection>
+
+    <subsection xml:id="subsec-ExtendedInvertibleMatrixTheorem">
+        <title>Extending Our Invertible Matrix Theorem!</title>
+        
+        <p>
+            Back in <xref ref="sec23-InvertibleMatrix"/> we saw our first version of the <xref ref="thm-InvertibleMatrixTheorem"/>. 
+        </p>
+
+        <p>
+            Now that we learn more fancy things in linear algebra, we can add a couple more conditions that are equivalent to invertibility:
+            <ul marker="">
+                <li>
+                    <p>
+                        13. The columns of <m>A</m> form a basis of <m>\R^n</m>. 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        14. <m>\Col A = \R^n</m> 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        15. <m>\dim \Col A = n</m>. 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        16. <m>\Nul A = \set{\v{0}}</m>. 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        17. <m>\dim \Nul A = 0</m>. 
+                    </p>
+                </li>
+            </ul> 
+            They should be immediate results from the Invertible Matrix Theorem, but rephrasing it using all the fancy concepts we learned in this chapter. 
+        </p>
+    </subsection>
+
+    <worksheet xml:id="ws-sec29">
+        <title>Some Exercises for This Section</title>
+        
+        <introduction>
+        <p>
+            Richard included some practice problems that cover some main concepts in this section. 
+            You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+            The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+            Reach out to Richard for help if you get stuck or have any questions. 
+        </p>
+
+        <p>
+            Only the final answers are included to some of the problems for you to check your result. 
+            If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+        </p>
+        </introduction>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+                The following exercises display a matrix <m>A</m> and an echelon form of <m>A</m>. 
+                Find bases for <m>\Col A</m> and <m>\Nul A</m>, and then state the dimensions of these subspaces.
+            </p>
+        </introduction>
+
+        <exercise number="2.9.9">
+            <statement>
+                <me>A=\begin{bmatrix}1\amp -3\amp 2\amp -4\\ -3\amp 9\amp -1\amp 5\\ 2\amp -6\amp 4\amp -3\\ -4\amp 12\amp 2\amp 7\end{bmatrix} \sim \begin{bmatrix}1\amp -3\amp 2\amp -4\\ 0\amp 0\amp 5\amp -7\\ 0\amp 0\amp 0\amp 5\\ 0\amp 0\amp 0\amp 0\end{bmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="2.9.11">
+            <statement>
+                <me>A=\begin{bmatrix}1\amp 2\amp -5\amp 0\amp -1\\ 2\amp 5\amp -8\amp 4\amp 3\\ -3\amp -9\amp 9\amp -7\amp -2\\ 3\amp 10\amp -7\amp 11\amp 7\end{bmatrix} \sim \begin{bmatrix}1\amp 2\amp -5\amp 0\amp -1\\ 0\amp 1\amp 2\amp 4\amp 5\\ 0\amp 0\amp 0\amp 1\amp 2\\ 0\amp 0\amp 0\amp 0\amp 0\end{bmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+        
+        <exercise number="2.9.13">
+            <statement>
+                <p>
+                    Find a basis for the subspace spanned by the following vectors. 
+                    What is the dimension of the subspace?
+                    <me>\begin{bmatrix}1\\ -3\\ 2\\ -4\end{bmatrix}, \begin{bmatrix}-3\\ 9\\ -6\\ 12\end{bmatrix}, \begin{bmatrix}2\\ -1\\ 4\\ 2\end{bmatrix}, \begin{bmatrix}-4\\ 5\\ -3\\ 7\end{bmatrix}</me>
+                </p>
+            </statement>
+        </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+                In the following exercise, mark each statement True or False (T/F). 
+                Justify each answer. 
+                Here <m>A</m> is an <m>m \times n</m> matrix.
+            </p>
+        </introduction>
+
+        <exercise number="2.9.19">
+            <statement>
+                <p>
+                    (T/F) Each line in <m>\mathbb{R}^{n}</m> is a one-dimensional subspace of <m>\mathbb{R}^{n}</m>.
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.9.21">
+            <statement>
+                <p>
+                    (T/F) The dimension of <m>\Col A</m> is the number of pivot columns of <m>A</m>.
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.9.23">
+            <statement>
+                <p>
+                    (T/F) The dimensions of <m>\Col A</m> and <m>\Nul A</m> add up to the number of columns of <m>A</m>.
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.9.25">
+            <statement>
+                <p>
+                    (T/F) If a set of <m>p</m> vectors spans a <m>p</m>-dimensional subspace <m>H</m> of <m>\mathbb{R}^{n}</m>, then these vectors form a basis for <m>H</m>.
+                </p>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+        <exercise number="2.9.27">
+            <statement>
+                <p>
+                    If the subspace of all solutions of <m>A\v{x}=0</m> has a basis consisting of three vectors and if <m>A</m> is a <m>5 \times 7</m> matrix, what is the rank of <m>A</m>?
+                </p>
+            </statement>
+        </exercise>
+
+    </worksheet>
+
+</section>

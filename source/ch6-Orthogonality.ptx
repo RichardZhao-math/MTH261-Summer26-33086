@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch6-Orthogonality" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Orthogonality</title>
+
+  <introduction>
+    <p> Text before the first section. </p>
+  </introduction>
+
+  <!-- include sections -->
+  <xi:include href="sec61-InnerProduct.ptx" />
+  <xi:include href="sec62-OrthogonalSets.ptx" />
+  <xi:include href="sec63-OrthogonalProjection.ptx" />
+  <xi:include href="sec64-GramSchmit.ptx" />
+
+</chapter>

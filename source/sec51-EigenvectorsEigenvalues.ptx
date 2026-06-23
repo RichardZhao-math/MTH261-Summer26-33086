@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec51-EigenvectorsEigenvalues" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Eigenvectors and Eigenvalues</title>
+
+  <investigation>
+    <introduction>
+        <p>
+            Suppose <m>A = \begin{bmatrix} 3 \amp -2 \\ 1 \amp 0 \end{bmatrix}</m> and <m>T: \R^2 \to \R^2</m> be a linear transformation defined by <m>T(\v{x}) = A\v{x}</m>. 
+        </p>
+    </introduction>
+
+    <task>
+        <p>
+            Let <m>\v{u} = \begin{bmatrix} -1 \\ 1 \end{bmatrix}</m>. 
+            Compute <m>T(\v{u})</m>, and then sketch the vectors <m>\v{u}</m> and <m>T(\v{u})</m>. 
+            What is their relationship?
+        </p>
+    </task>
+
+    <task>
+        <p>
+            Let <m>\v{v} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}</m>. 
+            Compute <m>T(\v{v})</m>, and then sketch the vectors <m>\v{v}</m> and <m>T(\v{v})</m>. 
+            What is their relationship?
+        </p>
+    </task>
+  </investigation>
+    
+    <p>
+        In the previous investigation, we found that <m>\v{v}</m> and <m>T(\v{v})</m> are parallel, which allows us to express <m>T(\v{v})</m> as a <em>scalar multiple</em> of the preimage <m>\v{v}</m>. 
+        Observe that matrix-vector multiplication is hard. 
+        But scalar multiplication of a vector is much easier. 
+        This is the idea behind <term>eigenvalues</term> and <term>eigenvectors</term>, which allows us to turn a matrix-vector multiplication to a scalar multiplication! 
+    </p>
+
+    <definition xml:id="def-EigenvaluesEigenvectors">
+        <title>Eigenvalues and Eigenvectors</title>
+        <statement>
+            <p>
+                Let <m>A</m> be an <m>n \times n</m> matrix. 
+                An <term>eigenvector</term> of <m>A</m> is a <em>nonzero</em> vector <m>\v{x}</m> such that
+                <md>
+                    A\v{x} = \lambda \v{x}
+                </md>
+                for some scalar <m>\lambda</m>. 
+                Such a scalar <m>\lambda</m> is called an <term>eigenvalue</term> of <m>A</m>. 
+            </p>
+
+            <p>
+                We call <m>\v{x}</m> here an eigenvector corresponding to the eigenvalue <m>\lambda</m>. 
+            </p>
+        </statement>
+    </definition>
+
+    <note>
+        <title>But Richard... Why can't we allow the zero vector to be an eigenvector?</title>
+
+        <p>
+            Great question! 
+            Let's do a quick experiment by allowing the zero vector to be an eigenvector. 
+        </p>
+
+        <p>
+            If <m>\v{0}</m> is an eigenvector of some square matrix <m>A</m>, then we have
+            <md>
+                A\v{0} = \lambda \v{0}
+            </md>
+            for some scalar <m>\lambda</m>.
+        </p>
+
+        <p>
+            <alert>Then what are the eigenvalues of this matrix <m>A</m>? </alert>
+        </p>
+
+        <p>
+            The answer is <em>every scalar</em>!
+            This is because the equation
+            <md>
+                A\v{0} = \lambda \v{0}
+            </md>
+            is always true regardless of the value of <m>\lambda</m> (we ended up getting <m>\v{0} = \v{0}</m>). 
+            Then why bother defining the concept of eigenvalues of a matrix if every scalar is an eigenvalue? 
+        </p>
+
+        <p>
+            Observe that allowing the zero vector to be an eigenvector will trivialize the concept of eigenvalues. 
+            So we exclude the zero vector from being an eigenvector.
+        </p>
+    </note>
+
+    <p>
+        The goal of this section is to be able to find the eigenvalues and its corresponding eigenvectors of a matrix. 
+        Let's do some verification, and then we will summarize the process that can be applied to any square matrix.
+    </p>
+
+    <example>
+        <p>
+            Let <m>A = \begin{bmatrix} 1 \amp 6 \\ 5 \amp 2 \end{bmatrix}</m>. 
+            Is <m>\v{u} = \begin{bmatrix} 6 \\ -5 \end{bmatrix}</m> an eigenvector of <m>A</m>?
+        </p>
+
+        <p>
+            Based on the definition, an eigenvector can turn a matrix-vector multiplication into a scalar multiplication. 
+            So let's compute <m>A\v{u}</m> and see if we can express it as a scalar multiple of <m>\v{u}</m>.
+        </p>
+
+        <p>
+            Observe that
+            <md>
+                A\v{u} = \begin{bmatrix} 1 \amp 6 \\ 5 \amp 2 \end{bmatrix} \begin{bmatrix} 6 \\ -5 \end{bmatrix} = \begin{bmatrix} -24 \\ 20 \end{bmatrix} = -4 \begin{bmatrix} 6 \\ -5 \end{bmatrix} = -4\v{u}
+            </md>
+            So we can express this matrix-vector multiplication as scaling the vector by a factor of <m>-4</m>. 
+            Hence, <m>\v{u}</m> is an eigenvector of <m>A</m>, and the corresponding eigenvalue is <m>-4</m>. 
+        </p>
+
+        <p>
+            What about <m>\v{v} = \begin{bmatrix} 3 \\ -2 \end{bmatrix}</m>? 
+            Is <m>\v{v}</m> also an eigenvector of <m>A</m>?
+        </p>
+
+        <p>
+            Let's do the same thing as before by computing <m>A\v{v}</m> and see if we can express it as a scalar multiple of <m>\v{v}</m>: 
+            <md>
+                A\v{v} = \begin{bmatrix} 1 \amp 6 \\ 5 \amp 2 \end{bmatrix} \begin{bmatrix} 3 \\ -2 \end{bmatrix} = \begin{bmatrix} -9 \\ 11 \end{bmatrix}
+            </md>
+            Since <m>\begin{bmatrix} -9 \\ 11 \end{bmatrix}</m> is not a scalar multiple of <m>\begin{bmatrix} 3 \\ -2 \end{bmatrix}</m>, the vector <m>\v{v}</m> is not an eigenvector of <m>A</m>.
+        </p>
+
+        <p>
+            Richard claims that an eigenvalue of <m>A</m> is <m>7</m>. 
+            How can we verify this claim? 
+        </p>
+
+        <p>
+            If <m>\lambda = 7</m>, then we can plug this value into the equation <m>A\v{x} = \lambda \v{x}</m> and be able to find the corresponding eigenvectors. 
+            So let's first plug in <m>\lambda = 7</m> into the equation <m>A\v{x} = \lambda \v{x}</m>:
+            <md>
+                \begin{bmatrix} 1 \amp 6 \\ 5 \amp 2 \end{bmatrix} \v{x} = 7\v{x}
+            </md>
+            We can assume <m>\v{x} = \begin{bmatrix} a \\ b \end{bmatrix}</m> and rewrite the equation as
+            <md>
+                \begin{bmatrix} 1 \amp 6 \\ 5 \amp 2 \end{bmatrix} \begin{bmatrix} a \\ b \end{bmatrix} = 7 \begin{bmatrix} a \\ b \end{bmatrix}
+            </md>
+            This is equivalent to the system of equations
+            <md>
+                \begin{cases}
+                    a + 6b = 7a \\
+                    5a + 2b = 7b
+                \end{cases}
+                \qquad \implies \qquad
+                \begin{cases}
+                    (1 - 7)a + 6b = 0 \\
+                    5a + (2 - 7)b = 0
+                \end{cases}
+            </md>
+            Now we can solve this system of equations using augmented matrices:
+            <md>
+                \begin{bmatrix} 1 - 7 \amp 6 \amp \mid \amp 0 \\ 5 \amp 2 - 7 \amp \mid \amp 0 \end{bmatrix}
+                = 
+                \begin{bmatrix} -6 \amp 6 \amp \mid \amp 0 \\ 5 \amp -5 \amp \mid \amp 0 \end{bmatrix}
+            </md>
+            Converting this matrix to row echelon form, we have
+            <md>
+                \begin{bmatrix} 1 \amp -1 \amp \mid \amp 0 \\ 0 \amp 0 \amp \mid \amp 0 \end{bmatrix}
+            </md>
+            This implies that <m>a - b = 0</m> and <m>b</m> is a free variable. 
+            Hence, the corresponding eigenvectors are of the form <m>\v{x} = \begin{bmatrix} b \\ b \end{bmatrix} = b \begin{bmatrix} 1 \\ 1 \end{bmatrix}</m> for any real number of <m>b</m>.
+        </p>
+    </example>
+
+    <p>
+        Suppose <m>\v{x}</m> is an eigenvector of <m>A</m>. 
+        Then <m>\v{x}</m> must be a solution to the equation <m>A\v{x} = \lambda \v{x}</m> for some scalar <m>\lambda</m>. 
+        If we do some quick algebraic manipulation, we can obtain the following equation
+        <md>
+            A\v{x} - \lambda \v{x} = \v{0}
+        </md>
+        Observe that <m>\v{x}</m> is a common factor of the left-hand side, so we can factor it out and rewrite the equation as
+        <md>
+            (A - \lambda)\v{x} = \v{0}
+        </md>
+        Hmm... But this equation doesn't quick make sense... 
+        What is "<m>A - \lambda</m>"? 
+        That is, how can we subtract a scalar from a matrix?
+    </p>
+
+    <p>
+        From the previous example, we saw that <m>7</m> is an eigenvalue of <m>A</m>, and we ended up subtracting <m>7</m> from the diagonal entries of <m>A</m>. 
+        So instead of writing <m>A - \lambda</m>, which makes no sense, we can rewrite it as <m>A - \lambda I</m>, where <m>I</m> is the identity matrix. 
+        Hence, we can rewrite the equation as
+        <md>
+            (A - \lambda I)\v{x} = \v{0}
+        </md>
+        Now the equation makes sense! 
+        This is just a homogeneous equation so the solution (aka the eigenvectors) is captured by the null space of the matrix <m>A - \lambda I</m>. 
+        <alert>Finding the eigenvectors of a matrix corresponding to a matrix is equivalent to finding the null space of the matrix <m>A - \lambda I</m>.</alert>
+    </p>
+
+    <p>
+        <alert>Be careful!</alert> Recall that we don't allow the zero vector to be an eigenvector. 
+        Hence, we want to find the <alert>non-trivial</alert> solutions to the equation <m>(A - \lambda I)\v{x} = \v{0}</m>. 
+    </p>
+
+    <example>
+        <p>
+            Let <m>A = \begin{bmatrix} 4 \amp -1 \amp 6 \\ 2 \amp 1 \amp 6 \\ 2 \amp -1 \amp 8 \end{bmatrix}</m>. 
+            An eigenvalue of this matrix is <m>2</m>.
+            Let's find the corresponding eigenvectors! 
+        </p>
+
+        <p>
+            Essentially we want to find the non-trivial solutions to the equation <m>(A - 2I)\v{x} = \v{0}</m>. 
+            So let's find the matrix <m>A - 2I</m> first:
+            <md>
+                A - 2I = \begin{bmatrix} 4 - 2 \amp -1 \amp 6 \\ 2 \amp 1 - 2 \amp 6 \\ 2 \amp -1 \amp 8 - 2 \end{bmatrix} = \begin{bmatrix} 2 \amp -1 \amp 6 \\ 2 \amp -1 \amp 6 \\ 2 \amp -1 \amp 6 \end{bmatrix}
+            </md>
+            Now we can find the null space of the matrix <m>A - 2I</m> by solving the homogeneous equation <m>(A - 2I)\v{x} = \v{0}</m> using the augmented matrix: 
+            <md>
+                \begin{bmatrix} 2 \amp -1 \amp 6 \amp \mid \amp 0 \\ 2 \amp -1 \amp 6 \amp \mid \amp 0 \\ 2 \amp -1 \amp 6 \amp \mid \amp 0 \end{bmatrix}
+                \sim
+                \begin{bmatrix} 1 \amp -\frac{1}{2} \amp 3 \amp \mid \amp 0 \\ 0 \amp 0 \amp 0 \amp \mid \amp 0 \\ 0 \amp 0 \amp 0 \amp \mid \amp 0\end{bmatrix}
+            </md>
+            Observe that <m>x_2</m> and <m>x_3</m> are free variables, and <m>x_1 = \frac{1}{2}x_2 - 3x_3</m>. 
+            Then we can express the solution, in parametric form, as
+            <md>
+                \v{x} = \begin{bmatrix} \frac{1}{2}x_2 - 3x_3 \\ x_2 \\ x_3 \end{bmatrix} = x_2 \begin{bmatrix} \frac{1}{2} \\ 1 \\ 0 \end{bmatrix} + x_3 \begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix}
+            </md>
+            Then the corresponding eigenvectors are of the form <m>\v{x} = x_2 \begin{bmatrix} \frac{1}{2} \\ 1 \\ 0 \end{bmatrix} + x_3 \begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix}</m> for any real numbers of <m>x_2</m> and <m>x_3</m>, except for the case when both <m>x_2</m> and <m>x_3</m> are zero. 
+        </p>
+    </example>
+
+    <p>
+        Observe that all the eigenvectors corresponding to a specific eigenvalue of a matrix will live in <m>\Nul(A - \lambda I)</m>, which is a subspace. 
+        Then we can define <term>eigenspace</term> as the null space of the matrix <m>A - \lambda I</m>. 
+    </p>
+
+    <definition xml:id="def-Eigenspace">
+        <title>Eigenspace</title>
+        <statement>
+            <p>
+                Let <m>A</m> be an <m>n \times n</m> matrix, and let <m>\lambda</m> be an eigenvalue of <m>A</m>. 
+                The <term>eigenspace</term> of <m>A</m> corresponding to the eigenvalue <m>\lambda</m>, denoted by <m>E_\lambda</m>, is the null space of the matrix <m>A - \lambda I</m>. 
+                Symbolically speaking, 
+                <md>
+                    E_\lambda = \Nul(A - \lambda I)
+                </md>
+            </p>
+        </statement>
+    </definition>
+
+    <p>
+        It is correct to say that the eigenspace includes all the eigenvectors corresponding to the eigenvalue of a matrix, but it is <em>incorrect</em> to say that everything in the eigenspace is an eigenvector. 
+        Remember that the zero vector is always in the subspace, but it is not an eigenvector. 
+        So eigenspace is essentially the set of all eigenvectors corresponding to a specific eigenvalue of a matrix, together with the zero vector. 
+    </p>
+
+    <example>
+        <p>
+            Back to our previous example of <m>A = \begin{bmatrix} 4 \amp -1 \amp 6 \\ 2 \amp 1 \amp 6 \\ 2 \amp -1 \amp 8 \end{bmatrix}</m> with an eigenvalue of <m>2</m>, 
+            we can find its eigenspace <m>E_2</m>. 
+        </p>
+
+        <p>
+            We did all the heavy-lifting work in the previous example by solving the homogeneous equation <m>A - 2I = \v{0}</m>, with the solution, in parametric form, as 
+            <md>
+                \v{x} = \begin{bmatrix} \frac{1}{2}x_2 - 3x_3 \\ x_2 \\ x_3 \end{bmatrix} = x_2 \begin{bmatrix} \frac{1}{2} \\ 1 \\ 0 \end{bmatrix} + x_3 \begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix}
+            </md>
+            Then the eigenspace <m>E_2</m>, aka <m>\Nul(A - 2I)</m>, is the span of those two basis vectors. 
+            That is, 
+            <md>
+                E_2 = \span\left\{ \begin{bmatrix} \frac{1}{2} \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix} \right\}
+            </md>
+        </p>
+    </example>
+
+    <worksheet xml:id="ws-sec51">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+
+    
+        
+        <exercise number="5.1.5">
+            <statement>
+                <p>
+                  Is <m>\begin{bmatrix}1\\ -2\\ 1\end{bmatrix}</m> an eigenvector of <m>\begin{bmatrix}3 \amp 7 \amp 9\\ -4 \amp -5 \amp 1\\ 2 \amp 4 \amp 4\end{bmatrix}</m>? 
+                  If so, find the eigenvalue.
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.1.7">
+            <statement>
+                <p>Is <m>\lambda=4</m> an eigenvalue of <m>\begin{bmatrix}3 \amp 0 \amp -1\\ 2 \amp 3 \amp 1\\ -3 \amp 4 \amp 5\end{bmatrix}</m>? 
+                  If so, find one corresponding eigenvector.
+                </p>
+            </statement>
+        </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              In the following exercises, find a basis for the eigenspace corresponding to each listed eigenvalue.
+            </p>
+        </introduction>
+
+        <exercise number="5.1.9">
+            <statement>
+                <me>A=\begin{bmatrix}5 \amp 0\\ 2 \amp 1\end{bmatrix}, \quad \lambda=1,5</me>
+            </statement>
+        </exercise>
+
+        <exercise number="5.1.13">
+            <statement>
+                <me>A=\begin{bmatrix}4 \amp 0 \amp 1\\ -2 \amp 1 \amp 0\\ -2 \amp 0 \amp 1\end{bmatrix}, \quad \lambda=1,2,3</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+        <exercise number="5.1.17">
+            <statement>
+                <p>
+                  Find the eigenvalues of the matrix <m>\begin{bmatrix}0 \amp 0 \amp 0\\ 0 \amp 2 \amp 5\\ 0 \amp 0 \amp -1\end{bmatrix}</m>
+                </p>
+            </statement>
+        </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              In the following exercises, <m>A</m> is an <m>n \times n</m> matrix. 
+              Mark each statement True or False (T/F). 
+              Justify each answer.
+            </p>
+        </introduction>
+
+        <exercise number="5.1.21">
+            <statement>
+                <p>(T/F) If <m>A\v{x}=\lambda \v{x}</m> for some vector <m>\v{x}</m>, then <m>\lambda</m> is an eigenvalue of <m>A</m>.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.1.23">
+            <statement>
+                <p>(T/F) A matrix <m>A</m> is invertible if and only if \v{0} is an eigenvalue of <m>A</m>.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.1.25">
+            <statement>
+                <p>(T/F) Finding an eigenvector of <m>A</m> may be difficult, but checking whether a given vector is in fact an eigenvector is easy.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.1.27">
+            <statement>
+                <p>(T/F) If <m>\v{v}_{1}</m> and <m>\v{v}_{2}</m> are linearly independent eigenvectors, then they correspond to distinct eigenvalues.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.1.29">
+            <statement>
+                <p>(T/F) If <m>\v{v}</m> is an eigenvector with eigenvalue 2, then <m>2\v{v}</m> is an eigenvector with eigenvalue 4.</p>
+            </statement>
+        </exercise>
+    </exercisegroup>
+  </worksheet>
+
+</section>

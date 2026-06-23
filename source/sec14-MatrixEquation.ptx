@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec14-MatrixEquation" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>The Matrix Equation <m>A\v{x} = \v{b}</m></title>
+
+  <introduction>
+    <p>
+      Now we get to the cool part! 
+      We are going to learn how to multiply a matrix by a vector. 
+      This is SUPER IMPORTANT for three reasons:
+      <ol marker="1.">
+        <li>
+          <p>
+            This corresponds to evaluating a linear transformation at a point which leads to tons of cool geometry stuff. 
+            Much more about this in the future!
+          </p>
+        </li>
+        <li>
+          <p>
+            It is the foundation for multiplying matrices (which is probably the most important thing in Matrix Algebra and corresponds to composing linear transformations).
+          </p>
+        </li>
+        <li>
+          <p>
+            It gives us new ways to think about systems of equations!
+          </p>
+        </li>
+      </ol>
+      Takeaway: make sure you are an expert at multiplying a vector by a matrix! 
+    </p>
+
+    <objectives>
+      <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+          <p>
+            represent a system of linear equations in four equivalent forms: a system of equations, an augmented matrix, a matrix equation, and a vector equation.
+          </p>
+        </li>
+        <li>
+          <p>
+            multiply a matrix by a vector using both the dot product method and the linear combination method. 
+          </p>
+        </li>
+        <li>
+          <p>
+            determine the existence of solutions for a system of linear equations by comparing the rank of the coefficient matrix and the rank of the augmented matrix. 
+          </p>
+        </li>
+        <li>
+          <p>
+            see the connection between matrix-vector multiplication and linear transformations.
+          </p>
+        </li>
+        <li>
+          <p>
+            identify and apply the properties of two special matrices: the identity matrix and the zero matrix, in the context of multiplying a matrix by a vector.
+          </p>
+        </li>
+      </ul>
+    </objectives>
+  </introduction>
+
+  <subsection xml:id="subsec-DecodeAugmentedMatrix">
+    <title>What exactly is an Augmented Matrix?</title>
+    
+    <p>
+      Consider the augmented matrix
+      <md>
+        \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \amp \mid b_1 \\ a_{21} \amp a_{22} \amp a_{23} \amp \mid b_2 \\ a_{31} \amp a_{32} \amp a_{33} \amp \mid b_3 \\ a_{41} \amp a_{42} \amp a_{43} \amp \mid b_4 \end{bmatrix}
+      </md>
+      You may have heard Richard saying that an augmented matrix is a "fake" matrix but is really just a shorthand notation to represent a system of linear equations. 
+      It turns out that an augmented matrix actually hides <em>three</em> matrices, two of which are vectors (aka. column matrices). 
+      Hence, an augmented matrix is really three matrices smashed together to represent a system of linear equations in a convenient way. 
+    </p>
+
+    <p>
+      The left side of an augmented matrix is the <term>coefficient matrix</term>. 
+      For our (general) example above, the coefficient matrix is <m>A = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix}</m>
+    </p>
+
+    <p>
+      The right side of an augmented matrix is the <term>constant matrix</term> or <term>constant (column) vector</term>. 
+      For our example, the constant vector is <m>\v{b} = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}</m>
+    </p>
+
+    <p>
+      To figure out what the third matrix/vector is, let's convert the augmented matrix to a system of linear equations! 
+      For our example, we get
+      <md>
+        \begin{cases}
+          a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\
+          a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2 \\
+          a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3 \\
+          a_{41}x_1 + a_{42}x_2 + a_{43}x_3 = b_4
+        \end{cases}
+      </md>
+      First, notice that this system of equations can be seen as <alert>one</alert> equation involving two matrices/vectors!
+      <md>
+        \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+        =
+        \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+      </md>
+      You may have noticed that the solution <m>(x_1, x_2, x_3)</m> is the one part of our system that we haven't talked about as a matrix/vector yet. 
+      Well let's fix that now! 
+    </p>
+
+    <p>
+      The vector on the left-hand side is the one that we get when we multiply the coefficient matrix <m>A</m> by the <alert>solution vector</alert> <m>\v{x} = (x_1, x_2, x_3)</m> when represented as a column vector: 
+      <md>
+        A\v{x} = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+        = \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+      </md>
+      In other words our system of equations can be represented by the <term>matrix equation</term>: 
+      <md>
+        \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+        = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+      </md>
+      Or using the names of the matrices: <m>A\v{x} = \v{b}</m>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-MultiplyingMatrixVector">
+    <title>Multiplying a Matrix by a Vector</title>
+    
+    <p>
+      Now let's take a deeper look at the product <m>A\v{x}</m> and try to figure out how to multiply a matrix by a vector. 
+      For our example, we had
+      <md>
+        A\v{x} = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+        = \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+      </md>
+      So what is happening? 
+    </p>
+
+    <p>
+      First notice that we are multiplying a <m>4 \times 3</m> matrix by a <m>3 \times 1</m> matrix and getting a <m>4 \times 1</m> matrix. 
+      Also, notice that the first (top) entry of the answer is achieved by multiplying each entry in the <em>first</em> row of the matrix <m>A</m> by the corresponding entry of the column vector <m>\v{x}</m> and adding the results. 
+      First thing in the row times first thing in the column <em>plus</em> second thing in the row times second thing in the column and so on...
+      <ul marker="">
+        <li>
+          <p>
+            The first entry is <m>a_{11}x_1 + a_{12}x_2 + a_{13}x_3</m>
+          </p>
+        </li>
+      </ul>
+      Then the second entry in the answer is achieved in the same way but using the <em>second</em> row of the matrix <m>A</m>: 
+      <ul marker="">
+        <li>
+          <p>
+            The second entry is <m>a_{21}x_1 + a_{22}x_2 + a_{23}x_3</m>
+          </p>
+        </li>
+      </ul>
+      Then the third entry in the answeris achieved in the same way but using the <em>third</em> row of the matrix <m>A</m>:
+      <ul marker="">
+        <li>
+          <p>
+            The third entry is <m>a_{31}x_1 + a_{32}x_2 + a_{33}x_3</m>
+          </p>
+        </li>
+      </ul>
+      And finally the fourth entry in the answer is achieved in the same way but using the <em>fourth</em> row of the matrix <m>A</m>:
+      <ul marker="">
+        <li>
+          <p>
+            The fourth entry is <m>a_{41}x_1 + a_{42}x_2 + a_{43}x_3</m>
+          </p>
+        </li>
+      </ul>
+      When we run out of rows of <m>A</m>, we are done! 
+    </p>
+
+    <example>
+      <p>
+        Let's try this out with the following product of a matrix and a vector:
+        <md>
+          \begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 0 \\ 5 \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        First, we take the first row of the matrix and multiply each entry by the corresponding entry in the column vector and add the results: 
+        <md>
+          3 \times 2 + 5 \times 1 + 6 \times 0 + 2 \times 5 = 21
+        </md>
+        Next, we take the second row of the matrix and do the same thing:
+        <md>
+          1 \times 2 + (-1) \times 1 + 2 \times 0 + 3 \times 5 = 16
+        </md>
+        Finally, we take the third row of the matrix and do the same thing:
+        <md>
+          0 \times 2 + 5 \times 1 + 1 \times 0 + (-1) \times 5 = 0
+        </md>
+        So the answer is
+        <md>
+          \begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 0 \\ 5 \end{bmatrix} = \begin{bmatrix} 21 \\ 16 \\ 0 \end{bmatrix}
+        </md>
+      </p>
+    </example>
+
+    <exercise>
+      <p>
+        Multiply! If it is impossible, say why! 
+        <ol marker="(a)">
+          <li>
+            <p>
+              <m>\begin{bmatrix} 1 \amp 5 \amp 2 \\ 3 \amp 2 \amp 1 \\ 0 \amp 2 \amp -3 \\ 1 \amp 1 \amp 1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 5 \end{bmatrix}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{bmatrix} 1 \amp 5 \amp 2 \\ 3 \amp 2 \amp 1 \\ 0 \amp 2 \amp -3 \\ 1 \amp 1 \amp 1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 5 \\ 7 \end{bmatrix}</m>
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <solution>
+        <p>
+          a. 
+          <m>
+              \begin{bmatrix} 1 \amp 5 \amp 2 \\ 3 \amp 2 \amp 1 \\ 0 \amp 2 \amp -3 \\ 1 \amp 1 \amp 1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 5 \end{bmatrix} 
+              = \begin{bmatrix} 1 \times 2 + 5 \times 1 + 2 \times 5 \\ 3 \times 2 + 2 \times 1 + 1 \times 5 \\ 0 \times 2 + 2 \times 1 + (-3) \times 5 \\ 1 \times 2 + 1 \times 1 + 1 \times 5 \end{bmatrix}
+              = \begin{bmatrix} 17 \\ 13 \\ -13 \\ 8 \end{bmatrix}
+          </m>
+        </p>
+
+        <p>
+          b. This is impossible! 
+          There are three things in each row of the matrix but four things in the vector. 
+          There is nothing to multiply by the <m>7</m>!
+        </p>
+      </solution>
+    </exercise>
+  </subsection>
+
+  <subsection xml:id="subsec-ExistenceUniqueness-Rank">
+    <title>Existence and Uniqueness Questions</title>
+    
+    <p>
+      Recall a <term>consistent</term> system of linear equations has at least one solution and an <term>inconsistent</term> system of linear equations has no solutions. 
+      We have looked at the existence question in the past in three different ways: 
+      <ul marker="">
+        <li>
+          <p>
+            In <xref ref="sec11-SystemLinearEquations"/>, when converting an augmented matrix to a system of linear equations and there is one equation that is always false (like <m>0 = 1</m>), then the system is <alert>inconsistent</alert>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            In <xref ref="sec12-RowReduction"/>, when an augmented matrix has a pivot position in the rightmost column (aka the constant column), then the system is <alert>inconsistent</alert>. 
+          </p>
+        </li>
+      </ul>
+      We will look at the same question again but in a new perspective.
+      Back in <xref ref="sec12-RowReduction"/>, we define the <term>rank</term> of a matrix to be the number of pivot positions (aka the leading <m>1</m>s) in the matrix. 
+      Now that we have two different matrices: the augmented matrix and the coefficient matrix, how do their ranks relate to the existence question?  
+    </p>
+
+    <p>
+      Consider the following system of equations:
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          -6x - 4y = 7
+        \end{cases}
+      </md>
+      The augmented matrix is... 
+      <md>
+        \begin{bmatrix} 3 \amp 2 \amp \mid 5 \\ -6 \amp -4 \amp \mid 7 \end{bmatrix}
+      </md>
+      If we put this matrix into row echelon form, we get
+      <md>
+        \begin{bmatrix} 1 \amp \frac{2}{3} \amp \mid \frac{5}{3} \\ 0 \amp 0 \amp \mid 1 \end{bmatrix}
+      </md>
+      Notice that the rank of this augmented matrix (if we pretend it is a real matrix) is <m>2</m> because there are two leading <m>1</m>s. 
+      But if we look only at the coefficient matrix (the part to the left of the vertical lines) we see that the rank is <m>1</m> because there is only one leading <m>1</m>. 
+    </p>
+
+    <p>
+      <alert>Those ranks are different! Maybe that means something? </alert>
+    </p>
+
+    <p>
+      Let's write this nice (row echelon) version of the system as a matrix equation! 
+      The coefficient matrix is <m>A = \begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp 0 \end{bmatrix}</m> and the constant vector is <m>\v{b} = \begin{bmatrix} \frac{5}{3} \\ 1 \end{bmatrix}</m>. 
+      This is a two-variable system, so the solution matrix looks like <m>\begin{bmatrix} x \\ y \end{bmatrix}</m>. 
+      So as a matrix equation, our system is 
+      <md>
+        \begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp 0 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} \frac{5}{3} \\ 1 \end{bmatrix}
+      </md>
+    </p>
+
+    <p>
+      Okay... so now let's think about what will happen when we multiply our vector <m>\begin{bmatrix} x \\ y \end{bmatrix}</m> by the coefficient matrix <m>\begin{bmatrix} 1 \amp \frac{2}{3} \\ 0 \amp 0 \end{bmatrix}</m>. 
+      When we get to the second row (to find the second entry in the answer), we will multiply both <m>x</m> and <m>y</m> by zero. 
+      That means we will get <m>0</m> not <m>1</m> like we are supposed to get! 
+      So this system has no solution! 
+      In other words, it is <alert>inconsistent</alert>! 
+    </p>
+
+    <p>
+      <alert>Notice that this happened because the rank of the augmented matrix was BIGGER than the rank of the coefficient matrix! </alert>
+    </p>
+
+    <p>
+      That can only happen if there is a leading <m>1</m> in the last column of the augmented matrix (the constant vector). 
+      And that will always result in no solution because it will always give you <m>0 = 1</m> when you convert back to a system of equations 
+      (see how things are connected back to the two perspectives of the existence questions). 
+    </p>
+
+    <p>
+      <alert>You will investigate further about the relationship between the rank and the system of linear equations further in Lab Report #1.</alert>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-VectorEquations">
+    <title>Vector Equations</title>
+    
+    <p>
+      So far we have three different ways to represent a system of linear equations: (1) as a system of equations, (2) as an augmented matrix, and (3) as a matrix equation. 
+      There is actually a fourth way to represent a system of linear equations: as a <term>vector equation</term>. 
+    </p>
+
+    <p>
+      Let's again consider the system of linear equations
+      <md>
+        \begin{cases}
+          a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\
+          a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2 \\
+          a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3 \\
+          a_{41}x_1 + a_{42}x_2 + a_{43}x_3 = b_4
+        \end{cases}
+      </md>
+      Remember that we can think of our original system of equations as representing an equation involving two vectors: 
+      <md>
+        \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+        =
+        \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+      </md>
+      Now let's do the same technique we used to write a solution as a linear combination of basic vectors. 
+      Specifically, let's first break up the vector on the left-hand side into three vectors. 
+      One with <m>x_1</m> in it, one with <m>x_2</m> in it, and one with <m>x_3</m> in it: 
+      <md>
+        \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+        =
+        \begin{bmatrix} a_{11}x_1 \\ a_{21}x_1 \\ a_{31}x_1 \\ a_{41}x_1 \end{bmatrix}
+        +
+        \begin{bmatrix} a_{12}x_2 \\ a_{22}x_2 \\ a_{32}x_2 \\ a_{42}x_2 \end{bmatrix}
+        +
+        \begin{bmatrix} a_{13}x_3 \\ a_{23}x_3 \\ a_{33}x_3 \\ a_{43}x_3 \end{bmatrix}
+      </md>
+      Now let's factor out the scalars <m>x_1</m>, <m>x_2</m>, and <m>x_3</m> to get:
+      <md>
+        \begin{bmatrix} a_{11}x_1 \\ a_{21}x_1 \\ a_{31}x_1 \\ a_{41}x_1 \end{bmatrix}
+        +
+        \begin{bmatrix} a_{12}x_2 \\ a_{22}x_2 \\ a_{32}x_2 \\ a_{42}x_2 \end{bmatrix}
+        +
+        \begin{bmatrix} a_{13}x_3 \\ a_{23}x_3 \\ a_{33}x_3 \\ a_{43}x_3 \end{bmatrix}
+        = 
+        x_1 \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ a_{41} \end{bmatrix}
+        +
+        x_2 \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \\ a_{42} \end{bmatrix}
+        +
+        x_3 \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \\ a_{43} \end{bmatrix}
+      </md>
+      Substituting this last version into our original equation, we get the <term>vector equation</term>: 
+      <md>
+        x_1 \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ a_{41} \end{bmatrix}
+        +
+        x_2 \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \\ a_{42} \end{bmatrix}
+        +
+        x_3 \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \\ a_{43} \end{bmatrix}
+        =
+        \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+      </md>
+      Notice that this vector equation tells us that <alert>we get a solution to a system of linear equations precisely when the constant vector is a linear combination of the columns of the coefficient matrix</alert>. 
+      See how the column vectors on the left-hand side are just the columns of the coefficient matrix?!?!
+      See how the solution vector is just the set of scalars (coefficients) used to write this linear combination of the column vectors?!?!
+      This observation will be important to keep in mind! 
+    </p>
+
+    <exercise>
+      <p>
+        Consider the following system of linear equations:
+        <md>
+          \begin{cases}
+            2x + 3y - 5z = 7 \\
+            x - z = 5
+          \end{cases}
+        </md>
+        Write this system as a (1) Augmented Matrix, (2) a Matrix Equation, and (3) a Vector Equation. 
+      </p>
+
+      <solution>
+        <p>
+          The augmented matrix is
+          <md>
+            \begin{bmatrix} 2 \amp 3 \amp -5 \amp \mid 7 \\ 1 \amp 0 \amp -1 \amp \mid 5 \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          The matrix equation is 
+          <md>
+            \begin{bmatrix} 2 \amp 3 \amp -5 \\ 1 \amp 0 \amp -1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 7 \\ 5 \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          The vector equation is 
+          <md>
+            x \begin{bmatrix} 2 \\ 1 \end{bmatrix} + y \begin{bmatrix} 3 \\ 0 \end{bmatrix} + z \begin{bmatrix} -5 \\ -1 \end{bmatrix} = \begin{bmatrix} 7 \\ 5 \end{bmatrix}
+          </md>
+        </p>
+      </solution>
+    </exercise>
+
+    <p>
+      The Vector Equation gives us yet another way to multiply a vector by a matrix! 
+      Let's compare the Matrix Equation and the Vector Equation for a <m>4 \times 3</m> system of linear equations: 
+      <md>
+        \begin{cases}
+          a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\
+          a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2 \\
+          a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3 \\
+          a_{41}x_1 + a_{42}x_2 + a_{43}x_3 = b_4
+        \end{cases}
+      </md>
+      The Matrix Equation is
+      <md>
+        \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+        = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+      </md>
+      The Vector Equation is
+      <md>
+        x_1 \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ a_{41} \end{bmatrix}
+        +
+        x_2 \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \\ a_{42} \end{bmatrix}
+        +
+        x_3 \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \\ a_{43} \end{bmatrix}
+        =
+        \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ b_4 \end{bmatrix}
+      </md>
+      This means that
+      <md>
+        \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+        =
+        x_1 \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ a_{41} \end{bmatrix}
+        +
+        x_2 \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \\ a_{42} \end{bmatrix}
+        +
+        x_3 \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \\ a_{43} \end{bmatrix}
+      </md>
+      So that means that the left-hand side of the Vector Equation actually gives us a second way to multiply a vector by a matrix. 
+      You just compute the linear combination of the columns using the vector to get your scalars. 
+    </p>
+
+    <example>
+      <p>
+        Let's multiply the following matrix and vector in this new way: 
+        <md>
+          \begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 0 \\ 5 \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        We treat the columns of the matrix as vectors and compute the linear combination of those vectors using the entries of the column vector as our scalars. 
+        <md>
+          <mrow> 
+            \begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \\ 0 \\ 5 \end{bmatrix} 
+            \amp= 
+            2 \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix} + 1 \begin{bmatrix} 5 \\ -1 \\ 5 \end{bmatrix} + 0 \begin{bmatrix} 6 \\ 2 \\ 1 \end{bmatrix} + 5 \begin{bmatrix} 2 \\ 3 \\ -1 \end{bmatrix}
+          </mrow>
+          <mrow> \amp= \begin{bmatrix} 6 \\ 2 \\ 0 \end{bmatrix} + \begin{bmatrix} 5 \\ -1 \\ 5 \end{bmatrix} + \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} + \begin{bmatrix} 10 \\ 15 \\ -5 \end{bmatrix} </mrow>
+          <mrow> \amp= \begin{bmatrix} 21 \\ 16 \\ 0 \end{bmatrix} </mrow>
+        </md>
+        This is the same answer as before! 
+      </p>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-DotProduct-Intro">
+    <title>Intro to the Dot Product</title>
+    
+    <p>
+      The first method of multiplying matrices that we learned was actually based on the <term>dot product</term> which is an operation performed on two vectors (of the same size) and the produces a <em>scalar</em>. 
+      Sometimes it is actually called a <term>scalar product</term> to emphasize the fact that the output is a scalar.
+    </p>
+
+    <p>
+      So how does it work? 
+      Let's look at the formula for multiplying a vector by a matrix. 
+      For the case of a general <m>4 \times 3</m> matrix, we saw that we could multiply by a <m>3 \times 1</m> column vector. 
+      <md>
+        A\v{x} = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \\ a_{41} \amp a_{42} \amp a_{43} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+        = \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \\ a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \end{bmatrix}
+      </md>
+      Notice that this result actually comes from performing the same process four different times (once for each row of the matrix). 
+    </p>
+
+    <p>
+      What we were actually doing was taking the <term>dot product</term> of each row with the column vector. 
+      So our multiplication computation consisted of four dot products each of which gave us one of the entries in our answer. 
+    </p>
+
+    <definition xml:id="def-DotProduct-Intro">
+      <title>Dot Product</title>
+      <statement>
+        <p>
+          Let <m>\v{a} = (a_1, a_2, \ldots, a_n)</m> and <m>\v{b} = (b_1, b_2, \ldots, b_n)</m> be two vectors in <m>\R^n</m>. 
+          The <term>dot product</term> of <m>\v{a}</m> and <m>\v{b}</m>, denoted by <m>\v{a} \cdot \v{b}</m>, is the scalar given by the formula
+          <md>
+            \v{a} \cdot \v{b} = (a_1, a_2, \ldots, a_n) \cdot (b_1, b_2, \ldots, b_n) = a_1 b_1 + a_2 b_2 + \ldots + a_n b_n
+          </md>
+        </p>
+      </statement>
+    </definition>
+
+    <example>
+      <p>
+        Let's compute the dot product of the vectors <m>\v{a} = (1,3,5)</m> and <m>\v{b} = (2,-1,10)</m>.
+        <md>
+          \v{a} \cdot \v{b} = (1,3,5) \cdot (2,-1,10) = 1\times 2 + 3\times -1 + 5\times 10 = 2 - 3 + 50 = 49
+        </md>
+      </p>
+    </example>
+
+    <p>
+      Scroll up a bit and you will see the dot product formula show up in each entry where we multiplied the general <m>4\times 3</m> matrix by a vector. 
+      To get the <m>n</m>th entry of the answer, we can take the dot product of the <m>n</m>th row of the matrix and the vector.
+    </p>
+
+    <p>
+      We will talk more about this soon when we learn how to multiply two matrices together. 
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-ZeroMatrix-IdentityMatrix">
+    <title>Two Special Matrices</title>
+    
+    <p>
+      Recall there are two special numbers in arithmetic: <m>0</m> and <m>1</m>, in the sense that (1) <m>0</m> times any number is <m>0</m> and (2) <m>1</m> times any number is that same number. 
+      There are also two special matrices in matrix arithmetic that play the same role as <m>0</m> and <m>1</m> do in regular arithmetic. 
+    </p>
+
+    <p>
+      In the last section, we defined the <term>zero matrix</term> to be the matrix with all entries equal to <m>0</m>. 
+      If <m>A</m> is the zero <m>m\times n</m> matrix then for any <m>n\times 1</m> vector <m>\v{x}</m>, we have 
+      <md>
+        A\v{x} = \v{0}
+      </md>
+      where <m>\v{0}</m> is the zero vector in <m>\R^m</m>. 
+    </p>
+
+    <p>
+      That is because each time you compute a dot product to get an entry of the answer, you are taking a dot product with a row vector where all entries are zero. 
+      So you are always just adding up a bunch of zeros. 
+      So you will always get zero for every entry in the product. 
+    </p>
+
+    <p>
+      The matrix equivalent of <m>1</m> is called the <term>identity matrix</term>. 
+      That is, when we multiply the identity matrix by a vector, we get the same vector back. 
+    </p>
+
+    <p>
+      For every positive integer <m>n</m>, there is a special <m>n \times n</m> matrix called the <term>identity matrix</term> of size <m>n</m>. 
+      The identity matrix has a <m>1</m> in every entry of the main diagonal and a <m>0</m> in every other spot. 
+    </p>
+
+    <p>
+      For example, the identity matrix of size <m>2</m> is 
+      <md>
+        I_2 = \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}
+      </md>
+      and the identity matrix of size <m>3</m> is
+      <md>
+        I_3 = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix}
+      </md>
+      When the size is obvious from context, we don't need the little subscript in the name for the identity matrix. 
+      We just call it <m>I</m>. 
+    </p>
+
+    <p>
+      But why does the identity matrix look like that? 
+      Imagine we multiply <m>I_3</m> by an arbitrary <m>3 \times 1</m> vector <m>\begin{bmatrix} x \\ y \\ z \end{bmatrix}</m>. 
+      We get
+      <md>
+        \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+        = \begin{bmatrix} x_1 + 0x_2 + 0x_3 \\ 0x_1 + x_2 + 0x_3 \\ 0x_1 + 0x_2 + x_3 \end{bmatrix}
+        = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+      </md>
+    </p>
+  </subsection>
+
+</section>

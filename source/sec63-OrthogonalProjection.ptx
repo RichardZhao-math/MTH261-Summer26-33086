@@ -1,0 +1,1205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec63-OrthogonalProjection" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Orthogonal Projection</title>
+
+  <subsection xml:id="subsec-InnerProduct-Angles">
+    <title>Angle between Two Vectors</title>
+    
+    <p>
+      Given two vectors, they form an angle between them. 
+      But how do we know how big this angle is? 
+      The inner product can help us figure this out!  
+    </p>
+
+    <p>
+      Let's say we have two vectors, <m>\v{v}</m> and <m>\v{w}</m>. 
+      We call the angle between them <m>\theta</m> and we can construct the vector <m>\v{v} - \v{w}</m> as shown below: 
+    </p>
+
+    <figure>
+      <image source="sec123-Proof-AngleInnerProduct-Diagram.png" width="25%"></image>
+      <caption>Vectors <m>\v{v}</m> and <m>\v{w}</m> with angle <m>\theta</m> between them</caption>
+    </figure>
+
+    <p>
+      This is essentially a triangle if we drop all the direction arrows. 
+      That is, this triangle has sides of lengths <m>\|\v{v}\|</m>, <m>\|\v{w}\|</m>, and <m>\|\v{v} - \v{w}\|</m>. 
+    </p>
+
+    <p>
+      A relation between the sides of the triangle and the angle <m>\theta</m> is given by the <em>Law of Cosines</em> as follows: 
+      <md>
+        \|\v{v} - \v{w}\|^2 = \|\v{v}\|^2 + \|\v{w}\|^2 - 2\|\v{v}\|\|\v{w}\| \cos(\theta) 
+      </md>
+      Using the relation with length property of the inner product and FOIL-ing, we obtain
+      <md>
+        <mrow>\|\v{v} - \v{w}\|^2 \amp= \la \v{v} - \v{w}, \v{v} - \v{w} \ra </mrow>
+        <mrow> \amp= \la \v{v}, \v{v} \ra - 2\la \v{v}, \v{w} \ra + \la \v{w}, \v{w} \ra </mrow>
+        <mrow> \amp= \|\v{v}\|^2 + \|\v{w}\|^2 - 2\la \v{v}, \v{w} \ra </mrow>
+      </md>
+    </p>
+
+    <p>
+      We essentially found two ways to represent the quantity <m>\|\v{v} - \v{w}\|^2</m>. 
+      Equating these two expressions together and canceling stuff, we obtain
+      <md>
+        <mrow> \|\v{v}\|^2 + \|\v{w}\|^2 - 2\la \v{v}, \v{w} \ra \amp= \|\v{v}\|^2 + \|\v{w}\|^2 - 2\|\v{v}\|\|\v{w}\| \cos(\theta)  </mrow>
+        <mrow>\implies \qquad\qquad\qquad\qquad \la \v{v}, \v{w} \ra \amp= \|\v{v}\|\|\v{w}\| \cos(\theta) </mrow>
+      </md>
+    </p>
+
+    <p>
+      Observe that we can now solve for the angle <m>\theta</m> between the two vectors by isolating <m>\theta</m>: 
+      <md>
+        \theta = \cos^{-1} \lp \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} \rp
+      </md>
+      That is, the inner product gives us a way to compute the angle between two vectors! 
+    </p>
+
+    <theorem xml:id="thm-InnerProductAngle">
+      <title>Inner Product and the Angle</title>
+      <statement>
+        <p>
+          Let <m>\theta</m> be the angle between two non-zero vectors <m>\v{v}</m> and <m>\v{w}</m>. 
+          Then 
+          <md>
+            \la \v{v}, \v{w} \ra = \|\v{v}\| \|\v{w}\| \cos(\theta)
+            \qquad \text{ or } \qquad
+            \theta = \cos^{-1} \lp \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} \rp
+          </md>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      Observe that the angle is being computed using the inverse cosine function. 
+      The range of the inverse cosine function is <m>[0,\pi]</m>. 
+      That is, we consider the angle between two vectors to be the smaller angle formed between them. 
+    </p>
+
+    <figure>
+      <image source="sec123-AngleBetweenVectors-Diagram.png" width="40%"></image>
+      <caption>By convention, the angle <m>\theta</m> between two vectors is chosen so that <m>0 \le \theta \le \pi</m>.</caption>
+    </figure>
+
+    <example>
+      <p>
+        Find the angle between the vectors <m>\begin{bmatrix} 3 \\ 1 \\ 1 \end{bmatrix}</m> and <m>\begin{bmatrix} 2 \\ -4 \\ 2 \end{bmatrix}</m>
+      </p>
+
+      <hint>
+        <p>
+          Richard coded a fancy diagram below to help you visualize how big the angle is. 
+          The goal here is to figure out the size of <m>\theta</m>
+        </p>
+
+        <figure>
+          <caption>Vectors <m>\mathbf{v}=\begin{bmatrix} 3 \\ 1 \\ 1 \end{bmatrix}</m> and <m>\mathbf{w}=\begin{bmatrix} 2 \\ -4 \\ 2 \end{bmatrix}</m> with angle <m>\theta</m></caption>
+          <sidebyside width="80%">
+          <interactive platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+                # 1. Define Vectors v and w
+                v = vector([3, 1, 1])
+                w = vector([2, -4, 2])
+                
+                # Draw the vectors
+                arrow_v = arrow3d((0,0,0), v, color='blue', width=3)
+                arrow_w = arrow3d((0,0,0), w, color='red', width=3)
+                
+                # Labels for vectors
+                label_v = text3d("v", v * 1.1, color='blue', fontsize=15)
+                label_w = text3d("w", w * 1.1, color='red', fontsize=15)
+
+                # 2. Draw the Angle Arc (Theta)
+                arc_radius = 1.5
+                u_v = v / v.norm() 
+                u_w = w / w.norm() 
+                
+                arc_lines = Graphics()
+                steps = 20
+                for k in range(steps):
+                    t1 = k / steps
+                    t2 = (k + 1) / steps
+                    
+                    # Interpolate between unit vectors
+                    p_start = (1 - t1)*u_v + t1*u_w
+                    p_end   = (1 - t2)*u_v + t2*u_w
+                    
+                    # Normalize and scale
+                    p_start = p_start / p_start.norm() * arc_radius
+                    p_end   = p_end   / p_end.norm()   * arc_radius
+                    
+                    arc_lines += line3d([p_start, p_end], color='green', thickness=2)
+
+                # Label Theta
+                mid_vec = (u_v + u_w)
+                mid_vec = mid_vec / mid_vec.norm() * (arc_radius + 0.3)
+                label_theta = text3d(u"\u03b8", mid_vec, color='black', fontsize=20)
+
+                # 3. Axes Setup
+                x_len, y_len, z_len = 5, 5, 4
+                
+                axes_arrows = (
+                    arrow3d((0,0,0), (x_len,0,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,y_len,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,0,z_len), color='black', width=1)
+                )
+                
+                axes_labels = (
+                    text3d("x", (x_len + 0.2, 0, 0), color='black') +
+                    text3d("y", (0, y_len + 0.2, 0), color='black') +
+                    text3d("z", (0, 0, z_len + 0.2), color='black')
+                )
+
+                # 4. Ticks (Positive Only)
+                ticks = Graphics()
+                tick_size = 0.2
+                
+                # X ticks
+                for i in range(1, x_len):
+                    ticks += line3d([(i, -tick_size, 0), (i, tick_size, 0)], color='black')
+                    
+                # Y ticks (Only positive side now)
+                for i in range(1, y_len):
+                    ticks += line3d([(-tick_size, i, 0), (tick_size, i, 0)], color='black')
+
+                # Z ticks
+                for i in range(1, z_len):
+                    ticks += line3d([(0, -tick_size, i), (0, tick_size, i)], color='black')
+
+                # 5. Show Everything
+                show(arrow_v + arrow_w + label_v + label_w + 
+                    arc_lines + label_theta + 
+                    axes_arrows + axes_labels + ticks, frame=False)
+            </slate>
+          </interactive>
+          </sidebyside>
+        </figure>
+
+        <p>
+          It looks like the angle between the vectors is acute... 
+        </p>
+      </hint>
+
+      <solution>
+        <p>
+          We denote <m>\v{v} = \begin{bmatrix} 3 \\ 1 \\ 1 \end{bmatrix}</m> and <m>\v{w} = \begin{bmatrix} 2 \\ -4 \\ 2 \end{bmatrix}</m>. 
+          To use the formula for the cosine of the angle <m>\theta</m> between two vectors we need to compute the following values: 
+          <md>
+            <mrow>\|\v{v}\| \amp= \sqrt{3^2 + 1^2 + 1^2} = \sqrt{11}</mrow>
+            <mrow>\|\v{w}\| \amp= \sqrt{2^2 + (-4)^2 + 2^2} = \sqrt{24}</mrow>
+            <mrow>\la \v{v}, \v{w} \ra \amp= 3 \cdot 2 + 1 \cdot (-4) + 1 \cdot 2 = 4</mrow>
+          </md>
+          Hence, 
+          <md>
+            \cos(\theta) = \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} = \frac{4}{\sqrt{11} \cdot \sqrt{24}} = \frac{2}{\sqrt{66}}
+          </md>
+          and so, 
+          <md>
+            \theta = \cos^{-1} \lp \frac{2}{\sqrt{66}} \rp \approx 1.322
+          </md>
+        </p>
+
+        <p>
+          The angle <m>\theta</m> is approximately <m>76^\circ</m>, which is indeed acute. 
+        </p>
+      </solution>
+    </example>
+
+    <example>
+      <p>
+        Find the angle between the vectors <m>\begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}</m> and <m>\begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}</m>
+      </p>
+
+      <hint>
+        <p>
+          Richard coded a fancy diagram below to help you visualize how big the angle is. 
+          The goal here is to figure out the size of <m>\theta</m>
+        </p>
+
+        <figure>
+          <caption>Vectors <m>\mathbf{v}=\begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}</m> and <m>\mathbf{w}=\begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}</m> with angle <m>\theta</m></caption>
+          <sidebyside width="80%">
+          <interactive platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+                # 1. Define Vectors v and w
+                v = vector([0, 1, 1])
+                w = vector([1, -1, 0])
+                
+                # Draw the vectors
+                arrow_v = arrow3d((0,0,0), v, color='blue', width=3)
+                arrow_w = arrow3d((0,0,0), w, color='red', width=3)
+                
+                # Labels for vectors
+                label_v = text3d("v", v * 1.1, color='blue', fontsize=15)
+                label_w = text3d("w", w * 1.1, color='red', fontsize=15)
+
+                # 2. Draw the Angle Arc (Theta)
+                # These vectors have length sqrt(2) approx 1.41
+                # So we set the arc radius smaller (e.g., 0.7) to fit nicely inside
+                arc_radius = 0.7
+                u_v = v / v.norm() 
+                u_w = w / w.norm() 
+                
+                arc_lines = Graphics()
+                steps = 20
+                for k in range(steps):
+                    t1 = k / steps
+                    t2 = (k + 1) / steps
+                    
+                    # Interpolate between unit vectors
+                    p_start = (1 - t1)*u_v + t1*u_w
+                    p_end   = (1 - t2)*u_v + t2*u_w
+                    
+                    # Normalize and scale
+                    p_start = p_start / p_start.norm() * arc_radius
+                    p_end   = p_end   / p_end.norm()   * arc_radius
+                    
+                    arc_lines += line3d([p_start, p_end], color='green', thickness=2)
+
+                # Label Theta
+                mid_vec = (u_v + u_w)
+                mid_vec = mid_vec / mid_vec.norm() * (arc_radius + 0.3)
+                label_theta = text3d(u"\u03b8", mid_vec, color='black', fontsize=20)
+
+                # 3. Axes Setup
+                # Vectors are small (coord 1), so axes length 2 or 3 is enough
+                x_len, y_len, z_len = 3, 3, 3
+                
+                axes_arrows = (
+                    arrow3d((0,0,0), (x_len,0,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,y_len,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,0,z_len), color='black', width=1)
+                )
+                
+                axes_labels = (
+                    text3d("x", (x_len + 0.2, 0, 0), color='black') +
+                    text3d("y", (0, y_len + 0.2, 0), color='black') +
+                    text3d("z", (0, 0, z_len + 0.2), color='black')
+                )
+
+                # 4. Ticks (Positive Only)
+                ticks = Graphics()
+                tick_size = 0.15
+                
+                # X ticks
+                for i in range(1, x_len):
+                    ticks += line3d([(i, -tick_size, 0), (i, tick_size, 0)], color='black')
+                    
+                # Y ticks (Positive only)
+                for i in range(1, y_len):
+                    ticks += line3d([(-tick_size, i, 0), (tick_size, i, 0)], color='black')
+
+                # Z ticks
+                for i in range(1, z_len):
+                    ticks += line3d([(0, -tick_size, i), (0, tick_size, i)], color='black')
+
+                # 5. Show Everything
+                show(arrow_v + arrow_w + label_v + label_w + 
+                    arc_lines + label_theta + 
+                    axes_arrows + axes_labels + ticks, frame=False)
+            </slate>
+          </interactive>
+          </sidebyside>
+        </figure>
+
+        <p>
+          It looks like the angle between the vectors is obtuse... 
+        </p>
+      </hint>
+
+      <solution>
+        <p>
+          We denote <m>\v{v} = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}</m> and <m>\v{w} = \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}</m>. 
+          To use the formula for the cosine of the angle <m>\theta</m> between two vectors we need to compute the following values: 
+          <md>
+            <mrow>\|\v{v}\| \amp= \sqrt{0^2 + 1^2 + 1^2} = \sqrt{2}</mrow>
+            <mrow>\|\v{w}\| \amp= \sqrt{1^2 + (-1)^2 + 0^2} = \sqrt{2}</mrow>
+            <mrow>\la \v{v}, \v{w} \ra \amp= 0 \cdot 1 + 1 \cdot (-1) + 1 \cdot 0 = -1</mrow>
+          </md>
+          Hence, 
+          <md>
+            \cos(\theta) = \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} = \frac{-1}{\sqrt{2} \cdot \sqrt{2}} = -\frac{1}{2}
+          </md>
+          and so, 
+          <md>
+            \theta = \cos^{-1} \lp -\frac{1}{2} \rp = \frac{2\pi}{3} = \frac{2\pi}{3}
+          </md>
+        </p>
+
+        <p>
+          The angle <m>\theta</m> is <m>120^\circ</m>, which is indeed obtuse. 
+        </p>
+      </solution>
+    </example>
+
+    <example>
+      <p>
+        Find the angle between the vectors <m>\begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix}</m> and <m>\begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix}</m>
+      </p>
+
+      <hint>
+        <p>
+          Richard coded a fancy diagram below to help you visualize how big the angle is. 
+          The goal here is to figure out the size of <m>\theta</m>
+        </p>
+
+        <figure>
+          <caption>Vectors <m>\mathbf{v}=\begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix}</m> and <m>\mathbf{w}=\begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix}</m> with angle <m>\theta</m></caption>
+          <sidebyside width="80%">
+          <interactive  platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+                # 1. Define Vectors v and w
+                v = vector([1, 1, -1])
+                w = vector([1, -2, -1])
+                
+                # Draw the vectors
+                arrow_v = arrow3d((0,0,0), v, color='blue', width=3)
+                arrow_w = arrow3d((0,0,0), w, color='red', width=3)
+                
+                # Labels for vectors
+                label_v = text3d("v", v * 1.1, color='blue', fontsize=15)
+                label_w = text3d("w", w * 1.1, color='red', fontsize=15)
+
+                # 2. Draw the Angle Arc (Theta)
+                # These vectors have lengths approx 1.7 and 2.4
+                # We use a radius of 1.0 for the arc
+                arc_radius = 1.0
+                u_v = v / v.norm() 
+                u_w = w / w.norm() 
+                
+                arc_lines = Graphics()
+                steps = 20
+                for k in range(steps):
+                    t1 = k / steps
+                    t2 = (k + 1) / steps
+                    
+                    # Interpolate between unit vectors
+                    p_start = (1 - t1)*u_v + t1*u_w
+                    p_end   = (1 - t2)*u_v + t2*u_w
+                    
+                    # Normalize and scale
+                    p_start = p_start / p_start.norm() * arc_radius
+                    p_end   = p_end   / p_end.norm()   * arc_radius
+                    
+                    arc_lines += line3d([p_start, p_end], color='green', thickness=2)
+
+                # Label Theta
+                mid_vec = (u_v + u_w)
+                mid_vec = mid_vec / mid_vec.norm() * (arc_radius + 0.3)
+                label_theta = text3d(u"\u03b8", mid_vec, color='black', fontsize=20)
+
+                # 3. Axes Setup
+                # Vectors are within 2 units, so axes length 3 is sufficient
+                x_len, y_len, z_len = 3, 3, 3
+                
+                axes_arrows = (
+                    arrow3d((0,0,0), (x_len,0,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,y_len,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,0,z_len), color='black', width=1)
+                )
+                
+                axes_labels = (
+                    text3d("x", (x_len + 0.2, 0, 0), color='black') +
+                    text3d("y", (0, y_len + 0.2, 0), color='black') +
+                    text3d("z", (0, 0, z_len + 0.2), color='black')
+                )
+
+                # 4. Ticks (Positive Only as requested)
+                ticks = Graphics()
+                tick_size = 0.15
+                
+                # X ticks
+                for i in range(1, x_len):
+                    ticks += line3d([(i, -tick_size, 0), (i, tick_size, 0)], color='black')
+                    
+                # Y ticks 
+                for i in range(1, y_len):
+                    ticks += line3d([(-tick_size, i, 0), (tick_size, i, 0)], color='black')
+
+                # Z ticks
+                for i in range(1, z_len):
+                    ticks += line3d([(0, -tick_size, i), (0, tick_size, i)], color='black')
+
+                # 5. Show Everything
+                show(arrow_v + arrow_w + label_v + label_w + 
+                    arc_lines + label_theta + 
+                    axes_arrows + axes_labels + ticks, frame=False)
+            </slate>
+          </interactive>
+          </sidebyside>
+        </figure>
+
+        <p>
+          It looks like the angle between the vectors is a right angle... 
+        </p>
+      </hint>
+
+      <solution>
+        <p>
+          We denote <m>\v{v} = \begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix}</m> and <m>\v{w} = \begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix}</m>. 
+          To use the formula for the cosine of the angle <m>\theta</m> between two vectors we need to compute the following values: 
+          <md>
+            <mrow>\|\v{v}\| \amp= \sqrt{1^2 + 1^2 + (-1)^2} = \sqrt{3}</mrow>
+            <mrow>\|\v{w}\| \amp= \sqrt{1^2 + (-2)^2 + (-1)^2} = \sqrt{6}</mrow>
+            <mrow>\la \v{v}, \v{w} \ra \amp= 1 \cdot 1 + 1 \cdot (-2) + (-1) \cdot (-1) = 0</mrow>
+          </md>
+          Hence, 
+          <md>
+            \cos(\theta) = \frac{\la \v{v}, \v{w} \ra}{\|\v{v}\| \|\v{w}\|} = \frac{0}{\sqrt{3} \cdot \sqrt{6}} = 0
+          </md>
+          and so, 
+          <md>
+            \theta = \cos^{-1}(0) = \frac{\pi}{2}
+          </md>
+        </p>
+
+        <p>
+          The angle <m>\theta</m> is <m>90^\circ</m>, which is indeed a right angle. 
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      We can find a pattern from the above examples. 
+      <ul>
+        <li>
+          <p>
+            If the inner product is positive, then the angle between the vectors is acute. 
+          </p>
+        </li>
+        <li>
+          <p>
+            If the inner product is negative, then the angle between the vectors is obtuse. 
+          </p>
+        </li>
+        <li>
+          <p>
+            If the inner product is zero, then the angle between the vectors is a right angle.
+          </p>
+        </li>
+      </ul>
+      This is true since we know that <m>\cos(\theta)</m> is positive for acute angles, negative for obtuse angles, and zero for right angles. 
+      In addition, <m>\cos(\theta) = 1</m> when <m>\theta = 0^\circ</m> and <m>\cos(\theta) = -1</m> when <m>\theta = 180^\circ</m>. 
+      Let's summarize this in a nice little diagram. 
+    </p>
+
+    <figure>
+      <image source="sec123-InnerProductAngles-Diagram.png" width="80%"></image>
+      <caption>Relation between the inner product and the angle between two vectors</caption>
+    </figure>
+
+    <p>
+      This diagram is really demonstrating the famous <term>Cauchy-Schwarz Inequality</term>, which states that <em>the absolute value of the inner product of two vectors is always less than or equal to the product of their individual lengths</em>. 
+      Symbolically, this is stated as 
+      <md>
+        |\la \v{v}, \v{w} \ra| \le \|\v{v}\| \|\v{w}\| 
+      </md>
+      Observe from the figure that <m>-1 \lt \cos(\theta) \lt 1</m>, so <m>\la \v{u}, \v{v} \ra</m>, which equals to <m>\|\v{u}\| \|\v{v}\| \cos(\theta)</m>, cannot be greater than <m>\|\v{u}\| \|\v{v}\|</m>. 
+    </p>
+
+    <example>
+      <p>
+        Prove the triangle inequality: For any vectors <m>\v{u}</m> and <m>\v{v}</m>,
+        <md>
+          \|\v{u} + \v{v}\| \le \|\v{u}\| + \|\v{v}\|
+        </md>
+      </p>
+
+      <hint>
+        <p>
+          Of course you can draw a picture to see why this is true but this way isn't rigorous enough. 
+          True story, one of Richard's students tried to prove the inequality by drawing a loosey-goosey triangle and "eyeballing" the lengths of the sides of the triangle...
+          Not rigorous at all...  
+        </p>
+
+        <p>
+          Also, just because the inequality holds for one triangle doesn't mean it holds for all triangles! 
+        </p>
+
+        <p>
+          We want to show that this inequality is true for ALL triangles without relying on the accuracy of a drawing. 
+          Relying on definitions, properties, theorems, and algebraic manipulations is a better way to go!
+        </p>
+
+        <p>
+          Richard will help you get started. 
+          We are learning about the inner product so let's get some inner products involved! 
+          One of the inner product properties states that <m>\|\v{v}\|^2 = \la \v{v}, \v{v} \ra</m> so converting all the lengths into inner products is a good start! 
+        </p>
+
+        <p>
+          Also, ... where does the inequality come from?
+          Well the Cauchy Schwarz Inequality involves an inequality! 
+          Maybe we can use that somewhere...
+        </p>
+      </hint>
+
+      <solution>
+        <p>
+          <md>
+            <mrow> \|\v{u} + \v{v}\|^2 \amp= \la \v{u} + \v{v}, \v{u} + \v{v} \ra </mrow>
+            <mrow> \amp= \la \v{u}, \v{u} \ra + 2 \la \v{u}, \v{v} \ra + \la \v{v}, \v{v} \ra \amp\amp \text{FOIL-ing} </mrow>
+            <mrow> \amp\le \|\v{u}\|^2 + 2 | \la \v{u}, \v{v} \ra | + \|\v{v}\|^2 </mrow>
+            <mrow> \amp\le \|\v{u}\|^2 + 2 \|\v{u}\| \|\v{v}\| + \|\v{v}\|^2 \amp\amp \text{Cauchy-Schwarz} </mrow>
+            <mrow> \amp= (\|\v{u}\| + \|\v{v}\|)^2 </mrow>
+          </md>
+          The triangle inequality follows immediately by taking the square root of both sides. 
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      Observe that the inner product is zero when two vectors are <term>orthogonal</term> (or perpendicular) to each other. 
+      This is how we define orthogonality in general. 
+    </p>
+
+    <definition xml:id="def-OrthogonalVectors">
+      <title>Orthogonal Vectors</title>
+      <statement>
+        <p>
+          Two vectors <m>\v{v}</m> and <m>\v{w}</m> are <term>orthogonal</term> if and only if <m>\la \v{v}, \v{w} \ra = 0</m>. 
+          We denote this by <m>\v{v} \perp \v{w}</m>. 
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Based on this definition, we see that the zero vector is orthogonal to every vector since the inner product with the zero vector is always zero. 
+    </p>
+
+    <note>
+      <title>But Richard... Isn't "orthogonal" just another fancy way of saying perpendicular? </title>
+      
+      <p>
+        Yes and no... They are for sure describing the same idea but with some subtle differences.
+      </p>
+
+      <p>
+        <term>Perpendicularity/Perpendicular</term> is a geometric term that describes two things (like lines, planes, etc.) intersect at a right angle (90°).
+        This idea only makes sense in a geometric context where we can visualize angles.
+      </p>
+
+      <p>
+        <term>Orthogonality/Orthogonal</term> is an algebraic term that describes two vectors whose inner product is zero. 
+        This idea makes sense in any dimension and doesn't rely on visualizing angles. 
+        For example, the zero vector is orthogonal to every vector but it doesn't make sense to say that the zero vector is perpendicular to every vector since the zero vector doesn't have a length (we don't say a point is perpendicular to a line). 
+      </p>
+
+      <p>
+        Surprise surprise, there is another term that describes the same idea in math: <term>normality/normal</term>. 
+        Normality is often used to describe things that are orthogonal/perpendicular to a surface/plane/line. 
+        For example, a normal vector to a plane is a vector that is orthogonal to every vector lying in that plane.
+      </p>
+    </note>
+
+    <example>
+      <p>
+        Determine whether the following vectors are orthogonal and, if not, whether the angle between them is acute or obtuse. 
+        <ol marker="a.">
+          <li>
+            <p>
+              <m>\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}</m> and <m>\begin{bmatrix} 7 \\ -3 \\ -1 \end{bmatrix}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{bmatrix} 0 \\ 2 \\ 4 \end{bmatrix}</m> and <m>\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{bmatrix} \dfrac{12}{5} \\ -\dfrac{4}{5} \end{bmatrix}</m> and <m>\begin{bmatrix} \dfrac{1}{2} \\ \dfrac{7}{4} \end{bmatrix}</m>
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <solution>
+        <p>
+          We can determine whether the vectors are orthogonal by computing their inner products. 
+          <ol marker="a.">
+            <li>
+              <p>
+                Observe that <md>\la \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 7 \\ -3 \\ -1 \end{bmatrix} \ra = 1\cdot 7 + 2\cdot (-3) + 1\cdot (-1) = 7 - 6 - 1 = 0</md>. 
+                Therefore, the vectors are orthogonal.
+              </p>
+            </li>
+            <li>
+              <p>
+                Observe that <md>\la \begin{bmatrix} 0 \\ 2 \\ 4 \end{bmatrix}, \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix} \ra = 0\cdot 3 + 2\cdot 1 + 4\cdot 0 = 0 + 2 + 0 = 2</md>. 
+                Since the inner product is positive, the angle between the vectors is acute. 
+              </p>
+            </li>
+            <li>
+              <p>
+                Observe that <md>\la \begin{bmatrix} \dfrac{12}{5} \\ -\dfrac{4}{5} \end{bmatrix}, \begin{bmatrix} \dfrac{1}{2} \\ \dfrac{7}{4} \end{bmatrix} \ra = -\dfrac{1}{5}</md>. 
+                Since the inner product is negative, the angle between the vectors is obtuse. 
+              </p>
+            </li> 
+          </ol>
+        </p>
+      </solution>
+    </example>
+    
+  </subsection>
+
+  <subsection xml:id="subsec-OrthogonalProjection">
+    <title>Orthogonal Projection</title>
+
+    <p>
+      Remember that the inner product should tell us something about how much one vector goes in the direction of another vector. 
+      You may get the idea that the sign of the inner product tells us whether the vectors point in similar directions (acute angle) or opposite directions (obtuse angle). 
+      But we can actually know more! 
+      The orthogonal projection of one vector onto another vector, which is obtained using the inner product, gives us a precise way to measure how much one vector goes in the direction of another vector. 
+    </p>
+
+    <p>
+      Let's say we have two vectors <m>\v{u}</m> and <m>\v{v}</m> and we cast a shadow of <m>\v{u}</m> on the light through <m>\v{v}</m>. 
+      This shadow is called the <term>orthogonal projection</term> of <m>\v{u}</m> onto <m>\v{v}</m> and is denoted by <m>\proj_{\v{v}} \v{u}</m>. 
+    </p>
+
+    <figure>
+      <image source="sec123-Projection-Lighting.png" width="35%"></image>
+      <caption>The Projection of <m>\v{u}</m> onto <m>\v{v}</m></caption>
+    </figure>
+
+    <p>
+      But how do we find this projection vector? 
+      We can use the inner product to help us out! 
+    </p>
+
+    <p>
+      Let's assume two vectors are pointing in the same(ish) direction, which means the angle between them is acute. 
+      The diagram is shown below and our goal is to find the <em>length</em> and the <em>direction</em> of the projection vector. 
+    </p>
+
+    <figure>
+      <image source="sec123-Projection-AcuteAngle.png" width="35%"></image>
+      <caption>The Projection of <m>\v{u}</m> onto <m>\v{v}</m> with an acute angle between them</caption>
+    </figure>
+
+    <p>
+      Let's tackle the length first. 
+      Using trigonometry (and yes there is a right triangle in there somewhere that allows us to use trig), we see that the length of the projection vector is
+      <md>
+        \|\proj_{\v{v}} \v{u}\| = \|\v{u}\| \cos(\theta)
+      </md>
+    </p>
+
+    <p>
+      Next, we need to find the direction of the projection vector. 
+      Clearly, the projection vector points in the same direction as <m>\v{v}</m>. 
+      Yet, we can't just simply multiply the length by <m>\v{v}</m>. 
+      If we did that, the length of the projection vector would be off by a factor of <m>\|\v{v}\|</m>. 
+      To fix this, we use the unit vector in the direction of <m>\v{v}</m>, which is <m>\v{e_v} = \dfrac{\v{v}}{\|\v{v}\|}</m>. 
+    </p>
+
+    <p>
+      Therefore, the projection vector is
+      <md>
+        <mrow>\proj_{\v{v}} \v{u} \amp= \|\v{u}\| \cos(\theta) \frac{\v{v}}{\|\v{v}\|} </mrow>
+        <mrow> \amp= \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|} \frac{\v{v}}{\|\v{v}\|} </mrow>
+        <mrow> \amp= \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|^2} \v{v} </mrow>
+        <mrow> \amp= \frac{\la \v{u}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \v{v} </mrow>
+      </md>
+      This projection vector is also denoted by <m>\v{u}_{\parallel \v{v}}</m> since we can think of it as the component of <m>\v{u}</m> that is <em>parallel</em> to <m>\v{v}</m>.
+    </p>
+
+    <definition xml:id="def-OrthogonalProjection">
+    <title>Projection of <m>\v{u}</m> onto <m>\v{v}</m></title>
+      <statement>
+        <p>
+          Assume <m>\v{v} \neq 0</m>. 
+          The <term>projection</term> of <m>\v{u}</m> onto <m>\v{v}</m> is the vector
+          <md>
+            \v{u}_{\parallel \v{v}} = \lp \frac{\la \v{u}, \v{v} \ra}{\| \v{v}\|} \rp \v{e_v}
+            = \lp \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|^2} \rp \v{v}
+            = \lp \frac{\la \v{u}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \rp \v{v}
+          </md>
+          This is sometimes denoted by <m>\proj_{\v{v}} \v{u}</m>. 
+          The scalar <m>\dfrac{\la \v{u}, \v{v} \ra}{\|\v{v}\|}</m> is called the <term>scalar component</term> of <m>\v{u}</m> onto <m>\v{v}</m> and is sometimes denoted by <m>\comp_{\v{v}} \v{u}</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <note>
+      <title>But Richard... What if the angle between the vectors is obtuse?</title>
+
+      <p>
+        The previous result was derived assuming the angle between the vectors is acute. 
+        But what if the angle is obtuse, like in the diagram below? 
+        Does the formula for the projection vector still hold?
+      </p>
+
+      <figure>
+        <image source="sec123-Projection-ObtuseAngle.png" width="50%"></image>
+        <caption>The Projection of <m>\v{u}</m> onto <m>\v{v}</m> with an obtuse angle between them</caption>
+      </figure>
+
+      <p>
+        The answer is yes but the work is a bit different. 
+        Richard will encourage you to try proving the formula for the projection vector in this case as an exercise. 
+      </p>
+
+      <proof>
+        <title>Richard's proof if you want to check your proof</title>
+        <p>
+          The work is almost identical to the acute angle case with one bit of difference. 
+        </p>
+
+        <p>
+          Let <m>\theta</m> be an obtuse angle, which means <m>\frac{\pi}{2} \lt \theta \lt \pi</m>. 
+          Using trigonometry, we can find the length of the projection vector as follows: 
+          <md>
+            <mrow> \|\proj_{\v{v}} \v{u} \| \amp= \|\v{u}\|\cos \lp \pi - \theta \rp </mrow>
+            <mrow> \amp= \|\v{u}\|\cdot -\cos(\theta) </mrow>
+            <mrow> \amp= -\|\v{u}\| \cos(\theta) </mrow>
+          </md>
+          While there is a negative sign in front of the length, this is a positive quantity since <m>\cos(\theta)</m> is negative for <m>\frac{\pi}{2} \lt \theta \lt \pi</m>. 
+        </p>
+
+        <p>
+          Next, we find the direction of the projection vector. 
+          Clearly, the projection vector points in the <em>opposite</em> direction as <m>\v{v}</m> (look at the diagram!).
+          Then the unit vector in the direction opposite to <m>\v{v}</m> is <m>-\dfrac{\v{v}}{\|\v{v}\|}</m>.
+        </p>
+
+        <p>
+          Therefore, the projection vector is
+          <md>
+            <mrow>\proj_{\v{v}} \v{u} \amp= -\|\v{u}\| \cos(\theta) \lp -\frac{\v{v}}{\|\v{v}\|} \rp </mrow>
+            <mrow> \amp= \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|} \frac{\v{v}}{\|\v{v}\|} </mrow>
+            <mrow> \amp= \frac{\la \v{u}, \v{v} \ra}{\|\v{v}\|^2} \v{v} </mrow>
+            <mrow> \amp= \frac{\la \v{u}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \v{v} </mrow>
+          </md>
+          which is the same formula as before.
+        </p>
+      </proof>
+    </note>
+
+    <p>
+      Observe that Richard didn't bother with the case when the angle between the vectors is a right angle. 
+      This is because the projection vector is simply the zero vector in this case since <m>\la \v{u}, \v{v} \ra = 0</m>.
+    </p>
+
+    <example>
+      <p>
+        Find the projection of <m>\v{u}</m> onto <m>\v{v}</m> where <m>\v{u} = \begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}</m> and <m>\v{v} = \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix}</m>. 
+      </p>
+
+      <hint>
+        <p>
+          To help you visualize the projection, Richard coded up the following fancy diagram: 
+        </p>
+
+        <figure>
+          <caption>Projection of <m>\mathbf{u}=\begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}</m> onto <m>\mathbf{v}=\begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix}</m></caption>
+          <sidebyside width="80%">
+          <interactive platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+                # 1. Define Vectors
+                u = vector([1, 1, 2])
+                v = vector([-2, 3, 1])
+                
+                # 2. Calculate Projection
+                # proj_v(u) = (u . v) / (v . v) * v
+                dot_uv = u.inner_product(v)
+                mag_v_sq = v.inner_product(v)
+                proj = (dot_uv / mag_v_sq) * v
+                
+                # 3. Draw Vectors
+                # u (Blue)
+                arrow_u = arrow3d((0,0,0), u, color='blue', width=3)
+                # v (Red) - drawn slightly thinner/transparent so Green projection pops
+                arrow_v = arrow3d((0,0,0), v, color='red', width=2, opacity=0.4)
+                # Projection (Green) - Thicker
+                arrow_proj = arrow3d((0,0,0), proj, color='green', width=2)
+                
+                # 4. Manual Dashed Line (Drop Perpendicular)
+                # Connecting tip of u to tip of proj
+                drop_line = Graphics()
+                start_point = u
+                end_point = proj
+                diff_vec = end_point - start_point
+                
+                # Create 10 small segments to simulate a dashed line
+                num_dashes = 10
+                for k in range(num_dashes):
+                    # Interpolate along the line
+                    p1 = start_point + (k / num_dashes) * diff_vec
+                    p2 = start_point + ((k + 0.6) / num_dashes) * diff_vec # 0.6 fills 60% of the gap
+                    drop_line += line3d([p1, p2], color='gray', thickness=1)
+                
+                # Labels
+                label_u = text3d("u", u * 1.1, color='blue', fontsize=15)
+                label_v = text3d("v", v * 1.1, color='red', fontsize=15)
+                label_proj = text3d("proj", proj * 1.5, color='green', fontsize=12) # Offset label so it doesn't overlap origin
+
+                # 5. Axes Setup
+                # X goes negative for v (-2), so we need range -3 to 3
+                x_len, y_len, z_len = 3, 4, 3
+                
+                axes_arrows = (
+                    arrow3d((0,0,0), (x_len,0,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,y_len,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,0,z_len), color='black', width=1)
+                )
+                
+                axes_labels = (
+                    text3d("x", (x_len + 0.2, 0, 0), color='black') +
+                    text3d("y", (0, y_len + 0.2, 0), color='black') +
+                    text3d("z", (0, 0, z_len + 0.2), color='black')
+                )
+
+                # 6. Ticks
+                ticks = Graphics()
+                tick_size = 0.15
+                
+                # X ticks (Positive and Negative needed for this example)
+                for i in range(1, x_len):
+                    ticks += line3d([(i, -tick_size, 0), (i, tick_size, 0)], color='black')
+                    # Negative ticks for x (since v has x = -2)
+                    ticks += line3d([(-i, -tick_size, 0), (-i, tick_size, 0)], color='black')
+                    
+                # Y ticks
+                for i in range(1, y_len):
+                    ticks += line3d([(-tick_size, i, 0), (tick_size, i, 0)], color='black')
+
+                # Z ticks
+                for i in range(1, z_len):
+                    ticks += line3d([(0, -tick_size, i), (0, tick_size, i)], color='black')
+
+                # 7. Show Everything
+                show(arrow_u + arrow_v + arrow_proj + drop_line + 
+                    label_u + label_v + label_proj +
+                    axes_arrows + axes_labels + ticks, frame=False)
+            </slate>
+          </interactive>
+          </sidebyside>
+        </figure>
+
+        <p>
+          The goal is to find the green projection vector in the diagram above. 
+        </p>
+      </hint>
+
+      <solution>
+        <p>
+          The projection of <m>\v{u}</m> onto <m>\v{v}</m> is the following vector
+          <md>
+            \proj_{\v{v}} \v{u} = \lp \frac{\la \v{u}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \rp \v{v}
+          </md>
+          We compute the values in this expression: 
+          <md>
+            <mrow>\la \v{u}, \v{v} \ra \amp= \la \begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix} \ra = 1\cdot(-2) + 1\cdot 3 + 2\cdot 1 = -2 + 3 + 2 = 3 </mrow>
+            <mrow>\la \v{v}, \v{v} \ra \amp= \la \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix}, \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix} \ra = (-2)^2 + 3^2 + 1^2 = 4 + 9 + 1 = 14 </mrow>
+          </md>
+          Hence, 
+          <md>
+            \proj_{\v{v}} \v{u} = \lp \frac{3}{14} \rp \begin{bmatrix} -2 \\ 3 \\ 1 \end{bmatrix} = \begin{bmatrix} -\frac{3}{7} \\ \frac{9}{14} \\ \frac{3}{14} \end{bmatrix}
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      Now that we know what the projection looks like, the next question to consider is: <em>how different is the vector from its projection?</em>
+      A quick subtraction <m>\v{u} - \proj_{\v{v}} \v{u}</m> will give us the answer. 
+    </p>
+
+    <figure>
+      <image source="sec123-uMinusProju-Diagram.png" width="30%"></image>
+      <caption>Vector <m>\v{u}</m> (red), <m>\v{v}</m> (blue), <m>\proj_{\v{v}} \v{u}</m> (green), and <m>\v{u} - \proj_{\v{v}} \v{u}</m> (orange)</caption>
+    </figure>
+
+    <p>
+      Observe that this difference vector is <em>orthogonal</em> to <m>\v{v}</m>. 
+      This is one way that we can <alert>decompose</alert> the vector <m>\v{u}</m> into two components with respect to <m>\v{v}</m>: 
+      one component that is parallel to <m>\v{v}</m> (aka the projection vector) and another component that is orthogonal to <m>\v{v}</m>. 
+      Remember we also denote the projection vector by <m>\v{u}_{\parallel \v{v}}</m> (this is sometimes referred as the <em>parallel</em> component). 
+      Then we can denote the difference vector by <m>\v{u}_{\perp \v{v}}</m> (this is sometimes referred to as the <em>normal</em> component). 
+    </p>
+
+    <p>
+      This gives us the following decomposition of <m>\v{u}</m> with respect to <m>\v{v}</m>: 
+      <md>
+        \v{u} = \v{u}_{\parallel \v{v}} + \v{u}_{\perp \v{v}}
+      </md>
+    </p>
+
+    <figure>
+      <image source="sec123-DecomposingVector-Diagram.png" width="50%"></image>
+      <caption>Vector <m>\v{u}</m> (red), <m>\v{v}</m> (blue), <m>\proj_{\v{v}} \v{u}</m> (green), and <m>\v{u} - \proj_{\v{v}} \v{u}</m> (orange)</caption>
+    </figure>
+
+    <p>
+      This is actually the <term>Orthogonal Decomposition Theorem</term> in linear algebra. 
+    </p>
+
+    <example>
+      <p>
+        Find the decomposition <m>\v{u} = \v{u}_{\parallel \v{v}} + \v{u}_{\perp \v{v}}</m> for the vectors <m>\v{u} = \begin{bmatrix} 4 \\ -1 \\ 5 \end{bmatrix}</m> and <m>\v{v} = \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix}</m>.
+      </p>
+
+      <hint>
+        <p>
+          To help you visualize the decomposition, Richard coded up the following fancy diagram:
+        </p>
+
+        <figure>
+          <caption>Decomposition of <m>\v{u}</m> with respect to <m>\v{v}</m></caption>
+          <sidebyside width="80%">
+          <interactive platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+                # 1. Define Vectors
+                u = vector([4, -1, 5])
+                v = vector([2, 1, 1])
+                
+                # 2. Calculate Components
+                # u . v = 12, v . v = 6, so scale factor is 2
+                scale_factor = u.inner_product(v) / v.inner_product(v)
+                u_parallel = scale_factor * v
+                u_perp = u - u_parallel
+                
+                # 3. Draw Vectors (Layered Strategy)
+                
+                # A. u_parallel (Green) - The Projection
+                # We draw this first. We make it THICK and TRANSPARENT.
+                # This acts as a "highlight" showing the full projection length.
+                arrow_par = arrow3d((0,0,0), u_parallel, color='green', width=5, opacity=0.3)
+                
+                # B. v (Blue) - The Basis
+                # We draw this narrower and solid on top (or inside) the green arrow.
+                arrow_v = arrow3d((0,0,0), v, color='blue', width=3)
+                
+                # C. u (Red) - Original Vector
+                arrow_u = arrow3d((0,0,0), u, color='red', width=3)
+                
+                # D. u_perp (Orange) - Orthogonal Component
+                # Connects tip of u_parallel to tip of u
+                arrow_perp = arrow3d(u_parallel, u_parallel + u_perp, color='orange', width=3)
+                
+                # 4. Labels
+                label_u = text3d("u", u * 1.05, color='red', fontsize=15)
+                
+                # Label v near the origin (since it's shorter)
+                label_v = text3d("v", v * 0.5 + vector([0,0,0.3]), color='blue', fontsize=15, fontweight='bold')
+                
+                # Label u_parallel at the end of the projection
+                label_par = text3d("u_parallel", u_parallel * 1.05, color='green', fontsize=15, fontweight='bold')
+                
+                # Label u_perp
+                mid_perp = u_parallel + (u_perp * 0.5)
+                label_perp = text3d("u_perp", mid_perp, color='orange', fontsize=12)
+
+                # 5. Axes Setup
+                x_len, y_len, z_len = 5, 5, 6
+                
+                axes_arrows = (
+                    arrow3d((0,0,0), (x_len,0,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,y_len,0), color='black', width=1) +
+                    arrow3d((0,0,0), (0,0,z_len), color='black', width=1)
+                )
+                
+                axes_labels = (
+                    text3d("x", (x_len + 0.2, 0, 0), color='black') +
+                    text3d("y", (0, y_len + 0.2, 0), color='black') +
+                    text3d("z", (0, 0, z_len + 0.2), color='black')
+                )
+
+                # 6. Ticks
+                ticks = Graphics()
+                tick_size = 0.2
+                
+                # X ticks 
+                for i in range(1, x_len):
+                    ticks += line3d([(i, -tick_size, 0), (i, tick_size, 0)], color='black')
+                    
+                # Y ticks 
+                for i in range(1, y_len):
+                    ticks += line3d([(-tick_size, i, 0), (tick_size, i, 0)], color='black')
+                    ticks += line3d([(-tick_size, -i, 0), (tick_size, -i, 0)], color='black')
+
+                # Z ticks
+                for i in range(1, z_len):
+                    ticks += line3d([(0, -tick_size, i), (0, tick_size, i)], color='black')
+
+                # 7. Show Everything
+                show(arrow_par + arrow_v + arrow_u + arrow_perp + 
+                    label_u + label_v + label_par + label_perp +
+                    axes_arrows + axes_labels + ticks, frame=False)
+            </slate>
+          </interactive>
+          </sidebyside>
+        </figure>
+
+        <p>
+          The goal is to find the two components <m>\v{u}_{\parallel \v{v}}</m> and <m>\v{u}_{\perp \v{v}}</m> in the diagram above.
+        </p>
+      </hint>
+
+      <solution>
+        <p>
+          We first compute <m>\la \v{u}, \v{v} \ra</m> and <m>\la \v{v}, \v{v} \ra</m> to find the projection of <m>\v{u}</m> onto <m>\v{v}</m>:
+          <md>
+            <mrow>\la \v{u}, \v{v} \ra \amp= \la \begin{bmatrix} 4 \\ -1 \\ 5 \end{bmatrix}, \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix} \ra = 4\cdot 2 + (-1)\cdot 1 + 5\cdot 1 = 8 - 1 + 5 = 12 </mrow>
+            <mrow>\la \v{v}, \v{v} \ra \amp= \la \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix} \ra = 2^2 + 1^2 + 1^2 = 4 + 1 + 1 = 6 </mrow>
+          </md>
+          Hence, 
+          <md>
+            \v{u}_{\parallel \v{v}} = \proj_{\v{v}} \v{u} = \lp \frac{12}{6} \rp \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix} = 2 \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 4 \\ 2 \\ 2 \end{bmatrix}
+          </md>
+          We now find the vector <m>\v{u}_{\perp \v{v}}</m> by computing the difference: 
+          <md>
+            \v{u}_{\perp \v{v}} = \v{u} - \v{u}_{\parallel \v{v}} = \begin{bmatrix} 4 \\ -1 \\ 5 \end{bmatrix} - \begin{bmatrix} 4 \\ 2 \\ 2 \end{bmatrix} = \begin{bmatrix} 0 \\ -3 \\ 3 \end{bmatrix}
+          </md>
+          Thus, we have
+          <md>
+            \v{u} = \v{u}_{\parallel \v{v}} + \v{u}_{\perp \v{v}} = \begin{bmatrix} 4 \\ 2 \\ 2 \end{bmatrix} + \begin{bmatrix} 0 \\ -3 \\ 3 \end{bmatrix}
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      The ability to decompose vectors into orthogonal components is useful in many applications. 
+      For example, when an object rests on an inclined plane, the gravitational force acting on the object equals its weight, which is directly vertically downward. 
+      However, to analyze the motion of the object on the inclined plane, it is often helpful to decompose the gravitational force vector into two components: 
+      one <em>parallel</em> to the plane (which determines the tendency of the object to slide down the plane) and another <em>perpendicular</em> to the plane (which determines its tendency to "stick" to the plane).
+    </p>
+
+    <figure>
+      <image source="sec123-ForceDecomposition-Diagram.png" width="50%"></image>
+      <caption>Gravitational force decomposition on an inclined plane</caption>
+    </figure>
+
+    <example>
+      <p>
+        A 10-lb block rests on a plane that is inclined at 30° below the horizontal. 
+        Find the components of the gravitational force parallel and normal perpendicular to the plane. 
+      </p>
+
+      <hint>
+        <p>
+          See below for the diagram of the situation: 
+        </p>
+
+        <figure>
+          <image source="sec123-ForceDecomposition-Example.png" width="50%"></image>
+          <caption>Gravitational force Vector (red), Parallel Component (green), and Perpendicular Component (orange)</caption>
+        </figure>
+
+        <p>
+          The goal here is to find the green and the orange vectors in the diagram above. 
+        </p>
+      </hint>
+
+      <solution>
+        <p>
+          The gravitational force <m>\v{F}</m> acting on the block equals the weight o the block. 
+          Using the coordinate system, the force acts in the negative <m>y</m>-direction, so 
+          <md>
+            \v{F} = \begin{bmatrix} 0 \\ -10 \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          The direction <em>down</em> the plane is given by the vector is 
+          <md>
+            \v{v} = \begin{bmatrix} \cos(-30^\circ) \\ \sin(-30^\circ) \end{bmatrix} = \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          Hence, the component of the force <em>parallel</em> to the plane is
+          <md>
+            <mrow> \v{F}_{\parallel \v{v}} \amp= \lp \frac{\la \v{F}, \v{v} \ra}{\la \v{v}, \v{v} \ra} \rp \v{v} </mrow>
+            <mrow> \amp= \lp \frac{\la \begin{bmatrix} 0 \\ -10 \end{bmatrix}, \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix} \ra}{\la \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix}, \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix} \ra} \rp \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix} </mrow>
+            <mrow> \amp= 5 \begin{bmatrix} \frac{\sqrt{3}}{2} \\ -\frac{1}{2} \end{bmatrix} </mrow>
+            <mrow> \amp= \begin{bmatrix} \frac{5\sqrt{3}}{2} \\ -\frac{5}{2} \end{bmatrix} </mrow>
+          </md>
+        </p>
+
+        <p>
+          Next, the component of the force <em>perpendicular</em> to the plane is
+          <md>
+            <mrow> \v{F}_{\perp \v{v}} \amp= \v{F} - \v{F}_{\parallel \v{v}} </mrow>
+            <mrow> \amp= \begin{bmatrix} 0 \\ -10 \end{bmatrix} - \begin{bmatrix} \frac{5\sqrt{3}}{2} \\ -\frac{5}{2} \end{bmatrix} </mrow>
+            <mrow> \amp= \begin{bmatrix} -\frac{5\sqrt{3}}{2} \\ -\frac{15}{2} \end{bmatrix} </mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+    
+  </subsection>
+
+  <worksheet xml:id="ws-sec63">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+
+    <exercisegroup>
+        <introduction>
+            <p>In the following exercises, assume that <m>\{u_{1},...,u_{4}\}</m> is an orthogonal basis for <m>\mathbb{R}^{4}</m>.</p>
+        </introduction>
+        
+        <exercise number="6.3.1">
+            <statement>
+                <p>Assume that <m>\{u_{1},...,u_{4}\}</m> is an orthogonal basis for <m>\mathbb{R}^{4}</m>, where
+                  <me>u_{1}=\begin{bmatrix}0\\ 1\\ -4\\ -1\end{bmatrix}, \quad u_{2}=\begin{bmatrix}3\\ 5\\ 1\\ 1\end{bmatrix}, \quad u_{3}=\begin{bmatrix}1\\ 0\\ 1\\ -4\end{bmatrix}, \quad u_{4}=\begin{bmatrix}5\\ -3\\ -1\\ 1\end{bmatrix}, \quad \text{and} \quad x=\begin{bmatrix}10\\ -8\\ 2\\ 0\end{bmatrix}.</me> Write <m>x</m> as the sum of two vectors, one in Span <m>\{u_{1},u_{2},u_{3}\}</m> and the other in Span <m>\{u_{4}\}</m>.</p>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>In the following exercises, verify that <m>\{u_{1},u_{2}\}</m> is an orthogonal set, and then find the orthogonal projection of <m>y</m> onto Span <m>\{u_{1},u_{2}\}</m>.</p>
+        </introduction>
+
+        <exercise number="6.3.3">
+            <statement>
+                <me>y=\begin{bmatrix}-1\\ 4\\ 3\end{bmatrix}, \quad u_{1}=\begin{bmatrix}1\\ 1\\ 0\end{bmatrix}, \quad u_{2}=\begin{bmatrix}-1\\ 1\\ 0\end{bmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="6.3.5">
+            <statement>
+                <me>y=\begin{bmatrix}-1\\ 2\\ 6\end{bmatrix}, \quad u_{1}=\begin{bmatrix}3\\ -1\\ 2\end{bmatrix}, \quad u_{2}=\begin{bmatrix}1\\ -1\\ -2\end{bmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>In the following exercises, let <m>W</m> be the subspace spanned by the <m>u</m>'s, and write <m>y</m> as the sum of a vector in <m>W</m> and a vector orthogonal to <m>W</m>.</p>
+        </introduction>
+
+        <exercise number="6.3.7">
+            <statement>
+                <me>y=\begin{bmatrix}1\\ 3\\ 5\end{bmatrix}, \quad u_{1}=\begin{bmatrix}1\\ 3\\ -2\end{bmatrix}, \quad u_{2}=\begin{bmatrix}5\\ 1\\ 4\end{bmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="6.3.9">
+            <statement>
+                <me>y=\begin{bmatrix}4\\ 3\\ 3\\ -1\end{bmatrix}, \quad u_{1}=\begin{bmatrix}1\\ 1\\ 0\\ 1\end{bmatrix}, \quad u_{2}=\begin{bmatrix}-1\\ 3\\ 1\\ -2\end{bmatrix}, \quad u_{3}=\begin{bmatrix}-1\\ 0\\ 1\\ 1\end{bmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+  </worksheet>
+
+</section>

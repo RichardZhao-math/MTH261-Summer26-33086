@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec52-CharacteristicEquation" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>The Characteristic Equation</title>
+
+  <p>
+        Now that we know how to find the eigenvectors corresponding to a specific eigenvalue, the next question is: <alert>How do we find the eigenvalues of a matrix?</alert>
+    </p>
+
+    <p>
+        We can find the eigenvalues of a matrix by, again, observing this equation
+        <md>
+            (A - \lambda I)\v{x} = \v{0}
+        </md>
+        Recall that eigenvectors are <em>non-trivial</em> solutions to this homogeneous equation, so this equation must have infinitely many solutions. 
+        That is, the matrix <m>A - \lambda I</m> must be singular (not invertible). 
+    </p>
+
+    <p>
+        We can say a lot about a non-invertible matrix. 
+        The fact that will be super useful to us is that a matrix is non-invertible if and only if its determinant is zero. 
+        So <alert>we can find all eigenvalues of a matrix by solving the equation <m>\det(A - \lambda I) = 0</m>. </alert>
+    </p>
+
+    <example>
+        <p>
+            Let <m>A = \begin{bmatrix} 3 \amp 2 \\ -2 \amp -2 \end{bmatrix}</m> and we want to find all the eigenvalues of this matrix. 
+        </p>
+
+        <p>
+            Let <m>\lambda</m> be an eigenvalue of <m>A</m>. 
+            Then we want the matrix <m>A - \lambda I</m> be non-invertible to guarantee non-trivial solutions to the equation <m>(A - \lambda I)\v{x} = \v{0}</m>. 
+            That is, we want the <m>\lambda</m> values such that <m>\det(A - \lambda I) = 0</m>. 
+        </p>
+
+        <p>
+            Let's start by computing the determinant of the matrix <m>A - \lambda I</m>:
+            <md>
+                <mrow> \det(A - \lambda I) \amp= \begin{vmatrix} 3 - \lambda \amp 2 \\ -2 \amp -2 - \lambda \end{vmatrix} </mrow>
+                <mrow> \amp= (3 - \lambda)(-2 - \lambda) - (2)(-2) </mrow>
+                <mrow> \amp= -6 - 3\lambda + 2\lambda + \lambda^2 + 4 </mrow>
+                <mrow> \amp= \lambda^2 - \lambda - 2 </mrow>
+            </md>
+            This is essentially a quadratic equation in terms of <m>\lambda</m> and we can totally solve it! 
+            Factoring the quadratic, we have
+            <md>
+                (\lambda - 2)(\lambda + 1) = 0
+                \qquad \implies \quad
+                \lambda = 2 \quad \text{or} \quad \lambda = -1
+            </md>
+            Hence, the eigenvalues of the matrix <m>A</m> are <m>2</m> and <m>-1</m>. 
+        </p>
+    </example>
+
+    <exercise>
+        <p>
+            Find the eigenvalues of the matrix <m>B = \begin{bmatrix} 1 \amp 1 \\ 1 \amp 1 \end{bmatrix}</m>.
+        </p>
+    </exercise>
+
+    <p>
+        Since the equation <m>\det(A - \lambda I) = 0</m> captures the <em>characteristics</em> of the matrix <m>A - \lambda I</m> that this matrix must be non-invertible, we call this equation the <term>characteristic equation</term> of the matrix <m>A</m>. 
+    </p>
+
+    <definition xml:id="def-CharacteristicEquation">
+        <title>Characteristic Equations</title>
+        <statement>
+            <p>
+                Let <m>A</m> be an <m>n \times n</m> matrix. 
+                The equation 
+                <md>
+                    \det (A - \lambda I) = 0
+                </md>
+                is called the <term>characteristic equation</term> of the matrix <m>A</m>. 
+                A scalar <m>\lambda</m> is an eigenvalue of <m>A</m> if and only if it is a solution to the characteristic equation of <m>A</m>. 
+            </p>
+
+            <p>
+                The characteristic equation will always be a polynomial equation, so <m>\det(A - \lambda I)</m> is called the <term>characteristic polynomial</term> of the matrix <m>A</m>.
+            </p>
+        </statement>
+    </definition>
+
+    <p>
+        In practice, finding the eigenvalues of an <m>n \times n</m> matrix results in solving a polynomial equation of degree <m>n</m>. 
+        This is almost always difficult as <m>n</m> gets larger. 
+        So we will leave this to computers, except in the <m>2 \times 2</m> case and some easy <m>3 \times 3</m> cases. 
+    </p>
+
+    <example>
+        <p>
+            Let <m>A = \begin{bmatrix} 1 \amp 3 \amp 3 \\ -3 \amp -5 \amp -3 \\ 3 \amp 3 \amp 1 \end{bmatrix}</m>. 
+            What are the eigenvalues of this matrix?
+        </p>
+
+        <p>
+            We can find the eigenvalues by solving the characteristic equation <m>\det(A - \lambda I) = 0</m>, so let's start by computing the determinant of the matrix <m>A - \lambda I</m>:
+            <md>
+                <mrow> \det(A - \lambda I) \amp= \begin{vmatrix} 1 - \lambda \amp 3 \amp 3 \\ -3 \amp -5 - \lambda \amp -3 \\ 3 \amp 3 \amp 1 - \lambda \end{vmatrix} </mrow>
+                <mrow> \amp= (1 - \lambda) \begin{vmatrix} -5 - \lambda \amp -3 \\ 3 \amp 1 - \lambda \end{vmatrix} - 3 \begin{vmatrix} -3 \amp -3 \\ 3 \amp 1 - \lambda \end{vmatrix} + 3 \begin{vmatrix} -3 \amp -5 - \lambda \\ 3 \amp 3 \end{vmatrix} </mrow>
+                <mrow> \amp= (1 - \lambda)((-5 - \lambda)(1 - \lambda) + 9) - 3((-3)(1 - \lambda) + 9) + 3(-9 - 3(-5 - \lambda)) </mrow>
+                <mrow> \amp= (1 - \lambda)(\lambda^2 + 4\lambda + 4) - 3(3\lambda + 6) + 3(-9 + 15 + 3\lambda) </mrow>
+                <mrow> \amp= (1 - \lambda)(\lambda + 2)^2 - 3(3\lambda + 6) + 3(3\lambda + 6) </mrow>
+                <mrow> \amp= (1 - \lambda)(\lambda + 2)^2 </mrow>
+            </md>
+            Since <m>\det (A - \lambda I)</m> is already factored, we can easily solve the characteristic equation <m>\det(A - \lambda I) = 0</m> and find the eigenvalues: 
+            <md>
+                (1 - \lambda)(\lambda + 2)^2 = 0 
+                \qquad \implies \qquad 
+                \lambda = 1 \quad \text{or} \quad \lambda = -2
+            </md>
+             Hence, the eigenvalues of the matrix <m>A</m> are <m>1</m> and <m>-2</m>.
+        </p>
+    </example>
+
+    <worksheet xml:id="ws-sec52">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              Find the characteristic polynomial and the eigenvalues of the matrices in the following exercises. 
+            </p>
+        </introduction>
+        
+        <exercise number="5.2.5">
+            <statement>
+                <me>\begin{bmatrix} 2 \amp 1 \\ -1 \amp 4 \end{bmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="5.2.7">
+            <statement>
+                <me>\begin{bmatrix} 5 \amp 3 \\ -4 \amp 4 \end{bmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              In the following exercises, find the characteristic polynomial of each matrix
+            </p>
+        </introduction>
+
+        <exercise number="5.2.9">
+            <statement>
+                <me>\begin{bmatrix} 1 \amp 0 \amp -1 \\ 2 \amp 3 \amp -1 \\ 0 \amp 6 \amp 0 \end{bmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="5.2.11">
+            <statement>
+                <me>\begin{bmatrix} 4 \amp 0 \amp 0 \\ 5 \amp 3 \amp 2 \\ -2 \amp 0 \amp 2 \end{bmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>For the matrix in Exercise 17, list the eigenvalues, repeated according to their multiplicities.</p>
+        </introduction>
+
+        <exercise number="5.2.17">
+            <statement>
+                <p>
+                  List the eigenvalues, repeated according to their multiplicities, of the matrix <m>\begin{bmatrix} 3 \amp 0 \amp 0 \amp 0 \amp 0 \\ -5 \amp 1 \amp 0 \amp 0 \amp 0 \\ 3 \amp 8 \amp 0 \amp 0 \amp 0 \\ 0 \amp -7 \amp 2 \amp 1 \amp 0 \\ -4 \amp 1 \amp 9 \amp -2 \amp 3 \end{bmatrix}</m>
+                </p>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              In the following exercises, <m>A</m> and <m>B</m> are <m>n \times n</m> matrices. 
+              Mark each statement True or False (T/F). 
+              Justify each answer.
+            </p>
+        </introduction>
+
+        <exercise number="5.2.21">
+            <statement>
+                <p>(T/F) If <m>0</m> is an eigenvalue of <m>A</m>, then <m>A</m> is invertible.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.2.23">
+            <statement>
+                <p>(T/F) The matrix <m>A</m> and its transpose, <m>A^{T}</m>, have different sets of eigenvalues.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.2.25">
+            <statement>
+                <p>(T/F) If <m>2</m> is an eigenvalue of <m>A</m>, then <m>A-2I</m> is not invertible.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.2.27">
+            <statement>
+                <p>(T/F) If <m>\lambda+5</m> is a factor of the characteristic polynomial of <m>A</m>, then <m>5</m> is an eigenvalue of <m>A</m>.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.2.29">
+            <statement>
+                <p>(T/F) The eigenvalue of the <m>n \times n</m> identity matrix is <m>1</m> with algebraic multiplicity <m>n</m>.</p>
+            </statement>
+        </exercise>
+    </exercisegroup>
+  </worksheet>
+
+</section>

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec61-InnerProduct" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Inner Product, Length, and Orthogonality</title>
+
+  <subsection xml:id="subsec-Length">
+    <title>Length of a Vector</title>
+    
+    <p>
+      The <term>length</term> of a vector, (aka the <term>magnitude</term> or the <term>norm</term>), can be computed using the Pythagorean Theorem (in <m>\R^2</m> or <m>\R^3</m> for possible visualization). 
+    </p>
+
+    <definition xml:id="def-Length">
+      <title>Length of a Vector</title>
+      <statement>
+        <p>
+          Let <m>\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}\in \R^n</m>. 
+          Its <term>length</term>, denoted <m>\|\v{v}\|</m>, is
+          <md>
+            \|\v{v}\| = \sqrt{v_1^2 + v_2^2 + \cdots v_n^2}
+          </md>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Using this formula, we can define the <em>distance</em> between two vectors, which is essentially the difference between the tip of two vectors. 
+    </p>
+
+    <definition xml:id="def-DistanceVector">
+      <title>Distance between two Vectors</title>
+      <statement>
+        <p>
+          Let <m>\v{v}, \v{w} \in \R^n</m> such that <m>\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}</m> and <m>\v{w} = \begin{bmatrix} w_1 \\ w_2 \\ \vdots \\ w_n \end{bmatrix}</m>. 
+          The <term>distance</term> between them, denoted <m>\dist(\v{v}, \v{w})</m>, is
+          <md>
+            \dist(\v{v}, \v{w}) = \sqrt{\lp v_1 - w_1 \rp^2 + \lp v_2 - w_2 \rp^2 + \cdots + \lp v_n - w_n \rp^2}
+          </md>
+        </p>
+      </statement>
+    </definition>
+  </subsection>
+
+  <subsection xml:id="subsec-InnerProduct">
+    <title>Inner Product</title>
+    
+    <p>
+      You may recall that you learned the concept called the <term>inner product</term> before. 
+    </p>
+
+    <definition xml:id="def-InnerProduct">
+      <title>Inner Product</title>
+      <statement>
+        <p>
+          The <term>inner product</term> <m>\boldsymbol{\v{v}, \v{w}}</m> of two vectors
+          <md>
+            \v{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots v_n \end{bmatrix} \, , \qquad \v{w} = \begin{bmatrix} w_1 \\ w_2 \\ \vdots w_n \end{bmatrix}
+          </md>
+          is the scalar defined by
+          <md>
+            \v{v}, \v{w} = v_1 w_1 + v_2 w_2 + \cdots + v_n w_n
+          </md>
+        </p>
+      </statement>
+    </definition>
+
+      <p>
+        Let <m>\v{v}, \v{w} \in \R^n</m> be two vectors defined as 
+        <md>
+          \v{v} = \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix} 
+          \, , \qquad 
+          \v{w} = \begin{pmatrix} w_1 \\ w_2 \\ \vdots \\ w_n \end{pmatrix}
+        </md>
+        Then the standard inner product of <m>\v{v}</m> and <m>\v{w}</m> , denoted by <m>\v{v}, \v{w} </m>, is defined as
+        <md>
+          \v{v}, \v{w}  = \v{v}^T \v{w} = \begin{pmatrix} v_1 \amp v_2 \amp \cdots \amp v_n \end{pmatrix} \begin{pmatrix} w_1 \\ w_2 \\ \vdots \\ w_n \end{pmatrix} = v_1 w_1 + v_2 w_2 + \cdots + v_n w_n
+        </md>
+      </p>
+
+    <p>
+      Observe that we can find the inner product of two vectors by <em>multiplying their corresponding components and adding the results</em>.
+    </p>
+
+    <example>
+      <p>
+        Compute the following inner products: 
+        <ol marker="a.">
+          <li>
+            <p>
+              <m>\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 4 \\ 3 \\ 5 \end{bmatrix} </m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{bmatrix} -3 \\ 1 \end{bmatrix}, \begin{bmatrix} 4 \\ 6 \end{bmatrix} </m>
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <solution>
+        <p>
+          <ol marker="a.">
+            <li>
+              <p>
+                <m>\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}\cdot \begin{bmatrix} 4 \\ 3 \\ 5 \end{bmatrix} = 1\cdot 4 + 2\cdot 3 + 1\cdot 5 = 4 + 6 + 5 = 15</m>
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>\begin{bmatrix} -3 \\ 1 \end{bmatrix}\cdot \begin{bmatrix} 4 \\ 6 \end{bmatrix} = -3\cdot 4 + 1\cdot 6 = -12 + 6 = -6</m>
+              </p>
+            </li>
+          </ol>
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      Remember that the inner product of two vectors results in a <em>scalar</em> (a real number) and not another vector. 
+      The inner product has several useful properties that we summarize in the following theorem.
+    </p>
+
+    <theorem xml:id="thm-InnerProductProperties">
+      <title>Properties of the Inner Product</title>
+      <statement>
+        <p>
+          <ol marker="i.">
+            <li>
+              <p>
+                <m>\v{0}\cdot \v{v} = 0</m>, where <m>\v{0}</m> is the zero vector. 
+              </p>
+            </li>
+            <li>
+              <p>
+                <term>Commutativity: </term> <m>\v{v}\cdot \v{w} = \v{w} \cdot \v{v}</m>
+              </p>
+            </li>
+            <li>
+              <p>
+                <term>Pulling out scalars: </term> <m>(\lambda \v{v}) \cdot \v{w} = \v{v}, xxzx``\lambda \v{w} = \lambda \v{v}\cdot \v{w}</m>
+              </p>
+            </li>
+            <li>
+              <p>
+                <term>Distributive Law: </term> <m>\v{u}\cdot \v{v} + \v{w} = \v{u}\cdot \v{v} + \v{u}\cdot \v{w} </m>
+              </p>
+            </li>
+            <li>
+              <p>
+                <term>Relation with length: </term> <m>\v{v}, \v{v} = \|\v{v}\|^2</m>
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+    </theorem>
+    
+    <proof>
+      <title>Proof(ish) of the above theorem</title>
+      <p>
+        The proofs of the properties are pretty straightforward using the definition of the inner product. 
+        Richard will prove some of them in <m>\R^3</m> and leave the rest as exercises for you to verify (especially if you are thinking about majoring in math). 
+        You may also want to see if you are convinced that Richard's proofs can be generalized to <m>\R^n</m>. 
+      </p>
+
+      <p>
+        <ol marker="i.">
+          <li>
+            <p>
+              Let <m>\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}</m>. 
+              Then
+              <md>
+                \v{0}, \v{v} = 0 \cdot v_1 + 0 \cdot v_2 + 0 \cdot v_3 = 0
+              </md>
+            </p>
+          </li>
+          <li>
+            <p>
+              Let <m>\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}</m> and <m>\v{w} = \begin{bmatrix} w_1 \\ w_2 \\ w_3 \end{bmatrix}</m>. 
+              Then
+              <md>
+                <mrow> \v{v}, \v{w} \amp= v_1 w_1 + v_2 w_2 + v_3 w_3 </mrow>
+                <mrow> \amp= w_1 v_1 + w_2 v_2 + w_3 v_3 </mrow>
+                <mrow> \amp= \v{w}, \v{v} </mrow>
+              </md>
+            </p>
+          </li>
+          <li>
+            <p>
+              The proof is left as an exercise for the reader. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The proof is left as an exercise for the reader.
+            </p>
+          </li>
+          <li>
+            <p>
+              Let <m>\v{v} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}</m>. 
+              Then
+              <md>
+                \v{v}, \v{v} = v_1^2 + v_2^2 + v_3^2 = \|\v{v}\|^2
+              </md>
+            </p>
+          </li>
+        </ol>
+      </p>
+    </proof>
+
+    <p>
+      Using these properties, we can prove some cool results! 
+      For example, do you know that the sum of the squares of the lengths of the four sides of a parallelogram is equal to the sum of the squares of the lengths of its two diagonals? 
+      This is also known as the <term>parallelogram law</term>. 
+    </p>
+
+    <theorem xml:id="thm-ParallelogramLaw">
+      <title>Parallelogram Law</title>
+      <statement>
+        <p>
+          <md>
+            \|\v{u} + \v{v}\|^2 + \|\v{u} - \v{v}\|^2 = 2\|\v{u}\|^2 + 2\|\v{v}\|^2
+          </md>
+        </p>
+      </statement>
+    </theorem>
+    
+    <example>
+      <p>
+        Prove the parallelogram law using the properties of the inner product. 
+        The diagram below shows a parallelogram formed by the vectors <m>\v{u}</m> and <m>\v{v}</m>. 
+      </p>
+
+      <figure>
+        <image source="sec123-ParallelogramLaw-Diagram.png" width="65%"></image>
+        <caption>Parallelogram formed by vectors <m>\v{u}</m> and <m>\v{v}</m></caption>
+      </figure>
+
+      <hint>
+        <p>
+          The parallelogram has two diagonals with the lengths of <m>\|\v{u} + \v{v}\|</m> and <m>\|\v{u} - \v{v}\|</m>. 
+          Also, the sides have lengths of <m>\|\v{u}\|</m> and <m>\|\v{v}\|</m>, respectively. 
+        </p>
+
+        <p>
+          We are learning about the inner product so let's get some inner products involved!
+          One of the inner product properties states that <m>\|\v{v}\|^2 = \v{v}, \v{v}</m> so converting all the lengths into inner products is a good start! 
+        </p>
+      </hint>
+
+      <solution>
+        <p>
+          <md>
+            <mrow> \|\v{u} + \v{v}\|^2 + \|\v{u} - \v{v}\|^2 \amp= \v{u} + \v{v}, \v{u} + \v{v} + \la \v{u} - \v{v}, \v{u} - \v{v} </mrow>
+            <mrow> \amp= \v{u}, \v{u} + 2 \v{u}, \v{v} + \v{v}, \v{v} + \v{u}, \v{u} - 2\v{u}, \v{v} + \v{v}, \v{v}</mrow>
+            <mrow> \amp= 2 \v{u}, \v{u} + 2 \v{v}, \v{v} </mrow>
+            <mrow> \amp= 2\|\v{u}\|^2 + 2\|\v{v}\|^2 </mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      Now that we know what the inner product is and some of its properties, we will next explore why we care about it. 
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-Orthogonality-Intro">
+    <title>Orthogonality</title>
+    
+    <p>
+      Long story short, two vectors are <term>orthogonal</term> if their inner product is zero. 
+      But what does it look like? We will explore it more in <xref ref="sec63-OrthogonalProjection"/>. 
+    </p>
+  </subsection>
+
+  <worksheet xml:id="ws-sec61">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+
+    <exercisegroup>
+        <introduction>
+            <p>Compute the quantities the following exercises using the vectors 
+            <me>u=\begin{bmatrix}-1\\ 2\end{bmatrix}, \quad v=\begin{bmatrix}2\\ 3\end{bmatrix}, \quad w=\begin{bmatrix}3\\ -1\\ -5\end{bmatrix}, \quad x=\begin{bmatrix}6\\ -2\\ 3\end{bmatrix}</me>
+            </p>
+        </introduction>
+        
+        <exercise number="6.1.3">
+            <statement>
+                <me>\frac{1}{w\cdot w}w</me>
+            </statement>
+        </exercise>
+
+        <exercise number="6.1.5">
+            <statement>
+                <me>\left(\frac{u\cdot v}{v\cdot v}\right)v</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>In the following exercise, find a unit vector in the direction of the given vector.</p>
+        </introduction>
+
+        <exercise number="6.1.9">
+            <statement>
+                <me>\begin{bmatrix}-30\\ 40\end{bmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="6.1.11">
+            <statement>
+                <me>\begin{bmatrix}\frac{7}{4}\\ \frac{1}{2}\\ 1\end{bmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercise number="6.1.13">
+        <statement>
+            <p>Find the distance between <m>x=\begin{bmatrix}10\\ -3\end{bmatrix}</m> and <m>y=\begin{bmatrix}-1\\ -5\end{bmatrix}</m>.</p>
+        </statement>
+    </exercise>
+
+        <exercise number="6.1.17">
+            <statement>
+              <p>  
+                Determine if the following pair of vectors is orthogonal. 
+              <me>u=\begin{bmatrix}3\\ 2\\ -5\\ 0\end{bmatrix}, \quad v=\begin{bmatrix}-4\\ 1\\ -2\\ 6\end{bmatrix}</me>
+              </p>
+            </statement>
+        </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>In Exercises 19-27, all vectors are in <m>\mathbb{R}^{n}</m>. Mark each statement True or False (T/F). Justify each answer.</p>
+        </introduction>
+
+        <exercise number="6.1.19">
+            <statement>
+                <p>(T/F) <m>v\cdot v=||v||^{2}</m></p>
+            </statement>
+        </exercise>
+
+        <exercise number="6.1.21">
+            <statement>
+                <p>(T/F) If the distance from <m>u</m> to <m>v</m> equals the distance from <m>u</m> to <m>-v</m>, then <m>u</m> and <m>v</m> are orthogonal.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="6.1.23">
+            <statement>
+                <p>(T/F) If vectors <m>v_{1},...,v_{p}</m> span a subspace <m>W</m> and if <m>x</m> is orthogonal to each <m>v_{j}</m> for <m>j=1,...,p</m> then <m>x</m> is in <m>W^{\perp}</m>.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="6.1.25">
+            <statement>
+                <p>(T/F) For any scalar <m>c</m>, <m>||cv||=c||v||</m>.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="6.1.27">
+            <statement>
+                <p>(T/F) For a square matrix <m>A</m>, vectors in Col <m>A</m> are orthogonal to vectors in Nul <m>A</m>.</p>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+  </worksheet>
+
+</section>

@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec28-Subspaces" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Subspaces of <m>\R^n</m></title>
+
+  <introduction>
+    <p>
+      Near the beginning of the course we learned how to write the solution to a homogeneous system of equations <m>A\v{x} = \v{0}</m> as a linear combination of"basic vectors". 
+      This was possible because the set of solutions to a homogenous system is a special kind of set of vectors called a <term>subspace</term>.
+    </p>
+
+    <p>
+      In this section, we will be focusing on learning about subspaces and related concepts! 
+    </p>
+  </introduction>
+
+  <objectives>
+    <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+          <p>
+            determine if a set of vectors is a subspace. 
+          </p>
+        </li>
+        <li>
+          <p>
+            define the null space and the column space of a matrix. 
+          </p>
+        </li>
+        <li>
+          <p>
+            define the concept of span and spanning sets. 
+          </p>
+        </li>
+      </ul>
+  </objectives>
+
+  <subsection xml:id="subsec-SubspaceIntro">
+    <title>What is a Subspace?</title>
+    <p>
+      Subspace, is a subset of a vector space that is also a vector space (under the same operations). 
+      Yet we have not formally defined what a vector space is. 
+      So let's define what a subspace is without relying on the definition of a vector space!
+    </p>
+
+    <definition xml:id="def-Subspaces">
+      <title>Subspace of <m>\R^n</m> </title>
+      <statement>
+        <p>
+          A set <m>U</m> of vectors in <m>\R^n</m> is called a <term>subspace</term> if it satisfies the following properties: 
+          <ul marker="">
+            <li>
+              <p>
+                <em>S1:</em> The zero vector <m>\v{0} \in U</m> (note: the notation <m>\in</m> means "is an element of" or "is in").
+              </p>
+            </li>
+            <li>
+              <p>
+                <em>S2:</em> If <m>\v{x}, \v{y} \in U</m>, then <m>\v{x} + \v{y} \in U</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <em>S3:</em> If <m>\v{x} \in U</m>, then <m>a\v{x} \in U</m> for every real number <m>a</m>. 
+              </p>
+            </li>
+          </ul>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Some authors will give a slightly different (but equivalent) definition that replaces <em>S1</em> with "<m>U</m> is non-empty". 
+      Regardless of what specific definition and author gives, it will always be the case that the subspace is non-empty <alert>and</alert> includes the zero vector. 
+    </p>
+
+    <p>
+      Terminology: <em>S2</em> and <em>S3</em> are symbolic ways of saying <m>U</m> must be <alert>closed under (vector) addition</alert> and <alert>closed under scalar multiplication</alert>. 
+      So we can define a subspace in words to be a non-empty subset of <m>\R^n</m> that is closed under vector addition and scalar multiplication.
+    </p>
+
+    <p>
+      If you really want to only use words you can replace <m>\R^n</m> with "a vector space". 
+    </p>
+
+    <example>
+      <p>
+        The set <m>\set{\v{0}}</m> consisting of only the zero vector of <m>\R^n</m> is always a subspace of <m>\R^n</m>. 
+      </p>
+
+      <p>
+        We can verify that this set satisfies the three properties of a subspace:
+        <ul marker="">
+          <li>
+            <p>            
+              Clearly this set satisfies <em>S1</em>!
+            </p>
+          </li>
+          <li>
+            <p>
+              Since <m>\v{0} + \v{0} = \v{0} \in U</m>, this set satisfies <em>S2</em>!
+            </p>
+          </li>
+          <li>
+            <p>
+              We learned previously that for any scalar <m>a</m>, <m>a\v{0} = \v{0} \in U</m>, so this set satisfies <em>S3</em>!
+            </p>
+          </li>
+        </ul>
+        This subspace is called the <term>trivial subspace</term> because the only thing in it is the one vector that must be in <em>any</em> vector space. 
+      </p>
+    </example>
+
+    <example>
+      <p>
+        We have seen that the scalar equation of a plane looks like <m>ax + by + cz = d</m> for some number <m>d</m> where <m>\begin{bmatrix} a \\ b \\ c \end{bmatrix}</m> is a normal vector for the plane. 
+        If the plane goes through the origin <m>(0,0,0)</m>, then we have to be able to plug in zero for all of the variables and get equality. 
+        That means <m>d = 0</m> if the plane goes through the origin. 
+        So we know that the equation of a plane through the origin looks like <md>ax + by + cz = 0</md>
+      </p>
+
+      <p>
+        Claim: This plane is a subspace of <m>\R^3</m>! 
+      </p>
+
+      <p>
+        Let's verify the three properties listed in the definition to prove such a plane is a subspace!
+        <ul marker="">
+          <li>
+            <p>
+              <em>S1:</em> This one is given in the description! 
+              Or we can just plug in <m>(0,0,0)</m> to check that <m>a0 + b0 + c0 = 0</m>. 
+              Checked! 
+            </p>
+          </li>
+          <li>
+            <p>
+              <em>S2:</em> Suppose <m>(x_1, y_1, z_1)</m> and <m>(x_2, y_2, z_2)</m> are on the plane. 
+              Then
+              <md>
+                ax_1 + by_1 + cz_1 = 0 \qquad \text{ and } \qquad ax_2 + by_2 + cz_2 = 0 
+              </md>
+              Using the distributive property along with some commutativity, we can show that
+              <md>
+                <mrow> a(x_1 + x_2) + b(y_1 + y_2) + c(z_1 + z_2) \amp= ax_1 + ax_2 + by_1 + by_2 + cz_1 + cz_2 </mrow>
+                <mrow> \amp= (ax_1 + by_1 + cz_1) + (ax_2 + by_2 + cz_2) </mrow>
+                <mrow> \amp= 0 + 0 \amp= 0 </mrow>
+              </md>
+              So <m>(x_1 + x_2, y_1 + y_2, z_1 + z_2) = (x_1, y_1, z_1) + (x_2, y_2, z_2)</m> is also on the plane. 
+            </p>
+          </li>
+          <li>
+            <p>
+              <em>S3:</em> Suppose <m>k\in \R</m> and suppose <m>(x_1, y_1, z_1)</m> is on the plane. 
+              Then <m>ax_1 + by_1 + cz_1 = 0</m>. 
+              Then this implies that
+              <md>
+                k(ax_1 + by_1 + cz_1) = k(0) = 0
+              </md>
+              Using the distributive, associative, and commutative properties for real numbers, we get
+              <md>
+                a(kx_1) + b(ky_1) + c(kz_1) = 0
+              </md>
+              which means <m>(kx_1, ky_1, kz_1) = k(x_1, y_1, z_1)</m> is also on the plane.
+            </p>
+          </li>
+        </ul>
+      </p>
+    </example>
+
+    <example>
+      <title>Some non-examples of subspaces</title>
+      <ol>
+        <li>
+          <p>
+            The set of vectors <m>U = \set{(1,0,0), (0,1,0), (0,0,1)}</m> is NOT a subspace of <m>\R^3</m>. 
+          </p>
+
+          <p>
+            This subset fails every requirements: 
+            <ul marker="">
+              <li>
+                <p>
+                  <em>S1:</em> <m>(0,0,0)</m> is not included. 
+                </p>
+              </li>
+              <li>
+                <p>
+                  <em>S2:</em> <m>(1,0,0) + (0,1,0) = (1,1,0)</m> is not included in the set.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <em>S3:</em> <m>3(1,0,0) = (3,0,0)</m> is not included in the set.
+                </p>
+              </li>
+            </ul>
+          </p>
+        </li>
+        <li>
+          <p>
+            The set of solutions to the system <m>A\v{x} = \v{b}</m> is NEVER a subspace unless <m>\v{b} = \v{0}</m>. 
+          </p>
+
+          <p>
+            Proof: The zero vector is excluded because it can't be a solution to <m>A\v{x} = \v{b}</m> if <m>\v{b} \neq \v{0}</m>. 
+          </p>
+        </li>
+      </ol>
+    </example>
+  </subsection>
+  
+  <subsection xml:id="subsec-FundamentalSubspaces">
+    <title>Fundamental Subspaces</title>
+    
+    <p>
+      In matrix algebra, there are four fundamental subspaces associated to a matrix <m>A</m>. 
+      We will be focusing on two of these subspaces in this section: the <term>null space</term> and the <term>column space</term>. 
+    </p>
+
+    <definition xml:id="def-NullSpace">
+      <title>Null Space of a Matrix</title>
+      <statement>
+        <p>
+          Let <m>A</m> be an <m>m \times n</m> matrix. 
+          The <term>null space</term> of <m>A</m>, denoted <m>\Nul A</m>, is the set of vectors <m>\v{x}</m> such that<m>A\v{x} = \v{0}</m>. 
+          Symbolically speaking, 
+          <md>
+            \Nul A = \set{\v{x} \in \R^n \mid A\v{x} = \v{0}}
+          </md>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Claim: The null space of an <m>m \times n</m> matrix is a subspace of <m>\R^n</m>. 
+    </p>
+
+    <proof>
+      <ul marker="">
+        <li>
+          <p>
+            <em>S1:</em> <m>A\v{0} = \v{0}</m>, so <m>\v{0} \in \Nul A</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            <em>S2:</em> Suppose <m>\v{v}, \v{w} \in \Nul A</m>. 
+            Then <m>A\v{v} = \v{0}</m> and <m>A\v{w} = \v{0}</m>. 
+            This implies that
+            <md>
+              A(\v{v} + \v{w}) = A\v{v} + A\v{w} = \v{0} + \v{0} = \v{0}
+            </md>
+            So <m>\v{v} + \v{w} \in \Nul A</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            Suppose <m>a\in \R</m> and <m>\v{v} \in \Nul A</m>. 
+            Then <m>A\v{v} = \v{0}</m>, and so
+            <md>
+              A(a\v{v}) = a(A\v{v}) = a\v{0} = \v{0}
+            </md>
+            Therefore <m>a\v{v} \in \Nul A</m>. 
+          </p>
+        </li>
+      </ul>
+    </proof>
+
+    <definition xml:id="def-ColumnSpace">
+      <title>Column Space of a Matrix</title>
+      <statement>
+        <p>
+          Let <m>A</m> be an <m>m \times n</m> matrix. 
+          The <term>column space</term> of <m>A</m>, denoted <m>\Col A</m>, is the set of all linear combinations of the columns of <m>A</m>. 
+        </p>
+      </statement>
+    </definition>
+
+    <note>
+      <title>But some textbooks call it the image space...</title>
+      
+      <p>
+        Some textbooks uses a slightly different terminology and calls the column space the "<term>image space</term>".
+        But they are pretty much the same thing! 
+      </p>
+
+      <p>
+        Here is the definition of the image space from our textbook:
+      </p>
+
+      <definition xml:id="def-ImageSpace">
+        <title>Image Space</title>
+        <statement>
+          <p>
+            Let <m>A</m> be an <m>m \times n</m> matrix. 
+            The <term>image space</term> of <m>A</m>, denoted <m>\im A</m>, is the set of all of the possible products of <m>A</m> and a vector in <m>\R^n</m>.
+            Symbolically speaking,
+            <md>
+              \im A = \set{A\v{x} \mid \v{x} \in \R^n}
+            </md> 
+          </p>
+        </statement>
+      </definition>
+
+      <p>
+        The word "image" actually comes from the linear transformation perspective. 
+        The image of <m>A</m> is the set of outputs of the linear transformation <m>T</m> given by <m>T(\v{x}) = A\v{x}</m>. 
+        While "image" is the more common term in advanced mathematics, this set is also called the <term>range</term> of the linear transformation. 
+      </p>
+
+      <p>
+        <alert>But why is it the same thing as the column space?</alert>
+      </p>
+
+      <p>
+        That is because the matrix-vector product <m>A\v{x}</m> can also be expressed as a linear combination of the columns of <m>A</m>, where the coefficients come from entries of <m>\v{x}</m>. 
+      </p>
+
+      <p>
+        Let's look at the <m>3 \times 3</m> case! 
+        Suppose we have a generic <m>3 \times 3</m> matrix <m>A = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{bmatrix}</m> and a generic vector <m>\v{x} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}</m>. 
+        Any vector in the image space of <m>A</m> will, by definition, be of the form <m>A\v{x}</m>. 
+      </p>
+
+      <p>
+        Let <m>\v{x} = \begin{bmatrix}x_1 \\ x_2 \\ x_3 \end{bmatrix}\in \R^3</m>. 
+        Then
+        <md>
+          <mrow>A\v{x} \amp= \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} </mrow>
+          <mrow> \amp= \begin{bmatrix} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 \end{bmatrix} </mrow>
+          <mrow> \amp= x_1 \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \end{bmatrix} + x_2 \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \end{bmatrix} + x_3 \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \end{bmatrix} </mrow>
+        </md>
+        This means that the image of <m>A</m> consists of all of the linear combinations of the columns of <m>A</m>. 
+        That is why the image space and the column space are the same thing!
+      </p>
+    </note>
+
+    <p>
+      Claim: The column space of an <m>m \times n</m> matrix is a subspace of <m>\R^m</m>. 
+    </p>
+
+    <proof>
+      <ul marker="">
+        <li>
+          <p>
+            <em>S1:</em> <m>A\v{0} = \v{0}</m>, so there exists a vector in <m>\R^n</m> that maps to <m>\v{0}</m>. Therefore, <m>\v{0} \in \Col A</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            <em>S2:</em> Suppose <m>\v{u}, \v{v} \in \Col A</m>. 
+            By definition, there exist vectors <m>\v{x}, \v{y} \in \R^n</m> such that <m>A\v{x} = \v{u}</m> and <m>A\v{y} = \v{v}</m>. 
+            This implies that
+            <md>
+              \v{u} + \v{v} = A\v{x} + A\v{y} = A(\v{x} + \v{y})
+            </md>
+            Since <m>\v{x} + \v{y} \in \R^n</m>, we have <m>\v{u} + \v{v} \in \Col A</m>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            <em>S3:</em> Suppose <m>a\in \R</m> and <m>\v{v} \in \Col A</m>. 
+            By definition, there exists a vector <m>\v{x} \in \R^n</m> such that <m>A\v{x} = \v{v}</m>. 
+            This implies that
+            <md>
+              a\v{v} = a(A\v{x}) = A(a\v{x})
+            </md>
+            Since <m>a\v{x} \in \R^n</m>, we have <m>a\v{v} \in \Col A</m>. 
+          </p>
+        </li>
+      </ul>
+    </proof>
+
+    <p>
+      But what about the other two fundamental subspaces? 
+      They are actually the null space and column space of the transpose of the matrix!
+      <ol marker="">
+        <li>
+          <p>
+            The <term>row space</term> of a matrix <m>A</m> is the column space of the transpose of <m>A</m>, denoted <m>\Col A^T</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            The <term>left null space</term> of a matrix <m>A</m> is the null space of the transpose of <m>A</m>, denoted <m>\Nul A^T</m>.
+          </p>
+        </li>
+      </ol>
+      As you can imagine, if we master the null space and column space of a matrix, then we can easily understand the row space and left null space by just looking at the transpose of the matrix! 
+      Hence, we will be focusing on the null space and column space in this section (and the next section). 
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-Span">
+    <title>Span and Spanning Sets</title>
+    
+    <p>
+      Recall we learned about spans in the past. 
+      This is actually really related to the idea of subspaces! 
+    </p>
+
+    <definition xml:id="def-Span">
+      <title>Span and Spanning Sets</title>
+      <statement>
+        <p>
+          Let <m>S = \set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m> be a set of vectors in <m>\R^n</m>. 
+          The <term>span</term> of <m>S</m>, denoted 
+          <md>
+            \span S = \span\set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}
+          </md> 
+          is the set of <alert>all linear combinations</alert> of the vectors in <m>S</m>.
+          Symbolically speaking,
+          <md>
+            \span S = \set{c_1\v{v}_1 + c_2\v{v}_2 + \cdots + c_p\v{v}_p \mid c_1, c_2, \ldots, c_p \in \R}
+          </md>
+        </p>
+        <p>
+          Let <m>V = \span \set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m>. 
+          Then <m>\set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m> is called the <term>spanning set</term> (or generating set) of <m>V</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      <em>Fun Grammar Warning!</em> "Span" is used both as a noun and a verb! 
+      The definition here defines the meaning of span as a noun. 
+      When it is used as a verb, it means something a bit different. 
+      For example, we can say "the vectors <m>\begin{bmatrix} 1 \\ 0 \end{bmatrix}</m> and <m>\begin{bmatrix} 0 \\ 1 \end{bmatrix}</m> span <m>\R^2</m>". 
+      As a verb, span means "is/are a spanning set for". 
+    </p>
+
+    <p>
+      This brings us to the big theorem of this section! 
+    </p>
+
+    <theorem xml:id="thm-SpanSubspace">
+      <statement>
+        <p>
+          The span of a set of vectors is the <alert>smallest</alert> subspace containing those vectors. 
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      We can look at this theorem in two parts:
+      <ul marker="">
+        <li>
+          <p>
+            The span of a set of vectors is a subspace.
+          </p>
+        </li>
+        <li>
+          <p>
+            Any subspace containing those vectors must also contain the span of those vectors.
+          </p>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      To justify the first part, we can verify the three properties for the span: 
+      <ul marker="">
+        <li>
+          <p>
+            <em>S1:</em> The zero vector is just 
+            <md>
+              0\v{v}_1 + 0\v{v}_2 + \cdots + 0\v{v}_p
+            </md>
+            so it is in the span. 
+          </p>
+        </li>
+        <li>
+          <p>
+            <em>S2:</em> If <m>\v{x}</m> and <m>\v{y}</m> are both in the span, then there exist real numbers <m>a_1, a_2, \ldots, a_p</m> and <m>b_1, b_2, \ldots, b_p</m> such that
+            <md>
+              \v{x} = a_1\v{v}_1 + a_2\v{v}_2 + \cdots + a_p\v{v}_p \qquad \text{ and } \qquad \v{y} = b_1\v{v}_1 + b_2\v{v}_2 + \cdots + b_p\v{v}_p
+            </md>
+            Then
+            <md>
+              <mrow>\v{x} + \v{y} \amp = (a_1\v{v}_1 + a_2\v{v}_2 + \cdots + a_p\v{v}_p) + (b_1\v{v}_1 + b_2\v{v}_2 + \cdots + b_p\v{v}_p) </mrow>
+              <mrow> \amp = (a_1 + b_1)\v{v}_1 + (a_2 + b_2)\v{v}_2 + \cdots + (a_p + b_p)\v{v}_p </mrow>
+            </md>
+            So <m>\v{x} + \v{y}</m> is also in the span.
+          </p>
+        </li>
+        <li>
+          <p>
+            <em>S3:</em> Suppose <m>c\in \R</m> and <m>\v{x}</m> is in the span. 
+            Then there exist real numbers <m>a_1, a_2, \ldots, a_p</m> such that
+            <md>
+              \v{x} = a_1\v{v}_1 + a_2\v{v}_2 + \cdots + a_p\v{v}_p
+            </md>
+            So, 
+            <md>
+              <mrow> c\v{x} \amp= c(a_1\v{v}_1 + a_2\v{v}_2 + \cdots + a_p\v{v}_p) </mrow>
+              <mrow> \amp = (ca_1)\v{v}_1 + (ca_2)\v{v}_2 + \cdots + (ca_p)\v{v}_p </mrow>
+            </md>
+            Therefore, <m>c\v{x}</m> is also in the span.
+          </p>
+        </li>
+      </ul>
+      Hence, the span is a subspace!
+    </p>
+    
+    <p>
+      For the second part, 
+      notice that if you look at the definition of subspaces, the conditions are basically designed so that a subspace consists of all of the linear combination of some non-empty set of vectors. 
+      In fact we can formalize this observation: 
+      Any subspace containing the vectors <m>\v{v}_1, \v{v}_2, \ldots, \v{v}_p</m> must also contain all of the linear combinations of those vectors.
+      So it must contain all of the vectors in <m>\span\set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m>. 
+      Hence, the span is the smallest subspace containing those vectors!
+    </p>
+
+    <p>
+      Sometimes we have nice geometric ways to describe subspaces (e.g. a plane containing the origin), but in general the best way (especially in higher dimensions!) is often to give a spanning set. 
+      This is nice because non-trivial subspaces of <m>\R^n</m> contain infinitely many things, but we only need finitely many vectors to describe a spanning set of a subspace of <m>\R^n</m>. 
+    </p>
+
+    <example>
+      <p>
+        Recall that the null space and column space of a matrix are subspaces! 
+        So let's describe them using spanning sets! 
+      </p>
+
+      <p>
+        Let's say we have a matrix <m>A = \begin{bmatrix} -3 \amp 6 \amp -1 \amp 1 \amp 7 \\ 1 \amp -2 \amp 2 \amp 3 \amp -1 \\ 2 \amp -4 \amp 5 \amp 8 \amp -4 \end{bmatrix}</m>. 
+        We want to find its null space and column space.
+      </p>
+
+      <p>
+        Let's start by finding the null space! 
+        Recall that the null space of <m>A</m> is the set of solutions to the homogeneous equation <m>A\v{x} = \v{0}</m>. 
+        So let's solve the homogeneous equation first! 
+      </p>
+
+      <p>
+        Using Gaussian elimination algorithm, the reduced row echelon form of the augmented matrix <m>\begin{bmatrix} A \mid \v{0} \end{bmatrix}</m> is
+        <md>
+          \begin{bmatrix} 1 \amp -2 \amp 0 \amp -1 \amp 0 \amp \mid \amp 0  \\ 0 \amp 0 \amp 1 \amp 2 \amp 0 \amp \mid \amp 0\\ 0 \amp 0 \amp 0 \amp 0 \amp 1 \amp \mid \amp 0 \end{bmatrix}
+        </md>
+        Observe that <m>x_2</m> and <m>x_4</m> are free variables (by the lack of a pivot position in the second and fourth columns). 
+      </p>
+
+      <p>
+        So the solution to the homogeneous equation <m>A\v{x} = \v{0}</m> looks like this, in parametric form: 
+        <md>
+          \v{x} = \begin{bmatrix} 2x_2 + x_4 \\ x_2 \\ -2x_4 \\ x_4 \\ 0 \end{bmatrix} = x_2\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + x_4 \begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}
+        </md>
+        where <m>x_2, x_4 \in \R</m>
+      </p>
+
+      <p>
+        Observe that the solutions are some linear combinations of the two vectors <m>\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}</m> and <m>\begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}</m>. 
+        Hence, the null space of <m>A</m> is the span of those two vectors:
+        <md>          
+          \Nul A = \span\left\{\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}\right\}
+        </md>
+      </p>
+
+      <p>
+        <em>NOTE:</em> recall we always write the solution to a homogeneous system in parametric form. 
+        Now you know why! 
+      </p>
+
+      <p>
+        In the next section, we will learn that this spanning set of the null space is actually a <em>basis</em>!
+      </p>
+
+      <p>
+        Now let's find the column space of <m>A</m>!
+        By definition, the column space of <m>A</m> is the span of the columns of <m>A</m>. 
+        So we can just write down the columns of <m>A</m> and say that
+        <md>          
+          \Col A = \span\left\{\begin{bmatrix} -3 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix} 6 \\ -2 \\ -4 \end{bmatrix}, \begin{bmatrix} -1 \\ 2 \\ 5 \end{bmatrix}, \begin{bmatrix} 1 \\ 3 \\ 8 \end{bmatrix}, \begin{bmatrix} 7 \\ -1 \\ -4 \end{bmatrix}\right\}
+        </md>
+      </p>
+
+      <p>
+        In the next section, we will learn that this spanning set of the column space is NOT a <em>basis</em>, in the sense that some of the column vectors in the spanning set are "redundant". 
+      </p>
+    </example>
+  </subsection>
+
+  <worksheet xml:id="ws-sec28">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+  
+      <exercise number="2.8.1">
+        <statement>
+          <p>The figure below display a set in <m>\mathbb{R}^{2}</m>. 
+            Assume the sets include the bounding lines. 
+          </p>
+
+          <p>
+            Give a specific reason why the set <m>H</m> is not a subspace of <m>\mathbb{R}^{2}</m>. 
+            (For instance, find two vectors in <m>H</m> whose sum is not in <m>H</m>, or find a vector in <m>H</m> with a scalar multiple that is not in <m>H</m>. Draw a picture.) 
+          </p>
+        </statement>
+      </exercise>
+
+        <exercise number="2.8.5">
+            <statement>
+                <p>
+                  Let <m>\v{v}_{1}=\begin{bmatrix}2\\ 3\\ -5\end{bmatrix}</m>, <m>\v{v}_{2}=\begin{bmatrix}-4\\ -5\\ 8\end{bmatrix}</m>, and <m>\v{w}=\begin{bmatrix}8\\ 2\\ -9\end{bmatrix}</m>. 
+                  Determine if <m>\v{w}</m> is in the subspace of <m>\mathbb{R}^{3}</m> generated by <m>\v{v}_{1}</m> and <m>\v{v}_{2}</m>.
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.8.7">
+            <statement>
+                <p>
+                  Let <m>\v{v}_{1}=\begin{bmatrix}2\\ -8\\ 6\end{bmatrix}</m>, <m>\v{v}_{2}=\begin{bmatrix}-3\\ 8\\ -7\end{bmatrix}</m>, <m>v_{3}=\begin{bmatrix}-4\\ 6\\ -7\end{bmatrix}</m>, <m>\v{p}=\begin{bmatrix}6\\ -10\\ 11\end{bmatrix}</m>,  
+                  and  <m>A=\begin{bmatrix} \v{v}_{1}\amp \v{v}_{2}\amp \v{v}_{3}\end{bmatrix}</m>. 
+                  <ol marker="(a)">
+                    <li>
+                      <p>
+                        How many vectors are in <m>\set{\v{v}_{1},\v{v}_{2},\v{v}_{3}}</m>? 
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        How many vectors are in <m>\Col A</m>?
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Is <m>\v{p}</m> in <m>\Col A</m>? Why or why not?
+                      </p>
+                    </li>
+                  </ol>
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.8.9">
+            <statement>
+                <p>
+                  With <m>A</m> and <m>\v{p}</m> as in Exercise 7, determine if <m>\v{p}</m> is in <m>\Nul A</m>.
+                </p>
+            </statement>
+        </exercise>
+        
+        <exercise number="2.8.11">
+            <statement>
+              <p>
+                Give integers <m>p</m> and <m>q</m> such that <m>\Nul A</m> is a subspace of <m>\mathbb{R}^{p}</m> and <m>\Col A</m> is a subspace of <m>\mathbb{R}^{q}</m>
+                <md>
+                  A=\begin{bmatrix}3\amp 2\amp 1\amp -5\\ -9\amp -4\amp 1\amp 7\\ 9\amp 2\amp -5\amp 1\end{bmatrix}
+                </md>
+              </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.8.13">
+            <statement>
+                <p>
+                  For <m>A</m> as in Exercise 11, find a nonzero vector in <m>\Nul A</m> and a nonzero vector in <m>\Col A</m>.
+                </p>
+            </statement>
+        </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              Determine which sets in the following exercises are bases for <m>\mathbb{R}^{2}</m> or <m>\mathbb{R}^{3}</m>. 
+              Justify each answer. 
+            </p>
+        </introduction>
+        
+        <exercise number="2.8.15">
+            <statement>
+                <me>\begin{bmatrix}5\\ -2\end{bmatrix}, \begin{bmatrix}10\\ -3\end{bmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="2.8.19">
+            <statement>
+                <me>\begin{bmatrix}3\\ -8\\ 1\end{bmatrix}, \begin{bmatrix}6\\ 2\\ -5\end{bmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>In the following exercises, mark each statement True or False (T/F). Justify each answer. </p>
+        </introduction>
+
+        <exercise number="2.8.21">
+            <statement>
+                <p>
+                  (T/F) A subspace of <m>\mathbb{R}^{n}</m> is any set <m>H</m> such that (i) the zero vector is in <m>H</m>, (ii) <m>\v{u}</m>, <m>\v{v}</m>, and <m>\v{u}+\v{v}</m> are in <m>H</m>, and (iii) <m>c</m> is a scalar and <m>c\v{u}</m> is in <m>H</m>.
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.8.23">
+            <statement>
+                <p>
+                  (T/F) If <m>\v{v}_{1},...,\v{v}_{p}</m> are in <m>\mathbb{R}^{n}</m>, then Span <m>\{\v{v}_{1},...,\v{v}_{p}\}</m> is the same as the column space of the matrix <m>\begin{bmatrix}\v{v}_{1}\amp ...\amp \v{v}_{p}\end{bmatrix}</m>. 
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.8.25">
+            <statement>
+                <p>
+                  (T/F) The set of all solutions of a system of <m>m</m> homogeneous equations in <m>n</m> unknowns is a subspace of <m>\mathbb{R}^{m}</m>. 
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.8.27">
+            <statement>
+                <p>
+                  (T/F) The columns of an invertible <m>n \times n</m> matrix form a basis for <m>\mathbb{R}^{n}</m>. 
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="2.8.29">
+            <statement>
+                <p>
+                  (T/F) Row operations do not affect linear dependence relations among the columns of a matrix. 
+                </p>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              The following exercises display a matrix <m>A</m> and an echelon form of <m>A</m>. 
+              Find a basis for <m>\Col A</m> and a basis for <m>\Nul A</m>. 
+            </p>
+        </introduction>
+
+        <exercise number="2.8.31">
+            <statement>
+                <me>A=\begin{bmatrix}4\amp 5\amp 9\amp -2\\ 6\amp 5\amp 1\amp 12\\ 3\amp 4\amp 8\amp -3\end{bmatrix} \sim \begin{bmatrix}1\amp 2\amp 6\amp -5\\ 0\amp 1\amp 5\amp -6\\ 0\amp 0\amp 0\amp 0\end{bmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="2.8.33">
+            <statement>
+                <me>A=\begin{bmatrix}1\amp 4\amp 8\amp -3\amp -7\\ -1\amp 2\amp 7\amp 3\amp 4\\ -2\amp 2\amp 9\amp 5\amp 5\\ 3\amp 6\amp 9\amp -5\amp -2\end{bmatrix} \sim \begin{bmatrix}1\amp 4\amp 8\amp 0\amp 5\\ 0\amp 2\amp 5\amp 0\amp -1\\ 0\amp 0\amp 0\amp 1\amp 4\\ 0\amp 0\amp 0\amp 0\amp 0\end{bmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+  </worksheet>
+
+</section>

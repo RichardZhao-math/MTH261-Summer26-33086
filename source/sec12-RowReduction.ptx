@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec12-RowReduction" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Row Reduction and Echelon Forms</title>
+
+  <introduction>
+    <p>
+      While we have already explored the use of elementary operations to solve linear systems, we now turn our attention to a formal, algorithmic approach known as <term>Gaussian Elimination</term>. 
+      This method provides a systematic way to navigate the "staircase" of a matrix, ensuring that we can solve systems of any size—whether by hand or by programming a computer to do the heavy lifting for us.
+    </p>
+
+    <p>
+      In this section, we will define the "goal" states for our matrices: <term>row echelon form</term> and <term>reduced row echelon form</term>. 
+      We will also learn how to use these forms to quickly identify whether a system has a unique solution, infinitely many solutions, or no solution at all by identifying <term>pivots</term> and <term>free variables</term>.
+    </p>
+
+    <objectives>
+      <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+          <p>
+            distinguish between a matrix in <em>row echelon form</em> and one in <em>reduced row echelon form</em>;
+          </p>
+        </li>
+        <li>
+          <p>
+            apply the <em>Gaussian Elimination Algorithm</em> to transform an augmented matrix into (reduced) echelon form (aka row reduction); 
+          </p>
+        </li>
+        <li>
+          <p>
+            perform <em>back substitution</em> to find the solution to a system whose augmented matrix is in echelon form; 
+          </p>
+        </li>
+        <li>
+          <p>
+            identify <em>free variables</em> and use them to express the solution set in <em>parametric form</em>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            determine if a system is <em>consistent</em> by checking for pivots in the rightmost column of the augmented matrix.
+          </p>
+        </li>
+      </ul>
+    </objectives>
+  </introduction>
+
+  <p>
+    The method we have been talking about in <xref ref="sec11-SystemLinearEquations"/> for solving a system of linear equations using an augmented matrix and elementary row operations is called <alert>Gaussian Elimination</alert>. 
+    We now will learn some more terminology related to Gaussian Elimination and boil it down to an algorithm. 
+  </p>
+
+  <p>
+    There are LOTS of different ways that you can go about solving a system using an augmented matrix and elementary row operations. 
+    You can do lots of different steps in lots of different orders and you can convert back to a system of linear equations at lots of different points in the process. 
+  </p>
+
+  <p>
+    However, it will be helpful to learn a more algorithmic approach both for consistency with hand calculations and because a consistent algorithm is one that you can program a computer to execute. 
+  </p>
+
+  <p>
+    In this section, we will learn two variants of the Gaussian Elimination algorithm. 
+    Both of them include what I will call Part 1 while the second includes a Part 2. 
+  </p>
+
+  <p>
+    Let's solve the following system of linear equations we worked on in <xref ref="sec11-SystemLinearEquations"/> using the Gaussian Elimination algorithm. 
+    <md>
+      \begin{cases}
+        3x + 2y = 5 \\
+        5x - 8y = 14
+      \end{cases}
+    </md>
+    Then Richard will describe the algorithm in general. 
+  </p>
+  
+  <p>
+    The augmented matrix is 
+    <md>
+      \begin{bmatrix}
+        3 \amp 2 \amp \mid \amp 5 \\
+        5 \amp -8 \amp \mid \amp 14
+      \end{bmatrix}
+    </md>
+    The first thing we will do is to multiply Row 1 by <m>\dfrac{1}{3}</m> to get
+    <md>
+      \begin{bmatrix}
+        1 \amp \dfrac{2}{3} \amp \mid \amp \dfrac{5}{3} \\
+        5 \amp -8 \amp \mid \amp 14
+      \end{bmatrix}
+    </md>
+    The goal of that step was to have the first non-zero thing in Row 1 be a <m>1</m>. 
+  </p>
+
+  <p>
+    Next, we will add <m>-5</m> times Row 1 to Row 2 (and replace Row 2) to get
+    <md>
+      \begin{bmatrix}
+        1 \amp \dfrac{2}{3} \amp \mid \amp \dfrac{5}{3} \\
+        0 \amp \dfrac{-34}{3} \amp \mid \amp \dfrac{17}{3}
+      \end{bmatrix}
+    </md>
+    The goal of that step was to make everything below that first <m>1</m> a zero. 
+  </p>
+
+  <p>
+    Then we will multiply Row 2 by <m>\dfrac{-3}{34}</m> to get
+    <md>
+      \begin{bmatrix}
+        1 \amp \dfrac{2}{3} \amp \mid \amp \dfrac{5}{3} \\
+        0 \amp 1 \amp \mid \amp \dfrac{-1}{2}
+      \end{bmatrix}
+    </md>
+    Notice that now the coefficient matrix looks like a litter stair step with the first thing in each row a <m>1</m> with only <m>0</m> below it. 
+    This matrix is in what is called <alert>row echelon form</alert>. 
+  </p>
+
+  <p>
+    When you reach that point, you have completed Part 1 of the Gaussian Elimination algorithm. 
+  </p>
+
+  <p>
+    Now let's keep going with Part 2! 
+  </p>
+
+  <p>
+    We will now add <m>\dfrac{-2}{3}</m> times Row 2 to Row 1 (and replace Row 1) to get
+    <md>
+      \begin{bmatrix}
+        1 \amp 0 \amp \mid \amp 2 \\
+        0 \amp 1 \amp \mid \amp \dfrac{-1}{2}
+      \end{bmatrix}
+    </md>
+    The goal of that step was to turn "everything" above the first <m>1</m> in Row 2 into a zero. 
+    Now the matrix is in what is called a <alert>reduced row echelon form</alert>. 
+    The difference being that now we have zeros above our staircase of <m>1</m>'s. 
+  </p>
+
+  <definition xml:id="def-ReducedRowEchelonForm">
+    <title>Row Echelon Form and Reduced Row Echelon Form</title>
+    <statement>
+      <p>
+        A matrix is in <term>row echelon form</term> if:
+        <ol>
+          <li>
+            <p>
+              Every row consisting of only zeros must appear at the bottom of the matrix. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The first entry in any non-zero row is a <m>1</m>.
+              These are called the "leading" <m>1</m>'s. 
+            </p>
+          </li>
+          <li>
+            <p>
+              Every leading <m>1</m> has only zeros below it (a "leading <m>1</m>" is a <m>1</m> that is the first non-zero number in a row). 
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        A matrix is in <term>reduced row echelon form</term> if conditions 1-3 above are met AND every leading <m>1</m> has only zeros above it. 
+      </p>
+    </statement>
+  </definition>
+  
+  <note>
+    <title>Some variations on the above definition</title>
+
+    <p>
+      If you read other textbooks, you may find that the second condition is considered as part of the definition condition for reduced row echelon form instead of row echelon form. 
+      That is, the first non-zero entry can be anything (of course, except for zero) in row echelon form, but it must be a <m>1</m> (the leading <m>1</m>) in reduced row echelon form. 
+    </p>
+
+    <p>
+      Practically, it doesn't make a difference how you define it, because you can always multiply a row by the reciprocal of its first non-zero entry to get a leading <m>1</m> out of it. 
+    </p>
+  </note>
+
+  <p>
+    <em>Note: </em> These definitions apply to regular matrices and to augmented matrices. 
+  </p>
+
+  <p>
+    For example, the following matrices are all in row echelon form: 
+    <md>
+      \begin{bmatrix}
+        1 \amp 0 \amp 5 \amp \mid \amp 2 \\
+        0 \amp 0 \amp 1 \amp \mid \amp 7
+      \end{bmatrix}
+      \qquad\qquad 
+      \begin{bmatrix}
+        1 \amp 2 \amp \mid \amp 2 \\
+        0 \amp 1 \amp \mid \amp \frac{-1}{2} \\
+        0 \amp 0 \amp \mid \amp 8
+      \end{bmatrix}
+      \qquad\qquad
+      \begin{bmatrix}
+        1 \amp 0 \amp 0 \amp 2 \\
+        0 \amp 1 \amp 0 \amp \frac{-1}{2} \\
+        0 \amp 0 \amp 1 \amp 3
+      \end{bmatrix}
+    </md>
+  </p>
+
+  <p>
+    The following matrices (and the last one above) are all in reduced row echelon form:
+    <md>
+      \begin{bmatrix}
+        1 \amp 0 \amp 0 \amp \mid \amp 2 \\
+        0 \amp 0 \amp 1 \amp \mid \amp 7
+      \end{bmatrix}
+      \qquad\qquad 
+      \begin{bmatrix}
+        1 \amp 0 \amp \mid \amp 2 \\
+        0 \amp 1 \amp \mid \amp \frac{-1}{2} \\
+        0 \amp 0 \amp \mid \amp 8
+      \end{bmatrix}
+      \qquad\qquad
+      \begin{bmatrix}
+        1 \amp 0 \amp 0 \amp 0 \\
+        0 \amp 1 \amp 0 \amp 0 \\
+        0 \amp 0 \amp 1 \amp 0
+      \end{bmatrix}
+    </md>
+  </p>
+
+  <note>
+    <title>Note on second example above</title>
+    
+    <p>
+      Technically, the full augmented matrix in the second example above is not in reduced row echelon form (but the coefficient matrix is, which is what we really care about). 
+      To get the full augmented matrix into reduced row echelon form, you would need to multiply the bottom row by <m>\frac{1}{8}</m> to get a leading <m>1</m> and then turn everything above that into a zero for a total of three more completely useless steps. 
+      There isn't anything gained by doing these steps because at this point it is already clear that there are no solutions to the system... 
+    </p>
+
+    <p>
+      However, if you are asked for reduced row echelon form of an augmented matrix, it will annoyingly expect those last steps. 
+    </p>
+  </note>
+
+  <p>
+    When applying the Gaussian Elimination algorithm, the goal is to get the augmented matrix into row echelon form (Part 1) and/or reduced row echelon form (Part 2). 
+    Here are the steps: 
+    <ul marker="">
+      <li>
+        <p>
+          Step 0: If the matrix has only zeros in it, you are done! 
+        </p>
+      </li>
+      <li>
+        <p>
+          Step 1: If any rows start out with one or more zeros, move them toward the bottom. 
+          The more zeros a row has before the first non-zero entry, the lower it goes on the list.
+        </p>
+      </li>
+      <li>
+        <p>
+          Step 2: Multiply Row 1 by the reciprocal of its first non-zero entry. 
+          This will give you your first leading <m>1</m>. 
+        </p>
+      </li>
+      <li>
+        <p>
+          Step 3: For each non-zero entry that appears directly below the leading <m>1</m>, multiply Row 1 by the opposite (negative) of that number and add Row 1 to its row. 
+          This will give you all zeros below the leading <m>1</m>.
+        </p>
+      </li>
+    </ul>
+    Now the process is iterated! 
+    Apply the above procedure to the part of the matrix that excludes the first row and column. 
+    Repeat until either (1) the part you have left is all zeros, or (2) you get to the bottom of the matrix. 
+    In either case, the matrix will now be in row echelon form. 
+  </p>
+
+  <p>
+    <em>If you want to get a reduced row echelon form you will need to do Step 4:</em>
+    <ul marker="">
+      <li>
+        <p>
+          Step 4: For each row that contains a leading <m>1</m>, eliminate each non-zero entry above it by multiplying that row by the opposite of the non-zero entry and adding that to the row containing the non-zero entry. 
+        </p>
+      </li>
+    </ul>
+  </p>
+
+  <p>
+    Let's apply the method to try to solve this (larger) system of linear equations:
+    <md>
+      \begin{cases}
+        4x - 12y + 2z = -12 \\
+        2x - 6y = -10 \\
+        3x - 9y + z = -11 \\
+        -2x + 6y - z = 6
+      \end{cases}
+    </md>
+    The augmented matrix is
+    <md>
+      \begin{bmatrix}
+        4 \amp -12 \amp 2 \amp \mid \amp -12 \\
+        2 \amp -6 \amp 0 \amp \mid \amp -10 \\
+        3 \amp -9 \amp 1 \amp \mid \amp -11 \\
+        -2 \amp 6 \amp -1 \amp \mid \amp 6
+      \end{bmatrix}
+    </md>
+    Step 1 is already done since none of the rows starts out with a zero. 
+    So, let's do Step 2 and multiply the first equation by <m>\frac{1}{4}</m> to get our first leading <m>1</m>: 
+    <md>
+      \begin{bmatrix}
+        1 \amp -3 \amp \frac{1}{2} \amp \mid \amp -3 \\
+        2 \amp -6 \amp 0 \amp \mid \amp -10 \\
+        3 \amp -9 \amp 1 \amp \mid \amp -11 \\
+        -2 \amp 6 \amp -1 \amp \mid \amp 6
+      \end{bmatrix}
+    </md>
+    Now let's do Step 3 and turn everything below our leading <m>1</m> (in Row 1) into a zero! 
+    We will add <m>-2</m> times Row 1 to Row 2, add <m>-3</m> times Row 1 to Row 3, and add <m>2</m> times Row 1 to Row 4. 
+    We get
+    <md>
+      \begin{bmatrix}
+        1 \amp -3 \amp \frac{1}{2} \amp \mid \amp -3 \\
+        0 \amp 0 \amp -1 \amp \mid \amp -4 \\
+        0 \amp 0 \amp \frac{-1}{2} \amp \mid \amp -2 \\
+        0 \amp 0 \amp 0 \amp \mid \amp 0
+      \end{bmatrix}
+    </md>
+    Now we imagine crossing out Row 1 and Column 1 and apply the method to what is left. 
+    Since the row with the most zeros in the beginning (Row 4) is already on the bottom and Row 2 and Row 3 have the same number of leading zeros, we still don't have to do anything for Step 1.
+    Moving on to Step 2, we will multiply Row 2 by <m>-1</m> to get a leading <m>1</m> in Row 2: 
+    <md>
+      \begin{bmatrix}
+        1 \amp -3 \amp \frac{1}{2} \amp \mid \amp -3 \\
+        0 \amp 0 \amp 1 \amp \mid \amp 4 \\
+        0 \amp 0 \amp \frac{-1}{2} \amp \mid \amp -2 \\
+        0 \amp 0 \amp 0 \amp \mid \amp 0
+      \end{bmatrix}
+    </md>
+    Now we need to zero out all of the entries below this new leading <m>1</m>. 
+    All we have to do is add <m>\frac{1}{2}</m> times Row 2 to Row 3 to get
+    <md>
+      \begin{bmatrix}
+        1 \amp -3 \amp \frac{1}{2} \amp \mid \amp -3 \\
+        0 \amp 0 \amp 1 \amp \mid \amp 4 \\
+        0 \amp 0 \amp 0 \amp \mid \amp 0 \\
+        0 \amp 0 \amp 0 \amp \mid \amp 0
+      \end{bmatrix}
+    </md>
+    And now our matrix is in row echelon form because everything below Row 2 is a zero! 
+  </p>
+
+  <p>
+    To get our matrix into reduced row echelon form, we need to zero out everything above my leading <m>1</m>s (Step 4). 
+    But there is nothing above the first leading <m>1</m> obviously, so we just have to worry about the leading <m>1</m> in Row 2. 
+    We will add <m>\frac{-1}{2}</m> times Row 2 to Row 1 to get
+    <md>
+      \begin{bmatrix}
+        1 \amp -3 \amp 0 \amp \mid \amp -5 \\
+        0 \amp 0 \amp 1 \amp \mid \amp 4 \\
+        0 \amp 0 \amp 0 \amp \mid \amp 0 \\
+        0 \amp 0 \amp 0 \amp \mid \amp 0
+      \end{bmatrix}
+    </md>
+    Now the matrix is in reduced row echelon form!
+  </p>
+
+  <p>
+    If we convert the reduced row echelon form of the augmented matrix back to a system of linear equations, we get
+    <md>
+      \begin{cases}
+        x - 3y = -5 \\
+        z = 4 \\
+        0 = 0 \\
+        0 = 0
+      \end{cases}
+    </md>
+    So we know that <m>z = 4</m> and we can see that <m>x = 3y - 5</m>. 
+    So the solution is
+    <md>
+      x = 3y - 5\, , \qquad y = y\, , \qquad z = 4
+    </md>
+    or 
+    <md>
+      \lp 3y - 5\, , \,\, y \, , \,\, 4 \rp
+    </md>
+    where <m>y</m> is our parameter and can be anything. 
+  </p>
+
+  <p>
+    But if we stopped early and converted to a system of linear equations after getting the matrix into row echelon form, we get
+    <md>
+      \begin{cases}
+        x - 3y + \frac{1}{2}z = -3 \\
+        z = 4 \\
+        0 = 0 \\
+        0 = 0
+      \end{cases}
+    </md>
+    Again, we know that <m>z = 4</m> and we can solve for <m>x</m> in terms of <m>y</m> and <m>z</m>: 
+    <md>
+      x = 3y - 5
+    </md>
+    But <m>z</m> isn't a parameter! 
+    It's just <m>4</m>, so we have to "back substitute", plugging this value into the equation for <m>x</m> to get
+    <md>
+      x = 3y - \frac{1}{2}z - 3 = 3y - \frac{1}{2}(4) - 3 = 3y - 5
+    </md>
+  </p>
+
+  <note>
+    <title>But Richard... Should I use row echelon form or reduced row echelon form?</title>
+
+    <p>
+      Both row echelon form and reduced row echelon form can be used to solve a system of equations.
+      If it is EASY to do Step 4 and put your matrix into reduced row echelon form, you can basically just write down your answer!
+      But if it is not so easy, then you are usually better off stopping with row echelon form IF your goal is just to solve the system.
+      However, you will have to do an additional step of "back substitution" in order to solve the system.
+    </p>
+
+    <p>
+      <em>Later on we will some applications of the algorithm that require reduced row echelon form. 
+      When the time comes, Richard will explain why it is needed in those cases.</em>
+    </p>
+  </note>
+
+  <exercise>
+    <p>
+      Solve the following system of linear equations using the Gaussian Elimination algorithm. 
+      <md>
+        \begin{cases}
+          x - 3y - 4z = -7 \\
+          5x + 2y + 2z = -1 \\
+          4x - y - 5z = -6
+        \end{cases}
+      </md>
+    </p>
+
+    <solution>
+      <p>
+        The augmented matrix is
+        <md>
+          \begin{bmatrix}
+            1 \amp -3 \amp -4 \amp \mid \amp -7 \\
+            5 \amp 2 \amp 2 \amp \mid \amp -1 \\
+            4 \amp -1 \amp -5 \amp \mid \amp -6
+          \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        Step 1: Add <m>-5</m> times Row 1 to Row 2 (and replace Row 2) to get
+        <md>
+          \begin{bmatrix}
+            1 \amp -3 \amp -4 \amp \mid \amp -7 \\
+            0 \amp 17 \amp 22 \amp \mid \amp 34 \\
+            4 \amp -1 \amp -5 \amp \mid \amp -6
+          \end{bmatrix}
+        </md>
+      </p>
+      <p>
+        Step 2: Add <m>-4</m> times Row 1 to Row 3 (and replace Row 3) to get 
+        <md>
+          \begin{bmatrix}
+            1 \amp -3 \amp -4 \amp \mid \amp -7 \\
+            0 \amp 17 \amp 22 \amp \mid \amp 34 \\
+            0 \amp 11 \amp 11 \amp \mid \amp 22
+          \end{bmatrix}
+        </md>
+      </p>
+      <p>
+        Step 3: Multiply Row 2 by <m>\dfrac{1}{17}</m> to get
+        <md>
+          \begin{bmatrix}
+            1 \amp -3 \amp -4 \amp \mid \amp -7 \\
+            0 \amp 1 \amp \frac{22}{17} \amp \mid \amp 2 \\
+            0 \amp 11 \amp 11 \amp \mid \amp 22
+          \end{bmatrix}
+        </md>
+      </p>
+      <p>
+        Step 4: Add <m>-11</m> times Row 2 to Row 3 (and replace Row 3) to get
+        <md>
+          \begin{bmatrix}
+            1 \amp -3 \amp -4 \amp \mid \amp -7 \\
+            0 \amp 1 \amp \frac{22}{17} \amp \mid \amp 2 \\
+            0 \amp 0 \amp -\frac{55}{17} \amp \mid \amp 0
+          \end{bmatrix}
+        </md>
+      </p>
+      <p>
+        Step 5: Multiply Row 3 by <m>-\dfrac{17}{55}</m> to get
+        <md>
+          \begin{bmatrix}
+            1 \amp -3 \amp -4 \amp \mid \amp -7 \\
+            0 \amp 1 \amp \frac{22}{17} \amp \mid \amp 2 \\
+            0 \amp 0 \amp 1 \amp \mid \amp 0
+          \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        Now the matrix is in row echelon form. 
+        We can convert it back to a system of linear equations. 
+        We get
+        <md>
+          \begin{cases}
+            x - 3y - 4z = -7 \\
+            y + \frac{22}{17}z = 2 \\
+            z = 0
+          \end{cases}
+        </md>
+        We will then back substitute to solve for <m>y</m> and <m>x</m>: 
+        <md>
+          <mrow> y \amp= 2 - \frac{22}{17}(0) = 2 </mrow>
+          <mrow> x \amp= -7 + 3(2) + 4(0) = -7 + 6 = -1 </mrow>
+        </md>
+        Hence, the solution is <m>(-1, 2, 0)</m>. 
+      </p>
+
+      <p>
+        Alternatively, we can keep going with the algorithm to obtain the reduced row echelon form of the augmented matrix. 
+      </p>
+
+      <p>
+        Step 6: Add <m>-\frac{22}{17}</m> times Row 3 to Row 2 (and replace Row 2) to get
+        <md>
+          \begin{bmatrix}
+            1 \amp -3 \amp -4 \amp \mid \amp -7 \\
+            0 \amp 1 \amp 0 \amp \mid \amp 2 \\
+            0 \amp 0 \amp 1 \amp \mid \amp 0
+          \end{bmatrix}
+        </md>
+      </p>
+      <p>
+        Step 7: Add <m>4</m> times Row 3 to Row 1 (and replace Row 1) to get
+        <md>
+          \begin{bmatrix}
+            1 \amp -3 \amp 0 \amp \mid \amp -7 \\
+            0 \amp 1 \amp 0 \amp \mid \amp 2 \\
+            0 \amp 0 \amp 1 \amp \mid \amp 0
+          \end{bmatrix}
+        </md>
+      </p>
+      <p>
+        Step 8: Add <m>3</m> times Row 2 to Row 1 (and replace Row 1) to get
+        <md>
+          \begin{bmatrix}
+            1 \amp 0 \amp 0 \amp \mid \amp -1 \\
+            0 \amp 1 \amp 0 \amp \mid \amp 2 \\
+            0 \amp 0 \amp 1 \amp \mid \amp 0
+          \end{bmatrix}
+        </md>
+        Hence, the solution is <m>(-1,2,0)</m>. 
+      </p>
+    </solution>
+  </exercise>
+
+  <subsubsection xml:id="subsubsec-NumberOfParameters">
+    <title>How many parameters does the solution have?</title>
+
+    <p>
+      We use parameters to write the solution <alert>only</alert> when there are infinitely many solutions. 
+      And we can tell how many parameters we have by <em>counting how many leading <m>1</m>s we have when we put our matrix in row echelon form!</em>
+    </p>
+
+    <p>
+      <alert>All we have to do is to subtract the number of leading <m>1</m>s from the total number of variables.</alert>
+    </p>
+
+    <p>
+      Each leading <m>1</m> is associated with a variable that we can solve for in terms of the other variables. 
+      The author of your textbook calls these the "leading variable". 
+      The other variables are called "free variables" and these are the ones that can be used as parameters (or if you do it like the author, these are the variables you can set equal to new letters that you use for the parameters). 
+    </p>
+
+    <p>
+      In the exapmle we just did, <m>x</m> and <m>z</m> are leading variables, and <m>y</m> is the only free variable. 
+      So we only need one parameter to write the solution. 
+      The solution in <alert>parametric form</alert> is <m>\lp 3y - 5, y, 4\rp</m> or <m>\lp 3t - 5, t, 4\rp</m> if you want to use a new letter <m>t</m> like the author would do. 
+    </p>
+
+    <p>
+      <em>Note: </em> It doesn't matter whether you are in reduced row echelon form or just row echelon form, you will have the same number of leading <m>1</m>s (and so the same number of leading variables and free variables). 
+    </p>
+
+    <p>
+      Pretend that we had a system of 4 linear equations in 5 variables <m>(x,y,z,u,v)</m> and we put the augmented matrix into row echelon form and we got
+      <md>
+        \begin{bmatrix}
+          1 \amp -3 \amp 5 \amp 2 \amp 7 \amp \mid \amp -3 \\
+          0 \amp 0 \amp 1 \amp 0 \amp 1 \amp \mid \amp 4 \\
+          0 \amp 0 \amp 0 \amp 0 \amp 1 \amp \mid \amp 2 \\
+          0 \amp 0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0
+        \end{bmatrix}
+      </md>
+      This time we have 3 leading <m>1</m>s, so we have 3 leading variables. 
+      These are <m>x</m>, <m>z</m>, and <m>v</m>. 
+      We also have <m>5 - 3 = 2</m> free variables, and they are <m>y</m> and <m>u</m>. 
+    </p>
+
+    <p>
+      Since the matrix isn't in reduced row echelon form, we will have to do some back substitution to get the solution. 
+      Converting it to a system of linear equations, we get
+      <md>
+        \begin{cases}
+          x - 3y + 5z + 2u + 7v = -3 \\
+          z + v = 4 \\
+          v = 2 \\
+          0 = 0
+        \end{cases}
+      </md>
+      Now we will be able to see why it is called "back substitution", because we go backwards!
+    </p>
+
+    <p>
+      First, we will ignore the <m>0 = 0</m>. 
+      It is true (which is important!) but it doesn't actually help us figure out the solution. 
+    </p>
+
+    <p>
+      We see that <m>v = 2</m>, then we substitute that "back" into our second equation to get
+      <md>
+        z + 2 = 4 \qquad \implies \qquad z = 2
+      </md>
+      Then we substitute <m>v = 2</m> and <m>z = 2</m> back into our first equation to get
+      <md>
+        x - 3y + 10 + 2u + 14 = -3 \qquad \implies \qquad x = 3y - 2u - 27
+      </md>
+      So we will treat the <m>u</m> and <m>y</m> as free variables (parameters) and write the solution. 
+      The solution set is all points of the form
+      <md>
+        \lp 3y - 2u - 27\, , \,\, y \, , \,\, 2 \, , \,\, u \, , \, 2 \rp
+      </md>
+      where <m>y</m> and <m>u</m> can be any real numbers. 
+    </p>
+
+    <p>
+      Because of the importance of the leading <m>1</m>s, there are special terms for it. 
+    </p>
+
+    <definition xml:id="def-Pivot">
+      <title>Pivots, Pivot Columns, and Rank</title>
+      <statement>
+        <p>
+          A <term>pivot position</term> in a matrix is a location that corresponds to a leading <m>1</m> in (reduced) row echelon form. 
+        </p>
+
+        <p>
+          A <term>pivot column</term> is a column that contains a pivot position. 
+        </p>
+
+        <p>
+          The <term>rank</term> of a matrix is the number of leading <m>1</m>s in (reduced) row echelon form, which is the same as the number of pivot positions and the same as the number of pivot columns.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      <em>Note: </em> Rank is a term reserved for regular matrices, not augmented matrices. 
+      If someone asks for the rank of an augmented matrix, they mean the coefficient part of the matrix (the part to the left of the vertical line(s)). 
+      Also, we will learn a better (but equivalent) definition of rank later in the term. 
+    </p>
+    
+  </subsubsection>
+
+  <subsection xml:id="subsec-ExistenceUniqueness-AugmentedMatrices">
+    <title>Existence and Uniqueness Questions</title>
+
+    <p>
+      Imagine we have an <em>inconsistent</em> system of linear equations. 
+      Then its augmented matrix, in row echelon form, will have a row of the form
+      <md>
+        \begin{bmatrix}
+          0 \amp \cdots \amp 0 \amp \mid \amp b
+        \end{bmatrix}
+        \qquad \text{where } b \neq 0
+      </md>
+      which corresponds to the equation <m>0 = b</m>. 
+      The <m>b</m> is a pivot position (since this is the first non-zero entry in its row and we can easily turn it into a leading <m>1</m>). 
+      This implies that a system is inconsistent if there is a pivot position in the <em>rightmost</em> column (the one to the right of the vertical lines(s) which represents the constant matrix). 
+      Furthermore, if there is a pivot position in the rightmost column, then the rightmost column is a pivot column. 
+      Let's make it a theorem!
+    </p>
+
+    <theorem xml:id="thm-ExistenceUniquenessTheorem">
+      <title>Existence and Uniqueness Theorem</title>
+      <statement>
+        <p>
+          A linear system is <em>consistent</em> if and only if the rightmost column of the augmented matrix is <alert>NOT</alert> a pivot column. 
+          That is, if an only if an echelon form of the augmented matrix has <em>no</em> row of the form
+          <md>
+            \begin{bmatrix}
+              0 \amp \cdots \amp 0 \amp \mid \amp b
+            \end{bmatrix}
+            \qquad \text{where } b \neq 0
+          </md>
+        </p>
+
+        <p>
+          If a linear system is consistent, then the solution set contains either (1) a unique solution, when there are no free variables, or (2) infinitely many solutions, when there is at least one free variable. 
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      Next week, we will develop a (more sophisticated) version of the above theorem (using the rank of the matrices) when we learn more about matrices (and matrix equations). 
+      For now, we will just use the term "pivot column" instead of "rank" for our augmented matrices. 
+    </p>
+
+    <exercise>
+      <p>
+        Each of the following matrices represents the augmented matrix of a system of linear equations. 
+        Determine whether the system is consistent or not, and if it is consistent, determine whether the solution is unique. 
+        <ol marker="(a)">
+          <li>
+            <p>
+              <m>\begin{bmatrix}1 \amp 0 \amp 2 \amp \mid \amp 0\\ 0 \amp 3 \amp 0 \amp \mid \amp 4\\ 0 \amp 0 \amp 1 \amp \mid \amp 0\end{bmatrix}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{bmatrix}0 \amp 1 \amp 2 \amp 3 \amp \mid \amp 4 \\ 0 \amp 0 \amp 5 \amp 6 \amp \mid \amp 7 \\ 0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 8 \end{bmatrix}</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>\begin{bmatrix}1 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \amp \mid \amp 1 \\ 0 \amp 0 \amp 0 \amp 1 \amp \mid \amp 1\end{bmatrix}</m>
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <solution>
+        <p>
+          <ol marker="(a)">
+            <li>
+              <p>
+                The system is consistent because there is no pivot position in the rightmost column. 
+                Also, there is exactly one solution because there are three pivot positions and three variables. 
+              </p>
+            </li>
+            <li>
+              <p>
+                The system is inconsistent because there is a pivot position in the rightmost column. 
+              </p>
+            </li>
+            <li>
+              <p>
+                The system is consistent because there is no pivot position in the rightmost column. 
+                Also, there are infinitely many solutions because there are only three pivot positions but four variables, so there is a free variable. 
+              </p>
+            </li>
+          </ol>
+        </p>
+      </solution>
+    </exercise>
+    
+  </subsection>
+
+</section>

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec23-InvertibleMatrix" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Characterizations of Invertible Matrices</title>
+
+  <introduction>
+    <p>
+      Up to this point, we have explored various concepts seemingly in isolation: pivot positions, linear independence, span, one-to-one and onto transformations, and matrix equations. 
+      In this section, we will bring all of these ideas together under one unified framework: the Invertible Matrix Theorem. 
+      Instead of treating these as a list of separate rules to memorize, we will build connections between them from the ground up. 
+      You will see how discovering just one piece of information about a square matrix instantly unlocks a wealth of knowledge about its fundamental structure and the linear transformation it defines.
+    </p>
+
+    <objectives>
+      <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+          <p>
+            relate the core properties of square matrices (such as pivot positions, linear independence, span, and trivial solutions) directly to the concept of invertibility.
+          </p>
+        </li>
+        <li>
+          <p>
+            construct logical chains of equivalence to justify and prove various components of the Invertible Matrix Theorem.
+          </p>
+        </li>
+        <li>
+          <p>
+            apply the Invertible Matrix Theorem to quickly deduce the characteristics of a matrix or a system of equations without performing exhaustive row operations.
+          </p>
+        </li>
+        <li>
+          <p>
+            define an invertible linear transformation and formally link it to the inverse of its standard matrix.
+          </p>
+        </li>
+      </ul>
+    </objectives>
+  </introduction>
+
+  <p>
+    It is super important to be able to tell whether a matrix is invertible. 
+    One of the most important theorems in linear algebra is the <term>Invertible Matrix Theorem</term>, which identifies several conditions that are equivalent to a matrix being invertible. 
+  </p>
+
+  <theorem xml:id="thm-InvertibleMatrixTheorem">
+    <title>Invertible Matrix Theorem</title>
+    <statement>
+      <p>
+        Let <m>A</m> be an <m>n \times n</m> matrix. 
+        The following statements are equivalent. 
+        <ol marker="1.">
+          <li>
+            <p>
+              <m>A</m> is invertible. 
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>A</m> is row equivalent to <m>I_n</m>, the <m>n \times n</m> identity matrix. 
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>A</m> has <m>n</m> pivot positions.  
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>A\v{x} = \v{0}</m> has only the trivial solution.  
+            </p>
+          </li>
+          <li>
+            <p>
+              The columns of <m>A</m> are linearly independent. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The linear transformation <m>x \mapsto A\v{x}</m> is one-to-one. 
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>A\v{x} = \v{b}</m> is consistent for all <m>\v{b}\in \R^n</m>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The columns of <m>A</m> span <m>\R^n</m>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The linear transformation <m>\v{x} \mapsto A\v{x}</m> maps <m>\R^n</m> onto <m>\R^n</m>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              There is an <m>n \times n</m> matrix <m>C</m> such that <m>CA = I</m>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              There is an <m>n \times n</m> matrix <m>D</m> such that <m>AD = I</m>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>A^T</m> is invertible. 
+            </p>
+          </li>
+        </ol>
+      </p>
+    </statement>
+  </theorem>
+  
+  <p>
+    This big theorem that ties everything we have learned together! 
+    If you Google the Invertible Matrix Theorem, there are a lot more equivalent conditions than what we have listed here. 
+    Some of them are just rephrasing the conditions using other terminology and some of them requires a bit more linear algebra concepts that we are building towards. 
+    We will certainly circle back to this theorem and add more conditions when we learn more! 
+  </p>
+
+  <p>
+    Your textbook includes a blurb to prove this theorem (by directing us back to various places to find the proofs). 
+    Instead of proving them (they are super straightforward!), let's discuss the <em>method</em> to prove such a big theorem!
+  </p>
+
+  <p>
+    Proving two statements are equivalent is the same thing as proving a <em>biconditional</em> statement. 
+    Let's say we have two statements, <m>P</m> and <m>Q</m>, then "they are equivalent" means both "if <m>P</m> then <m>Q</m>" <alert>and</alert> "if <m>Q</m> then <m>P</m>". 
+    Symbolically, we use the notation "<m>\implies</m>" for implication and "<m>\iff</m>" for equivalence. 
+    So we are proving both <m>P \implies Q</m> and <m>Q \implies P</m>
+  </p>
+
+  <p>
+    To prove the invertible matrix theorem, we want to establish a <em>chain of equivalence</em>. 
+    That is, we want to link all the statements together using the equivalence notation <m>\iff</m>. 
+  </p>
+
+  <p>
+    Let's start small! 
+    Let's say we have three statements <m>P</m>, <m>Q</m>, and <m>R</m>. 
+    To prove that they are all equivalent, we need to prove that <m>P \iff Q \iff R</m>. 
+    One way to do so is to prove (1) <m>P \implies Q</m>, (2) <m>Q \implies R</m>, and (3) <m>R \implies P</m>. 
+    This creates a continuous logical loop! 
+    If we assume any one of these statements is true, we can follow the chain of implications to guarantee that the others are also true. 
+    Because we can travel from any single statement to every other statement in this cycle, they must all share the exact same truth value. 
+  </p>
+
+  <p>
+    As an exercise, try proving the invertible matrix theorem and see if you can construct such a chain of implication with these 12 statements! 
+  </p>
+  
+  <example>
+    <p>
+      Let <m>A = \begin{bmatrix} 2 \amp 0 \amp 0 \amp 0 \\ 1 \amp 3 \amp 0 \amp 0 \\ 8 \amp -2 \amp 1 \amp 0 \\ 9 \amp 12 \amp -3 \amp -3 \end{bmatrix}</m>.  
+      We can actually learn a lot by the invertible matrix theorem. 
+    </p>
+
+    <p>
+      One can very quickly determine that <m>A</m> is invertible (because the <m>\det A \neq 0</m>). 
+      Alternatively, we can solve the homogeneous equation quickly that <m>A\v{x} = \v{0}</m> has only the trivial solution. 
+    </p>
+
+    <p>
+      And we can draw so many conclusions by the fact that <m>A</m> is invertible using the invertible matrix theorem!
+      A couple examples are: 
+      <ol marker="1.">
+        <li>
+          <p>
+            <m>A</m> can be row reduced to a <m>4 \times 4</m> identity matrix; 
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>A</m> has <m>4</m> pivot positions; 
+          </p>
+        </li>
+        <li>
+          <p>
+            The columns of <m>A</m> are linearly independent; 
+          </p>
+        </li>
+        <li>
+          <p>
+            The columns of <m>A</m> spans <m>\R^4</m>; 
+          </p>
+        </li>
+        <li>
+          <p>
+            The equation <m>A\v{x} = \v{b}</m> is always consistent for every <m>\v{b} \in \R^4</m>; 
+          </p>
+        </li>
+        <li>
+          <p>
+            The linear transformation <m>\v{x} \mapsto A\v{x}</m> is injective, 
+          </p>
+        </li>
+      </ol>
+      And the list goes on! 
+    </p>
+
+    <p>
+      Recall these are the things that would have taken us hours to figure out before when we didn't know about the invertible matrix theorem! 
+    </p>
+  </example>
+
+  <p>
+    Recall all the linear transformations we learn from this class can be represented using matrix transformations. 
+    That is, we can define the linear transformation <m>T: \R^m \to \R^n</m> by <m>T(\v{x}) = A\v{x}</m>. 
+  </p>
+
+  <p>
+    If <m>A</m> is invertible, then what linear transformation does <m>A^{-1}\v{x}</m> define? 
+  </p>
+
+  <figure>
+    <image source="sec23-InverseLinearTransformation-Diagram.png" width="80%"></image>
+    <caption><m>A^{-1}</m> transforms <m>A\v{x}</m> back to <m>\v{x}</m></caption>
+  </figure>
+
+  <p>
+    We see that multiplication of <m>A^{-1}</m> undoes the linear transformation <m>T</m>, so the inverse matrix defines the <term>inverse</term> of a linear transformation!
+  </p>
+
+  <definition xml:id="def-InvertibleLinearTransformation">
+    <statement>
+      <p>
+        A linear transformation <m>T: \R^n \to \R^n</m> is <term>invertible</term> if there exists a function <m>S: \R^n \to \R^n</m> such that 
+        <md>
+          <mrow>S\lp T(x) \rp \amp \v{x} \amp\amp \forall \v{x} \in \R^n </mrow>
+        </md>
+        and
+        <md>
+          <mrow>T\lp S(x) \rp \amp \v{x} \amp\amp \forall \v{x} \in \R^n </mrow>
+        </md>
+      </p>
+    </statement>
+  </definition>
+
+  <theorem xml:id="thm-InvertibleLinearTransformationMatrix">
+    <statement>
+      <p>
+        Let <m>T: \R^n \to \R^n</m> be a linear transformation with the standard matrix <m>A</m>. 
+        Then <m>T</m> is invertible if and only if <m>A</m> is an invertible matrix. 
+      </p>
+
+      <p>
+        In this case, the linear transformation <m>S</m> given by <m>S(\v{x}) = A^{-1}\v{x}</m> is the unique function satisfying the invertible definition for <m>T</m> and is called the <term>inverse</term> of <m>T</m>. 
+      </p>
+    </statement>
+  </theorem>
+  
+  <example>
+    <p>
+      Let's say <m>T: \R^n \to \R^n</m> is an <alert>injective</alert> linear transformation. 
+      What can we say about <m>T</m>? 
+    </p>
+
+    <p>
+      <m>T</m> being injective means that the columns of <m>A</m>, the standard matrix that defines this linear transformation, are <alert>linearly independent</alert>. 
+      This implies that <m>A</m> has <m>n</m> pivot positions. 
+    </p>
+
+    <p>
+      By the invertible matrix theorem, we know that <m>A</m> is invertible, and hence, <m>T</m> is an <alert>invertible linear transformation</alert>!
+    </p>
+
+    <p>
+      Also by the invertible matrix theorem, the columns of <m>A</m> spans the codomain, <m>\R^n</m>, and hence <m>T</m> must be <alert>surjective</alert>. 
+    </p>
+
+    <p>
+      See how powerful the invertible matrix theorem is! 
+      Once we know just a bit of information about the matrix/linear transformation, the invertible matrix theorem will do the rest! 
+    </p>
+  </example>
+
+  <exercise>
+    <p>
+      Let <m>T: \R^n \to \R^n</m> be a <alert>surjective</alert> linear transformation. 
+      What can we say about <m>T</m>? 
+    </p>
+  </exercise>
+
+  <p>
+    Fancy terminology! 
+    A transformation that are both <em>injective</em> and <em>surjective</em> is called a <term>bijection</term>. 
+    An immediate result we can get is that <alert>a transformation is invertible if and only if it is a bijection</alert>! 
+  </p>
+
+  <worksheet xml:id="ws-sec23">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+
+    <exercisegroup>
+        <introduction>
+            <p>Determine which of the matrices are invertible. Use as few calculations as possible. Justify your answers.</p>
+        </introduction>
+        
+        <exercise number="2.3.1">
+            <me>\begin{bmatrix} 5 \amp 7 \\ -3 \amp -6 \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="2.3.3">
+            <me>\begin{bmatrix} 5 \amp 0 \amp 0 \\ -3 \amp -7 \amp 0 \\ 8 \amp 5 \amp -1 \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="2.3.5">
+            <me>\begin{bmatrix} 0 \amp 3 \amp -5 \\ 1 \amp 0 \amp 2 \\ -4 \amp -9 \amp 7 \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="2.3.9">
+            <me>\begin{bmatrix} 4 \amp 0 \amp -7 \amp -7 \\ -6 \amp 1 \amp 11 \amp 9 \\ 7 \amp -5 \amp 10 \amp 19 \\ -1 \amp 2 \amp 3 \amp -1 \end{bmatrix}</me>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>The matrices are all <m>n \times n</m>. Each part of the exercises is an implication of the form "If 'statement 1', then 'statement 2'." Mark an implication as True if the truth of "statement 2" always follows whenever "statement 1" happens to be true. An implication is False if there is an instance in which "statement 2" is false but "statement 1" is true. Justify each answer.</p>
+        </introduction>
+
+        <exercise number="2.3.11">
+            <p>(T/F) If the equation <m>A\v{x}=\v{0}</m> has only the trivial solution, then <m>A</m> is row equivalent to the <m>n \times n</m> identity matrix.</p>
+        </exercise>
+
+        <exercise number="2.3.13">
+            <p>(T/F) If the columns of <m>A</m> span <m>\mathbb{R}^{n}</m>, then the columns are linearly independent.</p>
+        </exercise>
+
+        <exercise number="2.3.15">
+            <p>(T/F) If <m>A</m> is an <m>n \times n</m> matrix, then the equation <m>A\v{x}=\v{b}</m> has at least one solution for each <m>\v{b}</m> in <m>\mathbb{R}^{n}</m>.</p>
+        </exercise>
+
+        <exercise number="2.3.17">
+            <p>(T/F) If the equation <m>A\v{x}=\v{0}</m> has a nontrivial solution, then <m>A</m> has fewer than <m>n</m> pivot positions.</p>
+        </exercise>
+
+        <exercise number="2.3.19">
+            <p>(T/F) If <m>A^{T}</m> is not invertible, then <m>A</m> is not invertible.</p>
+        </exercise>
+    </exercisegroup>
+
+    <exercise number="2.3.31">
+        <statement>
+            <p>If an <m>n \times n</m> matrix <m>K</m> cannot be row reduced to <m>I_{n}</m>, what can you say about the columns of <m>K</m>? Why?</p>
+        </statement>
+    </exercise>
+
+  </worksheet>
+    
+</section>

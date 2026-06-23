@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<appendix xml:id="appendixA-ExamReviews" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Exam Reviews Page</title>
+
+  <introduction>
+    <p>
+        This page include exam stuff, like exam information that you need to know and review materials for the exams. 
+    </p>
+
+    <assemblage>
+        <title>Exam Dates</title>
+        <p>
+            Midterm Exam will be in class on <alert>Tuesday, May 12</alert>, from 9:00am to 10:50am. 
+            This will cover <alert>Chapter 1, section 2.1, section 2.2, and section 2.3</alert>. 
+        </p>
+
+        <p>
+            Final Exam will be in class on <alert>Tuesday, June 9</alert>, from 9:00am to 10:50am. 
+            This exam is <alert>cumulative</alert>. 
+        </p>
+
+        <p>
+            <em>P.S.:</em> If you have to miss an exam for some reason, reach out to Richard as soon as possible to discuss options to make up the exam(s). 
+        </p>
+    </assemblage>
+
+    <p>
+        No notes will be allowed on the exam. 
+        A calculator is permitted on the exam. 
+    </p>
+
+    <p>
+        <alert>Remember to show all of your work for full credits. </alert>
+        Richard values mathematical reasoning/justification a lot more than just the correct answers. 
+        Correct answers with no or minimal work will not receive full credits. 
+        Calculator-generated answers without human support will also not receive full credits!
+    </p>
+
+    <p>
+        Here are some study tips:
+        <ul>
+            <li>
+                <p>
+                    Remember we have done a lot of problems in class, in your portfolio, and in your homework problems. 
+                    Make sure you know how to solve the problems we went through in class, in your portfolio, and in your homework problems. 
+                </p>
+            </li>
+            <li>
+                <p>
+                    Forming a study group is always a good choice to study for math. 
+                    Collaborating with your peers and working in a group helps because you can talk through each step together, make sure your solutions are clear to other people, and ask questions when things aren’t perfectly clear.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Asking Richard for help! 
+                    Remember he has office hours and you are more than welcome to shoot him questions via email as well!
+                </p>
+            </li>
+            <li>
+                <p>
+                    Visiting the tutoring center. 
+                </p>
+            </li>
+        </ul> 
+    </p>
+
+    <p>
+        <alert>Frequently Asked Questions</alert>
+    </p>
+
+    <remark>
+        <title>What is a good way to study for the exams?</title>
+
+        <p>
+            As Richard suggested in the study tips, some of the good ways to study for the exam are to review the homework problems in your portfolio and problems done in class; form a study group with your classmates so you can go over problems with others and bounce of ideas; ask Richard if you have any questions; visit the tutoring center for additional help.  
+        </p>
+
+        <p>
+            Potentially, there are a lot of external resources that you can look into for review on the internet. 
+        </p>
+
+        <p>
+            But remember, Richard is the one writing the exam and grading your work! 
+            So you probably want to study the material written by Richard primarily to get to know more about what questions he likes to ask and what answers he expects to see (as opposed to going around the internet blindly without a plan). 
+        </p>
+
+        <p>
+            Also, make sure you <alert>WORK</alert> on some math problems for review, not just only skimming through stuff. Human learn math through doing, not skimming/reading.
+            Just because you can understand how things work doesn't mean you can re-invent the solution on the spot, especially when the exam are timed and weights a lot on your grade. 
+        </p>
+    </remark>
+
+    <remark>
+        <title>Do I need a (graphing) calculator on the exam? </title>
+
+        <p>
+            Likely yes. 
+            It really depends on how comfortable you are solving problems without technology. 
+            But there are advantages of having a (graphing) calculator on hand during the exams. 
+            It will help you with computations and checking your answers quickly. 
+            Also, some students believe that having a calculator can also boost up confidence as well. 
+        </p>
+
+        <p>
+            Yet, <alert>you must still show all your work for full credits!</alert> 
+            Calculators are just a tool to help you do math, not to replace you in the process and your mathematical reasoning/justification. 
+        </p>
+
+        <p>
+            Calculator-generated answers will not be accepted. 
+            So Richard will not accept answers like "the calculator showed the answer is such and such...". 
+            He can't see your calculator screen when he grades your work. 
+        </p>
+    </remark>
+
+    <remark>
+        <title>Does notation matter? Are notations worth any points? </title>
+
+        <p>
+            <alert>YES!</alert> 
+            Well Richard's research is about students interpretation on notations and their understanding on topics in collegiate level math so you tell me if he cares about notation or not. 
+        </p>
+
+        <p>
+            Proper notation allows Richard to understand your workflow, increasing your chance for full or partial credit (as opposed to having Richard to guess what you mean on your work... he is bad at guessing). 
+            Remember that it is not Richard's responsibility to have to guess what you mean if the work is confusing! 
+        </p>
+    </remark>
+
+    <remark>
+        <title>Is there any bonus problem on the exam? </title>
+
+        <p>
+            Yes. 
+            There will be a bonus problem worth <alert>10% of the exam score</alert> (usually 10 points out of 100). 
+        </p>
+
+        <p>
+            Coming from a background of math ed that focuses on conceptual understanding and pure math, Richard tends to make the bonus question to focus on the conceptual side... 
+            So it is unlikely that you can just apply a formula or a procedure to get the answer. 
+            But it won't be something that is completely out of the blue either.
+        </p>
+
+        <p>
+            Please at least attempt the bonus problem!
+            Even if you don't know how to solve it, you can still get some points for showing your thinking and reasoning on the problem (of course, the thinking/reasoning has to be relevant to the problem and make sense).
+            There is no penalty for wrong answers on the bonus problem. 
+            That's why it is a bonus problem!
+        </p>
+    </remark>
+
+    <remark>
+        <title>How many problems can I expect on the exam?</title>
+        
+        <p>
+            No clue... 
+            This is the first time Richard is teaching linear algebra and he hasn't started to think about the exam stuff yet.
+        </p>
+
+        <p>
+            For reference, Richard has taught MTH 251, MTH 252(Z), and MTH 253 a lot before, and usually he would put about 7 to 8 problems plus a bonus question on a 1-hour-and-50-minute exam, depending on the level of difficulty of each problem. 
+            The questions were all (big) free-response questions, so there wasn't any multiple choices or fill-in-the-blank questions. 
+        </p>
+
+        <p>
+            Instead of giving you a precise number of questions on the exam, let's do a range! 
+            Let's say the number of questions on the exam, <m>N</m>, is in the interval <m>[7,10]</m>. 
+        </p>
+    </remark>
+
+    <remark>
+        <title>Will Richard curve exams?</title>
+
+        <p>
+            Hmm... not necessarily. 
+            While Richard doesn't like to curve the exams, he will do something if the whole class doesn't do well for some reasons beyond their control 
+            (some examples include: Richard may accidentally write the exam too hard, a train was going back and forth outside the building that creates waaaaaay too much noise for students to concentrate, a dead squirrel was spotted in the classroom that distracts everyone from taking the exam... well anything is possible!). 
+        </p>
+
+        <p>
+            If the class average wasn't as high as Richard's expectation, he will do one of the three things and he will poll the class: 
+            <ol>
+                <li>
+                    <p>
+                        administer an optional exam correction, along with a reflection, that allows students to learn from their mistakes and earn some points; 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        simply curve the grade (but how much should he curve... well no one knows it yet); 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        replace one of the midterm exams score with the final score if the final score is higher. 
+                    </p>
+                </li>
+            </ol>
+            But don't rely on these measures to improve your grade! 
+            The safest way is to study well and do well on the exams! 
+        </p>
+    </remark>
+
+    <p>
+        To give you an idea of what the exam(s) will be like, you can find the exams Richard gave to his MTH 261 last term. 
+        Feel free to use it as a practice run. 
+    </p>
+
+    <figure>
+      <caption>Richard's MTH 261 Midterm Exam in Spring 2026</caption>
+      <interactive iframe="MTH261_Spring26_Midterm.pdf" width="100%" aspect="8.5:11" />
+    </figure>
+
+    <figure>
+      <caption>Richard's MTH 261 Final Exam in Spring 2026</caption>
+      <interactive iframe="MTH261_Spring26_Final.pdf" width="100%" aspect="8.5:11" />
+    </figure>
+
+  </introduction>
+
+</appendix>

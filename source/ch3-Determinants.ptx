@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch3-Determinants" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Determinants</title>
+
+  <!-- include sections -->
+  <xi:include href="sec31-IntroDeterminants.ptx" />
+  <xi:include href="sec32-PropertiesDeterminants.ptx" />
+
+</chapter>

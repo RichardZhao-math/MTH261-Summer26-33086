@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec31-IntroDeterminants" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Introduction to Determinants</title>
+
+  <introduction>
+    <p>
+      You may recall we learned a special formula back in <xref ref="sec22-InverseMatrix"/> that computes the <alert>determinant</alert> of a <m>2 \times 2</m> matrix. 
+      But what does it mean? 
+    </p>
+
+    <p>
+        Determinant is really a special linear operator with special properties that we won't be able to make sense of fully in this class. 
+        Instead, we will focus on how to compute the determinant in this section. 
+    </p>
+
+
+    <objectives>
+      <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+          <p>
+            Compute the determinant of an <m>n \times n</m> matrix in various methods. 
+          </p>
+        </li>
+        <li>
+            <p>
+                Determine the cofactors, including the signs. 
+            </p>
+        </li>
+      </ul>
+    </objectives>
+  </introduction>
+
+  <p>
+    The <term>cofactor expansion</term> is a method to compute the <alert>determinant</alert> of a matrix. 
+  </p>
+
+  <p>
+    But what's the <term>determinant</term> of a matrix? 
+    We won't be able to answer this question now since we haven't gotten into vector geometry yet. 
+    Right now, you can think of the determinant of a matrix a <em>special number</em> associated with the matrix that tells us many things about the matrix (e.g., its invertibility).  
+  </p>
+
+  <p>
+    Notation-wise, the determinant of the matrix <m>A</m> is denoted by <m>|A|</m>. 
+    When we are working with a specific matrix, we replace the brackets with absolute values and then it stands for the determinant (which is a number) rather than a matrix. 
+  </p>
+
+  <p>
+    For example, the determinant of the matrix <m>\begin{bmatrix} 1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 2 \\ 5 \amp -5 \amp 5 \end{bmatrix}</m> is denoted by <m>\begin{vmatrix} 1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 2 \\ 5 \amp -5 \amp 5 \end{vmatrix}</m>
+  </p>
+
+  <p>
+    If you are super interested in knowing what the determinant represents, check out the following video: 
+  </p>
+
+  <figure>
+    <caption>The Determinant</caption>
+    <video youtube="Ip3X9LOh2dk" width="50%"/>
+  </figure>
+
+  <p>
+    In this section, we will focus on how to compute the determinant than what the number tells us.  
+  </p>
+
+  <example>
+    <p>
+        Let's find the determinant of the matrix <m>\begin{bmatrix} 1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 2 \\ 5 \amp -5 \amp 5 \end{bmatrix}</m> using the method of cofactor expansion! 
+    </p>
+
+    <p>
+        The way to do so is to pick <alert>one row or column</alert> to expand on. 
+        We can pick any of them: 
+    </p>
+
+    <p>
+        Let's pick Row 1: 
+        <md>
+            <mrow>\begin{vmatrix} 1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 2 \\ 5 \amp -5 \amp 5 \end{vmatrix} \amp = 1 \begin{vmatrix} 0 \amp 2 \\ -5 \amp 5 \end{vmatrix} - 2 \begin{vmatrix} 1 \amp 2 \\ 5 \amp 5 \end{vmatrix} + 3\begin{vmatrix} 1 \amp 0 \\ 5 \amp -5 \end{vmatrix} </mrow>
+            <mrow> \amp= 1(10) - 2(-5) + 3(-5) </mrow>
+            <mrow> \amp= 5 </mrow>
+        </md>
+        So the determinant of this matrix is <m>5</m>. 
+    </p>
+
+    <p>
+        Alternatively, we can pick Column 2 to expand on: 
+        <md>
+            <mrow>\begin{vmatrix} 1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 2 \\ 5 \amp -5 \amp 5 \end{vmatrix} \amp = -2 \begin{vmatrix} 1 \amp 2 \\ 5 \amp 5 \end{vmatrix} + 0 \begin{vmatrix} 1 \amp 3 \\ 5 \amp 5 \end{vmatrix} + 5 \begin{vmatrix} 1 \amp 3 \\ 1 \amp 2 \end{vmatrix} </mrow>
+            <mrow> \amp= -2(-5) + 0(-10) + 5(-1) </mrow>
+            <mrow> \amp= 5 </mrow>
+        </md>
+        See the determinant is the same! 
+    </p>
+  </example>
+
+  <p>
+    So how does it work? 
+    <ol marker="1.">
+        <li>
+            <p>
+                Pick a row or a column. 
+            </p>
+        </li>
+        <li>
+            <p>
+                For each entry, multiply it by the determinant of the matrix you get by <em>eliminating the row and the column that the entry is in</em>. 
+            </p>
+        </li>
+        <li>
+            <p>
+                If the row number plus the column number is odd, multiply the little determinant by <m>-1</m>. 
+            </p>
+        </li>
+        <li>
+            <p>
+                Add up all the products. 
+            </p>
+        </li>
+    </ol>
+    Here is a strategy to help us pick a row or a column to expand on: If possible, pick the row/column that has <alert>the most zeros</alert> in it, since we don't have to compute any of the little determinants of those (as they will be multiplied by zero!). 
+  </p>
+
+  <exercise>
+    <p>
+        Use the cofactor expansion method to compute the determinant of the matrix
+        <md>
+            \begin{bmatrix} 1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 2 \\ 5 \amp -5 \amp 5 \end{bmatrix}
+        </md>
+        in the following two ways: 
+        <ol marker="(a)">
+            <li>
+                <p>
+                    Expand on Row 2. 
+                </p>
+            </li>
+            <li>
+                <p>
+                    Expand on Column 3. 
+                </p>
+            </li>
+        </ol>
+    </p>
+
+    <solution>
+        <p>
+            The answer! 
+        </p>
+    </solution>
+  </exercise>
+
+  <p>
+    The main idea of the cofactor expansion is that <alert>it allows us to build up the determinant of a matrix using the determinants of smaller matrices</alert>. 
+    So once we know how to compute the determinant of <m>2 \times 2</m> matrices, we can use that to figure out the determinant of a <m>3 \times 3</m> matrix. 
+    And then we could use that to figure out how to compute the determinant of a <m>4 \times 4</m> matrix (and etc...)
+  </p>
+
+  <p>
+    The products we add up (<m>1</m> or <m>-1</m> times the little determinant) during the cofactor expansion procedures are called the <alert>cofactors</alert>. 
+  </p>
+
+  <definition xml:id="def-Cofactor">
+    <title>Formal Definition of Cofactors</title>
+    <statement>
+        <p>
+            Given an <m>n \times n</m> matrix <m>A</m>, let <m>A_{ij}</m> be the <m>(n-1) \times (n-1)</m> matrix obtained by deleting the <m>i</m>th row and the <m>j</m>th column of <m>A</m>. 
+            Then the <alert>cofactor</alert> is 
+            <md>
+                c_{ij} = (-1)^{i + j} |A_{ij}|
+            </md>
+        </p>
+    </statement>
+  </definition>
+
+  <p>
+    The <m>(-1)^{i+j}</m> is the part of the formula that does the multiplication by <m>-1</m> or <m>1</m>: 
+    <ul marker="">
+        <li>
+            <p>
+                If the sum of the row number and the column number is odd, we get the <m>-1</m>; 
+            </p>
+        </li>
+        <li>
+            <p>
+                If the sum of the row number and the column number is even, we get the <m>1</m>. 
+            </p>
+        </li>
+    </ul>
+    So to get a cofactor, we will find out little determinant and then either change its sign or leave it alone. 
+  </p>
+
+  <p>
+    We can anticipate when we need to change the sign when computing a cofactor by imagining a checkerboard pattern of <m>+</m> or <m>-</m> overlaying the matrix. 
+    For example, for a <m>4 \times 4</m> matrix, we would have the pattern
+    <md>
+        \begin{bmatrix} + \amp - \amp + \amp - \\ - \amp + \amp - \amp + \\ + \amp - \amp + \amp - \\ - \amp + \amp - \amp + \end{bmatrix}
+    </md>
+    We canmake the right pattern for any matrix by making this checkerboard pattern starting with a <m>+</m> in the <m>(1,1)</m>-entry. 
+  </p>
+
+  <p>
+    Then the determinant of a matrix can be calculated by multiplying each entry of a row (or column) of the matrix by its cofactor and then summing the results. 
+  </p>
+
+  <example>
+    <p>
+        Let's compute the determinant of a <m>4 \times 4</m> matrix
+        <md>
+            A = \begin{bmatrix} 1 \amp 2 \amp 3 \amp 4 \\ -1 \amp 0 \amp 3 \amp 4 \\ 4 \amp 0 \amp -2 \amp 3 \\ 1 \amp 1 \amp 0 \amp 3 \end{bmatrix}
+        </md>
+    </p>
+
+    <p>
+        We will need to pick a row/column to begin. 
+        Observe that Column 2 has the most zeros in it, so let's pick that one! 
+        <md>
+            \det A = -2 \begin{vmatrix} -1 \amp 3 \amp 4 \\ 4 \amp -2 \amp 3 \\ 1 \amp 0 \amp 3 \end{vmatrix} + 1 \begin{vmatrix} 1 \amp 3 \amp 4 \\ -1 \amp 3 \amp 4 \\ 4 \amp -2 \amp 3 \end{vmatrix}
+        </md>
+        So we need to compute these two <m>3 \times 3</m> determinants: 
+        <md>
+            <mrow> \begin{vmatrix} -1 \amp 3 \amp 4 \\ 4 \amp -2 \amp 3 \\ 1 \amp 0 \amp 3 \end{vmatrix} \amp= 1 \begin{vmatrix} 3 \amp 4 \\ -2 \amp 3 \end{vmatrix} + 3 \begin{vmatrix} -1 \amp 3 \\ 4 \amp -2 \end{vmatrix} </mrow>
+            <mrow> \amp= 17 + 3(-10) </mrow>
+            <mrow> \amp= -13 </mrow>
+        </md>
+        by picking Row 3 to expand on, and 
+        <md>
+            <mrow> \begin{vmatrix} 1 \amp 3 \amp 4 \\ -1 \amp 3 \amp 4 \\ 4 \amp -2 \amp 3 \end{vmatrix} \amp= 1 \begin{vmatrix} 3 \amp 4 \\ -2 \amp 3 \end{vmatrix} - 3 \begin{vmatrix} -1 \amp 4 \\ 4 \amp 3 \end{vmatrix} + 4 \begin{vmatrix} -1 \amp 3 \\ 4 \amp -2 \end{vmatrix}</mrow>
+            <mrow> \amp= 17 - 3(-19) + 4(-10)</mrow>
+            <mrow> \amp= 34 </mrow>
+        </md>
+        by picking Row 1 to expand on. 
+    </p>
+
+    <p>
+        So <m>\det A = -2(-13) + 34 = 60</m>
+    </p>
+  </example>
+
+  <p>
+    If you are asked to compute the matrix of a large matrix, you are REALLY hoping it has a row or column with a bunch of zeros otherwise you will be computing a bunch of determinants each of which requires you to compute a bunch of other determinants.
+  </p>
+
+  <exercise>
+    <p>
+        Compute the determinant of <m>A = \begin{bmatrix} 1 \amp 2 \amp 0 \amp 4 \\ -1 \amp 0 \amp 3 \amp 4 \\ 4 \amp 0 \amp 0 \amp 3 \\ 1 \amp 1 \amp 0 \amp 3 \end{bmatrix}</m>
+    </p>
+
+    <solution>
+        <p>
+            The answer!
+        </p>
+    </solution>
+  </exercise>
+
+  <p>
+    You may get the sense that the cofactor method can require a lot of calculation and it is MUCH easier when there are a lot of zeros in the matrix. 
+    Recall elementary row operations can create zeros in a matrix. 
+    A natural question to ask is whether it is possible to use elementary row operations to make a determinant easier to calculate without changing the result. 
+  </p>
+
+  <p>
+    The answer is yes! 
+    And the following theorem tells us how: 
+  </p>
+
+  <theorem xml:id="thm-RowOperations-Determinants">
+    <title>Row Operations and Determinants</title>
+    <statement>
+        <p>
+            Let <m>A</m> be an <m>n \times n</m> matrix. 
+            Then
+            <ol marker="1.">
+                <li>
+                    <p>
+                        If the matrix has a row or column of zeros its determinant is zero.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        If two rows of a matrix are swapped, the sign of the determinant is changed.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        If a row (or column) of a matrix is multiplied by a constant, the resulting matrix will have a determinant that is a product of the original determinant and that same constant.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        If two rows (or columns) of a matrix are identical, then the determinant of the matrix is zero.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        If a multiple of one row of a matrix is added to another row, the determinant of the matrix is unchanged!
+                    </p>
+                </li>
+            </ol>
+        </p>
+    </statement>
+  </theorem>
+
+  <note>
+    <title>But Richard... Why is this true? </title>
+
+    <p>
+    <ol>
+      <li>
+          <p>
+              If you used the cofactor method and expanded along the row or column that is all zero, then every cofactor would be multiplied by zero giving you the answer of zero.
+          </p>
+      </li>
+      <li>
+          <p>
+              I'll consider rows only (the argument is similar for columns).
+          </p>
+          <p>
+              In the <m>2 \times 2</m> case, we can see that <m>\begin{vmatrix} a \amp b \\ c \amp d \end{vmatrix} = ad - bc</m> while <m>\begin{vmatrix} c \amp d \\ a \amp b \end{vmatrix} = bc - ad</m> so the answers have opposite signs.
+          </p>
+          <p>
+              Now if the matrix is bigger than <m>2 \times 2</m> you can calculate the determinant of both of them using the cofactor method and expanding on a row OTHER than the two that are swapped.
+          </p>
+          <p>
+              In both calculations, the number each cofactor is multiplied by is unchanged (you are using the same row in each case).
+          </p>
+          <p>
+              But for each cofactor calculation you are computing a <m>2 \times 2</m> determinants and when you compute the ones for the matrix with the swapped rows, you get opposite signs because the rows of each <m>2 \times 2</m> matrix have been swapped.
+          </p>
+          <p>
+              This is what it would look like when the 1st and 3rd rows are swapped. Check it out!
+          </p>
+          <me>
+              \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} = 
+              a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
+              + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
+              + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
+          </me>
+          <p>
+              and
+          </p>
+          <me>
+              \begin{vmatrix} a_{31} \amp a_{32} \amp a_{33} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{11} \amp a_{12} \amp a_{13} \end{vmatrix} = 
+              a_{21} \begin{vmatrix} a_{32} \amp a_{33} \\ a_{12} \amp a_{13} \end{vmatrix} 
+              + a_{22} \begin{vmatrix} a_{31} \amp a_{33} \\ a_{11} \amp a_{13} \end{vmatrix} 
+              + a_{23} \begin{vmatrix} a_{31} \amp a_{32} \\ a_{11} \amp a_{12} \end{vmatrix}
+          </me>
+          <p>
+              Notice that all of the <m>2 \times 2</m> determinants in the second version will have opposite signs of the ones in the first version.
+          </p>
+          <p>
+              For a <m>4 \times 4</m> matrix, you use the same trick. Again all of your cofactors will change sign (because of what I just showed about the <m>3 \times 3</m> case). And so on....
+          </p>
+          <p>
+              This idea can be turned into a formal proof using the Principal of Mathematical Induction
+          </p>
+      </li>
+      <li>
+          <p>
+              This is straightforward. If you expand on the row/column that has been multiplied by the constant, none of the cofactors will change but in the calculation you will get an extra factor in each term since each entry of the row/column is multiplied by the constant. You can just factor out that constant to see that the determinant has been multiplied by that constant. Here is what it looks like in the <m>3 \times 3</m> case if you multiply the middle row by <m>c</m>:
+          </p>
+          <me>
+              \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} = 
+              a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
+              + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
+              + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
+          </me>
+          <p>
+              and
+          </p>
+          <me>
+              \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ c a_{21} \amp c a_{22} \amp c a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} = 
+              c a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
+              + c a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
+              + c a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} =
+          </me>
+          <me>
+              c \left( a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
+              + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
+              + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} \right)
+          </me>
+      </li>
+      <li>
+          <p>
+              This is a fun one! Imagine swapping the two rows (or columns) that are identical. By Rule 2 the determinant of the matrix will change signs if you do this.
+          </p>
+          <p>
+              BUT since the two rows (or columns) were identical switching the rows (or columns) won't change it at all. So the determinant can't change!
+          </p>
+          <p>
+              What's the only number that you can multiply by <m>-1</m> without changing it? ZERO!
+          </p>
+      </li>
+      <li>
+          <p>
+              This is the trickiest AND the most important as we shall soon see. Let's look at the general <m>3 \times 3</m> case and try to figure out why doing this operation does not change the determinant.
+          </p>
+          <p>
+              Here is the calculation of the "before" matrix expanding on Row 2:
+          </p>
+          <me>
+              \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} = 
+              a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
+              + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
+              + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
+          </me>
+          <p>
+              Now let's see what happens if we multiply Row 1 by <m>c</m> and add that to Row 2 (we'll expand using Row 2 again):
+          </p>
+          <me>
+              \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} + c a_{11} \amp a_{22} + c a_{12} \amp a_{23} + c a_{13} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} =
+          </me>
+          <me>
+              (a_{21} + c a_{11}) \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
+              + (a_{22} + c a_{12}) \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
+              + (a_{23} + c a_{13}) \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} =
+          </me>
+          <me>
+              a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
+              + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
+              + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} 
+              + c a_{11} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
+              + c a_{12} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
+              + c a_{13} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} =
+          </me>
+          <me>
+              \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
+              + c \left( a_{11} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
+              + a_{12} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
+              + a_{13} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} \right)
+          </me>
+          <p>
+              But <m>a_{11} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + a_{12} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + a_{13} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}</m> is EXACTLY what we would get if we calculated a matrix that was just like our original matrix EXCEPT that Row 2 has been replaced with Row 1.
+          </p>
+          <p>
+              So it is a determinant of a matrix with two identical rows (Row 1 and Row 2), which means it is ZERO.
+          </p>
+          <me>
+              \text{So } \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} + c a_{11} \amp a_{22} + c a_{12} \amp a_{23} + c a_{13} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
+              = \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix}
+          </me>
+      </li>
+    </ol>
+  </p>
+  </note>
+  
+  <p>
+    So what is this new method for computing determinants? 
+  </p>
+
+  <p>
+    First, we know that if a matrix has a whole row (or column) of zeros or if it has two identical rows (or columns) the determinant is zero. 
+    Second, we know that if we can maximize the number of zeros we get in a row, we can minimize the number of cofactors we actually have to compute. 
+  </p>
+
+  <p>
+    Actually there is one more even awesome-er fact that we can use to make determinant calculations fairly easy using row operations. 
+    We will do an example first and that will show us what that awesome-er fact is. 
+  </p>
+
+  <example>
+    <p>
+        Let's compute <m>\begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 4 \amp -2 \amp 17 \amp 6 \\ -2 \amp 2 \amp -7 \amp -3 \\ 0 \amp -2 \amp -3 \amp 4 \end{vmatrix}</m>
+    </p>
+
+    <p>
+        Step 1: We can add <m>-4</m> times Row 1 to Row 2 (and replace Row 2). 
+        This will not change the determinant. 
+        <md>
+            = \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ -2 \amp 2 \amp -7 \amp -3 \\ 0 \amp -2 \amp -3 \amp 4 \end{vmatrix}
+        </md>
+    </p>
+
+    <p>
+        Step 2: We can add <m>2</m> times Row 1 to Row 3 (and replace Row 3). 
+        And this again will not change the determinant. 
+        <md>
+            = \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp -2 \amp -3 \amp 4 \end{vmatrix}
+        </md>
+    </p>
+
+    <p>
+        Step 3: We can add Row 2 to Row 4 (and replace Row 4), and the determinant is still unchanged. 
+        <md>
+            = \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp -6 \amp 2 \end{vmatrix}
+        </md>
+    </p>
+
+    <p>
+        Step 4: We can add <m>2</m> times Row 3 to Row 4 without changing the determinant! 
+        <md>
+            = \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp 0 \amp 4 \end{vmatrix}
+        </md>
+    </p>
+
+    <p>
+        Notice that we now have all zeros below the main diagonal. 
+        At this point, Richard instantly knows that the determinant is going to be <m>24</m>. 
+        How does he know that? 
+    </p>
+
+    <p>
+        Watch what happens when we expand along the last row to compute the determinant: 
+        <md>
+            \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp 0 \amp 4 \end{vmatrix} = 4 \begin{vmatrix} 1 \amp -1 \amp 5 \\ 0 \amp 2 \amp -3 \\ 0 \amp 0 \amp 3 \end{vmatrix}
+        </md>
+        Now we need to figure out the determinant of one <m>3 \times 3</m> matrix that <em>also</em> has all zeros below the main diagonal. 
+        So... 
+        <md>
+            \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp 0 \amp 4 \end{vmatrix} = 4 \begin{vmatrix} 1 \amp -1 \amp 5 \\ 0 \amp 2 \amp -3 \\ 0 \amp 0 \amp 3 \end{vmatrix} = 4 \times 3 \begin{vmatrix} 1 \amp -1 \\ 0 \amp 2 \end{vmatrix}
+        </md>
+        And now we need to figure out the determinant of one <m>2 \times 2</m> matrix that <em>also</em> has all zeros below the main diagonal (well there is only one spot there, but still!). 
+        Continuing then, we get... 
+        <md>
+            \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp 0 \amp 4 \end{vmatrix} = 4 \begin{vmatrix} 1 \amp -1 \amp 5 \\ 0 \amp 2 \amp -3 \\ 0 \amp 0 \amp 3 \end{vmatrix} = 4 \times 3 \begin{vmatrix} 1 \amp -1 \\ 0 \amp 2 \end{vmatrix} = 4 \times 3 \times 2 \times 1 = 24
+        </md>
+    </p>
+
+    <p>
+        So it turned out that the answer was just <alert>the product of the entries on the diagonal</alert>! 
+    </p>
+  </example>
+
+  <p>
+    If you think about how cofactor expansion works, the determinant of a matrix that has all zeros below the main diagonal should always be the product of the entries on the main diagonal! 
+    That means our new method (using row operations) is
+    <ol marker="Step 1.">
+        <li>
+            <p>
+                Use row operations to put the matrix in a form where it all of the entries below the main diagonal are zeros (this is called <alert>upper triangular</alert> form). 
+            </p>
+            <p>
+                <alert>P.S.:</alert> NEVER use the operation where you just multiply a row by a constant and keep track of how many times you swap rows. 
+            </p>
+        </li>
+        <li>
+            <p>
+                Multiply all the entries on the diagonal. 
+                <ul marker="">
+                    <li>
+                        <p>
+                            If the number of row swaps you did is even, then this is the answer; 
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            If the number of row swaps you did is odd, multiply it by <m>-1</m> to get the determinant. 
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        </li>
+    </ol>
+  </p>
+
+  <p>
+    A matrix that only has zeros below the main diagonal is called an <term>upper triangle</term> matrix, and a matrix that only has zeros above the main diagonal is called a <term>lower triangular</term> matrix. 
+    We can <alert>compute the determinant</alert> of these matrices by <em>multiplying all of the entries on the diagonal together</em>. 
+  </p>
+
+  <exercise>
+    <p>
+        What is the determinant of the identity matrix (of any size)? 
+    </p>
+  </exercise>
+
+  <p>
+    We will continue our investigation of determinants more about the properties and applications of determinants in the next section!
+  </p>
+
+  <worksheet xml:id="ws-sec31">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+                Compute the determinants in the following exercises using a cofactor expansion across the first row.
+            </p>
+        </introduction>
+        
+        <exercise number="3.1.5">
+            <statement>
+                <me>\begin{vmatrix} 2 \amp 3 \amp -3 \\ 4 \amp 0 \amp 3 \\ 6 \amp 1 \amp 5 \end{vmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="3.1.7">
+            <statement>
+                <me>\begin{vmatrix} 4 \amp 3 \amp 0 \\ 6 \amp 5 \amp 2 \\ 9 \amp 7 \amp 3 \end{vmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+                Compute the determinants in the following exercises by cofactor expansions. 
+                At each step, choose a row or column that involves the least amount of computation.
+            </p>
+        </introduction>
+
+        <exercise number="3.1.9">
+            <statement>
+                <me>\begin{vmatrix} 4 \amp 0 \amp 0 \amp 5 \\ 1 \amp 7 \amp 2 \amp -5 \\ 3 \amp 0 \amp 0 \amp 0 \\ 8 \amp 3 \amp 1 \amp 7 \end{vmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="3.1.11">
+            <statement>
+                <me>\begin{vmatrix} 3 \amp 5 \amp -6 \amp 4 \\ 0 \amp -2 \amp 3 \amp -3 \\ 0 \amp 0 \amp 1 \amp 5 \\ 0 \amp 0 \amp 0 \amp 3 \end{vmatrix}</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+
+        <exercise number="3.1.21">
+            <statement>
+                <p>
+                    Explore the effect of an elementary row operation on the determinant of a matrix. 
+                    State the row operation and describe how it affects the determinant.
+                    <me>\begin{bmatrix} 3 \amp 2 \\ 5 \amp 4 \end{bmatrix}, \begin{bmatrix} 3 \amp 2 \\ 5+3k \amp 4+2k \end{bmatrix}</me>
+                </p>
+            </statement>
+        </exercise>
+
+    <exercise number="3.1.37">
+        <statement>
+            <p>
+                Let <m>A = \begin{bmatrix} 3 \amp 1 \\ 4 \amp 2 \end{bmatrix}</m>. 
+                Write <m>5A</m>. 
+                Is <m>\det(5A) = 5\det(A)</m>?
+            </p>
+        </statement>
+    </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+                In the following exercises, <m>A</m> is an <m>n \times n</m> matrix. 
+                Mark each statement True or False (T/F). 
+                Justify each answer.
+            </p>
+        </introduction>
+
+        <exercise number="3.1.39">
+            <statement>
+                <p>
+                    (T/F) An <m>n \times n</m> determinant is defined by determinants of <m>(n-1) \times (n-1)</m> submatrices.
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="3.1.41">
+            <statement>
+                <p>
+                    (T/F) The cofactor expansion of <m>\det A</m> down a column is equal to the cofactor expansion along a row.
+                </p>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercise number="3.1.43">
+        <statement>
+            <p>
+                Let <m>\v{u} = \begin{bmatrix} 3 \\ 0 \end{bmatrix}</m> and <m>\v{v} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}</m>. 
+                Compute the area of the parallelogram determined by <m>\v{u}</m>, <m>\v{v}</m>, <m>\v{u}+\v{v}</m>, and <m>\v{0}</m>, and compute the determinant of <m>\begin{bmatrix} \v{u} \amp \v{v} \end{bmatrix}</m>. 
+                How do they compare? 
+                Draw a picture and explain what you find.
+            </p>
+        </statement>
+    </exercise>
+
+</worksheet>
+
+</section>

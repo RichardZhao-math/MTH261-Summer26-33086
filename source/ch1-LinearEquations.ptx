@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch1-LinearEquations" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Linear Equations in Linear Algebra</title>
+
+  <!-- include sections -->
+  <xi:include href="sec11-SystemLinearEquations.ptx" />
+  <xi:include href="sec12-RowReduction.ptx" />
+  <xi:include href="sec13-VectorEquations.ptx" />
+  <xi:include href="sec14-MatrixEquation.ptx" />
+
+  <!--
+  <xi:include href="sec15-SolutionSets.ptx" />
+  <xi:include href="sec17-LinearIndependence.ptx" />
+  <xi:include href="sec18-IntroLinearTransformation.ptx" />
+  -->
+
+  <!--
+  <xi:include href="sec19-MatrixLinearTransformation.ptx" />
+  -->
+
+</chapter>

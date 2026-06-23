@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec11-SystemLinearEquations" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Systems of Linear Equations</title>
+
+  <introduction>
+    <p>
+      Back in previous algebra classes, you probably learned how to solve system of linear equations algebraically using methods like substitution and elimination. 
+      While these methods are effective for small systems, they quickly become unwieldy as there are more variables and/or more equations. 
+    </p>
+
+    <p>
+      As our introductory lesson to linear algebra, we will learn a more efficient method for solving systems of linear equations using <term>elementary row operations</term> on <term>augmented matrices</term>. 
+    </p>
+
+    <objectives>
+      <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+          <p>
+            construct an <em>augmented matrix</em> from a system of linear equations (and vice versa); 
+          </p>
+        </li>
+        <li>
+          <p>
+            use <em>elementary row operations</em> on an augmented matrix to solve a system of linear equations; 
+          </p>
+        </li>
+        <li>
+          <p>
+            distinguish between systems with <em>exactly one solution</em>, <em>infinitely many solutions</em>, and <em>no solution</em>. 
+          </p>
+        </li>
+        <li>
+          <p>
+            express the solution set of a system of linear equations with infinitely many solutions in <em>parametric form</em>. 
+          </p>
+        </li>
+      </ul>
+    </objectives>
+  </introduction>
+
+  <investigation>
+    <introduction>
+      <p>
+        Recall we learned solving a (system of) linear equation(s) before. 
+        Let's try solving some of them. 
+      </p>
+    </introduction>
+
+    <task>
+      <p>
+        The equation <m>3x = 5</m> is a linear equation. 
+        What is the solution(s) to this equation? 
+      </p>
+
+      <solution>
+        <p>
+          It is a system of linear equations. 
+          It's just a boring one because there is only one variable and only one equation. 
+        </p>
+
+        <p>
+          It has one solution, <m>x = \dfrac{5}{3}</m>
+        </p>
+      </solution>
+    </task>
+
+    <task>
+      <p>
+        The equation <m>3x + 2y= 5</m> is also a linear equation. 
+        What is the solution(s) to this equation? 
+      </p>
+
+      <solution>
+        <p>
+          This system has only one equation but it has two variables. 
+          It has infinitely many solutions! 
+        </p>
+
+        <p>
+          Every point on the line <m>y = \dfrac{-2}{2}x + \dfrac{5}{2}</m> is a solution. 
+          Some specific solutions are <m>\lp 0, \dfrac{5}{2} \rp</m> and <m>(1,1)</m>. 
+        </p>
+      </solution>
+    </task>
+
+    <task>
+      <p>
+        The two linear equations <m>3x = 5</m> and <m>2x = 7</m> form a system of linear equations. 
+        What is the solution(s) to this system of equations? 
+      </p>
+
+      <solution>
+        <p>
+          This system has two equations but only one variable. 
+        </p>
+
+        <p>
+          It doesn't have any solutions! 
+          It isn't possible for <m>x</m> to be both <m>\dfrac{5}{3}</m> and <m>\dfrac{7}{2}</m>. 
+        </p>
+      </solution>
+    </task>
+  </investigation>
+
+  <subsection xml:id="subsec-SolvingSystemsEquations">
+    <title>Solving Systems of Linear Equations</title>
+
+    <p>
+      The type of systems of linear equations you may encounter a lot before may look like this: 
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          5x - 8y = 14
+        \end{cases}
+      </md>
+      You probably learned the two most common ways to solve these equations. 
+    </p>
+
+    <p>
+      The first method is called <term>substitution</term>. 
+      In this method, you will
+      <ol>
+        <li>
+          <p>
+            solve for one variable in terms of the other (using either equation);
+          </p>
+        </li>
+        <li>
+          <p>
+            substitute the resulting expression in the other equation; 
+          </p>
+        </li>
+        <li>
+          <p>
+            substitute the resulting value into the expression from Step 1 (or into either equation) to get the second value. 
+          </p>
+        </li>
+      </ol>
+      Let's use this method to solve this system of linear equations! 
+    </p>
+
+    <p>
+      If we solve the <em>first</em> equation for <m>y</m>, we get
+      <md>
+        y = \frac{-3}{2} x + \frac{5}{2}
+      </md>
+      Then we can substitute this into the <em>second</em> equation to get
+      <md>
+        5x - 8 \lp \frac{-3}{2} x + \frac{5}{2} \rp = 14
+      </md>
+      Then we can simplify and solve for <m>x</m> and get a specific number: 
+      <md>
+        <mrow>5x - 8 \lp \frac{-3}{2} x + \frac{5}{2} \rp \amp= 14 </mrow>
+        <mrow>8x + 12x - 20 \amp= 14 </mrow>
+        <mrow>17x \amp= 34 </mrow>
+        <mrow>x \amp= 2 </mrow>
+      </md>
+      Then we can substitute this value of <m>x</m> into <m>y = \frac{-3}{2}x + \frac{5}{2}</m> to find the value of <m>y</m>. 
+      <md>
+        y = \frac{-3}{2} (2) + \frac{5}{2} = \frac{-1}{2}
+      </md>
+      So the solution to this system of linear equations is <m>\lp 2, \dfrac{-1}{2} \rp</m>. 
+    </p>
+
+    <p>
+      <em>NOTE:</em> This method can be generalized and used for larger linear systems (more equations and/or more variables). 
+      But the next method is <alert>much</alert> better for larger systems. 
+    </p>
+    
+    <p>
+      You may have called the next method something like the "subtraction method" or the "elimination method". 
+      In this method you perform "<em>elementary operations</em>" on the equations until you get a system that is <alert>super easy</alert> to solve. 
+    </p>
+
+    <p>
+      The elementary operations you can choose from are: 
+      <ol>
+        <li>
+          <p>
+            swap two equations; 
+          </p>
+        </li>
+        <li>
+          <p>
+            multiply an equation by a constant (on both sides);
+          </p>
+        </li>
+        <li>
+          <p>
+            add a multiple of one equation to the other equation. 
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      Let's use the elementary operations to solve the same system of linear equations as before:
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          5x - 8y = 14
+        \end{cases}
+      </md>
+    </p>
+
+    <p>
+      First, we will add <m>4</m> times the first equation to the second equation (replacing the second equation) to get
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          17x = 34
+        \end{cases}
+      </md>
+      Next, we will multiply both sides of the second equation by <m>\dfrac{1}{17}</m> to get
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          x = 2
+        \end{cases}
+      </md>
+      Then we will add <m>-3</m> times the second equation to the first equation (replacing the first equation) to get
+      <md>
+        \begin{cases}
+          2y = -1 \\
+          x = 2
+        \end{cases}
+      </md>
+      Finally, we will multiply the first equation by <m>\dfrac{1}{2}</m> to get
+      <md>
+        \begin{cases}
+          y = \dfrac{-1}{2} \\
+          x = 2
+        \end{cases}
+      </md>
+      Notice that we have now turned our system of equations into a new system of equations that is <em>absurdly</em> easy to solve. 
+      It literally just says the answer is <m>\lp 2, \dfrac{-1}{2} \rp</m>.
+    </p>
+
+    <p>
+      But why does the method of elementary operations work? 
+      This method works because <alert>none of the three elementary operations changes the solution set of the system of equations</alert>. 
+      At each step, the set of solutions of the system before you perform the elementary operation is exactly the same as the solution set after you perform the elementary operation. 
+    </p>
+
+    <note>
+      <title>But Richard... Why don't the elementary operations change the solution set of a system of equations? </title>
+      
+      <p>
+        Instead of giving a formal proof for all cases (which you can find in the book if you want), Richard will explain why it works in the case of a system of two equations with two variables: 
+        <ol marker="1.">
+          <li>
+            <p>
+              It is obvious that swapping equations clearly can't change the solution set. 
+              It makes no difference what order the equations are listed in. 
+            </p>
+          </li>
+          <li>
+            <p>
+              It is also pretty clear that multiplying both sides of an equation by a <em>non-zero</em> number will not change the solution set.
+            </p>
+            <p>
+              First, notice that if <m>(x_0, y_0)</m> is a solution <alert>before</alert>, then it is a solution <alert>after</alert>. 
+              That is, if <m>ax_0 + by_0 = c</m>, then it is also true that <m>k(ax_0 + by_0) = k(c)</m> for any non-zero constant <m>k</m>. 
+              This is because when two numbers are equal, you get the same answer when you multiply each of them by the same number. 
+            </p>
+            <p>
+              Second, notice that if <m>(x_0,y_0)</m> is a solution <alert>after</alert>, then it is a solution <alert>before</alert>. 
+              Since the number <m>k</m> is not zero, <m>\frac{1}{k}</m> exists and is not zero. 
+              So if <m>k(ax_0 + by_0) = k(c)</m>, then it is also true that <m>ax_0 + by_0 = c</m> (you can just multiply both sides by <m>\frac{1}{k}</m>!). 
+            </p>
+          </li>
+          <li>
+            <p>
+              The least obvious one is the elementary operation of adding a multiple of one equation to another equation (and replacing the equation). 
+              We can think of this elementary operation as doing two steps: 
+              <ol marker="(1)">
+                <li>
+                  <p>
+                    multiply one equation by a non-zero constant, and
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    add one equation to another equation (and replace that equation with the sum). 
+                  </p>
+                </li>
+              </ol>
+              The first step is just the operation of multiplying an equation by a non-zero constant, which we already know does not change the solution set. 
+              So we just need to demonstrate that adding one equation to another (and replacing the second equation with the sum) does not change the solution set.
+            </p>
+            <p>
+              First, we need to show that anything that was a solution <alert>before</alert> is still a solution <alert>after</alert>. 
+              Consider the system of linear equations
+              <md>
+                \begin{cases}
+                  a_1x + b_1y = c_1 \\
+                  a_2x + b_2y = c_2
+                \end{cases}
+              </md>
+              Suppose that <m>a_1x_0 + b_1y_0 = c_1</m> and <m>a_2x_0 + b_2y_0 = c_2</m> (in other words suppose <m>(x_0,y_0)</m> is a solution). 
+              We want to show that <m>(x_0,y_0)</m> is still a solution to the system
+              <md>
+                \begin{cases}
+                  a_1x + b_1y = c_1 \\
+                  (a_2 + a_1)x + (b_2 + b_1)y = c_2 + c_1
+                \end{cases}
+              </md>
+              Since we already know that <m>(x_0,y_0)</m> is a solution to the first equation, we just need to show it is a solution to the second equation. 
+            </p>
+            <p>
+              Since the number <m>a_2x_0 + b_2y_0</m> is equal to the number <m>c_2</m>. 
+              If we add <m>a_1x_0 + b_1y_0</m> to both of them, we get the same thing. 
+              So we get
+              <md>
+                a_1x_0 + b_1y_0  + a_2x_0 + b_2y_0 = a_1x_0 + b_1y_0 + c_2
+              </md>
+              And since we know that <m>a_1x_0 + b_1y_0 = c_1</m>, we can substitute to get
+              <md>
+                a_1x_0 + b_1y_0  + a_2x_0 + b_2y_0 = c_1 + c_2
+              </md>
+              Do some simplifying and factoring on the left side and we get
+              <md>
+                (a_2 + a_1)x_0 + (b_2 + b_1)y_0 = c_1 + c_2
+              </md>
+              This proves <m>(x_0,y_0)</m> is indeed a solution to the second equation!
+            </p>
+
+            <p>
+              Second, we want to show that if <m>(x_0,y_0)</m> is a solution <alert>after</alert> then it is a solution <alert>before</alert>. 
+              But really we already have! 
+              That is because we can get from the <alert>after</alert> system to the <alert>before</alert> system by multiplying the first equation by <m>-1</m> and adding it to the second equation. 
+              So going backwards just involves doing the exact same thing as going forward (just after multiplying by a non-zero constant which we know always works!). 
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <note>
+        <title>But Richard... Why bother showing the solution sets are the same before and after, and vice versa? </title>
+
+        <p>
+          That is because this establishes that the elementary operations are <term>reversible</term>! 
+          Then we can call the two systems "<term>equivalent</term>" in the sense that they have the same solution set. 
+        </p>
+
+        <p>
+          To give you an example of non-reversible operations, consider the operation of "squaring both sides of an equation". 
+        </p>
+
+        <p>
+          Let's say we have an equation <m>x = 2</m>. 
+          Obviously, there is only one solution to this equation, which is <m>x = 2</m>. 
+          If we apply this operation, then we get the equation <m>x^2 = 4</m>. 
+          Clearly, <m>x = 2</m> is still a solution to this new equation. 
+          Hence, in this operation, the solution <alert>before</alert> is still a solution <alert>after</alert>. 
+        </p>
+
+        <p>
+          Yet, the new equation has another solution, which is <m>x = -2</m>. 
+          This isn't a solution to the original equation, and hence, the solution <alert>after</alert> may not be a solution <alert>before</alert>. 
+        </p>
+
+        <p>
+          This shows that this operation is not reversible and hence the two equations are not equivalent (in the sense that they don't have the same solution set). 
+        </p>
+      </note>
+    </note>
+
+    <exercise>
+      <p>
+        Use the elementary operations to solve the following system of linear equations:
+        <md>
+          \begin{cases}
+            6x - 3y = 3 \\
+            5x + 2y = -11
+          \end{cases}
+        </md>
+      </p>
+
+      <solution>
+        <p>
+          There are a lot of ways to do this. 
+          This is one: 
+        </p>
+
+        <p>
+          Step 1: Multiply the second equation by <m>3</m> to get
+          <md>
+            \begin{cases}
+              6x - 3y = 3 \\
+              15x + 6y = -33
+            \end{cases}
+          </md>
+        </p>
+
+        <p>
+          Step 2: Add <m>2</m> times the first equation to the second equation (replacing the second equation) to get
+          <md>
+            \begin{cases}
+              6x - 3y = 3 \\
+              27x = -27
+            \end{cases}
+          </md>
+        </p>
+
+        <p>
+          Step 3: Multiply the second equation by <m>\dfrac{1}{27}</m> to get
+          <md>
+            \begin{cases}
+              6x - 3y = 3 \\
+              x = -1
+            \end{cases}
+          </md>
+        </p>
+
+        <p>
+          Step 4: Add <m>-6</m> times the second equation to the first equation (replacing the first equation) to get
+          <md>
+            \begin{cases}
+              -3y = 9 \\
+              x = -1
+            \end{cases}
+          </md>
+        </p>
+
+        <p>
+          Step 5: Multiply the first equation by <m>\dfrac{-1}{3}</m> to get 
+          <md>
+            \begin{cases}
+              y = -3 \\
+              x = -1
+            \end{cases}
+          </md>
+        </p>
+
+        <p>
+          And that's our solution, <m>(-1,-3)</m>!
+        </p>
+
+      </solution>
+    </exercise>
+  </subsection>
+
+  <subsection xml:id="subsec-AugmentedMatrices">
+    <title>Augmented Matrices and Elementary Operations</title>
+
+    <p>
+      Basically, a matrix is just an array of numbers inside of a set of brackets. 
+      For example, <m>\begin{bmatrix}3 \amp 2 \\ 5 \amp -8 \end{bmatrix}</m> is a <m>2 \times 2</m> matrix since there are <m>2</m> rows and <m>2</m> columns. 
+    </p>
+
+    <p>
+      We will learn a lot more about matrices this term! 
+      But first we will learn about a kind of "fake" matrix called an <term>augmented matrix</term>. 
+      An augmented matrix is compressed version of a <alert>matrix equation</alert> which we will learn about soon. 
+    </p>
+
+    <p>
+      For any system of equations we can make the associated augmented matrix by basically writing down the equation inside of a big set of brackets and erasing all of the variables and addition/subtraction signs and replacing all of the equal signs with a big vertical line (some people used a dashed line).  
+    </p>
+
+    <p>
+      For example, we can convert the following system of linear equations 
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          5x - 8y = 14
+        \end{cases}
+      </md>
+      into its associated augmented matrix as
+      <md>
+        \begin{bmatrix}
+          3 \amp 2 \amp \mid \amp 5 \\
+          5 \amp -8 \amp \mid \amp 14
+        \end{bmatrix}
+      </md>
+      The part of the augmented matrix to the left of the vertical line(s) is called the <term>coefficient matrix</term> (the coefficient part of the system) and the part to the right of the vertical line(s) is called the <term>constant matrix</term> (the constant part of the system).
+    </p>
+
+    <p>
+      When you write a system of linear equations as an augmented matrix, you can do the exact same operations to your equations except now you do them to the <alert>rows</alert> of the matrix (each row is just a compressed version of an equation!). 
+      So the <alert>three elementary row operations</alert> are: 
+      <ol>
+        <li>
+          <p>
+            swap two rows; 
+          </p>
+        </li>
+        <li>
+          <p>
+            multiply a row by a non-zero constant; 
+          </p>
+        </li>
+        <li>
+          <p>
+            add a multiple of a row to another row (replacing that row). 
+          </p>
+        </li>
+      </ol>
+      You can solve a system of equations by (1) writing it as an augmented matrix, (2) performing elementary row operations until it is in a "nice" form, and then (3) writing this nice version as a system of linear equations (and reading off the answer). 
+    </p>
+
+    <p>
+      Let's solve the previous system of linear equations using the augmented matrix. 
+      Our augmented matrix is
+      <md>
+        \begin{bmatrix}
+          3 \amp 2 \amp \mid \amp 5 \\
+          5 \amp -8 \amp \mid \amp 14
+        \end{bmatrix}
+      </md>
+      We can add <m>4</m> times Row 1 to Row 2 (replacing Row 2) to get
+      <md>
+        \begin{bmatrix}
+          3 \amp 2 \amp \mid \amp 5 \\
+          17 \amp 0 \amp \mid \amp 34
+        \end{bmatrix}
+      </md>
+      Then we can multiply Row 2 by <m>\dfrac{1}{17}</m> to get
+      <md>
+        \begin{bmatrix}
+          3 \amp 2 \amp \mid \amp 5 \\
+          1 \amp 0 \amp \mid \amp 2
+        \end{bmatrix}
+      </md>
+      And then add <m>-3</m> times Row 2 to Row 1 (replacing Row 1) to get
+      <md>
+        \begin{bmatrix}
+          0 \amp 2 \amp \mid \amp -1 \\
+          1 \amp 0 \amp \mid \amp 2
+        \end{bmatrix}
+      </md>
+      Finally, we can multiply Row 1 by <m>\dfrac{1}{2}</m> to get
+      <md>
+        \begin{bmatrix}
+          0 \amp 1 \amp \mid \amp \dfrac{-1}{2} \\
+          1 \amp 0 \amp \mid \amp 2
+        \end{bmatrix}
+      </md>
+      Now if we convert this back to a system of linear equations, we get
+      <md>
+        \begin{cases}
+          y = \dfrac{-1}{2} \\
+          x = 2
+        \end{cases}
+      </md>
+      And it's already solved! 
+    </p>
+
+    <exercise>
+      <p>
+        Solve the following system of linear equations (again). 
+        <md>
+          \begin{cases}
+            6x - 3y = 3 \\
+            5x + 2y = -11
+          \end{cases}
+        </md>
+        This time make the augmented matrix and use elementary row operations to solve it. 
+      </p>
+
+      <solution>
+        <p>
+          The augmented matrix for this system is
+          <md>
+            \begin{bmatrix}
+              6 \amp -3 \amp \mid \amp 3 \\
+              5 \amp 2 \amp \mid \amp -11
+            \end{bmatrix}
+          </md>
+          There are a lot of ways to solve the system. 
+          Here is one: 
+        </p>
+
+        <p>
+          Step 1: Multiply Row 2 by <m>3</m> to get
+          <md>
+            \begin{bmatrix}
+              6 \amp -3 \amp \mid \amp 3 \\
+              15 \amp 6 \amp \mid \amp -33
+            \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          Step 2: Add <m>2</m> times Row 1 to Row 2 (replacing Row 2) to get
+          <md>
+            \begin{bmatrix}
+              6 \amp -3 \amp \mid \amp 3 \\
+              27 \amp 0 \amp \mid \amp -27
+            \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          Step 3: Multiply Row 2 by <m>\dfrac{1}{27}</m> to get
+          <md>
+            \begin{bmatrix}
+              6 \amp -3 \amp \mid \amp 3 \\
+              1 \amp 0 \amp \mid \amp -1
+            \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          Step 4: Add <m>-6</m> times Row 2 to Row 1 (replacing Row 1) to get
+          <md>
+            \begin{bmatrix}
+              0 \amp -3 \amp \mid \amp 9 \\
+              1 \amp 0 \amp \mid \amp -1
+            \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          Step 5: Multiply Row 1 by <m>\dfrac{-1}{3}</m> to get
+          <md>
+            \begin{bmatrix}
+              0 \amp 1 \amp \mid \amp -3 \\
+              1 \amp 0 \amp \mid \amp -1
+            \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          Then we can write this as a system of equations again and get
+          <md>
+            \begin{cases}
+              y = -3 \\
+              x = -1
+            \end{cases}
+          </md>
+          And that's our solution, <m>(-1,-3)</m>!
+        </p>
+      </solution>
+    </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-NumberOfSolution">
+    <title>How many solutions can a linear system have?</title>
+    
+    <p>
+      The system of linear equations in the previous example has exactly one solution (which we found in three different ways!) but not all linear systems have exactly one solution. 
+      Some do not have any solutions and some have infinitely many solutions. 
+    </p>
+
+    <p>
+      Let's solve the following system of linear equations using the augmented matrix and elementary row operations: 
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          -6x - 4y = 7
+        \end{cases}
+      </md>
+      The augmented matrix is
+      <md>
+        \begin{bmatrix}
+          3 \amp 2 \amp \mid \amp 5 \\
+          -6 \amp -4 \amp \mid \amp 7
+        \end{bmatrix}
+      </md>
+      Let's first add <m>2</m> times Row 1 to Row 2 (replacing Row 2). 
+      We get
+      <md>
+        \begin{bmatrix}
+          3 \amp 2 \amp \mid \amp 5 \\
+          0 \amp 0 \amp \mid \amp 17
+        \end{bmatrix}
+      </md>
+      Now we can write this as a system of linear equations, and we get
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          0 = 17
+        \end{cases}
+      </md>
+      But... <m>0</m> is definitely NOT equal to <m>17</m>. 
+      So this system has no solution! 
+    </p>
+
+    <p>
+      Notice that both of the equations in our original system are lines (that's where the "linear" comes from!). 
+      Richard graphed these two lines and they look like this: 
+    </p>
+
+    <figure>
+      <image source="sec11-NoSolution-Graph.png" width="50%"></image>
+      <caption>The line <m>3x + 2y = 5</m> (in blue) and <m>-6x - 4y = 7</m> (in red)</caption>
+    </figure>
+
+    <p>
+      These lines are parallel and they don't intersect! 
+    </p>
+
+    <p>
+      When you have three variables then each equation is a plane, so you get no solutions when one of the planes is parallel to (but not equal to) the other. 
+      And the same kind of thing happens in higher dimensions except that it would blow your mind if you tried to see it! 
+    </p>
+
+    <p>
+      <alert>What happens in your augmented matrix when you have no solution?</alert>
+      You zero out a row of coefficients using elementary operations BUT the constant in that row is NOT zero. 
+    </p>
+
+    <p>
+      Next, let's solve this system of linear equations using the augmented matrix and elementary row operations:
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          -6x - 4y = -10
+        \end{cases}
+      </md>
+      The augmented matrix is
+      <md>
+        \begin{bmatrix}
+          3 \amp 2 \amp \mid \amp 5 \\
+          -6 \amp -4 \amp \mid \amp -10
+        \end{bmatrix}
+      </md>
+      This time, we will add <m>2</m> times Row 1 to Row 2 (replacing Row 2), and we get
+      <md>
+        \begin{bmatrix}
+          3 \amp 2 \amp \mid \amp 5 \\
+          0 \amp 0 \amp \mid \amp 0
+        \end{bmatrix}
+      </md>
+      Now we can write this as a system of linear equations. We get
+      <md>
+        \begin{cases}
+          3x + 2y = 5 \\
+          0 = 0
+        \end{cases}
+      </md>
+      This time, the second equation is true. 
+      <m>0</m> IS definitely equal to <m>0</m>. 
+      Notice that our second equation is true no matter what <m>x</m> and <m>y</m>are! 
+      That means that any <m>(x,y)</m> that satisfies the first equation will satisfy both equations. 
+      So the solution is <alert>every point</alert> on the line <m>3x + 2y = 5</m>. 
+    </p>
+
+    <p>
+      If you were to graph the two original equations, this time you would find that they were actually the <em>exact same</em> line!
+    </p>
+
+    <p>
+      When you have infinitely many solutions, you will want to write the solution set in <alert>parametric form</alert>. 
+      The way to do this (for a two-variable system) is to <term>solve for one variable in terms of the other and then write a general form for any solution</term>. 
+      For this example, we can solve for <m>y</m> in terms of <m>x</m> and get
+      <md>
+        y = \frac{-3}{2} x + \frac{5}{2}
+      </md>
+      So for any value of <m>x</m>, we get the solution <m>\lp x, \dfrac{-3}{2} x + \dfrac{5}{2} \rp</m>. 
+      In this case, the <m>x</m> is called the <term>parameter</term>. 
+    </p>
+
+    <p>
+      We can pick <em>any value of</em> <m>x</m> we want and plug it into that formula to get a solution to the system. 
+      For example, if Richard picks <m>x = 10</m>, then he will get the solution <m>\lp 10, \frac{-25}{2} \rp</m>. 
+    </p>
+
+    <note>
+      <title>Notation Warning!</title>
+
+      <p>
+        Some textbooks like to introduce a new letter to use for the parameter. 
+        For example, in this case they would probably use <m>t</m> and write the solutions as 
+        <md>
+          \lp t, \frac{-3}{2}t + \frac{5}{2} \rp
+        </md>
+        This is unnecessary but Richard will do it from time to time just to make sure you understand where these mysterious parameters come from. 
+      </p>
+    </note>
+
+    <p>
+      Sometimes we may need more than one parameter to describe all of the solutions to a system of equations. 
+      But that is a story for another day (that day will be Thursday). 
+    </p>
+
+    <p>
+      <alert>What happens in your augmented matrix when you have infinitely many solutions?</alert>
+      You zero out a row of coefficients using elementary operations AND the constant in that row is also zero. 
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-ExistenceUniqueness-SystemEquations">
+    <title>Existence and Uniqueness Questions</title>
+
+    <p>
+      Recall that a system of linear equations can have either no solution, exactly one solution, or infinitely many solutions. 
+      We ask two questions to determine which of these three cases we are in:
+      <ol>
+        <li>
+          <p>
+            Is the system <term>consistent</term>? That is, does a solution <em>exist</em>? 
+          </p>
+        </li>
+        <li>
+          <p>
+            If a solution exists, is it the <em>only</em> one? 
+            That is, is the solution <term>unique</term>?
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      Right now, we can answer these questions by actually solving the system of equations and seeing what happens. 
+      In <xref ref="sec12-RowReduction"/>, we will learn how to answer these questions by using only the augmented matrix and elementary row operations without having to write the system of equations out.
+    </p>
+    
+  </subsection>
+
+</section>

@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec53-Diagonalization" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Diagonalization</title>
+
+  <investigation>
+    <introduction>
+        <p>
+            Let <m>A = \begin{bmatrix} 2 \amp 0 \\ 0 \amp -3 \end{bmatrix}</m> and <m>B = \begin{bmatrix} 12 \amp -10 \\ 15 \amp -13 \end{bmatrix}</m>. 
+        </p>
+    </introduction>
+
+    <task>
+        <p>
+            Find <m>A^{25}</m> if this is easy to compute. 
+            If not, explain why not (and then table it). 
+        </p>
+    </task>
+
+    <task>
+        <p>
+            Find <m>B^{25}</m> if this is easy to compute. 
+            If not, explain why not (and then table it). 
+        </p>
+    </task>
+  </investigation>
+
+  <definition xml:id="def-DiagonalMatrices">
+    <title>Diagonal Matrices</title>
+    <statement>
+        <p>
+            A <term>diagonal matrix</term> is a square matrix in which all elements outside the main diagonal are zero. 
+        </p>
+    </statement>
+  </definition>
+
+  <p>
+    Diagonal matrices are super nice to work with because
+    <ul marker="">
+        <li>
+            <p>
+                It is easy to find their determinants (just multiply the diagonal entries).
+            </p>
+        </li>
+        <li>
+            <p>
+                It is easy to find their inverses (just take the reciprocals of the diagonal entries).
+            </p>
+        </li>
+        <li>
+            <p>
+                We can see immediately what they do to the standard basis vectors (just scale them by the diagonal entries).
+            </p>
+        </li>
+        <li>
+            <p>
+                It is easy to compute the powers of them (just take the powers of the diagonal entries). 
+            </p>
+        </li>
+    </ul>
+    So the goal of this section is to <term>diagonalize</term> a square matrix (if possible). 
+    That is, we want to find a diagonal matrix that is <em>similar</em> to a given matrix. 
+  </p>
+
+  <definition xml:id="def-SimilarMatrices">
+    <title>Similar Matrices</title>
+    <statement>
+        <p>
+            Let <m>A</m> and <m>D</m> be <m>n \times n</m> matrices. 
+            Then <m>A</m> is <term>similar</term> to <m>D</m> if there exists an <em>invertible</em> matrix <m>P</m> such that
+            <md>
+                A = PDP^{-1}
+            </md>
+        </p>
+    </statement>
+  </definition>
+
+  <p>
+    If you end up studying advanced linear algebra, what is really going on here is that the columns of the matrix <m>P</m> represent an alternative basis of <m>\R^n</m>. 
+    If you use that basis instead of the standard basis, the matrix for the corresponding linear transformation actually would be diagonal. 
+    This alternative basis is actually made up of eigenvectors and that is what we are going to learn about how. 
+  </p>
+
+  <p>
+    As far as what this class (MTH 261) concerns, we will focus on the fact that if a matrix <m>A</m> is similar to a diagonal matrix, then it is still easy to compute powers if we can figure out what the <m>D</m>, <m>P</m>, and <m>P^{-1}</m> are. 
+  </p>
+
+  <p>
+    But how do similar matrices makes it easier to compute powers?
+    Let's investigate this in the next example. 
+  </p>
+
+  <example>
+    <p>
+        Recall in the previous example, <m>A = \begin{bmatrix} 2 \amp 0 \\ 0 \amp -3 \end{bmatrix}</m> and <m>B = \begin{bmatrix} 12 \amp -10 \\ 15 \amp -13 \end{bmatrix}</m>. 
+        These two matrices are similar because 
+        <md>
+            B = PAP^{-1}
+        </md>
+        with the matrix <m>P = \begin{bmatrix} 1 \amp -2 \\ 1 \amp -3 \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+        Let's first verify it! 
+        We can first find the inverse of <m>P</m> quickly: 
+        <md>
+            P^{-1} = \frac{1}{\det P} \begin{bmatrix} -3 \amp -(-2) \\ -1 \amp 1 \end{bmatrix} = \begin{bmatrix} 3 \amp -2 \\ 1 \amp -1 \end{bmatrix}
+        </md>
+        Then we have
+        <md>
+            <mrow> PAP^{-1} \amp= \begin{bmatrix} 1 \amp -2 \\ 1 \amp -3 \end{bmatrix} \begin{bmatrix} 2 \amp 0 \\ 0 \amp -3 \end{bmatrix} \begin{bmatrix} 3 \amp -2 \\ 1 \amp -1 \end{bmatrix} </mrow>
+            <mrow> \amp= \begin{bmatrix} 2 \amp 6 \\ 2 \amp 9 \end{bmatrix} \begin{bmatrix} 3 \amp -2 \\ 1 \amp -1 \end{bmatrix} </mrow>
+            <mrow> \amp= \begin{bmatrix} 12 \amp -10 \\ 15 \amp -13 \end{bmatrix} </mrow>
+        </md>
+        So <m>A</m> and <m>B</m> are indeed similar!
+    </p>
+
+    <p>
+        Now let's try to compute <m>B^{25}</m> by finding <m>B^2</m> first to find any pattern! 
+        Observe that
+        <md>
+            <mrow> B^2 \amp= (PAP^{-1})(PAP^{-1}) </mrow>
+            <mrow> \amp= PA(P^{-1}P)AP^{-1} </mrow>
+            <mrow> \amp= PAIAP^{-1} </mrow>
+            <mrow> \amp= PAAP^{-1} = PA^2P^{-1} </mrow>
+        </md>
+        If we want to compute <m>B^3</m>, we can do the same thing and find that
+        <md>
+            <mrow> B^3 \amp= (PAP^{-1})(PAP^{-1})(PAP^{-1}) </mrow>
+            <mrow> \amp= PA(P^{-1}P)A(P^{-1}P)AP^{-1} </mrow>
+            <mrow> \amp= PAIAIPAP^{-1} </mrow>
+            <mrow> \amp= PA^3P^{-1} </mrow>
+        </md>
+        So we can find <m>B^{25}</m> as 
+        <md>
+            B^{25} = PA^{25}P^{-1}
+        </md>
+        We saw that <m>A^{25}</m> can be computed easily, so we can compute <m>B^{25}</m> easily as well by just multiplying three matrices together (as opposed to multiplying <m>B</m> by itself 25 times).
+    </p>
+  </example>
+
+  <p>
+    Now that we have seen how similar matrices (to diagonal matrices) can help us compute powers of matrices, then the next question is: <alert>how can we diagonalize a matrix by finding the similar diagonal matrix and the special matrix <m>P</m>? </alert>
+    It turns out that the key is to find the eigenvalues and eigenvectors of the matrix! 
+  </p>
+
+  <p>
+    The process of diagonalization is listed as follows:
+    <ol>
+        <li>
+            Find the <alert>eigenvalues</alert> of the matrix. 
+        </li>
+        <li>
+            <p>
+                For each eigenvalue, find the corresponding <alert>eigenvectors</alert>. 
+                A quick way to do so is to grab the basis vectors in the eigenspace. 
+            </p>
+        </li>
+        <li>
+            <p>
+                Construct the special matrix <m>P</m> using the eigenvectors as comlumns, so <m>P = \begin{bmatrix} \v{v}_1 \amp \cdots \amp \v{v}_p \end{bmatrix}</m>
+            </p>
+        </li>
+        <li>
+            <p>
+                Construct the diagonal matrix <m>D</m> by putting the corresponding eigenvalues of <m>A</m> on the diagonal entries, up to its multiplicity. 
+            </p>
+        </li>
+        <li>
+            <p>
+                <m>A = PDP^{-1}</m>
+            </p>
+        </li>
+    </ol>
+  </p>
+
+  <note>
+    <title>But Richard... Why on earth do eigenvalues and eigenvectors have to do with diagonalization?</title>
+
+    <p>
+        Let's say we have a square matrix <m>A</m>. 
+        Suppose we let 
+        <md>
+            P = \begin{bmatrix} \v{v}_1 \amp \v{v}_2 \amp \cdots \amp \v{v}_n \end{bmatrix}
+            \qquad \text{ and } \qquad
+            D = \begin{bmatrix} \lambda_1 \amp 0 \amp \cdots 0 \\ 0 \amp \lambda_2 \amp \cdots \amp 0 \\ \vdots \amp \vdots \amp \ddots \amp \vdots \\ 0 \amp 0 \amp \cdots \amp 0 \end{bmatrix}
+        </md>
+        where <m>\lambda_i</m> and <m>\v{v}_i</m> are the corresponding eigenvalues and eigenvectors of the matrix <m>A</m>. 
+        That is, <m>A\v{v}_i = \lambda \v{v}_i</m> for each <m>i</m>. 
+        To guarantee that <m>P</m> is invertible, the columns of <m>P</m> (aka all the eigenvectors) must be linearly independent. 
+        That is why we want to just grab the basis vectors of the eigenspace to ensure the invertibility. 
+    </p>
+
+    <p>
+        Imagine we want to multiply <m>AP</m>. 
+        Then we obtain
+        <md>
+            <mrow> AP \amp= A \begin{bmatrix} \v{v}_1 \amp \v{v}_2 \amp \cdots \amp \v{v}_n \end{bmatrix} </mrow>
+            <mrow> \amp= \begin{bmatrix} A\v{v}_1 \amp A\v{v}_2 \amp \cdots \amp A\v{v}_n \end{bmatrix} </mrow>
+            <mrow> \amp= \begin{bmatrix} \lambda_1\v{v}_1 \amp \lambda_2\v{v}_2 \amp \cdots \amp \lambda_n\v{v}_n \end{bmatrix} </mrow>
+            <mrow> \amp= \begin{bmatrix} \v{v}_1 \amp \v{v}_2 \amp \cdots \amp \v{v}_n \end{bmatrix} \begin{bmatrix} \lambda_1 \amp 0 \amp \cdots 0 \\ 0 \amp \lambda_2 \amp \cdots \amp 0 \\ \vdots \amp \vdots \amp \ddots \amp \vdots \\ 0 \amp 0 \amp \cdots \amp 0 \end{bmatrix}</mrow>
+            <mrow> \amp= PD </mrow>
+        </md>
+        So we just showed that <m>AP = PD</m>. 
+        Since <m>P</m> is invertible, then <m>P^{-1}</m> exists, and we can multiply <m>P^{-1}</m> on the right on both sides of the equation. 
+        We obtain
+        <md>
+            APP^{-1} = PDP^{-1}
+            \qquad \implies \qquad
+            A = PDP^{-1}
+        </md>
+        So yes! <m>A</m> and <m>D</m> are similar!
+    </p>
+  </note>
+
+  <example>
+    <p>
+        Let <m>A = \begin{bmatrix} 1 \amp 3 \amp 3 \\ -3 \amp -5 \amp -3 \\ 3 \amp 3 \amp 1 \end{bmatrix}</m>. 
+        Let's diagonalize this matrix! 
+    </p>
+
+    <p>
+        We need to find the eigenvalues and its corresponding eigenvectors for the diagonalization. 
+        In the last section, we found that the characteristic equation is
+        <md>
+            (1 - \lambda)(\lambda + 2)^2 = 0
+        </md>
+        This implies that the eigenvalues are <m>\lambda = 1</m> (with the multiplicity of <m>1</m>) and <m>\lambda = -2</m> (with the multiplicity of <m>2</m>). 
+        Next, we will find the corresponding eigenvectors of these eigenvalues. 
+    </p>
+
+    <p>
+        Let's consider the eigenvalue of <m>\lambda = 1</m>. 
+        Then we want to solve the homogeneous equation <m>A - I = 0</m>. 
+        The augmented matrix is
+        <md>
+            \begin{bmatrix} 0 \amp 3 \amp 3 \\ -3 \amp -6 \amp -3 \\ 3 \amp 3 \amp 0 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp 0 \amp -1 \\ 0 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \end{bmatrix}
+        </md>
+        Observe that <m>x_3</m> is the free variable, so the solution, in parametric form, is
+        <md>
+            \v{x} = x_3 \begin{bmatrix} 1 \\ -1 \\ 1 \end{bmatrix}\, , \qquad x_3 \in \R
+        </md>
+        Hence, an eigenvector that spans the eigenspace is <m> \begin{bmatrix} 1 \\ -1 \\ 1 \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+        Next, let's consider the eigenvalue of <m>\lambda = -2</m>. 
+        Then we want to solve the homogeneous equation <m>A - I = 0</m>. 
+        The augmented matrix is
+        <md>
+            \begin{bmatrix} 3 \amp 3 \amp 3 \\ -3 \amp -3 \amp -3 \\ 3 \amp 3 \amp 3 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \end{bmatrix}
+        </md>
+        Observe that <m>x_2</m> and <m>x_3</m> are the free variables, so the solution, in parametric form, is
+        <md>
+            \v{x} = x_2 \begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix} + x_3 \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix} \, , \qquad x_2, x_3 \in \R
+        </md>
+        Hence, the eigenvectors that spans the eigenspace are <m>\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}</m> and <m>\begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+        Now let's put together the diagonal matrix <m>D</m> and our special matrix <m>P</m> for the diagonalization! 
+        Our eigenvalues are
+        <md>
+            \lambda = 1\, ,\, -2\, , \, -2
+        </md>
+        and their corresponding basis eigenvectors are
+        <md>
+            \begin{bmatrix} 1 \\ -1 \\ 1 \end{bmatrix}\, , \, \begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}\, , \, \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}
+        </md>
+        Then our diagonal matrix <m>D</m> and our special matrix <m>P</m> is
+        <md>
+            P = \begin{bmatrix} 1 \amp -1 \amp -1 \\ -1 \amp 1 \amp 0 \\ 1 \amp 0 \amp 1 \end{bmatrix}
+            \qquad \text{ and } \qquad 
+            D = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp -2 \amp 0 \\ 0 \amp 0 \amp -2 \end{bmatrix}
+        </md>
+    </p>
+
+    <p>
+        <alert>This is a good place to call it good for diagonalization since we found <m>P</m> and <m>D</m>. </alert>
+        We can next <em>verify</em> it by making sure <m>A</m> is indeed <m>PDP^{-1}</m>. 
+    </p>
+
+    <p>
+        We can find <m>P^{-1}</m> by reducing <m>\begin{bmatrix} P \mid I \end{bmatrix} </m> to <m>\begin{bmatrix} I \mid P^{-1} \end{bmatrix} </m>. 
+        <md>
+            \begin{bmatrix} 1 \amp -1 \amp -1 \amp \mid \amp 1 \amp 0 \amp 0 \\ -1 \amp 1 \amp 0 \amp \mid \amp \amp 0 \amp 1 \amp 0 \\ 1 \amp 0 \amp 1 \amp \mid \amp 0 \amp 0 \amp 1 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp 0 \amp 0 \amp \mid \amp 1 \amp 1 \amp 2 \\ 0 \amp 1 \amp 0 \amp \mid \amp 1 \amp 2 \amp 3 \\ 0 \amp 0 \amp 1 \amp \mid \amp -1 \amp -1 \amp -1 \end{bmatrix}
+        </md>
+        Hence, <m>P^{-1} = \begin{bmatrix} 1 \amp 1 \amp 2 \\ 1 \amp 2 \amp 3 \\ -1 \amp -1 \amp -1 \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+        Now we can verify that
+        <md>
+            <mrow> PDP^{-1} \amp= \begin{bmatrix} 1 \amp -1 \amp -1 \\ -1 \amp 1 \amp 0 \\ 1 \amp 0 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp -2 \amp 0 \\ 0 \amp 0 \amp -2 \end{bmatrix} \begin{bmatrix} 1 \amp 1 \amp 2 \\ 1 \amp 2 \amp 3 \\ -1 \amp -1 \amp -1 \end{bmatrix} </mrow>
+            <mrow> \amp= \begin{bmatrix} 1 \amp 2 \amp 2 \\ -1 \amp -2 \amp 0 \\ 1 \amp 0 \amp -2 \end{bmatrix} \begin{bmatrix} 1 \amp 1 \amp 2 \\ 1 \amp 2 \amp 3 \\ -1 \amp -1 \amp -1 \end{bmatrix} </mrow>
+            <mrow> \amp= \begin{bmatrix} 1 \amp 3 \amp 3 \\ -3 \amp -5 \amp -3 \\ 3 \amp 3 \amp 1 \end{bmatrix} </mrow>
+            <mrow> \amp= A </mrow>
+        </md>
+    </p>
+  </example>
+
+  <p>
+    So to diagonalize a matrix, we just need to find all the eigenvalues and its corresponding basis eigenvectors. 
+    Then we put things into the right place in the right order. 
+  </p>
+
+  <example>
+    <p>
+        Let's diagonalize this matrix <m>B = \begin{bmatrix} 5 \amp 1 \amp -4 \\ 6 \amp 2 \amp -6 \\ 6 \amp 1 \amp -5 \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+        We want to first find its eigenvalues. 
+        That is, we want to solve the characteristic equation <m>\det (B - \lambda I) = 0</m>. 
+        <md>
+            <mrow> \det(B - \lambda I) \amp= \begin{vmatrix} 5 - \lambda \amp 1 \amp -4 \\ 6 \amp 2 - \lambda \amp -6 \\ 6 \amp 1 \amp -5 - \lambda \end{vmatrix} </mrow>
+            <mrow> \amp= (5 - \lambda) \begin{vmatrix} 2 - \lambda \amp -6 \\ 1 \amp -5 - \lambda \end{vmatrix} - 1 \begin{vmatrix} 6 \amp -6 \\ 6 \amp -5 - \lambda \end{vmatrix} + (-4) \begin{vmatrix} 6 \amp 2 - \lambda \\ 6 \amp 1 \end{vmatrix} </mrow>
+            <mrow> \amp= (5 - \lambda) \big((2 - \lambda)(-5 - \lambda) - (-6)(1)\big) - \big(6(-5 - \lambda) - (6)(-6)\big) - 4\big((6)(1) - 6(2 - \lambda)\big) </mrow>
+            <mrow> \amp= (5 - \lambda)(\lambda^2 + 3\lambda - 4) - (6 - 6\lambda) - 4(6\lambda - 6) </mrow>
+            <mrow> \amp= (-\lambda^3 + 2\lambda^2 + 19\lambda - 20) + 6\lambda - 6 - 24\lambda + 24 </mrow>
+            <mrow> \amp= -\lambda^3 + 2\lambda^2 + \lambda - 2 </mrow>
+            <mrow> \amp= -\lambda^2(\lambda - 2) + 1(\lambda - 2) </mrow>
+            <mrow> \amp= (1 - \lambda^2)(\lambda - 2) </mrow>
+            <mrow> \amp= (1 - \lambda)(1 + \lambda)(\lambda - 2) </mrow>
+        </md>
+        Now we solve the characteristic equation 
+        <md>
+            (1 + \lambda)(1 - \lambda)(\lambda - 2) = 0
+        </md>
+        to obtain the eigenvalues of <m>-1</m>, <m>1</m>, and <m>2</m>. 
+    </p>
+
+    <p>
+        Let's consider the eigenvalue of <m>\lambda = -1</m>. 
+        Then we want to solve the homogeneous equation <m>A + I = 0</m>. 
+        The augmented matrix is
+        <md>
+            \begin{bmatrix} 6 \amp 1 \amp -4 \\ 6 \amp 3 \amp -6 \\ 6 \amp 1 \amp -4 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp 0 \amp -\frac{1}{2} \\ 0 \amp 1 \amp -1 \\ 0 \amp 0 \amp 0 \end{bmatrix}
+        </md>
+        Observe that <m>x_3</m> is the free variable, so the solution, in parametric form, is
+        <md>
+            \v{x} = x_3 \begin{bmatrix} \frac{1}{2} \\ 1 \\ 1 \end{bmatrix} \, , \qquad x_3 \in \R
+        </md>
+        To avoid fractions, we can choose <m>x_3 = 2</m>. 
+        Hence, an eigenvector that spans the eigenspace <m>E_{-1}</m> is <m>\begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+        Next, let's consider the eigenvalue of of <m>\lambda = 1</m>. 
+        Then we want to solve the homogeneous equation <m>A - I = 0</m>. 
+        The augmented matrix is
+        <md>
+            \begin{bmatrix} 4 \amp 1 \amp -4 \\ 6 \amp 1 \amp -6 \\ 6 \amp 1 \amp -6 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp 0 \amp -1 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \end{bmatrix}
+        </md>
+        Observe that <m>x_3</m> is the free variable, so the solution, in parametric form, is
+        <md>
+            \v{x} = x_3 \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}\, , \qquad x_3 \in \R
+        </md>
+        Hence, an eigenvector that spans the eigenspace <m>E_1</m> is <m> \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}</m>.
+    </p>
+
+    <p>
+        Finally, let's consider the eigenvalue of <m>\lambda = 2</m>. 
+        Then we want to solve the homogeneous equation <m>A - 2I = 0</m>. 
+        The augmented matrix is
+        <md>
+            \begin{bmatrix} 3 \amp 1 \amp -4 \\ 6 \amp 0 \amp -6 \\ 6 \amp 1 \amp -7 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp 0 \amp -1 \\ 0 \amp 1 \amp -1 \\ 0 \amp 0 \amp 0 \end{bmatrix}
+        </md>
+        Observe that <m>x_3</m> is the free variable, so the solution, in parametric form, is
+        <md>
+            \v{x} = x_3 \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}\, , \qquad x_3 \in \R
+        </md>
+        Hence, an eigenvector that spans the eigenspace <m>E_2</m> is <m> \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+        Now we put together the diagonal matrix <m>D</m> and our special matrix <m>P</m>. 
+        Our eigenvalues are
+        <md>
+            \lambda = 1\, ,\, 2\, , \, -1
+        </md>
+        and their corresponding basis eigenvectors are
+        <md>
+            \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}\, , \, \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}\, , \, \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix}
+        </md>
+        Then our diagonal matrix <m>D</m> and our special matrix <m>P</m> is
+        <md>
+            P = \begin{bmatrix} 1 \amp 1 \amp 1 \\ 0 \amp 1 \amp 2 \\ 1 \amp 1 \amp 2 \end{bmatrix}
+            \qquad \text{ and } \qquad 
+            D = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 2 \amp 0 \\ 0 \amp 0 \amp -1 \end{bmatrix}
+        </md>
+    </p>
+
+    <p>
+        <alert>Feel free to verify our answer by computing <m>PDP^{-1}</m> and see if we get <m>B</m> out of it.</alert>
+    </p>
+  </example>
+
+  <p>
+    You may observe that from the previous two examples, <alert>the multiplicity of an eigenvalue matches up with the dimension of the eigenspace</alert>.
+    This is the condition for a matrix to be diagonalizable. 
+    That is, if the multiplicity does not match with the dimension, the matrix is not diagonalizable. 
+  </p>
+
+  <example>
+    <p>
+        Let's say our matrix <m>C = \begin{bmatrix} 0 \amp 1 \amp 0 \\ 3 \amp 0 \amp 1 \\ 2 \amp 0 \amp 0 \end{bmatrix}</m> and we want to diagonalize it. 
+    </p>
+
+    <p>
+        We will first find the eigenvalues of <m>C</m>. 
+        The characteristic polynomial is
+        <md>
+            <mrow> \det(C - \lambda I) \amp= \begin{vmatrix} -\lambda \amp 1 \amp 0 \\ 3 \amp -\lambda \amp 1 \\ 2 \amp 0 \amp -\lambda \end{vmatrix} </mrow>
+            <mrow> \amp= -\lambda \begin{vmatrix} -\lambda \amp 1 \\ 0 \amp -\lambda \end{vmatrix} - 1 \begin{vmatrix} 3 \amp 1 \\ 2 \amp -\lambda \end{vmatrix} + 0 \begin{vmatrix} 3 \amp -\lambda \\ 2 \amp 0 \end{vmatrix} </mrow>
+            <mrow> \amp= -\lambda \big((-\lambda)(-\lambda) - (1)(0)\big) - 1\big((3)(-\lambda) - (1)(2)\big) + 0 </mrow>
+            <mrow> \amp= -\lambda(\lambda^2 - 0) - (-3\lambda - 2) </mrow>
+            <mrow> \amp= -\lambda^3 + 3\lambda + 2 </mrow>
+        </md>
+        We can factor the characteristic polynomial as follows: 
+        <md>
+            <mrow> -\lambda^3 + 3\lambda + 2 \amp= -\lambda^3 + \lambda + 2\lambda + 2 </mrow>
+            <mrow> \amp= -\lambda(\lambda^2 - 1) + 2(\lambda + 1) </mrow>
+            <mrow> \amp= -\lambda(\lambda - 1)(\lambda + 1) + 2(\lambda + 1) </mrow>
+            <mrow> \amp= (\lambda + 1) \big(-\lambda(\lambda - 1) + 2\big) </mrow>
+            <mrow> \amp= (\lambda + 1)(-\lambda^2 + \lambda + 2) </mrow>
+            <mrow> \amp= -(\lambda + 1)(\lambda^2 - \lambda - 2) </mrow>
+            <mrow> \amp= -(\lambda + 1)(\lambda - 2)(\lambda + 1) </mrow>
+            <mrow> \amp= -(\lambda - 2)(\lambda + 1)^2 </mrow>
+        </md>
+        So we can solve the characteristic equation 
+        <md>
+            -(\lambda - 2)(\lambda + 1)^2 = 0
+        </md>
+        and obtain the eigenvalues of <m>2</m> (with the multiplicity of <m>1</m>) and <m>-1</m> (with the multiplicity of <m>2</m>). 
+    </p>
+
+    <p>
+        <em>NOTE:</em> Feel free to use technology to help you solve the characteristic equation. 
+        Remember that we should obtain the number of solutions matching up with the degree of the equation, including multiplicity, guaranteed by the Fundamental Theorem of Algebra. 
+    </p>
+
+    <p>
+        Next, let's find the corresponding eigenvectors for these eigenvalues. We will start with <m>\lambda = 2</m>. 
+        We want to solve the homogeneous equation <m>C - 2I = 0</m>. 
+        The augmented matrix is
+        <md>
+            \begin{bmatrix} -2 \amp 1 \amp 0 \\ 3 \amp -2 \amp 1 \\ 2 \amp 0 \amp -2 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp -\frac{1}{2} \amp 0 \\ 0 \amp -\frac{1}{2} \amp 1 \\ 0 \amp 1 \amp -2 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp 0 \amp -1 \\ 0 \amp 1 \amp -2 \\ 0 \amp 0 \amp 0 \end{bmatrix}
+        </md>
+        Observe that <m>x_3</m> is the free variable, so the solution in parametric form is
+        <md>
+            \v{x} = x_3 \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}\, , \qquad x_3 \in \R
+        </md>
+        Hence, an eigenvector that spans this eigenspace is <m>\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+        Now let's consider the eigenvalue <m>\lambda = -1</m>. 
+        We want to solve the homogeneous equation <m>C + I = 0</m>. 
+        The augmented matrix is
+        <md>
+            \begin{bmatrix} 1 \amp 1 \amp 0 \\ 3 \amp 1 \amp 1 \\ 2 \amp 0 \amp 1 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp 1 \amp 0 \\ 0 \amp -2 \amp 1 \\ 0 \amp -2 \amp 1 \end{bmatrix}
+            \sim
+            \begin{bmatrix} 1 \amp 0 \amp \frac{1}{2} \\ 0 \amp 1 \amp -\frac{1}{2} \\ 0 \amp 0 \amp 0 \end{bmatrix}
+        </md>
+        Observe that <m>x_3</m> is the only free variable. The solution in parametric form is
+        <md>
+            \v{x} = x_3 \begin{bmatrix} -\frac{1}{2} \\ \frac{1}{2} \\ 1 \end{bmatrix} \, , \qquad x_3 \in \R
+        </md>
+        To avoid fractions, we can choose <m>x_3 = 2</m>, which gives us the eigenvector <m>\begin{bmatrix} -1 \\ 1 \\ 2 \end{bmatrix}</m> that spans the eigenspace. 
+    </p>
+
+    <p>
+        Wait a minute! We have a problem. 
+        For the <m>3 \times 3</m> matrix <m>C</m> to be diagonalizable, we need <m>3</m> linearly independent eigenvectors to form our invertible matrix <m>P</m>. 
+        However, the eigenvalue <m>\lambda = -1</m> has an algebraic multiplicity of <m>2</m>, but its eigenspace is spanned just by one basis vector of <m>\begin{bmatrix} -1 \\ 1 \\ 2 \end{bmatrix}</m>... 
+        We don't have enough basis vectors to construct our special matrix <m>P</m>... 
+    </p>
+
+    <p>
+        <alert>Therefore, the matrix <m>C</m> is not diagonalizable!</alert>
+    </p>
+  </example>
+
+  <worksheet xml:id="ws-sec53">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+    
+        <exercise number="5.3.1">
+            <statement>
+                <p>
+                  Let <m>A=PDP^{-1}</m>, where
+                  <md>
+                    P=\begin{bmatrix}2\amp 5\\ 1\amp 3\end{bmatrix} 
+                    \qquad \text{ and } \qquad 
+                    D=\begin{bmatrix}3\amp 0\\ 0\amp 1\end{bmatrix}
+                  </md>
+                  Compute <m>A^4</m>.
+                </p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.3.5">
+            <statement>
+              <p>
+                The matrix below is factored in the form of <m>PDP^{-1}</m>: 
+                <md>
+                  A = \begin{bmatrix}2\amp 2\amp 1\\ 1\amp 3\amp 1\\ 1\amp 2\amp 2\end{bmatrix} = \begin{bmatrix}1\amp 1\amp 2\\ 1\amp 1\amp -1\\ 1\amp -1\amp 0\end{bmatrix} \begin{bmatrix}5\amp 0\amp 0\\ 0\amp 1\amp 0\\ 0\amp 0\amp 1\end{bmatrix} \begin{bmatrix}1/4\amp 1/2\amp 1/4\\ 1/4\amp -1/4\amp -1/4\\ 1/4\amp -1/2\amp 1/4\end{bmatrix}
+                </md>
+                Find the eigenvalues of <m>A</m> and a basis for each eigenspace. 
+              </p>
+            </statement>
+        </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              Diagonalize the following matrices if possible. 
+            </p>
+        </introduction>
+
+        <exercise number="5.3.7">
+            <statement>
+                <me>\begin{bmatrix}1\amp 0\\ 6\amp -1\end{bmatrix}</me>
+            </statement>
+        </exercise>
+
+        <exercise number="5.3.11">
+            <statement>
+                <me>\begin{bmatrix}-1\amp 4\amp -2\\ -3\amp 4\amp 0\\ -3\amp 1\amp 3\end{bmatrix}, \quad \lambda = 1, 2, 3</me>
+            </statement>
+        </exercise>
+
+        <exercise number="5.3.15">
+            <statement>
+                <me>\begin{bmatrix}7\amp 4\amp 16\\ 2\amp 5\amp 8\\ -2\amp -2\amp -5\end{bmatrix}, \quad \lambda = 1, 3, 3</me>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>In Exercises 21-28, <m>A</m>, <m>P</m>, and <m>D</m> are <m>n \times n</m> matrices. Mark each statement True or False (T/F). Justify each answer.</p>
+        </introduction>
+
+        <exercise number="5.3.21">
+            <statement>
+                <p>(T/F) <m>A</m> is diagonalizable if <m>A=PDP^{-1}</m> for some matrix <m>D</m> and some invertible matrix <m>P</m>.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.3.23">
+            <statement>
+                <p>(T/F) <m>A</m> is diagonalizable if and only if <m>A</m> has <m>n</m> eigenvalues, counting multiplicities.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.3.25">
+            <statement>
+                <p>(T/F) <m>A</m> is diagonalizable if <m>A</m> has <m>n</m> eigenvectors.</p>
+            </statement>
+        </exercise>
+
+        <exercise number="5.3.27">
+            <statement>
+                <p>(T/F) If <m>AP=PD</m> with <m>D</m> diagonal, then the nonzero columns of <m>P</m> must be eigenvectors of <m>A</m>.</p>
+            </statement>
+        </exercise>
+    </exercisegroup>
+
+  </worksheet>
+
+</section>

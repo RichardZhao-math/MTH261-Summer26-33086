@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch5-EigenvaluesEigenvectors" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Eigenvalues and Eigenvectors</title>
+
+  <introduction>
+    <p> Text before the first section. </p>
+  </introduction>
+
+  <!-- include sections -->
+  <xi:include href="sec51-EigenvectorsEigenvalues.ptx" />
+  <xi:include href="sec52-CharacteristicEquation.ptx" />
+  <xi:include href="sec53-Diagonalization.ptx" />
+</chapter>

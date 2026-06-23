@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec15-SolutionSets" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Solution Sets of Linear Systems</title>
+
+  <introduction>
+    <p>
+      Now we get to the cool part! 
+      We are going to learn how to multiply a matrix by a vector. 
+      This is SUPER IMPORTANT for three reasons:
+      <ol marker="1.">
+        <li>
+          <p>
+            This corresponds to evaluating a linear transformation at a point which leads to tons of cool geometry stuff. 
+            Much more about this in the future!
+          </p>
+        </li>
+        <li>
+          <p>
+            It is the foundation for multiplying matrices (which is probably the most important thing in Matrix Algebra and corresponds to composing linear transformations).
+          </p>
+        </li>
+        <li>
+          <p>
+            It gives us new ways to think about systems of equations!
+          </p>
+        </li>
+      </ol>
+      Takeaway: make sure you are an expert at multiplying a vector by a matrix! 
+    </p>
+
+    <objectives>
+      <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+          <p>
+            represent a system of linear equations in four equivalent forms: a system of equations, an augmented matrix, a matrix equation, and a vector equation.
+          </p>
+        </li>
+        <li>
+          <p>
+            multiply a matrix by a vector using both the dot product method and the linear combination method. 
+          </p>
+        </li>
+        <li>
+          <p>
+            determine the existence of solutions for a system of linear equations by comparing the rank of the coefficient matrix and the rank of the augmented matrix. 
+          </p>
+        </li>
+        <li>
+          <p>
+            see the connection between matrix-vector multiplication and linear transformations.
+          </p>
+        </li>
+        <li>
+          <p>
+            identify and apply the properties of two special matrices: the identity matrix and the zero matrix, in the context of multiplying a matrix by a vector.
+          </p>
+        </li>
+      </ul>
+    </objectives>
+  </introduction>
+  
+  <p>
+    There are two types of systems of linear equations if we consider the values of the constants terms: <term>homogeneous system</term> and <term>non-homogeneous system</term>.
+    They are of course related and we will focus on the homogeneous systems first, then we will see how to use the results to understand the non-homogeneous systems. 
+  </p>
+
+  <subsection xml:id="subsec-HomogeneousSystem">
+    <title>Homogeneous Linear System</title>
+
+    <p>
+      Let's start by looking at a quick task! 
+      Richard claims that the following system of linear equations has <em>at least one</em> solution (hence a consistent system) at the first glance. 
+      <md>
+        \begin{cases}
+          4x - 12y + 2z = 0 \\  
+          2x - 6y = 0 \\
+          3x - 9y + z = 0 \\
+          -2x + 6y - z = 0
+        \end{cases}
+      </md>
+      Why does Richard know about it quickly? 
+    </p>
+
+    <p>
+      Recall something is called a solution if it satisfies all the equations in the system! 
+      Richard made a keen observation that all equations would work out if the variables are all zero. 
+      That is, <m>x = 0</m>, <m>y = 0</m>, and <m>z = 0</m>. 
+    </p>
+
+    <p>
+      To verify, Richard plugged in zero for every variable.
+      He got zero on the left-hand side of every equation and solve all of them! 
+      So <m>(0,0,0)</m> is a solution to this system of linear equations.
+    </p>
+
+    <p>
+      It turns out that this type of systems of linear equations is called a <term>homogeneous system</term>! 
+    </p>
+
+    <definition xml:id="def-HomogeneousSystem">
+      <statement>
+        <p>
+          A <term>homogeneous system of equations</term> (or a system of homogeneous equations) is a system of linear equations where all of the constants to the right of the equal sign are zero. 
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      For example, we worked with the following system of linear equations in a previous section: 
+      <md>
+        \begin{cases}
+          4x - 12y + 2z = -12 \\  
+          2x - 6y = -10 \\
+          3x - 9y + z = -11 \\
+          -2x + 6y - z = 6
+        \end{cases}
+      </md>
+      This is NOT a homogeneous system since the constants on the right-hand side are not all zero. 
+      We can make it homogeneous by changing the number on the right-hand side of every equation to a zero as follows: 
+      <md>
+        \begin{cases}
+          4x - 12y + 2z = 0 \\  
+          2x - 6y = 0 \\
+          3x - 9y + z = 0 \\
+          -2x + 6y - z = 0
+        \end{cases}
+      </md>
+      Then we have a homogeneous system! 
+    </p>
+
+    <p>
+      <em>Note: </em> Just to be clear, this is a different system of linear equations. 
+      However, we will see later that it is actually related to the original one in an important way later on!
+    </p>
+
+    <p>
+      Usually, a system of linear equations can have either (1) zero, (2) one, or (3) infinitely many solutions. 
+      But it is <em>impossible</em> for a homogeneous system to have zero solutions! 
+      As we figured out the very first question in this section, every homogeneous system has at least the <term>trivial solution</term> (where all the variables are zero). 
+      So <alert>a homogeneous system either has one solution (trivial) OR it has infinitely many solutions</alert>. 
+    </p>
+
+    <p>
+      Let's solve our homogeneous system! 
+      First, we will write the augmented matrix for the system: 
+      <md>
+        \begin{bmatrix}
+          4 \amp -12 \amp 2 \amp \mid \amp 0 \\
+          2 \amp -6 \amp 0 \amp \mid \amp 0 \\
+          3 \amp -9 \amp 1 \amp \mid \amp 0 \\
+          -2 \amp 6 \amp -1 \amp \mid \amp 0
+        \end{bmatrix}
+      </md>
+      We can actually do the <alert>exact same</alert> steps that we did with the non-homogeneous version. 
+      The only difference is that the constant column doesn't require any work since all the entries hold steady at zero. 
+    </p>
+
+    <p>
+      So if we put it into row echelon form, we get: 
+      <md>
+        \begin{bmatrix}
+          1 \amp -3 \amp \frac{1}{2} \amp \mid \amp 0 \\
+          0 \amp 0 \amp 1 \amp \mid \amp 0 \\
+          0 \amp 0 \amp 0 \amp \mid \amp 0 \\
+          0 \amp 0 \amp 0 \amp \mid \amp 0
+        \end{bmatrix}
+      </md>
+      Now we can convert back to a system of linear equations and we get: 
+      <md>
+        \begin{cases}
+          x - 3y + \frac{1}{2}z = 0 \\  
+          z = 0 \\
+          0 = 0 \\
+          0 = 0
+        \end{cases}
+      </md>
+      Just like with the regular version, <m>x</m> and <m>z</m> are the leading variables and <m>y</m> is a free variable. 
+      We can back substitute <m>z = 0</m> into the first equation to get <m>x = 3y</m> and write the solution in parametric form: 
+      <md>
+        \begin{cases}
+          x = 3y \\  
+          y = y \\
+          z = 0
+        \end{cases}
+      </md>
+      or, using our linear algebra notation of vectors (which means in column vectors), an arbitrary vector in the solution set looks like: <m>\begin{bmatrix} 3y \\ y \\ 0 \end{bmatrix}</m>. 
+    </p>
+
+    <p>
+      Now, notice that we can factor out a <m>y</m> in the solution and see that the set of solutions is of the form <m>y\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}</m> where <m>y</m> can be any real number. 
+      That means every solution of the system is a multiple of <m>\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}</m>. 
+      Alternatively, we can say that every solution is in <m>\span\left\{\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}\right\}</m>. 
+    </p>
+
+    <p>
+      We call this <m>\begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}</m> a "<term>basis</term>" or "<term>basic</term> vector" of the solution set 
+      (Actually "basis" is much more common, but some textbooks use "basic"...). 
+    </p>
+
+    <example>
+      <p>
+        Pretend that we had a (homogeneous) system of 4 linear equations in 5 variables <m>(x,y,z,u,z)</m> and we put the augmented matrix into row echelon form and got: 
+        <md>
+          \begin{bmatrix}
+            1 \amp -3 \amp 5 \amp 2 \amp 7 \amp \mid \amp 0 \\
+            0 \amp 0 \amp 1 \amp 0 \amp 1 \amp \mid \amp 0 \\
+            0 \amp 0 \amp 0 \amp 0 \amp 1 \amp \mid \amp 0 \\
+            0 \amp 0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0
+          \end{bmatrix}
+        </md>
+        The leading variables are <m>x</m>, <m>z</m>, and <m>v</m>, so our free variables are <m>y</m> and <m>u</m>. 
+        That is, we should be able to solve for the other three variables in terms of <m>y</m> and <m>u</m>. 
+      </p>
+
+      <p>
+        Let's convert it to a system of linear equations: 
+        <md>
+          \begin{cases}
+            x - 3y + 5z + 2u + 7v = 0 \\  
+            z + v = 0 \\
+            v = 0 \\
+            0 = 0
+          \end{cases}
+        </md>
+        We know that <m>v = 0</m> and we can back substitute into the second equation to get <m>z = 0</m> as well. 
+      </p>
+
+      <p>
+        Back substituting into the first equation, we get 
+        <md>
+          x - 3y + 2u = 0 \qquad \implies \qquad x = 3y - 2u
+        </md>
+        Now we can write an arbitrary point in the solution set as 
+        <md>
+          \begin{bmatrix} 3y - 2u \\ y \\ 0 \\ u \\ 0 \end{bmatrix}
+        </md>
+        Now we can split this up into two vectors, one with only <m>y</m>'s and one with only <m>u</m>'s: 
+        <md>
+          <mrow> \begin{bmatrix} 3y - 2u \\ y \\ 0 \\ u \\ 0 \end{bmatrix} \amp= \begin{bmatrix} 3y \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix} + \begin{bmatrix} -2u \\ 0 \\ 0 \\ u \\ 0 \end{bmatrix} </mrow>
+          <mrow> \amp= y \begin{bmatrix} 3 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + u \begin{bmatrix} -2 \\ 0 \\ 0 \\ 1 \\ 0 \end{bmatrix} \amp\amp \text{factor out the $y$ and $u$} </mrow>
+        </md>
+        This means that every solution is a <term>linear combination</term> of the "basic" solutions <m>\begin{bmatrix} 3 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}</m> and <m>\begin{bmatrix} -2 \\ 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}</m>. 
+        Hence, the solution set is <m>\span\left\{\begin{bmatrix} 3 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} -2 \\ 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}\right\}</m>. 
+      </p>
+
+      <p>
+        Just to be clear, the two basis vectors <m>\begin{bmatrix} 3 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}</m> and <m>\begin{bmatrix} -2 \\ 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}</m> are solutions as well! 
+        That is one reason why they called the basic solutions (it explains the "solution" part). 
+        You can also imagine that we can construct infinitely many solutions using these two vectors as building blocks, so they are the "basis vectors" for the solution set!
+      </p>
+    </example>
+
+    <exercise>
+      <p>
+        Solve the following homogeneous system of linear equations and write an arbitrary solution as a linear combination of basic solutions (written as column vectors): 
+        <md>
+          \begin{cases}
+            3x - 2y + z + 5u = 0 \\  
+            x - 6y + 2z + u = 0 \\
+            x + 10y - 3z + 3u = 0 \\
+            4x - 8y + 3z + 6u = 0
+          \end{cases}
+        </md>
+      </p>
+
+      <solution>
+        <p>
+          Let's start by writing the augmented matrix for the system: 
+          <md>
+            \begin{bmatrix}
+              3 \amp -2 \amp 1 \amp 5 \amp \mid \amp 0 \\
+              1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+              1 \amp 10 \amp -3 \amp 3 \amp \mid \amp 0 \\
+              4 \amp -8 \amp 3 \amp 6 \amp \mid \amp 0
+            \end{bmatrix}
+          </md>
+          We will solve the system using the Gaussian elimination algorithm. 
+        </p>
+
+        <p>
+          Step 1: Swap Row 1 and Row 2 so that we get a leading <m>1</m> without using any fractions: 
+          <md>
+            \begin{bmatrix}
+              1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+              3 \amp -2 \amp 1 \amp 5 \amp \mid \amp 0 \\
+              1 \amp 10 \amp -3 \amp 3 \amp \mid \amp 0 \\
+              4 \amp -8 \amp 3 \amp 6 \amp \mid \amp 0
+            \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          Step 2: Add <m>-3</m> times Row 1 to Row 2 (and replace Row 2), add <m>-1</m> times Row 1 to Row 3 (and replace Row 3), and add <m>-4</m> times Row 1 to Row 4 (and replace Row 4) to get: 
+          <md>
+            \begin{bmatrix}
+              1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+              0 \amp 16 \amp -5 \amp 2 \amp \mid \amp 0 \\
+              0 \amp 16 \amp -5 \amp 2 \amp \mid \amp 0 \\
+              0 \amp 16 \amp -5 \amp 2 \amp \mid \amp 0
+            \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          Step 3: Multiply Row 2, Row 3, and Row 4 by <m>\frac{1}{16}</m> (observe the last three rows are exactly the same!) to get:
+          <md>
+            \begin{bmatrix}
+              1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+              0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0 \\
+              0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0 \\
+              0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0
+            \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          Step 4: Add <m>-1</m> times Row 2 to Row 3 (and replace Row 3) and add <m>-1</m> times Row 2 to Row 4 (and replace Row 4) to get:
+          <md>
+            \begin{bmatrix}
+              1 \amp -6 \amp 2 \amp 1 \amp \mid \amp 0 \\
+              0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0 \\
+              0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0 \\
+              0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0
+            \end{bmatrix}
+          </md>
+        </p>
+
+        <p>
+          We can see from the leading <m>1</m>s that <m>x</m> and <m>y</m> are the leading variables and <m>z</m> and <m>u</m> are the free variables. 
+          We can also see this from converting back to a system of linear equations:
+          <md>
+            \begin{cases}
+              x - 6y + 2z + u = 0 \\  
+              y - \frac{5}{16}z + \frac{1}{8}u = 0 \\
+              0 = 0 \\
+              0 = 0
+            \end{cases}
+          </md>
+          We can solve for <m>x</m> in terms of <m>y</m>, <m>z</m>, and <m>u</m> to get: 
+          <md>
+            x = 6y - 2z - u
+          </md>
+          We can also solve for <m>y</m> in terms of <m>z</m> and <m>u</m> to get: 
+          <md>
+            y = \frac{5}{16}z - \frac{1}{8}u
+          </md>
+          Then we can back substitute this expression for <m>y</m> into the first equation to get: 
+          <md>
+            <mrow>x \amp= 6 \lp \frac{5}{16}z - \frac{1}{8}u \rp - 2z - u </mrow>
+            <mrow> \amp- \frac{15}{8}z - \frac{3}{4}u - 2z - u </mrow>
+            <mrow> \amp= -\frac{1}{8}z - \frac{7}{4}u </mrow>
+          </md>
+          Now let's write our general solution as a column vector! 
+          Every solution looks like
+          <md>
+            <mrow> \begin{bmatrix} -\frac{1}{8}z - \frac{7}{4}u \\ \frac{5}{16}z - \frac{1}{8}u \\ z \\ u \end{bmatrix} \amp= \begin{bmatrix} -\frac{1}{8}z \\ \frac{5}{16}z \\ z \\ 0 \end{bmatrix} + \begin{bmatrix} -\frac{7}{4}u \\ -\frac{1}{8}u \\ 0 \\ u \end{bmatrix} </mrow>
+            <mrow> \amp= z \begin{bmatrix} -\frac{1}{8} \\ \frac{5}{16} \\ 1 \\ 0 \end{bmatrix} + u \begin{bmatrix} -\frac{7}{4} \\ -\frac{1}{8} \\ 0 \\ 1 \end{bmatrix} </mrow>
+          </md>
+        </p>
+
+        <note>
+          <title>If you want to turn the augmented matrix into reduced row echelon form...</title>
+
+          <p>
+            To get the augmented matrix into reduced row echelon form, we will just need to do one more step after Step 4. 
+          </p>
+
+          <p>
+            Step 5: Add <m>6</m> times Row 2 to Row 1 (and replace Row 1) to get:
+            <md>
+              \begin{bmatrix}
+                1 \amp 0 \amp \frac{1}{8} \amp \frac{7}{4} \amp \mid \amp 0 \\
+                0 \amp 1 \amp -\frac{5}{16} \amp \frac{1}{8} \amp \mid \amp 0 \\
+                0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0 \\
+                0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0
+              \end{bmatrix}
+            </md>
+          </p>
+
+          <p>
+            Converting it back to the system of linear equations, we get: 
+            <md>
+              \begin{cases}
+                x + \frac{1}{8}z + \frac{7}{4}u = 0 \\  
+                y - \frac{5}{16}z + \frac{1}{8}u = 0 \\
+                0 = 0 \\
+                0 = 0
+              \end{cases}
+            </md>
+            Similarly, we see that <m>z</m> and <m>u</m> are the free variables, and hence we will represent <m>x</m> and <m>y</m> in terms of <m>z</m> and <m>u</m>: 
+            <md>
+              \begin{cases}
+                x = -\frac{1}{8}z - \frac{7}{4}u \\  
+                y = \frac{5}{16}z - \frac{1}{8}u 
+              \end{cases}
+            </md>
+          </p>
+
+          <p>
+            Then we can write our general solution as a column vector! Every solution looks like
+            <md>
+              \begin{bmatrix} -\frac{1}{8}z - \frac{7}{4}u \\ \frac{5}{16}z - \frac{1}{8}u \\ z \\ u \end{bmatrix} = z \begin{bmatrix} -\frac{1}{8} \\ \frac{5}{16} \\ 1 \\ 0 \end{bmatrix} + u \begin{bmatrix} -\frac{7}{4} \\ -\frac{1}{8} \\ 0 \\ 1 \end{bmatrix}
+            </md>
+          </p>
+        </note>
+      </solution>
+    </exercise>
+
+    <p>
+      Terminology! 
+      The way we write an arbitrary solution as a linear combination of basis vectors is called the <term>parametric form</term> of the solution set. 
+      If you are instructed to write the solution set in parametric form, you should write it as a linear combination of basis vectors using free variables as parameters. 
+    </p>
+
+    <note>
+      <title>But Richard... Are there only one set of basis vectors for a solution set?</title>
+
+      <p>
+        The short answer is NO! 
+        There are many different ways to represent the basis vectors for a solution set. 
+        Sometimes we pick "nice" basis vectors to make the answer look pretty. 
+      </p>
+
+      <p>
+        For example, in the checkpoint problem earlier, the solution in parametric form is 
+        <md>
+          z \begin{bmatrix} -\frac{1}{8} \\ \frac{5}{16} \\ 1 \\ 0 \end{bmatrix} + u \begin{bmatrix} -\frac{7}{4} \\ -\frac{1}{8} \\ 0 \\ 1 \end{bmatrix}
+        </md>
+        But the two basis vectors look messy because of the fractions.
+      </p>
+
+      <p>
+        We can actually represent these two basis vectors differently. 
+        If <m>z = 16</m>, then the first basis vector becomes 
+        <md>
+          16 \begin{bmatrix} -\frac{1}{8} \\ \frac{5}{16} \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} -2 \\ 5 \\ 16 \\ 0 \end{bmatrix}
+        </md>
+        If <m>u = 8</m>, then the second basis vector becomes
+        <md>
+          8 \begin{bmatrix} -\frac{7}{4} \\ -\frac{1}{8} \\ 0 \\ 1 \end{bmatrix} = \begin{bmatrix} -14 \\ -1 \\ 0 \\ 8 \end{bmatrix}
+        </md>
+        So we can also write the solution, in parametric form, as
+        <md>
+          z \begin{bmatrix} -2 \\ 5 \\ 16 \\ 0 \end{bmatrix} + u \begin{bmatrix} -14 \\ -1 \\ 0 \\ 8 \end{bmatrix}
+        </md>
+        Look how much nicer this representation of the solution set is!
+      </p>
+
+      <p>
+        In the next section, we will talk about a concept called "independence". 
+        Basically, the idea here is that we swap two messy linearly independent basis vectors for two nice linearly independent vectors that span the same solution set.
+      </p>
+    </note>
+
+    <p>
+      Recall the solution set to a homogeneous system can be represented as the span of the basis vectors. 
+      We know how spans look like geometrically! 
+      <ul>
+        <li>
+          <p>
+            If there are no free variables, then the only solution is the trivial solution, and <m>\span\left\{\v{0}\right\} = \left\{\v{0}\right\}</m> (just a point).  
+          </p>
+        </li>
+        <li>
+          <p>
+            If there is one free variable, then the solution set is <m>\span\left\{\v{v}_1\right\}</m>. 
+            We saw in the last section that this will be a line through the origin (since <m>\v{0}</m> must be in the span). 
+          </p>
+        </li>
+        <li>
+          <p>
+            If there are two free variables, then the solution set is <m>\span\left\{\v{v}_1, \v{v}_2\right\}</m>. 
+            We saw in the last section that this will be a plane through the origin (again, since <m>\v{0}</m> must be in the span).
+          </p>
+        </li>
+      </ul>
+      And the list goes on if we have more free variables! 
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-NonHomogeneousSystem">
+    <title>Non-Homogeneous Linear System</title>
+    
+    <p>
+      By contrast, a <term>non-homogeneous system of equations</term> (or a system of non-homogeneous equations) is a system of linear equations where at least one of the constants to the right of the equal sign is NOT zero (so NOT a homogeneous system). 
+    </p>
+
+    <p>
+      There is a very important relationship between the solution set of a non-homogeneous system and the solution set of the corresponding homogeneous system! 
+      Let's revisit a non-homogeneous system we worked with before: 
+      <md>
+        \begin{cases}
+          4x - 12y + 2z = -12 \\  
+          2x - 6y = -10 \\
+          3x - 9y + z = -11 \\
+          -2x + 6y - z = 6
+        \end{cases}
+      </md>
+      Skimming through <xref ref="sec12-RowReduction"/> will help us locate the solution set of this system as
+      <md>
+        x = 3y - 5\quad , \quad y = y \quad, \, \text{ and } \quad z = 4 
+      </md>
+      Or, putting it in column vector form, we can write an arbitrary solution as
+      <md>
+        \begin{bmatrix} 3y - 5 \\ y \\ 4 \end{bmatrix}
+      </md>
+      Of course, we can do our previous trick of splitting this up into two vectors, one with only <m>y</m>'s and one without any <m>y</m>'s (so that we can factor out the <m>y</m>): 
+      <md>
+        \begin{bmatrix} 3y - 5 \\ y \\ 4 \end{bmatrix} = \begin{bmatrix} 3y \\ y \\ 0 \end{bmatrix} + \begin{bmatrix} -5 \\ 0 \\ 4 \end{bmatrix} 
+        = y \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix} + \begin{bmatrix} -5 \\ 0 \\ 4 \end{bmatrix} 
+      </md>
+      Hmm... Does the first vector(s) <m>y \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix}</m> look familiar? 
+      This is actually the same as the solution set of the corresponding homogeneous system!
+    </p>
+
+    <p>
+      One can verify quickly that the second vector <m>\begin{bmatrix} -5 \\ 0 \\ 4 \end{bmatrix}</m>, by itself, is also a solution to the non-homogeneous system as well! 
+      This is our BIG theorem in this section!
+    </p>
+
+    <theorem xml:id="thm-HomogeneousSolutionSet">
+      <statement>
+        <p>
+          Suppose the equation <m>A\v{x} = \v{b}</m> is consistent for some given <m>\v{b}</m>, and let <m>\v{p}</m> be a solution to this equation. 
+          Then the solution set of <m>A\v{x} = \v{b}</m> is the set of all vectors of the form <m>\v{w} = \v{p} + t\v{v}_h</m>, where <m>t</m> is a parameter and <m>\v{v}_h</m> is a solution to the homogeneous equation <m>A\v{x} = \v{0}</m>.  
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      In general, we can solve a system of linear equations using the Gaussian Elimination algorithm. 
+      Assuming the system is consistent, we can write an arbitrary solution in parametric form using the same trick that we have been doing: 
+      <alert>split up the vector by the variable (or lackof) and factor out the free variable</alert> to get a linear combination of the basis vectors of the homogeneous solution set plus a particular solution to the non-homogeneous system. 
+    </p>
+
+    <exercise>
+      <p>
+        Describe all the solutions to the Matrix Equation <m>A\v{x} = \v{b}</m> where
+        <md>
+          A = \begin{bmatrix} 1 \amp 3 \amp -5 \\ 1 \amp 4 \amp -8 \\ -3 \amp -7 \amp 9 \end{bmatrix} 
+          \qquad \text{ and }\qquad
+          \v{b} = \begin{bmatrix} 4 \\ 7 \\ -6 \end{bmatrix}
+        </md>
+        in parametric form. 
+      </p>
+
+      <answer>
+        <p>
+          <m>\v{x} = \begin{bmatrix} -5 \\ 3 \\ 0 \end{bmatrix} + t\begin{bmatrix} -4 \\ 3 \\ 1 \end{bmatrix}</m>
+        </p>
+      </answer>
+    </exercise>
+
+    <p>
+      We can also think about what it means in terms of geometry! 
+      Observe that the homogeneous equation <m>A\v{x} = \v{0}</m> looks a lot like our linear equation <m>y = mx</m> (in the sense that they are both linear and the constant term is zero). 
+      Then that means the non-homogeneous equation <m>A\v{x} = \v{b}</m> is like the linear equation <m>y = mx + b</m>. 
+    </p>
+
+    <p>
+      How did we obtain <m>y = mx + b</m> from <m>y = mx</m>? 
+      The answer is <alert>vertical translation</alert> by <m>b</m>! 
+      That is, we can think of the solution to the non-homogeneous equation as the solution to the corresponding homogeneous equation shifted a bit by a particular solution to the non-homogeneous equation. 
+    </p>
+
+    <p>
+      Geometrically, let's think about <m>\v{v}</m> as a solution to <m>A\v{x} = \v{0}</m> and <m>\v{p}</m> as a particular solution to <m>A\v{x} = \v{b}</m>. 
+      Then we know that <m>\v{p} + \v{v}</m> is also a solution to <m>A\v{x} = \v{b}</m>! 
+      The diagram below shows the relationship between the two solutions to <m>A\v{x} = \v{b}</m>: 
+    </p>
+
+    <figure>
+      <image source="sec15_NonHomogeneous-Translation-Diagram.png" width="50%"></image>
+      <caption>Adding <m>\v{p}</m> to <m>\v{v}</m> translates <m>\v{v}</m> to <m>\v{v} + \v{p}</m></caption>
+    </figure>
+
+    <p>
+      In addition, we can grab a vector from the span of <m>\v{v}</m> and add it to <m>\v{p}</m> to get another solution to <m>A\v{x} = \v{b}</m>. 
+      To keep things simple, let's just imagine there is only one free variable in the homogeneous solution set. 
+      That is, the span of <m>\v{v}</m> is a line through the origin. 
+      Then the solution set of <m>A\v{x} = \v{b}</m> is a line parallel to the span of <m>\v{v}</m> that goes through the particular solution <m>\v{p}</m>.
+    </p>
+
+    <figure>
+      <image source="sec15_NonHomogeneous_ParallelSolutionSet.png" width="80%"></image>
+      <caption>Parallel solution sets of <m>A\v{x} = \v{b}</m> and <m>A\v{x} = \v{0}</m> with one free variable</caption>
+    </figure>
+
+    <p>
+      Similarly, if there are two free variables in the homogeneous solution set, then the solution set of <m>A\v{x} = \v{b}</m> is a plane parallel to the span of the two basis vectors that goes through the particular solution <m>\v{p}</m>. 
+      And the list goes on if there are more free variables! 
+    </p>
+
+    <figure>
+      <image source="sec15_NonHomogeneous_ParallelSolutionSet_Plane.png" width="60%"></image>
+      <caption>Parallel solution sets of <m>A\v{x} = \v{b}</m> and <m>A\v{x} = \v{0}</m> with two free variables</caption>
+    </figure>
+
+  </subsection>
+
+  <worksheet xml:id="ws-sec15">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              In the following systems, determine if it has a nontrivial solution. 
+              Try to use as few row operations as possible.
+            </p>
+        </introduction>
+        <exercise number="1.5.1">
+          <p>
+            <md>
+              <mrow>2x_1 - 5x_2 + 8x_3 \amp = 0</mrow>
+              <mrow>-2x_1 - 7x_2 + x_3 \amp = 0</mrow>
+              <mrow>4x_1 + 2x_2 + 7x_3 \amp = 0</mrow>
+            </md>
+          </p>
+        </exercise>
+        
+        <exercise number="1.5.3">
+          <p>
+            <md>
+                <mrow>-3x_1 + 5x_2 - 7x_3 \amp = 0</mrow>
+                <mrow>-6x_1 + 7x_2 + x_3 \amp = 0</mrow>
+            </md>
+          </p>
+        </exercise>
+    </exercisegroup>
+
+    <exercise number="1.5.5">
+      <p>
+        Write the solution set of the given homogeneous system in parametric vector form.
+        <md>
+          <mrow>x_1 + 3x_2 + x_3 \amp = 0</mrow>
+          <mrow>-4x_1 - 9x_2 + 2x_3 \amp = 0</mrow>
+          <mrow>-3x_2 - 6x_3 \amp = 0</mrow>
+        </md>
+      </p>
+    </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>
+              Given the following matrix equivalent to some coefficient matrix <m>A</m>, describe all solutions of <m>A\v{x}= \v{0}</m> in parametric vector form. 
+            </p>
+        </introduction>
+        <exercise number="1.5.7">
+          <md>
+            \begin{bmatrix} 
+              1 \amp 3 \amp -3 \amp 7 \\ 
+              0 \amp 1 \amp -4 \amp 5 
+            \end{bmatrix}
+          </md>
+        </exercise>
+
+        <exercise number="1.5.9">
+          <md>
+            \begin{bmatrix} 
+              3 \amp -9 \amp 6 \\ 
+              -1 \amp 3 \amp -2 
+            \end{bmatrix}
+          </md>
+        </exercise>
+
+        <exercise number="1.5.11">
+          <md>
+            \begin{bmatrix} 
+              1 \amp -4 \amp -2 \amp 0 \amp 3 \amp -5 \\ 
+              0 \amp 0 \amp 1 \amp 0 \amp 0 \amp -1 \\ 
+              0 \amp 0 \amp 0 \amp 0 \amp 1 \amp -4 \\ 
+              0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 
+            \end{bmatrix}
+          </md>
+        </exercise>
+    </exercisegroup>
+
+    <exercise number="1.5.13">
+      <p>
+        Verify that the solutions you found to Exercise 9 are indeed homogeneous solutions.
+      </p>
+    </exercise>
+
+    <exercise number="1.5.15">
+        <p>
+          Verify that the solutions you found to Exercise 11 are indeed homogeneous solutions.
+        </p>
+    </exercise>
+
+    <exercise number="1.5.17">
+      <p>
+        Suppose the solution set of a certain system of linear equations can be described as <m>x_1 = 5 + 4x_3</m>, <m>x_2 = -2 - 7x_3</m>, with <m>x_3</m> free. 
+        Use vectors to describe this set as a line in <m>\R^3</m>.
+      </p>
+    </exercise>
+
+    <exercise number="1.5.19">
+            <p>
+              Describe the solutions of the following system in parametric vector form. 
+              Also, give a geometric description of the solution set and compare it to that in Exercise 5.
+              <md>
+                  <mrow>x_1 + 3x_2 + x_3 \amp = 1</mrow>
+                  <mrow>-4x_1 - 9x_2 + 2x_3 \amp = -1</mrow>
+                  <mrow>-3x_2 - 6x_3 \amp = -3</mrow>
+              </md>
+            </p>
+    </exercise>
+
+    <exercise number="1.5.21">
+            <p>
+              Describe and compare the solution sets of <m>x_1 + 9x_2 - 4x_3 = 0</m> and <m>x_1 + 9x_2 - 4x_3 = -2</m>.
+            </p>
+    </exercise>
+
+    <exercise number="1.5.23">
+      <p>Find the parametric equation of the line through <m>a</m> parallel to <m>b</m>.</p>
+          <md>
+                \v{a} = \begin{bmatrix} -2 \\ 0 \end{bmatrix}, \quad 
+                \v{b} = \begin{bmatrix} -5 \\ 3 \end{bmatrix}
+          </md>
+    </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>In Exercises 27-35, mark each statement True or False (T/F). Justify each answer.</p>
+        </introduction>
+        <exercise number="1.5.27">
+                <p>(T/F) A homogeneous equation is always consistent.</p>
+        </exercise>
+        <exercise number="1.5.29">
+                <p>(T/F) The equation <m>Ax=0</m> gives an explicit description of its solution set.</p>
+        </exercise>
+        <exercise number="1.5.31">
+                <p>(T/F) The homogeneous equation <m>Ax=0</m> has the trivial solution if and only if the equation has at least one free variable.</p>
+        </exercise>
+        <exercise number="1.5.33">
+                <p>(T/F) The equation <m>x=p+tv</m> describes a line through <m>v</m> parallel to <m>p</m>.</p>
+        </exercise>
+        <exercise number="1.5.35">
+                <p>(T/F) The solution set of <m>Ax=b</m> is the set of all vectors of the form <m>w=p+v_h</m>, where <m>v_h</m> is any solution of the equation <m>Ax=0</m>.</p>
+        </exercise>
+    </exercisegroup>
+
+  </worksheet>
+
+</section>

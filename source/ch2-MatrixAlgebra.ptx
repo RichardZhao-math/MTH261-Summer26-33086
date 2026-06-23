@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch2-MatrixAlgebra" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Matrix Algebra</title>
+
+  <!-- include sections -->
+  <xi:include href="sec21-MatrixOperations.ptx" />
+  <xi:include href="sec22-InverseMatrix.ptx" />
+  <xi:include href="sec23-InvertibleMatrix.ptx" />
+  <xi:include href="sec28-Subspaces.ptx" />
+  <xi:include href="sec29-DimensionRank.ptx" />
+
+</chapter>

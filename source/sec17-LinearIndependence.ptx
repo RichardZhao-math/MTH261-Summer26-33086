@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec17-LinearIndependence" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Linear Independence</title>
+
+  <introduction>
+    <p>
+      When building a span, are all the vectors actually necessary? 
+      Often, a set contains "redundant" vectors that can be constructed entirely from the others. 
+      In this section, we will formalize this idea through the concepts of linear independence and dependence. 
+    </p>
+
+    <objectives>
+      <introduction>
+        <p>
+          After this section, students will be able to:
+        </p>
+      </introduction>
+      <ul>
+        <li>
+          <p>
+            define linear independence and dependence in terms of the trivial and nontrivial solutions to a homogeneous vector equation.
+          </p>
+        </li>
+        <li>
+          <p>
+            determine whether a given set of vectors is linearly independent or dependent. 
+          </p>
+        </li>
+        <li>
+          <p>
+            identify "redundant" vectors within a linearly dependent set and express them as a linear combination of the other vectors.
+          </p>
+        </li>
+      </ul>
+    </objectives>
+  </introduction>
+
+  <definition xml:id="def-LinearIndependence">
+    <statement>
+      <p>
+        An indexed set of vectors <m>\set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m>, <m>\v{v}_i\in \R^n</m>, is <term>linearly independent</term> if the vector equation
+        <md>
+          x_1\v{v}_1 + x_2\v{v}_2 + \cdots + x_p\v{v}_p = \v{0}
+        </md>
+        has only the trivial solution. 
+      </p>
+
+      <p>
+        If the trivial solution is not unique, we call the set <term>linear dependent</term>. 
+      </p>
+
+      <p>
+        That is, if a set <m>\set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}</m>, <m>\v{v}_i\in \R^n</m>, is linearly dependent, then there exists some scalars <m>c_1, c_2, \ldots, c_p\in \R</m>, not all zero, such that
+        <md>
+          x_1\v{v}_1 + x_2\v{v}_2 + \cdots + x_p\v{v}_p = \v{0}
+        </md>
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    But how does the vector equation even related to the idea of independence? 
+    We will demonstrate the relation in the following example. 
+  </p>
+
+  <example>
+    <p>
+      Suppose we have a set of three vectors <m>\set{\v{v}_1, \v{v}_2, \v{v}_3}</m>, where
+      <md>
+        \v{v}_1 = \begin{bmatrix} 1 \\ 2 \\ 1\end{bmatrix}\, , \qquad \v{v}_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}\, , \qquad \text{ and } \, \v{v}_3 = \begin{bmatrix} 3 \\ 5 \\ 3\end{bmatrix}
+      </md>
+      Is this set of vectors linearly independent? 
+    </p>
+
+    <p>
+      Let's follow the definition! 
+      That is, we want to determine if the solution to the following vector equation
+      <md>
+        x_1 \begin{bmatrix} 1 \\ 2 \\ 1\end{bmatrix} + x_2 \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} + x_3 \begin{bmatrix} 3 \\ 5 \\ 3\end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+      </md>
+      is unique. 
+    </p>
+
+    <p>
+      We know how to solve this equation! 
+      We will first convert it to an augmented matrix: 
+      <md>
+        \begin{bmatrix} 1 \amp 0 \amp 3 \amp \mid \amp 0 \\ 2 \amp 1 \amp 5 \amp \mid \amp 0 \\ 1 \amp 0 \amp 3 \amp \mid \amp 0 \end{bmatrix}
+      </md>
+      Now let's row reduce this augmented matrix!
+      <ul marker="">
+        <li>
+          <p>
+            Step 1: Adding <m>-2</m> times Row 1 to Row 2 (and replacing Row 2), we obtain
+            <md>
+              \begin{bmatrix} 1 \amp 0 \amp 3 \amp \mid \amp 0 \\ 0 \amp 1 \amp -1 \amp \mid \amp 0 \\ 1 \amp 0 \amp 3 \amp \mid \amp 0 \end{bmatrix}
+            </md>
+          </p>
+        </li>
+        <li>
+          <p>
+            Step 2: Adding <m>-1</m> times Row 1 to Row 3 (and replacing Row 3), we obtain
+            <md>
+              \begin{bmatrix} 1 \amp 0 \amp 3 \amp \mid \amp 0 \\ 0 \amp 1 \amp -1 \amp \mid \amp 0 \\ 0 \amp 0 \amp 0 \amp \mid \amp 0 \end{bmatrix}
+            </md>
+          </p>
+        </li>
+      </ul>
+      We immediately know that <m>x_3</m> is a free variable since there is no pivot position in the third column. 
+      Hence, this vector equation has infinitely many solutions. 
+    </p>
+
+    <p>
+      By the definition, we know that <m>\set{\v{v}_1, \v{v}_2, \v{v}_3}</m> is <alert>linearly dependent</alert>.
+    </p>
+
+    <p>
+      But what does it mean? 
+      Why do we call these three vectors linearly <em>dependent</em>? 
+      Well let's finish solving this vector equation!
+    </p>
+
+    <p>
+      Since <m>x_3</m> is a free variable, then we let <m>x_3 = t</m>, where <m>t\in \R</m>. 
+      Then we obtain
+      <md>
+        \begin{cases}
+          x_1 = -3x_3 = -3t \\
+          x_2 = x_3 = t \\
+          x_3 = t
+        \end{cases}
+      </md>
+      Okay. 
+      This is a <em>general solution</em> to the vector equation. 
+      Recall we can obtain a <em>particular solution</em> by assigning a value to our parameter, <m>t</m>. 
+    </p>
+
+    <p>
+      Let's make <m>t = 1</m>. 
+      Then our particular solution is 
+      <md>
+        \begin{cases}
+          x_1 = -3(1) = -3 \\
+          x_2 = 1 \\
+          x_3 = 1
+        \end{cases}
+      </md>
+      Then plugging in the solution to the vector equation will make the equation true. 
+      That is, we have the following equation: 
+      <md>
+        -3 \begin{bmatrix} 1 \\ 2 \\ 1\end{bmatrix} + 1 \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} + 1 \begin{bmatrix} 3 \\ 5 \\ 3\end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+      </md>
+      We can isolate one of the three vectors! 
+      Just for demonstration purposes, let's isolate <m>\v{v}_2</m>!
+      Then we have
+      <md>
+        \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} = 3 \begin{bmatrix} 1 \\ 2 \\ 1\end{bmatrix} - \begin{bmatrix} 3 \\ 5 \\ 3\end{bmatrix}
+      </md>
+      Observe that <m>\v{v}_2</m> is a <em>linear</em> combination of <m>\v{v}_1</m> and <m>\v{v}_3</m>! 
+      That is, <m>\v{v}_2</m> is <em>dependent</em> on <m>\v{v}_1</m> and <m>\v{v}_3</m>. 
+    </p>
+  </example>
+
+  <p>
+    The practical meaning of a linearly dependent set of vectors is that a vector can be expressed as a <em>linear combination</em> of the other vectors in the set. 
+    That is, this vector is <em>dependent</em> of other vectors. 
+    This specific relation is called the <term>linear dependence relation</term>. 
+  </p>
+
+  <p>
+    In the above example, a linear dependence relation is 
+    <md>
+      -3 \begin{bmatrix} 1 \\ 2 \\ 1\end{bmatrix} + 1 \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} + 1 \begin{bmatrix} 3 \\ 5 \\ 3\end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+    </md>
+    since this relation allows us to express a vector, <m>\v{v}_2</m>, as a linear combination of the other vectors, <m>\v{v}_1</m> and <m>\v{v}_3</m>. 
+  </p>
+
+  <exercise>
+    <p>
+      Is the set <m>\set{\begin{bmatrix} 1 \\ 1 \\ 1\end{bmatrix}\, , \, \begin{bmatrix} 0 \\ 1 \\ 2 \end{bmatrix}\, , \, \begin{bmatrix} 1 \\ 2 \\ 0\end{bmatrix}}</m> linearly independent? 
+    </p>
+
+    <solution>
+      <p>
+        Yes, this set of vectors is <alert>linearly independent</alert>.
+      </p>
+      <p>
+        To justify this, we set up the homogeneous vector equation:
+        <md>
+          x_1 \begin{bmatrix} 1 \\ 1 \\ 1\end{bmatrix} + x_2 \begin{bmatrix} 0 \\ 1 \\ 2 \end{bmatrix} + x_3 \begin{bmatrix} 1 \\ 2 \\ 0\end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+        </md>
+      </p>
+      <p>
+        We can solve this by row reducing the corresponding augmented matrix:
+        <md>
+          <mrow> \begin{bmatrix} 1 \amp 0 \amp 1 \amp \mid \amp 0 \\ 1 \amp 1 \amp 2 \amp \mid \amp 0 \\ 1 \amp 2 \amp 0 \amp \mid \amp 0 \end{bmatrix} \amp\sim \begin{bmatrix} 1 \amp 0 \amp 1 \amp \mid \amp 0 \\ 0 \amp 1 \amp 1 \amp \mid \amp 0 \\ 0 \amp 2 \amp -1 \amp \mid \amp 0 \end{bmatrix} \amp\amp \begin{matrix}-\text{R1} + \text{R2} \\ -\text{R1} + \text{R3} \end{matrix}</mrow>
+          <mrow> \amp\sim \begin{bmatrix} 1 \amp 0 \amp 1 \amp \mid \amp 0 \\ 0 \amp 1 \amp 1 \amp \mid \amp 0 \\ 0 \amp 0 \amp -3 \amp \mid \amp 0 \end{bmatrix} \amp\amp -2\text{R2} + \text{R3} </mrow>
+          <mrow> \amp\sim \begin{bmatrix} 1 \amp 0 \amp 1 \amp \mid \amp 0 \\ 0 \amp 1 \amp 1 \amp \mid \amp 0 \\ 0 \amp 0 \amp 1 \amp \mid \amp 0 \end{bmatrix} \amp\amp \frac{1}{-3}\text{R3} </mrow>
+        </md>
+      </p>
+      <p>
+        Notice that every column in the coefficient matrix contains a pivot position, which means there are no free variables. Therefore, the vector equation has <em>only</em> the trivial solution (<m>x_1=0, x_2=0, x_3=0</m>). Because no vector can be built from the others, the set is linearly independent.
+      </p>
+    </solution>
+  </exercise>
+
+  <p>
+    You may notice that the procedure to determine whether a set of column vectors are linearly independent is essentially the same as <em>row reducing</em> an augmented matrix representing a homogeneous system of linear equations. 
+    That is, we are essentially solving the homogeneous matrix equation <m>A\v{x} = \v{0}</m>, where <m>A</m> consists of the vectors of interest. 
+    <ul marker="">
+      <li>
+        <p>
+          If <m>A\v{x} = \v{0}</m> has <em>only</em> the trivial solution, then the columns of <m>A</m> are linearly independent; 
+        </p>
+      </li>
+      <li>
+        <p>
+          If <m>A\v{x} = \v{0}</m> has infinitely many solutions, then the columns of <m>A</m> are linearly dependent. 
+        </p>
+      </li>
+    </ul>
+  </p>
+
+  <example>
+    <p>
+      Suppose we are given the coefficient matrix <m>A = \begin{bmatrix} 1 \amp 1 \amp 2 \\ 2 \amp 3 \amp 5 \\ 1 \amp 0 \amp 3 \end{bmatrix}</m>. 
+      Observe that <m>A</m> consists of three column vectors: 
+      <md>
+        \v{v}_1 = \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}\, , \qquad \v{v}_2 = \begin{bmatrix} 1 \\ 3 \\ 0 \end{bmatrix}\, , \qquad \text{ and } \, \v{v}_3 = \begin{bmatrix} 2 \\ 5 \\ 3 \end{bmatrix}
+      </md>
+      Are they linearly independent? 
+    </p>
+
+    <p>
+      We can answer this question by solving the homogeneous matrix equation <m>A\v{x} = \v{0}</m>. 
+      The augmented matrix is
+      <md>
+        \begin{bmatrix} 1 \amp 1 \amp 2 \amp \mid \amp 0 \\ 2 \amp 3 \amp 5 \amp \mid \amp 0 \\ 1 \amp 0 \amp 3 \amp \mid \amp 0 \end{bmatrix}
+      </md>
+      Of course we know how to row reduce it! 
+      Notice that the constant column of zeros will stay unchanged after all the elementary row operations. 
+      So we can only row reduce the coefficient matrix part! 
+      <md>
+        <mrow> \begin{bmatrix} 1 \amp 1 \amp 2 \\ 2 \amp 3 \amp 5 \\ 1 \amp 0 \amp 3 \end{bmatrix} \amp\sim \begin{bmatrix} 1 \amp 1 \amp 2 \\ 0 \amp 1 \amp 1 \\ 1 \amp 0 \amp 3 \end{bmatrix} \amp\amp -2\text{R1} + \text{R2} </mrow>
+        <mrow> \amp\sim \begin{bmatrix} 1 \amp 1 \amp 2 \\ 0 \amp 1 \amp 1 \\ 0 \amp -1 \amp 1 \end{bmatrix} \amp\amp -\text{R1} + \text{R3} </mrow>
+        <mrow> \amp\sim \begin{bmatrix} 1 \amp 0 \amp 1 \\ 0 \amp 1 \amp 1 \\ 0 \amp -1 \amp 1 \end{bmatrix} \amp\amp -\text{R2} + \text{R1} </mrow>
+        <mrow> \amp\sim \begin{bmatrix} 1 \amp 0 \amp 1 \\ 0 \amp 1 \amp 1 \\ 0 \amp 0 \amp 2 \end{bmatrix} \amp\amp \text{R2} + \text{R3} </mrow>
+        <mrow> \amp\sim \begin{bmatrix} 1 \amp 0 \amp 1 \\ 0 \amp 1 \amp 1 \\ 0 \amp 0 \amp 1 \end{bmatrix} \amp\amp \frac{1}{2}\text{R3} </mrow>
+        <mrow> \amp\sim \begin{bmatrix} 1 \amp 0 \amp 1 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix} \amp\amp -\text{R3} + \text{R2} </mrow>
+        <mrow> \amp\sim \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end{bmatrix} \amp\amp -\text{R3} + \text{R1} </mrow>
+      </md>
+      Recall the constant column will consist of all zeros. 
+    </p>
+
+    <p>
+      Observe that every column of the coefficient matrix has a pivot position, which implies that there is no free variable. 
+      Then this homogeneous matrix equation has <em>only</em> the trivial solution. 
+      That is, the only "linearly dependent relation" is 
+      <md>
+        0 \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} + 0 \begin{bmatrix} 1 \\ 3 \\ 0 \end{bmatrix} + 0 \begin{bmatrix} 2 \\ 5 \\ 3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+      </md>
+      Well we can't isolate any of the three vectors since all the above relation tells us is that <m>\v{0} = \v{0}</m>. 
+      Hence, it makes sense to call the vectors making up the columns of <m>A</m> <em>linearly independent</em>, in the sense that none of the vector is dependent of other vectors. 
+    </p>
+  </example>
+
+  <p>
+    It turns out that there are some special theorems to determine whether a set of vectors are linearly independent. 
+    Let's look at the following example and see if we can generalize the theorems! 
+  </p>
+
+  <example>
+    <p>
+      Is <m>\set{\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \\ 6\end{bmatrix}}</m> linearly independent? 
+    </p>
+
+    <p>
+      Think about it first and see if you can figure it out. 
+      Then expand the following solution to check your answer!
+    </p>
+
+    <solution>
+      <p>
+        These two vectors are <alert>linearly dependent</alert> since there is a way to write a vector as a linear combination of the other vector. 
+      </p>
+
+      <p>
+        Clearly, <m>\begin{bmatrix} 2 \\ 4 \\ 6\end{bmatrix} = 2 \begin{bmatrix} 1 \\ 2 \\ 3\end{bmatrix}</m>. 
+        That is, the vector <m>\begin{bmatrix} 2 \\ 4 \\ 6\end{bmatrix} </m> is a linear combination of the vector <m>\begin{bmatrix} 1 \\ 2 \\ 3\end{bmatrix} </m>. 
+        So <m>\begin{bmatrix} 2 \\ 4 \\ 6\end{bmatrix} </m> is dependent of <m>\begin{bmatrix} 1 \\ 2 \\ 3\end{bmatrix} </m>. 
+      </p>
+    </solution>
+  </example>
+
+  <p>
+    Using the similar argument, we can make sense of the following theorem: 
+  </p>
+
+  <theorem xml:id="thm-LinearlyDependent-SetTwoVectors">
+    <statement>
+      <p>
+        Consider <m>\set{\v{v}_1, \v{v}_2}</m>. 
+        If <m>\v{v}_2 = c\v{v}_1</m> for some nonzero constant <m>c</m>, then <m>\v{v}_1</m> and <m>\v{v}_2</m> are linearly dependent. 
+      </p>
+    </statement>
+  </theorem>
+
+  <p>
+    Now let's look at the next example! 
+    Remember the goal is to generalize it!
+  </p>
+
+  <example>
+    <p>
+      Is <m>\set{\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 1 \\ 5 \\ 6\end{bmatrix}, \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}}</m> linearly independent? 
+    </p>
+
+    <p>
+      Think about it first and see if you can figure it out. 
+      Then expand the following solution to check your answer!
+    </p>
+
+    <solution>
+      <p>
+        These three vectors are <alert>linearly dependent</alert> since there is a way to write a vector as a linear combination of the other vectors. 
+      </p>
+
+      <p>
+        Clearly, we can represent the zero vector as a linear combination of the other two vectors with both scalars being zero. 
+        That is, 
+        <md>
+          \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} = 0 \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} + 0 \begin{bmatrix} 1 \\ 5 \\ 6 \end{bmatrix}
+        </md>
+        Hence, these three vectors are linearly dependent. 
+      </p>
+    </solution>
+  </example>
+
+  <p>
+    Using the similar argument, we can make sense of the following theorem: 
+  </p>
+
+  <theorem xml:id="thm-LinearDependence-ZeroVector">
+    <statement>
+      <p>
+        Any set containing <m>\v{0}</m> is linearly dependent. 
+      </p>
+    </statement>
+  </theorem>
+  
+  <exercise>
+    <p>
+      When is the set of a single vector linearly independent? 
+    </p>
+
+    <solution>
+      <p>
+        A set containing a single vector <m>\set{\v{v}}</m> is <alert>linearly independent</alert> if and only if <m>\v{v} \neq \v{0}</m>.
+      </p>
+      <p>
+        By definition, we are looking at the vector equation <m>x_1\v{v} = \v{0}</m>. If <m>\v{v}</m> is the zero vector, then the scalar <m>x_1</m> can be any real number (yielding infinitely many solutions), making it a dependent set. If <m>\v{v}</m> is any non-zero vector, the only way for the equation to hold true is if the scalar <m>x_1 = 0</m> (the trivial solution), making it an independent set.
+      </p>
+    </solution>
+  </exercise>
+
+  <p>
+    Now let's look at the next example! 
+    Remember the goal is to generalize it!
+  </p>
+
+  <example>
+    <p>
+      Is <m>\set{\begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -3 \\ 2 \end{bmatrix}, \begin{bmatrix} 1 \\ 6 \end{bmatrix}}</m> linearly independent? 
+    </p>
+
+    <p>
+      Think about it first and see if you can figure it out. 
+      Then expand the following solution to check your answer!
+    </p>
+
+    <solution>
+      <p>
+        These three vectors are <alert>linearly dependent</alert> since the homogeneous matrix equation is guaranteed to have infinitely many solutions. 
+      </p>
+
+      <p>
+        Let <m>A = \begin{bmatrix} 1 \amp -3 \amp 1 \\ 2 \amp 2 \amp 6 \end{bmatrix}</m>. 
+        What does the (reduced) row echelon look like after row reductions? 
+      </p>
+
+      <p>
+        Well there are only two row so there can be <em>at most two</em> pivot positions. 
+      </p>
+
+      <p>
+        Yet there are three variables in this equation since each vector gets a mystery scalars. 
+        That is, <em>at least one</em> variable is a free variable, 
+        and hence the homogeneous equation must have infinitely many solutions. 
+      </p>
+
+      <p>
+        Therefore, these three vectors are linearly dependent. 
+      </p>
+    </solution>
+  </example>
+  
+  <p>
+    Using the similar argument, we can make sense of the following theorem: 
+  </p>
+
+  <theorem xml:id="thm-LinearDependence-MoreVectors">
+    <statement>
+      <p>
+        A set of vectors with <em>more vectors than there are entries in those vectors</em> are linearly dependent. 
+      </p>
+    </statement>
+  </theorem>
+  
+  <p>
+    They are the <alert>linear dependence tests</alert> we can use to quickly determine if a set of vectors is linearly dependent. 
+    If you can apply one of the three tests immediately, great! We can conclude that the set is linearly dependent. 
+    <alert>But the failure to apply any of these tests doesn't mean the set is linearly independent</alert>. 
+    It just means we will have to go back to the definition to determine it. 
+  </p>
+
+  <p>
+    Usually, we want more than just knowing that a set is linearly dependent. 
+    We want to pick out the "redundant" vectors. 
+    This brings us to our big theorem for this section! 
+  </p>
+
+  <theorem xml:id="thm-CharacterizationLinearlyDependentSets">
+    <title>Characterization of Linearly Dependent Sets</title>
+    <statement>
+      <p>
+        An indexed set <m>S = \set{\v{v}_1, \v{v}_2, \ldots, \v{v}_p}, p \gt 1</m>, is linearly dependent if and only if at least one vector iin <m>S</m> is a linear combination of the others. 
+        Moreover, if <m>S</m> is linearly dependent and <m>\v{v}_1 \neq \v{0}</m>, then some <m>\v{v}_i, i \gt \v{0}</m> is a linear combination of <m>\v{v}_1, \v{v}_2, \ldots, \v{v}_{i-1}</m>.  
+      </p>
+    </statement>
+  </theorem>
+
+  <proof>
+    <title>Proof of the big theorem</title>
+
+    <p>
+      First, assume some <m>\v{v}_{i} \in S</m> is a linear combination of the other vectors, then
+      <md>
+        c_{1}\v{v}_{1} + c_{2}\v{v}_{2} + \cdots + c_{i-1}\v{v}_{i-1} + c_{i+1}\v{v}_{i+1} + \cdots + c_{p}\v{v}_{p} = c_{i}\v{v}_{i}
+      </md>
+      where <m>c_{1}, c_{2}, \ldots, c_{p}</m> are not all zero. 
+    </p>
+
+    <p>
+      Then 
+      <md>
+        c_{1}\v{v}_{1} + c_{2}\v{v}_{2} + \cdots + c_{i-1}\v{v}_{i-1} - c_{i}\v{v}_{i} + c_{i+1}\v{v}_{i+1} + \cdots + c_{p}\v{v}_{p} = \v{0}
+      </md>
+      so <m>S</m> is linearly dependent. 
+    </p>
+
+    <p>
+      On the other hand, assume <m>S</m> is linearly dependent. 
+      If <m>\v{v}_{1} = \v{0}</m>, then it is a trivial linear combination of the other vectors. 
+    </p>
+
+    <p>
+      Suppose <m>\v{v}_{1} \neq \v{0}</m>. Then there exist <m>c_{1}, c_{2}, \ldots, c_{p} \in \R</m> not all zero such that
+      <md>
+        c_{1}\v{v}_{1} + c_{2}\v{v}_{2} + \cdots + c_{p}\v{v}_{p} = \v{0}
+      </md>
+    </p>
+
+    <p>
+      Let <m>i</m> be the largest subscript such that <m>c_{i}\v{v}_{i} \neq \v{0}</m>. 
+      Since <m>i \gt 1</m>, 
+      <md>
+        <mrow> c_{1}\v{v}_{1} + \cdots + c_{i}\v{v}_{i} + 0\v{v}_{i+1} + \cdots + 0\v{v}_{p} \amp= \v{0} </mrow>
+        <mrow> c_{i}\v{v}_{i} \amp= -c_{1}\v{v}_{1} - \cdots - c_{i-1}\v{v}_{i-1} </mrow>
+        <mrow> \v{v}_{i} \amp= -\frac{c_{1}}{c_{i}}\v{v}_{1} - \cdots - \frac{c_{i-1}}{c_{i}}\v{v}_{i-1} </mrow>
+      </md>
+    </p>
+  </proof>
+
+  <p>
+    What this theorem says is that a linearly dependent set always have at least one "redundant" vector, 
+    and we can find such "redundant" vectors by going over the list one by one. 
+  </p>
+
+  <example>
+    <p>
+      Let's revisit the set of three vectors <m>\set{\v{v}_1, \v{v}_2, \v{v}_3}</m>, where
+      <md>
+        \v{v}_1 = \begin{bmatrix} 1 \\ 2 \\ 1\end{bmatrix}\, , \qquad \v{v}_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}\, , \qquad \text{ and } \, \v{v}_3 = \begin{bmatrix} 3 \\ 5 \\ 3\end{bmatrix}
+      </md>
+      We have shown that this is a linearly dependent set.
+    </p>
+
+    <p>
+      What the big theorem tells us is that at least one vector in this set is "redundant", and we can find this "redundant" vector by examining the vectors one by one. 
+    </p>
+
+    <p>
+      Let's start with <m>\v{v}_1</m>. 
+      This is not a zero vector, so it won't be a "redundant" vector in the set. 
+    </p>
+
+    <p>
+      Now let's look at <m>\v{v}_2</m>! 
+      Obviously, <m>\v{v}_2</m> is not a scalar multiple of <m>\v{v}_1</m>, so it isn't a "redundant" vector. 
+    </p>
+
+    <p>
+      Now it's <m>\v{v}_3</m>! 
+      We know that our linear dependence relation is 
+      <md>
+        -3\v{v}_1 + 1\v{v}_2 + 1\v{v}_3 = \v{0}
+      </md>
+      Then we can express <m>\v{v}_3</m> as a linear combination of the other two vectors to show that this is our "redundant" vector!
+      <md>
+        \v{v}_3 = 3 \begin{bmatrix} 1 \\ 2 \\ 1\end{bmatrix} - \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} = 3\v{v}_1 - \v{v}_2
+      </md>
+    </p>
+
+    <p>
+      But why do we call <m>\v{v}_3</m> "redundant"? 
+    </p>
+
+    <p>
+      That is because we can build the <em>span</em> of the set without the need to include this "redundant" vector of <m>\v{v}_3</m>. 
+      So we have
+      <md>
+        \span\set{\v{v}_1, \v{v}_2, \v{v}_3} = \span\set{\v{v}_1, \v{v}_2}
+      </md>
+      because <m>\v{v}_3 \in \span\set{\v{v}_1, \v{v}_2}</m> since it is a linear combination of the other two vectors. 
+      Hence, <m>\v{v}_3</m> is redundant in the sense that it does not contribute to the span. 
+    </p>
+  </example>
+
+  <exercise>
+    <p>
+      Consider the set of five vectors in <m>\R^3</m>, <m>S = \set{\v{v}_1, \v{v}_2, \v{v}_3, \v{v}_4, \v{v}_5}</m>, where
+      <md>
+        \v{v}_1 = \begin{bmatrix} 1 \\ 0 \\ 1\end{bmatrix}\, , \quad \v{v}_2 = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}\, , \quad \v{v}_3 = \begin{bmatrix} 1 \\ 1 \\ 0\end{bmatrix}\, , \quad \v{v}_4 = \begin{bmatrix} 2 \\ 0 \\ 2\end{bmatrix}\, , \quad \text{ and } \, \v{v}_5 = \begin{bmatrix} 3 \\ 4 \\ -1\end{bmatrix}
+      </md>
+      Describe <m>\span\set{\v{v}_1, \v{v}_2, \v{v}_3, \v{v}_4, \v{v}_5}</m>. 
+    </p>
+
+    <hint>
+      <p>
+        Does the set <m>\set{\v{v}_1, \v{v}_2, \v{v}_3, \v{v}_4, \v{v}_5}</m> look linearly dependent? 
+        If so, how can we pick out all the "redundant" vectors, since they don't contribute to the span. 
+      </p>
+    </hint>
+
+    <solution>
+      <p>
+        We can quickly determine that <m>S</m> is linearly dependent using some of the linear dependence tests (you can actually apply all three of them!). 
+        Let's pick out the "redundant" vectors!
+      </p>
+
+      <p>
+        Let's start with <m>\v{v}_1</m>. 
+        Since <m>\v{v}_1 \neq \v{0}</m>, then it is not redundant. 
+      </p>
+
+      <p>
+        Next is <m>\v{v}_2</m>. 
+        Notice that <m>\v{v}_2</m> is the zero vector! We can build it using a scalar of <m>0</m> on our previous vector: <m>\v{v}_2 = 0\v{v}_1</m>. 
+        Therefore, <m>\v{v}_2</m> is our first <alert>redundant</alert> vector.
+      </p>
+
+      <p>
+        Now let's look at <m>\v{v}_3</m>. 
+        We need to see if <m>\v{v}_3</m> is a linear combination of the valid vectors before it (just <m>\v{v}_1</m>). 
+        Clearly, there is no scalar <m>c</m> such that <m>c \begin{bmatrix} 1 \\ 0 \\ 1\end{bmatrix} = \begin{bmatrix} 1 \\ 1 \\ 0\end{bmatrix}</m>. 
+        So, <m>\v{v}_3</m> introduces a new direction. It is not redundant.
+      </p>
+
+      <p>
+        Moving on to <m>\v{v}_4</m>. 
+        Can we build <m>\v{v}_4</m> using <m>\v{v}_1</m> and <m>\v{v}_3</m>? 
+        Yes! Observe that <m>\v{v}_4</m> is exactly twice <m>\v{v}_1</m>. 
+        <md>
+          \v{v}_4 = 2\v{v}_1 + 0\v{v}_3
+        </md>
+        Since it doesn't give us anything new, <m>\v{v}_4</m> is our second <alert>redundant</alert> vector.
+      </p>
+
+      <p>
+        Finally, let's examine <m>\v{v}_5</m>. 
+        Can we express <m>\v{v}_5</m> as a linear combination of our core independent vectors, <m>\v{v}_1</m> and <m>\v{v}_3</m>?
+        If we scale <m>\v{v}_1</m> by <m>-1</m> and <m>\v{v}_3</m> by <m>4</m>, we get:
+        <md>
+          -\v{v}_1 + 4\v{v}_3 = -1 \begin{bmatrix} 1 \\ 0 \\ 1\end{bmatrix} + 4 \begin{bmatrix} 1 \\ 1 \\ 0\end{bmatrix} = \begin{bmatrix} -1 \\ 0 \\ -1 \end{bmatrix} + \begin{bmatrix} 4 \\ 4 \\ 0 \end{bmatrix} = \begin{bmatrix} 3 \\ 4 \\ -1\end{bmatrix} = \v{v}_5
+        </md>
+        Because <m>\v{v}_5</m> can be perfectly constructed from vectors already in our set, <m>\v{v}_5</m> is our third <alert>redundant</alert> vector.
+      </p>
+
+      <p>
+        Since <m>\v{v}_2</m>, <m>\v{v}_4</m>, and <m>\v{v}_5</m> are redundant, they do not contribute anything new to the coordinate space. 
+        We can build the exact same span using only the linearly independent vectors <m>\v{v}_1</m> and <m>\v{v}_3</m>.
+        <md>
+          \span\set{\v{v}_1, \v{v}_2, \v{v}_3, \v{v}_4, \v{v}_5} = \span\set{\v{v}_1, \v{v}_3}
+        </md>
+      </p>
+
+      <note>
+        <title>If you really want to describe this span precisely...</title>
+
+        <p>
+          We haven't learned enough to describe this span precisely, especially geometrically.
+          And I don't think we will in this class (so let me know if someone wants to turn this into a class project)! 
+        </p>
+
+        <p>
+          Long story short, the span is a plane in <m>\R^3</m> with the equation of <m>-x + y = z = 0</m>. 
+        </p>
+      </note>
+    </solution>
+  </exercise>
+
+  <worksheet xml:id="ws-sec17">
+    <title>Some Exercises for This Section</title>
+    
+    <introduction>
+      <p>
+        Richard included some practice problems that cover some main concepts in this section. 
+        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
+        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
+        Reach out to Richard for help if you get stuck or have any questions. 
+      </p>
+
+      <p>
+        Only the final answers are included to some of the problems for you to check your result. 
+        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+      </p>
+    </introduction>
+
+    <exercisegroup>
+        <introduction>
+            <p>Determine if the vectors are linearly independent. Justify each answer.</p>
+        </introduction>
+        
+        <exercise number="1.7.1">
+            <me>\begin{bmatrix} 5 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 7 \\ 2 \\ -6 \end{bmatrix}, \begin{bmatrix} -2 \\ -1 \\ 6 \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="1.7.3">
+            <me>\begin{bmatrix} 1 \\ -3 \end{bmatrix}, \begin{bmatrix} -3 \\ 6 \end{bmatrix}</me>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>Determine if the columns of the matrix form a linearly independent set. Justify each answer.</p>
+        </introduction>
+
+        <exercise number="1.7.5">
+            <me>\begin{bmatrix} 0 \amp -8 \amp 5 \\ 3 \amp -7 \amp 4 \\ -1 \amp 5 \amp -4 \\ 1 \amp -3 \amp 2 \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="1.7.7">
+            <me>\begin{bmatrix} 1 \amp 4 \amp -3 \amp 0 \\ -2 \amp -7 \amp 5 \amp 1 \\ -4 \amp -5 \amp 7 \amp 5 \end{bmatrix}</me>
+        </exercise>
+    </exercisegroup>
+
+    <exercise number="1.7.9">
+        <statement>
+            <p>(a) for what values of <m>h</m> is <m>\v{v}_3</m> in Span <m>\{\v{v}_1, \v{v}_2\}</m> and (b) for what values of <m>h</m> is <m>\{\v{v}_1, \v{v}_2, \v{v}_3\}</m> linearly dependent? Justify each answer.</p>
+            <me>\v{v}_1 = \begin{bmatrix} 1 \\ -3 \\ 2 \end{bmatrix}, \quad \v{v}_2 = \begin{bmatrix} -3 \\ 10 \\ -6 \end{bmatrix}, \quad \v{v}_3 = \begin{bmatrix} 2 \\ -7 \\ h \end{bmatrix}</me>
+        </statement>
+    </exercise>
+
+    <exercisegroup>
+        <introduction>
+            <p>Find the value(s) of <m>h</m> for which the vectors are linearly dependent. Justify each answer.</p>
+        </introduction>
+
+        <exercise number="1.7.11">
+            <me>\begin{bmatrix} 1 \\ -1 \\ 4 \end{bmatrix}, \begin{bmatrix} 3 \\ -5 \\ 7 \end{bmatrix}, \begin{bmatrix} -1 \\ 5 \\ h \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="1.7.13">
+            <me>\begin{bmatrix} 1 \\ 5 \\ -3 \end{bmatrix}, \begin{bmatrix} -2 \\ -9 \\ 6 \end{bmatrix}, \begin{bmatrix} 3 \\ h \\ -9 \end{bmatrix}</me>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>Determine by inspection whether the vectors are linearly independent. Justify each answer.</p>
+        </introduction>
+
+        <exercise number="1.7.15">
+            <me>\begin{bmatrix} 5 \\ 1 \end{bmatrix}, \begin{bmatrix} 2 \\ 8 \end{bmatrix}, \begin{bmatrix} 1 \\ 3 \end{bmatrix}, \begin{bmatrix} -1 \\ 7 \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="1.7.17">
+            <me>\begin{bmatrix} 3 \\ 5 \\ -1 \end{bmatrix}, \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} -6 \\ 5 \\ 4 \end{bmatrix}</me>
+        </exercise>
+
+        <exercise number="1.7.19">
+            <me>\begin{bmatrix} -8 \\ 12 \\ -4 \end{bmatrix}, \begin{bmatrix} 2 \\ -3 \\ -1 \end{bmatrix}</me>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>Mark each statement True or False (T/F). Justify each answer on the basis of a careful reading of the text.</p>
+        </introduction>
+
+        <exercise number="1.7.21">
+            <p>(T/F) The columns of a matrix <m>A</m> are linearly independent if the equation <m>A\v{x}=\v{0}</m> has the trivial solution.</p>
+        </exercise>
+
+        <exercise number="1.7.23">
+            <p>(T/F) If <m>S</m> is a linearly dependent set, then each vector is a linear combination of the other vectors in <m>S</m>.</p>
+        </exercise>
+
+        <exercise number="1.7.25">
+            <p>(T/F) The columns of any <m>4 \times 5</m> matrix are linearly dependent.</p>
+        </exercise>
+
+        <exercise number="1.7.27">
+            <p>(T/F) If <m>\v{x}</m> and <m>\v{y}</m> are linearly independent, and if <m>\{\v{x}, \v{y}, \v{z}\}</m> is linearly dependent, then <m>\v{z}</m> is in Span <m>\{\v{x}, \v{y}\}</m>.</p>
+        </exercise>
+    </exercisegroup>
+
+    <exercise number="1.7.35">
+        <statement>
+            <p>Construct <m>3 \times 2</m> matrices <m>A</m> and <m>B</m> such that <m>A\v{x}=\v{0}</m> has only the trivial solution and <m>B\v{x}=\v{0}</m> has a nontrivial solution.</p>
+        </statement>
+    </exercise>
+  </worksheet>
+
+</section>
