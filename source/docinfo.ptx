@@ -35,6 +35,8 @@
     \newcommand{\la}{\left\langle}
     \newcommand{\ra}{\right\rangle}
 
+    \newcommand{\set}[1]{\left\{{ #1}\right\}}
+
     \newcommand{\proj}{\text{proj}}
     \newcommand{\comp}{\text{comp}}
     \newcommand{\adj}{\text{adj}}

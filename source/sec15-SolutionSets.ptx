@@ -5,28 +5,9 @@
 
   <introduction>
     <p>
-      Now we get to the cool part! 
-      We are going to learn how to multiply a matrix by a vector. 
-      This is SUPER IMPORTANT for three reasons:
-      <ol marker="1.">
-        <li>
-          <p>
-            This corresponds to evaluating a linear transformation at a point which leads to tons of cool geometry stuff. 
-            Much more about this in the future!
-          </p>
-        </li>
-        <li>
-          <p>
-            It is the foundation for multiplying matrices (which is probably the most important thing in Matrix Algebra and corresponds to composing linear transformations).
-          </p>
-        </li>
-        <li>
-          <p>
-            It gives us new ways to think about systems of equations!
-          </p>
-        </li>
-      </ol>
-      Takeaway: make sure you are an expert at multiplying a vector by a matrix! 
+      After we know what an augmented matrix really represents, we will now focus on the <alert>solution set</alert> of a system of linear equations. 
+      Recall back in the beginning of the term, we often just write <alert>a</alert> solution out. 
+      We can actually take an additional step to describe all the solutions. 
     </p>
 
     <objectives>
@@ -38,27 +19,17 @@
       <ul>
         <li>
           <p>
-            represent a system of linear equations in four equivalent forms: a system of equations, an augmented matrix, a matrix equation, and a vector equation.
+            identify a homogeneous system of linear equations. 
           </p>
         </li>
         <li>
           <p>
-            multiply a matrix by a vector using both the dot product method and the linear combination method. 
+            describe the solution set by identifying the basis vector(s). 
           </p>
         </li>
         <li>
           <p>
-            determine the existence of solutions for a system of linear equations by comparing the rank of the coefficient matrix and the rank of the augmented matrix. 
-          </p>
-        </li>
-        <li>
-          <p>
-            see the connection between matrix-vector multiplication and linear transformations.
-          </p>
-        </li>
-        <li>
-          <p>
-            identify and apply the properties of two special matrices: the identity matrix and the zero matrix, in the context of multiplying a matrix by a vector.
+            describe the solution set of a non-homogeneous system by modifying the solution set of the corresponding homogeneous system. 
           </p>
         </li>
       </ul>
@@ -603,164 +574,5 @@
     </figure>
 
   </subsection>
-
-  <worksheet xml:id="ws-sec15">
-    <title>Some Exercises for This Section</title>
-    
-    <introduction>
-      <p>
-        Richard included some practice problems that cover some main concepts in this section. 
-        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
-        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
-        Reach out to Richard for help if you get stuck or have any questions. 
-      </p>
-
-      <p>
-        Only the final answers are included to some of the problems for you to check your result. 
-        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
-      </p>
-    </introduction>
-
-    <exercisegroup>
-        <introduction>
-            <p>
-              In the following systems, determine if it has a nontrivial solution. 
-              Try to use as few row operations as possible.
-            </p>
-        </introduction>
-        <exercise number="1.5.1">
-          <p>
-            <md>
-              <mrow>2x_1 - 5x_2 + 8x_3 \amp = 0</mrow>
-              <mrow>-2x_1 - 7x_2 + x_3 \amp = 0</mrow>
-              <mrow>4x_1 + 2x_2 + 7x_3 \amp = 0</mrow>
-            </md>
-          </p>
-        </exercise>
-        
-        <exercise number="1.5.3">
-          <p>
-            <md>
-                <mrow>-3x_1 + 5x_2 - 7x_3 \amp = 0</mrow>
-                <mrow>-6x_1 + 7x_2 + x_3 \amp = 0</mrow>
-            </md>
-          </p>
-        </exercise>
-    </exercisegroup>
-
-    <exercise number="1.5.5">
-      <p>
-        Write the solution set of the given homogeneous system in parametric vector form.
-        <md>
-          <mrow>x_1 + 3x_2 + x_3 \amp = 0</mrow>
-          <mrow>-4x_1 - 9x_2 + 2x_3 \amp = 0</mrow>
-          <mrow>-3x_2 - 6x_3 \amp = 0</mrow>
-        </md>
-      </p>
-    </exercise>
-
-    <exercisegroup>
-        <introduction>
-            <p>
-              Given the following matrix equivalent to some coefficient matrix <m>A</m>, describe all solutions of <m>A\v{x}= \v{0}</m> in parametric vector form. 
-            </p>
-        </introduction>
-        <exercise number="1.5.7">
-          <md>
-            \begin{bmatrix} 
-              1 \amp 3 \amp -3 \amp 7 \\ 
-              0 \amp 1 \amp -4 \amp 5 
-            \end{bmatrix}
-          </md>
-        </exercise>
-
-        <exercise number="1.5.9">
-          <md>
-            \begin{bmatrix} 
-              3 \amp -9 \amp 6 \\ 
-              -1 \amp 3 \amp -2 
-            \end{bmatrix}
-          </md>
-        </exercise>
-
-        <exercise number="1.5.11">
-          <md>
-            \begin{bmatrix} 
-              1 \amp -4 \amp -2 \amp 0 \amp 3 \amp -5 \\ 
-              0 \amp 0 \amp 1 \amp 0 \amp 0 \amp -1 \\ 
-              0 \amp 0 \amp 0 \amp 0 \amp 1 \amp -4 \\ 
-              0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 
-            \end{bmatrix}
-          </md>
-        </exercise>
-    </exercisegroup>
-
-    <exercise number="1.5.13">
-      <p>
-        Verify that the solutions you found to Exercise 9 are indeed homogeneous solutions.
-      </p>
-    </exercise>
-
-    <exercise number="1.5.15">
-        <p>
-          Verify that the solutions you found to Exercise 11 are indeed homogeneous solutions.
-        </p>
-    </exercise>
-
-    <exercise number="1.5.17">
-      <p>
-        Suppose the solution set of a certain system of linear equations can be described as <m>x_1 = 5 + 4x_3</m>, <m>x_2 = -2 - 7x_3</m>, with <m>x_3</m> free. 
-        Use vectors to describe this set as a line in <m>\R^3</m>.
-      </p>
-    </exercise>
-
-    <exercise number="1.5.19">
-            <p>
-              Describe the solutions of the following system in parametric vector form. 
-              Also, give a geometric description of the solution set and compare it to that in Exercise 5.
-              <md>
-                  <mrow>x_1 + 3x_2 + x_3 \amp = 1</mrow>
-                  <mrow>-4x_1 - 9x_2 + 2x_3 \amp = -1</mrow>
-                  <mrow>-3x_2 - 6x_3 \amp = -3</mrow>
-              </md>
-            </p>
-    </exercise>
-
-    <exercise number="1.5.21">
-            <p>
-              Describe and compare the solution sets of <m>x_1 + 9x_2 - 4x_3 = 0</m> and <m>x_1 + 9x_2 - 4x_3 = -2</m>.
-            </p>
-    </exercise>
-
-    <exercise number="1.5.23">
-      <p>Find the parametric equation of the line through <m>a</m> parallel to <m>b</m>.</p>
-          <md>
-                \v{a} = \begin{bmatrix} -2 \\ 0 \end{bmatrix}, \quad 
-                \v{b} = \begin{bmatrix} -5 \\ 3 \end{bmatrix}
-          </md>
-    </exercise>
-
-    <exercisegroup>
-        <introduction>
-            <p>In Exercises 27-35, mark each statement True or False (T/F). Justify each answer.</p>
-        </introduction>
-        <exercise number="1.5.27">
-                <p>(T/F) A homogeneous equation is always consistent.</p>
-        </exercise>
-        <exercise number="1.5.29">
-                <p>(T/F) The equation <m>Ax=0</m> gives an explicit description of its solution set.</p>
-        </exercise>
-        <exercise number="1.5.31">
-                <p>(T/F) The homogeneous equation <m>Ax=0</m> has the trivial solution if and only if the equation has at least one free variable.</p>
-        </exercise>
-        <exercise number="1.5.33">
-                <p>(T/F) The equation <m>x=p+tv</m> describes a line through <m>v</m> parallel to <m>p</m>.</p>
-        </exercise>
-        <exercise number="1.5.35">
-                <p>(T/F) The solution set of <m>Ax=b</m> is the set of all vectors of the form <m>w=p+v_h</m>, where <m>v_h</m> is any solution of the equation <m>Ax=0</m>.</p>
-        </exercise>
-    </exercisegroup>
-
-  </worksheet>
 
 </section>

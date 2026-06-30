@@ -8,15 +8,9 @@
   <xi:include href="sec12-RowReduction.ptx" />
   <xi:include href="sec13-VectorEquations.ptx" />
   <xi:include href="sec14-MatrixEquation.ptx" />
-
-  <!--
   <xi:include href="sec15-SolutionSets.ptx" />
   <xi:include href="sec17-LinearIndependence.ptx" />
   <xi:include href="sec18-IntroLinearTransformation.ptx" />
-  -->
-
-  <!--
   <xi:include href="sec19-MatrixLinearTransformation.ptx" />
-  -->
 
 </chapter>

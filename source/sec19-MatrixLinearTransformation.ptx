@@ -3,6 +3,613 @@
 <section xml:id="sec19-MatrixLinearTransformation" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>The Matrix of a Linear Transformations</title>
 
-  <p> Text of section. </p>
+  <p>
+    <alert>UNDER CONSTRUCTION...</alert>
+  </p>
+
+  <p>
+    Notice that any vector in <m>\R^2</m> can be written as a linear combination of <m>\v{e}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}</m> and <m>\v{e}_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}</m>. 
+  </p>
+
+  <proof>
+    <title>Quick proof of this claim</title>
+    <p>
+      Let <m>\begin{bmatrix} x \\ y \end{bmatrix}</m> be an arbitrary vector in <m>\R^2</m>. 
+      Then
+      <md>
+        \begin{bmatrix} x \\ y \end{bmatrix} = x\begin{bmatrix} 1 \\ 0 \end{bmatrix} + y\begin{bmatrix} 0 \\ 1 \end{bmatrix} = x\v{e}_1 + y\v{e}_2
+      </md>
+      Proved! 
+    </p>
+  </proof>
+
+  <p>
+    <m>\left\{ \v{e}_1, \v{e}_2 \right\}</m> is called the <term>standard basis</term> of <m>\R^2</m>. 
+  </p>
+
+  <p>
+    For <m>\R^n</m>, the standard basis consists of the vectors <m>\left\{\v{e}_1, \v{e}_2, \ldots, \v{e}_n\right\}</m> where the <m>k</m>-th entry of <m>\v{e}_k</m> is a <m>1</m> and all of the rest are zeros. 
+    Clearly these are all <m>n</m>-dimensional vectors. 
+    That means the <m>\v{e}_1</m> is actually a different vector depending on which <m>\R^n</m> you are working with. 
+  </p>
+
+  <p>
+    For example, <m>\v{e}_1</m> in <m>\R^2</m> is <m>\begin{bmatrix} 1 \\ 0 \end{bmatrix}</m>, but <m>\v{e}_1</m> in <m>\R^3</m> is <m>\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}</m>. 
+    They are NOT the same vectors! 
+  </p>
+
+  <p>
+    Combining this fact with the two properties that every linear transformation satisfies, we can see that every linear combination defined on <m>\R^2</m> (this works for <m>\R^n</m> as well, but let's start small!) is actually determined by what it does to the standard basis vectors <m>\v{e}_1</m> and <m>\v{e}_2</m>. 
+  </p>
+
+  <proof>
+    <title>Quick proof of this claim</title>
+    <p>
+      Let <m>\v{x}</m> be a vector in <m>\R^2</m>. 
+      Then there exist scalars <m>a, b \in \R</m> such that
+      <md>
+        \v{x} = a\v{e}_1 + b\v{e}_2
+      </md>
+      Then for any linear transformation <m>T</m> defined on <m>\R^2</m>, we have
+      <md>
+        T(\v{x}) = T(a\v{e}_1 + b\v{e}_2) = aT(\v{e}_1) + bT(\v{e}_2)
+      </md>
+      So the output of <m>T</m> at <m>\v{x}</m> is completely determined by the output of <m>T</m> at <m>\v{e}_1</m> and <m>\v{e}_2</m>.
+    </p>
+  </proof>
+
+  <p>
+    We can use this fact to figure out how to find the matrix for a linear transformation (and in doing so, we really prove that such a matrix will always exist for any linear transformation)!
+  </p>
+
+  <example>
+    <p>
+      Suppose that <m>T: \R^2 \to \R^3</m> is a linear transformation such that
+      <md>
+        T\lp \v{e}_1 \rp = \begin{bmatrix} 2 \\ 0 \\ 3 \end{bmatrix}
+        \qquad \text{ and } \qquad
+        T\lp \v{e}_2 \rp = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+      </md>
+      What is the matrix <m>A</m> such that <m>T(\v{x}) = A\v{x}</m> for all <m>\v{x} \in \R^2</m>?
+    </p>
+
+    <p>
+      Consider any vector <m>\v{x} = \begin{bmatrix} x \\ y \end{bmatrix}</m> in <m>\R^2</m>.
+      We know that
+      <md>
+        <mrow> T\lp \begin{bmatrix} x \\ y \end{bmatrix} \rp \amp= T\lp x\begin{bmatrix} 1 \\ 0 \end{bmatrix} + y\begin{bmatrix} 0 \\ 1 \end{bmatrix} \rp </mrow>
+        <mrow> \amp= xT\lp \begin{bmatrix} 1 \\ 0 \end{bmatrix} \rp + yT\lp \begin{bmatrix} 0 \\ 1 \end{bmatrix} \rp </mrow>
+        <mrow> \amp= x\begin{bmatrix} 2 \\ 0 \\ 3 \end{bmatrix} + y\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} </mrow>
+        <mrow> \amp= \begin{bmatrix} 2x + y \\ 2y \\ 3x + 3y \end{bmatrix} </mrow>
+      </md>
+      Notice that the output is what we would get if we multiplied the matrix <m>\begin{bmatrix} 2 \amp 1 \\ 0 \amp 2 \\ 3 \amp 3 \end{bmatrix}</m> by the vector <m>\begin{bmatrix} x \\ y \end{bmatrix}</m>! 
+      So
+      <md>
+        T\lp \begin{bmatrix} x \\ y \end{bmatrix} \rp = \begin{bmatrix} 2 \amp 1 \\ 0 \amp 2 \\ 3 \amp 3 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+      </md>
+      We found the matrix that goes with this linear transformation!
+    </p>
+  </example>
+
+  <p>
+    Notice that in the above example, <alert>the columns of our matrix were the outputs of the standard basis vectors</alert>. 
+    That tells us exactly how to find a matrix for any linear transformation!
+  </p>
+
+  <p>
+    Suppose <m>T: \R^n \to \R^m</m> is a linear transformation. 
+    To find the matrix <m>A</m> such that <m>T</m> is given by the rule <m>T(\v{x}) = A\v{x}</m>, we...
+    <ol marker="Step 1:">
+      <li>
+        <p>
+          Figure out <m>T\lp \v{e_1} \rp, T\lp \v{e_2} \rp, \ldots T\lp \v{e_n} \rp</m>
+        </p>
+      </li>
+      <li>
+        <p>
+          Write the matrix that has columns <m>T\lp \v{e_1} \rp, T\lp \v{e_2} \rp, \ldots T\lp \v{e_n} \rp</m>: 
+          <md>
+            A = \begin{bmatrix} T\lp \v{e_1} \rp \amp T\lp \v{e_2} \rp \amp \cdots \amp T\lp \v{e_n} \rp \end{bmatrix}
+          </md>
+        </p>
+      </li>
+      <li>
+        <p>
+          Pat yourself on the back
+        </p>
+      </li>
+    </ol>
+    Special terminology! 
+    This matrix <m>A</m> that we found is called the <term>standard matrix</term> for the linear transformation <m>T</m>. 
+  </p>
+
+  <example>
+    <p>
+      Let <m>T: \R^2 \to \R^2</m> be a linear transformation given by
+      <md>
+        T\lp \begin{bmatrix} x \\ y \end{bmatrix} \rp = \begin{bmatrix} 2x + 3y \\ 5x + 7y \end{bmatrix}
+      </md>
+      Let's find the matrix <m>A</m> such that <m>T(\v{x}) = A\v{x}</m> for all <m>\v{x} \in \R^2</m>. 
+    </p>
+
+    <p>
+      Step 1: In this case, <m>\v{e}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}</m> and <m>\v{e}_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}</m>.
+      So
+      <md>
+        T(\v{e}_1) = T\lp \begin{bmatrix} 1 \\ 0 \end{bmatrix} \rp = \begin{bmatrix} 2 \\ 5 \end{bmatrix}
+        \qquad \text{ and } \qquad
+        T(\v{e}_2) = T\lp \begin{bmatrix} 0 \\ 1 \end{bmatrix} \rp = \begin{bmatrix} 3 \\ 7 \end{bmatrix}
+      </md>
+    </p>
+
+    <p>
+      Step 2: <m>A = \begin{bmatrix} T(\v{e}_1)\amp T(\v{e}_2) \end{bmatrix} = \begin{bmatrix} 2 \amp 3 \\ 5 \amp 7 \end{bmatrix}</m>
+    </p>
+
+    <p>
+      Let's check to see if <m>A</m> really works!
+      <md>
+        A\begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 2 \amp 3 \\ 5 \amp 7 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 2x + 3y \\ 5x + 7y \end{bmatrix} 
+      </md>
+      Woo! 
+    </p>
+  </example>
+
+  <exercise>
+    <p>
+      Find the matrix that corresponds to the linear transformation <m>T: \R^3 \to \R^2</m> given by
+      <md>
+        T\lp \begin{bmatrix} x \\ y \\ z \end{bmatrix} \rp = \begin{bmatrix} x + 3y + 7z \\ 3x + 5y - 8z \end{bmatrix}
+      </md>
+    </p>
+
+    <solution>
+      <p>
+        Step 1: In this case, since the domain is <m>\R^3</m>, our standard basis vectors are <m>\v{e}_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}</m>, <m>\v{e}_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}</m>, and <m>\v{e}_3 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}</m>.
+        Evaluating the transformation at each gives:
+        <md>
+          T(\v{e}_1) = T\lp \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} \rp = \begin{bmatrix} 1 \\ 3 \end{bmatrix},
+        </md>
+        <md>
+          T(\v{e}_2) = T\lp \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} \rp = \begin{bmatrix} 3 \\ 5 \end{bmatrix},
+        </md>
+        <md>
+          T(\v{e}_3) = T\lp \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \rp = \begin{bmatrix} 7 \\ -8 \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        Step 2: We form the matrix by placing these resulting vectors into the columns.
+        <md>
+          A = \begin{bmatrix} T(\v{e}_1)\amp T(\v{e}_2)\amp T(\v{e}_3) \end{bmatrix} = \begin{bmatrix} 1 \amp 3 \amp 7 \\ 3 \amp 5 \amp -8 \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        Let's check to see if <m>A</m> really works!
+        <md>
+          A\begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 1 \amp 3 \amp 7 \\ 3 \amp 5 \amp -8 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} x + 3y + 7z \\ 3x + 5y - 8z \end{bmatrix} 
+        </md>
+        Yay! 
+      </p>
+    </solution>
+  </exercise>
+
+  <p>
+    It turns out that rotations and reflections are also linear transformations! 
+  </p>
+
+  <p>
+    <alert>Let's find a matrix for a rotation <m>\theta</m> in <m>\R^2</m>!</alert>
+    We need to figure out what such a rotation does to the vectors <m>\begin{bmatrix} 1 \\ 0 \end{bmatrix}</m> and <m>\begin{bmatrix} 0 \\ 1 \end{bmatrix}</m>.
+  </p>
+
+  <p>
+    Let's suppose that the vector <m>\begin{bmatrix} x \\ y \end{bmatrix}</m> is the result of rotating <m>\begin{bmatrix} 1 \\ 0 \end{bmatrix}</m> counterclockwise by the angle <m>\theta</m>. 
+    This vector can be represented as an arrow starting at the origin and ending at the point <m>(x, y)</m>. 
+    We can draw a triangle to figure out the exact coordinates of the vector <m>\begin{bmatrix} x \\ y \end{bmatrix}</m>. 
+  </p>
+
+  <image source="sec18-RotationalMatrix-UnitCircle.png" width="50%"></image>
+
+  <p>
+    The <m>x</m>-coordinate will be <m>\cos(\theta)</m> and the <m>y</m>-coordinate will be <m>\sin(\theta)</m>. 
+    So the rotation takes <m>\begin{bmatrix} 1 \\ 0 \end{bmatrix}</m> to <m>\begin{bmatrix} \cos(\theta) \\ \sin(\theta) \end{bmatrix}</m>. 
+  </p>
+
+  <p>
+    If we also draw the vector <m>\begin{bmatrix} 0 \\ 1 \end{bmatrix}</m> and rotate it (counterclockwise) by an angle of <m>\theta</m>, we get a picture like this: 
+  </p>
+
+  <image source="sec18-RotationalMatrix-RotatingTriangle.png" width="50%"></image>
+
+  <p>
+    This time, the <m>x</m>-coordinate will be <m>-\sin(\theta)</m> and the <m>y</m>-coordinate will be <m>\cos(\theta)</m>. 
+    So the rotation takes <m>\begin{bmatrix} 0 \\ 1 \end{bmatrix}</m> to <m>\begin{bmatrix} -\sin(\theta) \\ \cos(\theta) \end{bmatrix}</m>.
+  </p>
+
+  <p>
+    <em>Note:</em> These pictures make it easy to see this is true when <m>\theta</m> is between <m>0^\circ</m> and <m>90^\circ</m>, 
+    To see that this is true regardless of how big <m>\theta</m> is, you can either look at cases in all of the four quadrants or you can use trig identities. 
+  </p>
+
+  <p>
+    This means that you can find any rotation matrix by plugging <m>\theta</m> into
+    <md>
+      R_\theta = \begin{bmatrix} \cos(\theta) \amp -\sin(\theta) \\ \sin(\theta) \amp \cos(\theta) \end{bmatrix}
+    </md>
+  </p>
+
+  <p>
+    <alert>Now let's find a matrix for the reflection across the line <m>y = mx</m>!</alert>
+    We need fo figure out what happens to <m>\begin{bmatrix} 1 \\ 0 \end{bmatrix}</m> and <m>\begin{bmatrix} 0 \\ 1 \end{bmatrix}</m> when we reflect them across the line <m>y = mx</m>.
+  </p>
+
+  <p>
+    From analytic geometry, we know that the slope of any line perpendicular to <m>y = mx</m> will have slope <m>-\frac{1}{m}</m>. 
+    We want to find the line through <m>(1,0)</m> that has slope <m>-\frac{1}{m}</m>. 
+    That is because we need to find the intersection of that line with <m>y = mx</m> to get the midpoint of the segment between <m>(1,0)</m> and the point we get after reflecting <m>(1,0)</m>. 
+  </p>
+
+  <image source="sec18-ReflectionalMatrix.png" width="50%"></image>
+  
+  <p>
+    That perpendicular line is given by <m>y - 0 = -\frac{1}{m}(x - 1)</m>, which simplifies to <m>y = -\frac{1}{m}x + \frac{1}{m}</m>. 
+  </p>
+
+  <p>
+    Now let's find the point of intersection! 
+    Substituting <m>y = mx</m> into this equation, we get 
+    <md>
+      mx = -\frac{1}{m}x + \frac{1}{m}
+      \qquad \implies \qquad 
+      m^2x = -x + 1
+    </md>
+    This means that <m>x = \frac{1}{1 + m^2}</m>. 
+    Then substituting again, we get <m>y = m\frac{1}{1 + m^2}</m>.
+    So the midpoint between <m>(1,0)</m> and the result of reflecting <m>(1,0)</m> across the line <m>y = mx</m> is <m>\lp \frac{1}{1 + m^2}, m\frac{1}{1 + m^2} \rp</m>. 
+  </p>
+
+  <p>
+    The midpoint formula tells us that the midpoint of a segment between points <m>(x_1, y_1)</m> and <m>(x_2, y_2)</m> is <m>\lp \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \rp</m>.
+    So 
+    <md>
+      \lp \frac{1}{1 + m^2}, m\frac{1}{1 + m^2} \rp = \lp \frac{1 + x}{2}, \frac{0 + y}{2} \rp
+    </md>
+    where <m>(x,y)</m> is the point we are looking for. 
+    This gives us the equations
+    <md>
+      \begin{cases}
+        \frac{1}{1 + m^2} = \frac{1 + x}{2} \\
+        m\frac{1}{1 + m^2} = \frac{y}{2}
+      \end{cases}
+    </md>
+    Solving these equations, we get 
+    <md>
+      \begin{cases}
+        x = \frac{1 - m^2}{1 + m^2} \\
+        y = \frac{2m}{1 + m^2}
+      \end{cases}  
+    </md>
+    So the reflection takes <m>(1,0)</m> to <m>\lp \frac{1 - m^2}{1 + m^2}, \frac{2m}{1 + m^2} \rp</m>.
+  </p>
+
+  <p>
+    A similar method can be used to find out that the reflection takes the point <m>(0,1)</m> to the point <m>\lp \frac{2m}{1 + m^2}, \frac{m^2 - 1}{1 + m^2} \rp</m>. 
+  </p>
+
+  <p>
+    Converting these to column vectors, the matrix for reflecting across the line <m>y = mx</m> is given by
+    <md>
+      R_m = \begin{bmatrix} \frac{1 - m^2}{1 + m^2} \amp \frac{2m}{1 + m^2} \\ \frac{2m}{1 + m^2} \amp \frac{m^2 - 1}{1 + m^2} \end{bmatrix}
+    </md>
+    Pulling out the common factor, we can rewrite this as
+    <md>
+      R_m = \frac{1}{1 + m^2} \begin{bmatrix} 1 - m^2 \amp 2m \\ 2m \amp m^2 - 1 \end{bmatrix}
+    </md>
+  </p>
+
+  <exercise>
+    <p>
+      Now let's help out Richard with his research! 
+      (yes, this is actually something Richard worked on in a research project before, but minus the part with heavy abstract algebra theory part)
+    </p>
+
+    <p>
+      Suppose we want to construct a regular hexagon centered at the origin. 
+      What are the coordinates of the vertices? 
+    </p>
+
+    <p>
+      Let's start by pinning down one of the six vertices at <m>(1,0)</m>. 
+      Then what are the other five coordinates for this regular hexagon? 
+    </p>
+
+    <solution>
+      <p>
+        Another fantastic way to find these coordinates is by using a linear transformation! Since the hexagon is regular, each vertex is a <m>60^\circ</m> counterclockwise rotation from the previous one around the origin.
+      </p>
+
+      <p>
+        The standard matrix for a rotation by an angle <m>\theta</m> in <m>\R^2</m> is:
+        <md>
+          R_\theta = \begin{bmatrix} \cos \theta \amp -\sin \theta \\ \sin \theta \amp \cos \theta \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        For <m>\theta = 60^\circ</m>, our rotation matrix becomes:
+        <md>
+          R_{60^\circ} = \begin{bmatrix} \cos 60^\circ \amp -\sin 60^\circ \\ \sin 60^\circ \amp \cos 60^\circ \end{bmatrix} 
+          = \begin{bmatrix} \frac{1}{2} \amp -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} \amp \frac{1}{2} \end{bmatrix}
+        </md>
+      </p>
+
+      <p>
+        We start with our pinned vertex as a column vector, <m>\v{v}_0 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}</m>. To find each subsequent vertex, we multiply the previous vector by <m>R_{60^\circ}</m>:
+      </p>
+
+      <ul>
+        <li>
+          <p>
+            <m>\v{v}_1 = R_{60^\circ}\v{v}_0 = \begin{bmatrix} \frac{1}{2} \amp -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} \amp \frac{1}{2} \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} \frac{1}{2} \\ \frac{\sqrt{3}}{2} \end{bmatrix}</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>\v{v}_2 = R_{60^\circ}\v{v}_1 = \begin{bmatrix} \frac{1}{2} \amp -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} \amp \frac{1}{2} \end{bmatrix} \begin{bmatrix} \frac{1}{2} \\ \frac{\sqrt{3}}{2} \end{bmatrix} = \begin{bmatrix} \frac{1}{4} - \frac{3}{4} \\ \frac{\sqrt{3}}{4} + \frac{\sqrt{3}}{4} \end{bmatrix} = \begin{bmatrix} -\frac{1}{2} \\ \frac{\sqrt{3}}{2} \end{bmatrix}</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>\v{v}_3 = R_{60^\circ}\v{v}_2 = \begin{bmatrix} \frac{1}{2} \amp -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} \amp \frac{1}{2} \end{bmatrix} \begin{bmatrix} -\frac{1}{2} \\ \frac{\sqrt{3}}{2} \end{bmatrix} = \begin{bmatrix} -\frac{1}{4} - \frac{3}{4} \\ -\frac{\sqrt{3}}{4} + \frac{\sqrt{3}}{4} \end{bmatrix} = \begin{bmatrix} -1 \\ 0 \end{bmatrix}</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>\v{v}_4 = R_{60^\circ}\v{v}_3 = \begin{bmatrix} \frac{1}{2} \amp -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} \amp \frac{1}{2} \end{bmatrix} \begin{bmatrix} -1 \\ 0 \end{bmatrix} = \begin{bmatrix} -\frac{1}{2} \\ -\frac{\sqrt{3}}{2} \end{bmatrix}</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>\v{v}_5 = R_{60^\circ}\v{v}_4 = \begin{bmatrix} \frac{1}{2} \amp -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} \amp \frac{1}{2} \end{bmatrix} \begin{bmatrix} -\frac{1}{2} \\ -\frac{\sqrt{3}}{2} \end{bmatrix} = \begin{bmatrix} -\frac{1}{4} + \frac{3}{4} \\ -\frac{\sqrt{3}}{4} - \frac{\sqrt{3}}{4} \end{bmatrix} = \begin{bmatrix} \frac{1}{2} \\ -\frac{\sqrt{3}}{2} \end{bmatrix}</m>
+          </p>
+        </li>
+      </ul>
+
+      <p>
+        Translating these column vectors back into coordinate points yields the same five remaining vertices!
+      </p>
+    </solution>
+      
+  </exercise>
+
+  <p>
+    There are some special linear transformations, and we will focus on <alert>surjection</alert> and <alert>injection</alert>: 
+  </p>
+
+  <definition xml:id="def-SurjectiveTransformation">
+    <statement>
+      <p>
+        A mapping <m>T: \R^n \to \R^m</m> is a <alert>surjection</alert> (or <alert>onto</alert> <m>\R^m</m>) if each <m>\v{b}\in \R^m</m> is the image of at least one <m>\v{x} \in \R^n</m>. 
+      </p>
+
+      <p>
+        That is, <em>every</em> element in the codomain of <m>T</m> is an image of the mapping. 
+      </p>
+    </statement>
+  </definition>
+
+  <definition xml:id="def-InjectiveTransformation">
+    <statement>
+      <p>
+        A mapping <m>T: \R^n \to \R^m</m> is an <alert>injection</alert> (or <term>one-to-one</term>) if each <m>\v{b}\in \R^m</m> is the image of at most one <m>\v{x}\in \R^n</m>. 
+      </p>
+
+      <p>
+        That is, a mapping <m>T</m> is injective if <m>T(\v{x}_1) = T(\v{x}_2)</m> implies <m>\v{x}_1 = \v{x}_2</m>. 
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    Notice how parallel each of these definitions is. 
+    Moreover, these definitions have everything to do with the existence and uniqueness of pre-images: 
+    <ul marker="">
+      <li>
+        <p>
+          <em>Existence: </em> Does each <m>\v{b}\in \R^m</m> have a pre-image? 
+          If <m>T</m> is surjective, then Yes. 
+        </p>
+      </li>
+      <li>
+        <p>
+          <em>Uniqueness: </em> Is each solution to <m>T(\v{x}) = \v{b}</m> unique? 
+          If <m>T</m> is injective, then Yes!
+        </p>
+      </li>
+    </ul>
+  </p>
+
+  <p>
+    An immediate (and famous) result about injection is the following theorem: 
+  </p>
+
+  <theorem xml:id="thm-Injection-TrivialKernel">
+    <statement>
+      <p>
+        Let <m>T: \R^n \to \R^n</m> be a linear transformation. 
+        Then <m>T</m> is injective if and only if <m>T(\v{x}) = \v{0}</m> has only the trivial solution. 
+      </p>
+    </statement>
+  </theorem>
+
+  <proof>
+    <p>
+      This is a biconditional statement. 
+      Proving this statement comes in to parts: 
+    </p>
+
+    <p>
+      <em>Forward direction (<m>\Rightarrow</m>):</em> 
+      Assume that <m>T</m> is injective. 
+      We want to show that the equation <m>T(\v{x}) = \v{0}</m> has only the trivial solution. 
+    </p>
+
+    <p>
+      Because <m>T</m> is a linear transformation, we know that it maps the zero vector to the zero vector, meaning <m>T(\v{0}) = \v{0}</m>. 
+      Suppose there is some vector <m>\v{x}</m> in <m>\R^n</m> such that <m>T(\v{x}) = \v{0}</m>. 
+      Then we have:
+      <md>T(\v{x}) = T(\v{0})</md>
+      Since we assumed <m>T</m> is injective, the outputs being equal guarantees that the inputs must also be equal. 
+      Therefore, <m>\v{x} = \v{0}</m>. 
+      This shows that the trivial solution is the only solution.
+    </p>
+
+    <p>
+      <em>Backward direction (<m>\Leftarrow</m>):</em> 
+      Assume that <m>T(\v{x}) = \v{0}</m> has only the trivial solution. 
+      We want to show that <m>T</m> is injective. 
+    </p>
+
+    <p>
+      Suppose there are vectors <m>\v{u}</m> and <m>\v{v}</m> in <m>\R^n</m> such that <m>T(\v{u}) = T(\v{v})</m>. 
+      Subtracting <m>T(\v{v})</m> from both sides, we have
+      <md>
+        T(\v{u}) - T(\v{v}) = \v{0}
+      </md>
+      By the linearity properties, this implies that
+      <md>
+        T(\v{u} - \v{v}) = \v{0}
+      </md>
+      By our initial assumption, the only vector that maps to the zero vector is the zero vector itself.
+      This forces the input to be zero.
+      That is, 
+      <md>
+        \v{u} - \v{v} = \v{0}
+      </md>
+      This shows that <m>\v{u} = \v{v}</m>, and hence <m>T</m> is injective.
+    </p>
+
+    <p>
+      What we have established that these two claims are either both true or both false (we assume one of them is true, and show the other one is also true). 
+      Another way of calling biconditional statements are <em>equivalence</em> statement. 
+    </p>
+  </proof>
+  
+  <p>
+    Last but not least, let's make a connection between these two types of the special transformations and what we have learned in the past through the following two statements!
+  </p>
+
+  <theorem xml:id="thm-Surjection-SpanCodomain">
+    <statement>
+      <p>
+        Let <m>T: \R^n \to \R^m</m> be a linear transformation with standard matrix <m>A</m>. 
+        Then <m>T</m> is surjective if and only if the columns of <m>A</m> span the codomain, <m>\R^m</m>. 
+      </p>
+    </statement>
+  </theorem>
+
+  <proof>
+    <p>
+      Observe that the theorem is a biconditional statement. 
+      But instead of proving both directions, let's do a slick trick! 
+    </p>
+
+    <p>
+      Notation clarification! 
+      The symbol <m>\implies</m> means implication!
+    </p>
+
+    <p>
+      Let's consider the forward direction. 
+      The chain of implication looks like this: 
+      <md>
+        <mrow> \amp T \text{ is surjective} </mrow>
+        <mrow> \implies \qquad \amp \forall \v{b}\in \R^m, T(\v{x}) = \v{b} \text{ has at least one solution} </mrow>
+        <mrow> \implies \qquad \amp \forall \v{b}\in \R^m, A\v{x} = \v{b} \text{ is consistent} </mrow>
+        <mrow> \implies \qquad \amp \text{The columns of } A \text{ span } \R^m </mrow>
+      </md>
+      Okay. 
+      And this is supposed to be impressive how? 
+    </p>
+
+    <p>
+      Observe that the statements here are all equivalent! 
+      That is, to prove the other direction, we can just reverse all the implication arrows and the argument stays true! 
+      So the proof of this theorem is to change all the implication arrow to a biconditional arrow! 
+      <md>
+        <mrow> \amp T \text{ is surjective} </mrow>
+        <mrow> \iff \qquad \amp \forall \v{b}\in \R^m, T(\v{x}) = \v{b} \text{ has at least one solution} </mrow>
+        <mrow> \iff \qquad \amp \forall \v{b}\in \R^m, A\v{x} = \v{b} \text{ is consistent} </mrow>
+        <mrow> \iff \qquad \amp \text{The columns of } A \text{ span } \R^m </mrow>
+      </md>
+    </p>
+  </proof>
+  
+  <theorem xml:id="thm-Injection-LinearIndependence">
+    <statement>
+      <p>
+        Let <m>T: \R^n \to \R^m</m> be a linear transformation with standard matrix <m>A</m>. 
+        Then <m>T</m> is injective if and only if the columns of <m>A</m> are linearly independent. 
+      </p>
+    </statement>
+  </theorem>
+  
+  <proof>
+    <p>
+      We can prove this theorem using the same slick trick! 
+      <md>
+        <mrow> \amp T \text{ is injective} </mrow>
+        <mrow> \iff \qquad \amp T(\v{x}) = \v{0} \text{ has has only the trivial solution} </mrow>
+        <mrow> \iff \qquad \amp A\v{x} = \v{0} \text{ has only the trivial solution} </mrow>
+        <mrow> \iff \qquad \amp \text{The columns of } A \text{ are linearly independent }</mrow>
+      </md>
+    </p>
+  </proof>
+
+  <example>
+    <p>
+      Let <m>T: \R^2 \to \R^3</m> defined by 
+      <md>
+        T\lp \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \rp = \begin{bmatrix} 3x_1 + x_2 \\ 5x_1 + 7x_2 \\ x_1 + 3x_2 \end{bmatrix}
+      </md>
+      Is <m>T</m> a linear transformation? 
+      Is it injective? 
+      Is it surjective? 
+    </p>
+
+    <p>
+      First, we determine if <m>T</m> is a linear transformation. 
+      We can "factor out" the variables to rewrite the transformation as a matrix-vector product:
+      <md>
+        T(\v{x}) = \begin{bmatrix} 3 \amp 1 \\ 5 \amp 7 \\ 1 \amp 3 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+      </md>
+      Let <m>A</m> be this <m>3 \times 2</m> matrix. 
+      Because <m>T(\v{x}) = A\v{x}</m>, it is a matrix transformation. 
+      Every matrix transformation is a linear transformation, so yes, <m>T</m> is a linear transformation.
+    </p>
+
+    <p>
+      Next, we check if <m>T</m> is injective. 
+      By our previous theorem, <m>T</m> is injective if and only if the homogeneous equation <m>T(\v{x}) = \v{0}</m> has only the trivial solution. 
+      To determine this, we find the reduced row echelon form of the standard matrix <m>A</m>:
+      <md>
+        \begin{bmatrix} 3 \amp 1 \\ 5 \amp 7 \\ 1 \amp 3 \end{bmatrix} \sim \begin{bmatrix} 1 \amp 3 \\ 5 \amp 7 \\ 3 \amp 1 \end{bmatrix} \sim \begin{bmatrix} 1 \amp 3 \\ 0 \amp -8 \\ 0 \amp -8 \end{bmatrix} \sim \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \\ 0 \amp 0 \end{bmatrix}
+      </md>
+      Because there is a pivot in every column, there are no free variables. 
+      The equation <m>A\v{x} = \v{0}</m> has only the trivial solution, <m>\v{x} = \v{0}</m>. 
+      Therefore, <m>T</m> is injective.
+    </p>
+
+    <p>
+      Finally, we determine if <m>T</m> is surjective. 
+      The transformation <m>T</m> is surjective if and only if its columns span the codomain, <m>\R^3</m>. 
+      This occurs if and only if there is a pivot position in every row of <m>A</m>. 
+      Looking at the reduced row echelon form of <m>A</m>, the third row does not contain a pivot. 
+      Consequently, the columns of <m>A</m> do not span <m>\R^3</m>, meaning there are vectors in the codomain that cannot be reached. 
+      Thus, <m>T</m> is not surjective. 
+    </p>
+  </example>
 
 </section>
