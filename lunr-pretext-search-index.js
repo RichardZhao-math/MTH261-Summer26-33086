@@ -457,7 +457,7 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "1.4",
   "title": "The Matrix Equation <span class=\"process-math\">\\(A\\v{x} = \\v{b}\\)<\/span>",
-  "body": " The Matrix Equation   Now we get to the cool part! We are going to learn how to multiply a matrix by a vector. This is SUPER IMPORTANT for three reasons:   This corresponds to evaluating a linear transformation at a point which leads to tons of cool geometry stuff. Much more about this in the future!    It is the foundation for multiplying matrices (which is probably the most important thing in Matrix Algebra and corresponds to composing linear transformations).    It gives us new ways to think about systems of equations!   Takeaway: make sure you are an expert at multiplying a vector by a matrix!    After this section, students will be able to:     represent a system of linear equations in four equivalent forms: a system of equations, an augmented matrix, a matrix equation, and a vector equation.    multiply a matrix by a vector using both the dot product method and the linear combination method.    determine the existence of solutions for a system of linear equations by comparing the rank of the coefficient matrix and the rank of the augmented matrix.    see the connection between matrix-vector multiplication and linear transformations.    identify and apply the properties of two special matrices: the identity matrix and the zero matrix, in the context of multiplying a matrix by a vector.       What exactly is an Augmented Matrix?  Consider the augmented matrix You may have heard Richard saying that an augmented matrix is a \"fake\" matrix but is really just a shorthand notation to represent a system of linear equations. It turns out that an augmented matrix actually hides three matrices, two of which are vectors (aka. column matrices). Hence, an augmented matrix is really three matrices smashed together to represent a system of linear equations in a convenient way.  The left side of an augmented matrix is the coefficient matrix . For our (general) example above, the coefficient matrix is   The right side of an augmented matrix is the constant matrix or constant (column) vector . For our example, the constant vector is   To figure out what the third matrix\/vector is, let's convert the augmented matrix to a system of linear equations! For our example, we get First, notice that this system of equations can be seen as one equation involving two matrices\/vectors! You may have noticed that the solution is the one part of our system that we haven't talked about as a matrix\/vector yet. Well let's fix that now!  The vector on the left-hand side is the one that we get when we multiply the coefficient matrix by the solution vector  when represented as a column vector: In other words our system of equations can be represented by the matrix equation : Or using the names of the matrices:     Multiplying a Matrix by a Vector  Now let's take a deeper look at the product and try to figure out how to multiply a matrix by a vector. For our example, we had So what is happening?  First notice that we are multiplying a matrix by a matrix and getting a matrix. Also, notice that the first (top) entry of the answer is achieved by multiplying each entry in the first row of the matrix by the corresponding entry of the column vector and adding the results. First thing in the row times first thing in the column plus second thing in the row times second thing in the column and so on...   The first entry is    Then the second entry in the answer is achieved in the same way but using the second row of the matrix :   The second entry is    Then the third entry in the answeris achieved in the same way but using the third row of the matrix :   The third entry is    And finally the fourth entry in the answer is achieved in the same way but using the fourth row of the matrix :   The fourth entry is    When we run out of rows of , we are done!   Let's try this out with the following product of a matrix and a vector:   First, we take the first row of the matrix and multiply each entry by the corresponding entry in the column vector and add the results: Next, we take the second row of the matrix and do the same thing: Finally, we take the third row of the matrix and do the same thing: So the answer is     Multiply! If it is impossible, say why!               a.   b. This is impossible! There are three things in each row of the matrix but four things in the vector. There is nothing to multiply by the !      Existence and Uniqueness Questions  Recall a consistent system of linear equations has at least one solution and an inconsistent system of linear equations has no solutions. We have looked at the existence question in the past in three different ways:   In , when converting an augmented matrix to a system of linear equations and there is one equation that is always false (like ), then the system is inconsistent .    In , when an augmented matrix has a pivot position in the rightmost column (aka the constant column), then the system is inconsistent .   We will look at the same question again but in a new perspective. Back in , we define the rank of a matrix to be the number of pivot positions (aka the leading s) in the matrix. Now that we have two different matrices: the augmented matrix and the coefficient matrix, how do their ranks relate to the existence question?  Consider the following system of equations: The augmented matrix is... If we put this matrix into row echelon form, we get Notice that the rank of this augmented matrix (if we pretend it is a real matrix) is because there are two leading s. But if we look only at the coefficient matrix (the part to the left of the vertical lines) we see that the rank is because there is only one leading .   Those ranks are different! Maybe that means something?   Let's write this nice (row echelon) version of the system as a matrix equation! The coefficient matrix is and the constant vector is . This is a two-variable system, so the solution matrix looks like . So as a matrix equation, our system is   Okay... so now let's think about what will happen when we multiply our vector by the coefficient matrix . When we get to the second row (to find the second entry in the answer), we will multiply both and by zero. That means we will get not like we are supposed to get! So this system has no solution! In other words, it is inconsistent !   Notice that this happened because the rank of the augmented matrix was BIGGER than the rank of the coefficient matrix!   That can only happen if there is a leading in the last column of the augmented matrix (the constant vector). And that will always result in no solution because it will always give you when you convert back to a system of equations (see how things are connected back to the two perspectives of the existence questions).   You will investigate further about the relationship between the rank and the system of linear equations further in Lab Report #1.     Vector Equations  So far we have three different ways to represent a system of linear equations: (1) as a system of equations, (2) as an augmented matrix, and (3) as a matrix equation. There is actually a fourth way to represent a system of linear equations: as a vector equation .  Let's again consider the system of linear equations Remember that we can think of our original system of equations as representing an equation involving two vectors: Now let's do the same technique we used to write a solution as a linear combination of basic vectors. Specifically, let's first break up the vector on the left-hand side into three vectors. One with in it, one with in it, and one with in it: Now let's factor out the scalars , , and to get: Substituting this last version into our original equation, we get the vector equation : Notice that this vector equation tells us that we get a solution to a system of linear equations precisely when the constant vector is a linear combination of the columns of the coefficient matrix . See how the column vectors on the left-hand side are just the columns of the coefficient matrix?!?! See how the solution vector is just the set of scalars (coefficients) used to write this linear combination of the column vectors?!?! This observation will be important to keep in mind!   Consider the following system of linear equations: Write this system as a (1) Augmented Matrix, (2) a Matrix Equation, and (3) a Vector Equation.   The augmented matrix is   The matrix equation is   The vector equation is     The Vector Equation gives us yet another way to multiply a vector by a matrix! Let's compare the Matrix Equation and the Vector Equation for a system of linear equations: The Matrix Equation is The Vector Equation is This means that So that means that the left-hand side of the Vector Equation actually gives us a second way to multiply a vector by a matrix. You just compute the linear combination of the columns using the vector to get your scalars.   Let's multiply the following matrix and vector in this new way:   We treat the columns of the matrix as vectors and compute the linear combination of those vectors using the entries of the column vector as our scalars. This is the same answer as before!     Intro to the Dot Product  The first method of multiplying matrices that we learned was actually based on the dot product which is an operation performed on two vectors (of the same size) and the produces a scalar . Sometimes it is actually called a scalar product to emphasize the fact that the output is a scalar.  So how does it work? Let's look at the formula for multiplying a vector by a matrix. For the case of a general matrix, we saw that we could multiply by a column vector. Notice that this result actually comes from performing the same process four different times (once for each row of the matrix).  What we were actually doing was taking the dot product of each row with the column vector. So our multiplication computation consisted of four dot products each of which gave us one of the entries in our answer.   Dot Product   Let and be two vectors in . The dot product of and , denoted by , is the scalar given by the formula      Let's compute the dot product of the vectors and .    Scroll up a bit and you will see the dot product formula show up in each entry where we multiplied the general matrix by a vector. To get the th entry of the answer, we can take the dot product of the th row of the matrix and the vector.  We will talk more about this soon when we learn how to multiply two matrices together.    Two Special Matrices  Recall there are two special numbers in arithmetic: and , in the sense that (1) times any number is and (2) times any number is that same number. There are also two special matrices in matrix arithmetic that play the same role as and do in regular arithmetic.  In the last section, we defined the zero matrix to be the matrix with all entries equal to . If is the zero matrix then for any vector , we have where is the zero vector in .  That is because each time you compute a dot product to get an entry of the answer, you are taking a dot product with a row vector where all entries are zero. So you are always just adding up a bunch of zeros. So you will always get zero for every entry in the product.  The matrix equivalent of is called the identity matrix . That is, when we multiply the identity matrix by a vector, we get the same vector back.  For every positive integer , there is a special matrix called the identity matrix of size . The identity matrix has a in every entry of the main diagonal and a in every other spot.  For example, the identity matrix of size is and the identity matrix of size is When the size is obvious from context, we don't need the little subscript in the name for the identity matrix. We just call it .  But why does the identity matrix look like that? Imagine we multiply by an arbitrary vector . We get    "
+  "body": " The Matrix Equation   Now we get to the cool part! We are going to learn how to multiply a matrix by a vector. This is SUPER IMPORTANT for three reasons:   This corresponds to evaluating a linear transformation at a point which leads to tons of cool geometry stuff. Much more about this in the future!    It is the foundation for multiplying matrices (which is probably the most important thing in Matrix Algebra and corresponds to composing linear transformations).    It gives us new ways to think about systems of equations!   Takeaway: make sure you are an expert at multiplying a vector by a matrix!    After this section, students will be able to:     represent a system of linear equations in four equivalent forms: a system of equations, an augmented matrix, a matrix equation, and a vector equation.    multiply a matrix by a vector using both the dot product method and the linear combination method.    determine the existence of solutions for a system of linear equations by comparing the rank of the coefficient matrix and the rank of the augmented matrix.    see the connection between matrix-vector multiplication and linear transformations.    identify and apply the properties of two special matrices: the identity matrix and the zero matrix, in the context of multiplying a matrix by a vector.       What exactly is an Augmented Matrix?  Consider the augmented matrix You may have heard Richard saying that an augmented matrix is a \"fake\" matrix but is really just a shorthand notation to represent a system of linear equations. It turns out that an augmented matrix actually hides three matrices, two of which are vectors (aka. column matrices). Hence, an augmented matrix is really three matrices smashed together to represent a system of linear equations in a convenient way.  The left side of an augmented matrix is the coefficient matrix . For our (general) example above, the coefficient matrix is   The right side of an augmented matrix is the constant matrix or constant (column) vector . For our example, the constant vector is   To figure out what the third matrix\/vector is, let's convert the augmented matrix to a system of linear equations! For our example, we get First, notice that this system of equations can be seen as one equation involving two matrices\/vectors! You may have noticed that the solution is the one part of our system that we haven't talked about as a matrix\/vector yet. Well let's fix that now!  The vector on the left-hand side is the one that we get when we multiply the coefficient matrix by the solution vector  when represented as a column vector: In other words our system of equations can be represented by the matrix equation : Or using the names of the matrices:     Multiplying a Matrix by a Vector  Now let's take a deeper look at the product and try to figure out how to multiply a matrix by a vector. For our example, we had So what is happening?  First notice that we are multiplying a matrix by a matrix and getting a matrix. Also, notice that the first (top) entry of the answer is achieved by multiplying each entry in the first row of the matrix by the corresponding entry of the column vector and adding the results. First thing in the row times first thing in the column plus second thing in the row times second thing in the column and so on...   The first entry is    Then the second entry in the answer is achieved in the same way but using the second row of the matrix :   The second entry is    Then the third entry in the answeris achieved in the same way but using the third row of the matrix :   The third entry is    And finally the fourth entry in the answer is achieved in the same way but using the fourth row of the matrix :   The fourth entry is    When we run out of rows of , we are done!   Let's try this out with the following product of a matrix and a vector:   First, we take the first row of the matrix and multiply each entry by the corresponding entry in the column vector and add the results: Next, we take the second row of the matrix and do the same thing: Finally, we take the third row of the matrix and do the same thing: So the answer is     Multiply! If it is impossible, say why!               a.   b. This is impossible! There are three things in each row of the matrix but four things in the vector. There is nothing to multiply by the !      Existence and Uniqueness Questions  Recall a consistent system of linear equations has at least one solution and an inconsistent system of linear equations has no solutions. We have looked at the existence question in the past in three different ways:   In , when converting an augmented matrix to a system of linear equations and there is one equation that is always false (like ), then the system is inconsistent .    In , when an augmented matrix has a pivot position in the rightmost column (aka the constant column), then the system is inconsistent .   We will look at the same question again but in a new perspective. Back in , we define the rank of a matrix to be the number of pivot positions (aka the leading s) in the matrix. Now that we have two different matrices: the augmented matrix and the coefficient matrix, how do their ranks relate to the existence question?  Consider the following system of equations: The augmented matrix is... If we put this matrix into row echelon form, we get Notice that the rank of this augmented matrix (if we pretend it is a real matrix) is because there are two leading s. But if we look only at the coefficient matrix (the part to the left of the vertical lines) we see that the rank is because there is only one leading .   Those ranks are different! Maybe that means something?   Let's write this nice (row echelon) version of the system as a matrix equation! The coefficient matrix is and the constant vector is . This is a two-variable system, so the solution matrix looks like . So as a matrix equation, our system is   Okay... so now let's think about what will happen when we multiply our vector by the coefficient matrix . When we get to the second row (to find the second entry in the answer), we will multiply both and by zero. That means we will get not like we are supposed to get! So this system has no solution! In other words, it is inconsistent !   Notice that this happened because the rank of the augmented matrix was BIGGER than the rank of the coefficient matrix!   That can only happen if there is a leading in the last column of the augmented matrix (the constant vector). And that will always result in no solution because it will always give you when you convert back to a system of equations (see how things are connected back to the two perspectives of the existence questions).   You will investigate further about the relationship between the rank and the system of linear equations further in Lab Report #1.     Vector Equations  So far we have three different ways to represent a system of linear equations: (1) as a system of equations, (2) as an augmented matrix, and (3) as a matrix equation. There is actually a fourth way to represent a system of linear equations: as a vector equation .  Let's again consider the system of linear equations Remember that we can think of our original system of equations as representing an equation involving two vectors: Now let's do the same technique we used to write a solution as a linear combination of basic vectors. Specifically, let's first break up the vector on the left-hand side into three vectors. One with in it, one with in it, and one with in it: Now let's factor out the scalars , , and to get: Substituting this last version into our original equation, we get the vector equation : Notice that this vector equation tells us that we get a solution to a system of linear equations precisely when the constant vector is a linear combination of the columns of the coefficient matrix . See how the column vectors on the left-hand side are just the columns of the coefficient matrix?!?! See how the solution vector is just the set of scalars (coefficients) used to write this linear combination of the column vectors?!?! This observation will be important to keep in mind!   Consider the following system of linear equations: Write this system as a (1) Augmented Matrix, (2) a Matrix Equation, and (3) a Vector Equation.   The augmented matrix is   The matrix equation is   The vector equation is     The Vector Equation gives us yet another way to multiply a vector by a matrix! Let's compare the Matrix Equation and the Vector Equation for a system of linear equations: The Matrix Equation is The Vector Equation is This means that So that means that the left-hand side of the Vector Equation actually gives us a second way to multiply a vector by a matrix. You just compute the linear combination of the columns using the vector to get your scalars.   Let's multiply the following matrix and vector in this new way:   We treat the columns of the matrix as vectors and compute the linear combination of those vectors using the entries of the column vector as our scalars. This is the same answer as before!     Intro to the Dot Product  The first method of multiplying matrices that we learned was actually based on the dot product which is an operation performed on two vectors (of the same size) and the produces a scalar . Sometimes it is actually called a scalar product to emphasize the fact that the output is a scalar.  So how does it work? Let's look at the formula for multiplying a vector by a matrix. For the case of a general matrix, we saw that we could multiply by a column vector. Notice that this result actually comes from performing the same process four different times (once for each row of the matrix).  What we were actually doing was taking the dot product of each row with the column vector. So our multiplication computation consisted of four dot products each of which gave us one of the entries in our answer.   Dot Product   Let and be two vectors in . The dot product of and , denoted by , is the scalar given by the formula      Let's compute the dot product of the vectors and .    Scroll up a bit and you will see the dot product formula show up in each entry where we multiplied the general matrix by a vector. To get the th entry of the answer, we can take the dot product of the th row of the matrix and the vector.  We will talk more about this soon when we learn how to multiply two matrices together.    Two Special Matrices  Recall there are two special numbers in arithmetic: and , in the sense that (1) times any number is and (2) times any number is that same number. There are also two special matrices in matrix arithmetic that play the same role as and do in regular arithmetic.  In the last section, we defined the zero matrix to be the matrix with all entries equal to . If is the zero matrix then for any vector , we have where is the zero vector in .  That is because each time you compute a dot product to get an entry of the answer, you are taking a dot product with a row vector where all entries are zero. So you are always just adding up a bunch of zeros. So you will always get zero for every entry in the product.  The matrix equivalent of is called the identity matrix . That is, when we multiply the identity matrix by a vector, we get the same vector back.  For every positive integer , there is a special matrix called the identity matrix of size . The identity matrix has a in every entry of the main diagonal and a in every other spot.  For example, the identity matrix of size is and the identity matrix of size is When the size is obvious from context, we don't need the little subscript in the name for the identity matrix. We just call it .  But why does the identity matrix look like that? Imagine we multiply by an arbitrary vector . We get     Existence of Solutions  Recall we have spent a lot of time to discuss whether a system of linear equations is consistent or not. The following theorem establishes equivalent statements to connect the idea of consistent system and linear combinations (and span) together.    Let be an matrix. Then the following statements are logically equivalent. That is, for a particular , either they are all true statements or they are all false.   For each in , the equation has a solution.    Each in is a linear combination of the columns of .    The columns of span .     has a pivot position in every row.       This theorem is not hard to prove. Observe that part (b) and part (c) are essentially the same thing (they are!) said in two different ways. Also, if the matrix equation is consistent (i.e., we can find a solution), we can convert it to a vector equation, suggesting that is a linear combination of the columns of (and vice versa!). To make it happen, there cannot be a pivot position in the constant column. That is, we need to max out the pivot position in the coefficient matrix , and hence, each row in must have a pivot position.  In practice, we can determine part (d) of the theorem easily (just row reduce the matrix and observe the pivot positions!). If we can establish part (d) is true, then the rest of the other three statements must be true as well!   Let . And we want to determine if the columns of spans . That is, can any vectors in be written as a linear combination of the columns of ...  Well this is super difficult to tackle since we can't possibly check every single vector in ... Alternatively, it is a lot easy to check the pivot positions of !  Converting the matrix to the reduced row echelon form, we obtain There are three pivot positions, so each row contains a pivot position. That is, part (d) of the above theorem is true.  By this theorem, we know that the other three statements are also true, and hence, the columns of spans .  But what if we do want to solve this problem without relying on this cool theorem... How can we check every single vectors in to make sure they can be written as a linear combination of the columns of ...  While it is impossible to check every single vectors in , it is totally possible to check an arbitrary vector in . So let's assume is an arbitrary vector in . That is, .  We know that can be written as a linear combination of the columns of if is consistent. So we want to row reduce the augmented matrix and observe whether we can get a solution out of it. The augmented matrix looks something like this: When we row reduce this matrix, the reduced row echelon form of will be the same, and we just attach a constant column to the right of it (something like this:) where , , and are just the numbers obtained by applying the elementary row operations to , , and , respectively. But the system is always consistent regardless of these values, since there is no pivot position in the rightmost column. Hence, an arbitrary vector in can be written as a linear combination of the columns of .  Well an arbitrary vector can be any vector in . We essentially just established that every vector can be written as a linear combination of the columns of , and hence the columns of spans .    "
 },
 {
   "id": "sec14-MatrixEquation-2-2",
@@ -620,6 +620,663 @@ var ptx_lunr_docs = [
   "number": "",
   "title": "",
   "body": "identity matrix "
+},
+{
+  "id": "thm-Equivalent-Consistent-Span",
+  "level": "2",
+  "url": "sec14-MatrixEquation.html#thm-Equivalent-Consistent-Span",
+  "type": "Theorem",
+  "number": "1.4.7",
+  "title": "",
+  "body": "  Let be an matrix. Then the following statements are logically equivalent. That is, for a particular , either they are all true statements or they are all false.   For each in , the equation has a solution.    Each in is a linear combination of the columns of .    The columns of span .     has a pivot position in every row.      "
+},
+{
+  "id": "subsec-ExistenceSolutions-6",
+  "level": "2",
+  "url": "sec14-MatrixEquation.html#subsec-ExistenceSolutions-6",
+  "type": "Example",
+  "number": "1.4.8",
+  "title": "",
+  "body": " Let . And we want to determine if the columns of spans . That is, can any vectors in be written as a linear combination of the columns of ...  Well this is super difficult to tackle since we can't possibly check every single vector in ... Alternatively, it is a lot easy to check the pivot positions of !  Converting the matrix to the reduced row echelon form, we obtain There are three pivot positions, so each row contains a pivot position. That is, part (d) of the above theorem is true.  By this theorem, we know that the other three statements are also true, and hence, the columns of spans .  But what if we do want to solve this problem without relying on this cool theorem... How can we check every single vectors in to make sure they can be written as a linear combination of the columns of ...  While it is impossible to check every single vectors in , it is totally possible to check an arbitrary vector in . So let's assume is an arbitrary vector in . That is, .  We know that can be written as a linear combination of the columns of if is consistent. So we want to row reduce the augmented matrix and observe whether we can get a solution out of it. The augmented matrix looks something like this: When we row reduce this matrix, the reduced row echelon form of will be the same, and we just attach a constant column to the right of it (something like this:) where , , and are just the numbers obtained by applying the elementary row operations to , , and , respectively. But the system is always consistent regardless of these values, since there is no pivot position in the rightmost column. Hence, an arbitrary vector in can be written as a linear combination of the columns of .  Well an arbitrary vector can be any vector in . We essentially just established that every vector can be written as a linear combination of the columns of , and hence the columns of spans .  "
+},
+{
+  "id": "sec15-SolutionSets",
+  "level": "1",
+  "url": "sec15-SolutionSets.html",
+  "type": "Section",
+  "number": "1.5",
+  "title": "Solution Sets of Linear Systems",
+  "body": " Solution Sets of Linear Systems   After we know what an augmented matrix really represents, we will now focus on the solution set of a system of linear equations. Recall back in the beginning of the term, we often just write a solution out. We can actually take an additional step to describe all the solutions.    After this section, students will be able to:     identify a homogeneous system of linear equations.    describe the solution set by identifying the basis vector(s).    describe the solution set of a non-homogeneous system by modifying the solution set of the corresponding homogeneous system.      There are two types of systems of linear equations if we consider the values of the constants terms: homogeneous system and non-homogeneous system . They are of course related and we will focus on the homogeneous systems first, then we will see how to use the results to understand the non-homogeneous systems.   Homogeneous Linear System  Let's start by looking at a quick task! Richard claims that the following system of linear equations has at least one solution (hence a consistent system) at the first glance. Why does Richard know about it quickly?  Recall something is called a solution if it satisfies all the equations in the system! Richard made a keen observation that all equations would work out if the variables are all zero. That is, , , and .  To verify, Richard plugged in zero for every variable. He got zero on the left-hand side of every equation and solve all of them! So is a solution to this system of linear equations.  It turns out that this type of systems of linear equations is called a homogeneous system !    A homogeneous system of equations (or a system of homogeneous equations) is a system of linear equations where all of the constants to the right of the equal sign are zero.    For example, we worked with the following system of linear equations in a previous section: This is NOT a homogeneous system since the constants on the right-hand side are not all zero. We can make it homogeneous by changing the number on the right-hand side of every equation to a zero as follows: Then we have a homogeneous system!   Note: Just to be clear, this is a different system of linear equations. However, we will see later that it is actually related to the original one in an important way later on!  Usually, a system of linear equations can have either (1) zero, (2) one, or (3) infinitely many solutions. But it is impossible for a homogeneous system to have zero solutions! As we figured out the very first question in this section, every homogeneous system has at least the trivial solution (where all the variables are zero). So a homogeneous system either has one solution (trivial) OR it has infinitely many solutions .  Let's solve our homogeneous system! First, we will write the augmented matrix for the system: We can actually do the exact same steps that we did with the non-homogeneous version. The only difference is that the constant column doesn't require any work since all the entries hold steady at zero.  So if we put it into row echelon form, we get: Now we can convert back to a system of linear equations and we get: Just like with the regular version, and are the leading variables and is a free variable. We can back substitute into the first equation to get and write the solution in parametric form: or, using our linear algebra notation of vectors (which means in column vectors), an arbitrary vector in the solution set looks like: .  Now, notice that we can factor out a in the solution and see that the set of solutions is of the form where can be any real number. That means every solution of the system is a multiple of . Alternatively, we can say that every solution is in .  We call this a \" basis \" or \" basic vector\" of the solution set (Actually \"basis\" is much more common, but some textbooks use \"basic\"...).   Pretend that we had a (homogeneous) system of 4 linear equations in 5 variables and we put the augmented matrix into row echelon form and got: The leading variables are , , and , so our free variables are and . That is, we should be able to solve for the other three variables in terms of and .  Let's convert it to a system of linear equations: We know that and we can back substitute into the second equation to get as well.  Back substituting into the first equation, we get Now we can write an arbitrary point in the solution set as Now we can split this up into two vectors, one with only 's and one with only 's: This means that every solution is a linear combination of the \"basic\" solutions and . Hence, the solution set is .  Just to be clear, the two basis vectors and are solutions as well! That is one reason why they called the basic solutions (it explains the \"solution\" part). You can also imagine that we can construct infinitely many solutions using these two vectors as building blocks, so they are the \"basis vectors\" for the solution set!    Solve the following homogeneous system of linear equations and write an arbitrary solution as a linear combination of basic solutions (written as column vectors):    Let's start by writing the augmented matrix for the system: We will solve the system using the Gaussian elimination algorithm.  Step 1: Swap Row 1 and Row 2 so that we get a leading without using any fractions:   Step 2: Add times Row 1 to Row 2 (and replace Row 2), add times Row 1 to Row 3 (and replace Row 3), and add times Row 1 to Row 4 (and replace Row 4) to get:   Step 3: Multiply Row 2, Row 3, and Row 4 by (observe the last three rows are exactly the same!) to get:   Step 4: Add times Row 2 to Row 3 (and replace Row 3) and add times Row 2 to Row 4 (and replace Row 4) to get:   We can see from the leading s that and are the leading variables and and are the free variables. We can also see this from converting back to a system of linear equations: We can solve for in terms of , , and to get: We can also solve for in terms of and to get: Then we can back substitute this expression for into the first equation to get: Now let's write our general solution as a column vector! Every solution looks like    If you want to turn the augmented matrix into reduced row echelon form...  To get the augmented matrix into reduced row echelon form, we will just need to do one more step after Step 4.  Step 5: Add times Row 2 to Row 1 (and replace Row 1) to get:   Converting it back to the system of linear equations, we get: Similarly, we see that and are the free variables, and hence we will represent and in terms of and :   Then we can write our general solution as a column vector! Every solution looks like      Terminology! The way we write an arbitrary solution as a linear combination of basis vectors is called the parametric form of the solution set. If you are instructed to write the solution set in parametric form, you should write it as a linear combination of basis vectors using free variables as parameters.   But Richard... Are there only one set of basis vectors for a solution set?  The short answer is NO! There are many different ways to represent the basis vectors for a solution set. Sometimes we pick \"nice\" basis vectors to make the answer look pretty.  For example, in the checkpoint problem earlier, the solution in parametric form is But the two basis vectors look messy because of the fractions.  We can actually represent these two basis vectors differently. If , then the first basis vector becomes If , then the second basis vector becomes So we can also write the solution, in parametric form, as Look how much nicer this representation of the solution set is!  In the next section, we will talk about a concept called \"independence\". Basically, the idea here is that we swap two messy linearly independent basis vectors for two nice linearly independent vectors that span the same solution set.   Recall the solution set to a homogeneous system can be represented as the span of the basis vectors. We know how spans look like geometrically!   If there are no free variables, then the only solution is the trivial solution, and (just a point).    If there is one free variable, then the solution set is . We saw in the last section that this will be a line through the origin (since must be in the span).    If there are two free variables, then the solution set is . We saw in the last section that this will be a plane through the origin (again, since must be in the span).   And the list goes on if we have more free variables!    Non-Homogeneous Linear System  By contrast, a non-homogeneous system of equations (or a system of non-homogeneous equations) is a system of linear equations where at least one of the constants to the right of the equal sign is NOT zero (so NOT a homogeneous system).  There is a very important relationship between the solution set of a non-homogeneous system and the solution set of the corresponding homogeneous system! Let's revisit a non-homogeneous system we worked with before: Skimming through will help us locate the solution set of this system as Or, putting it in column vector form, we can write an arbitrary solution as Of course, we can do our previous trick of splitting this up into two vectors, one with only 's and one without any 's (so that we can factor out the ): Hmm... Does the first vector(s) look familiar? This is actually the same as the solution set of the corresponding homogeneous system!  One can verify quickly that the second vector , by itself, is also a solution to the non-homogeneous system as well! This is our BIG theorem in this section!    Suppose the equation is consistent for some given , and let be a solution to this equation. Then the solution set of is the set of all vectors of the form , where is a parameter and is a solution to the homogeneous equation .    In general, we can solve a system of linear equations using the Gaussian Elimination algorithm. Assuming the system is consistent, we can write an arbitrary solution in parametric form using the same trick that we have been doing: split up the vector by the variable (or lackof) and factor out the free variable to get a linear combination of the basis vectors of the homogeneous solution set plus a particular solution to the non-homogeneous system.   Describe all the solutions to the Matrix Equation where in parametric form.        We can also think about what it means in terms of geometry! Observe that the homogeneous equation looks a lot like our linear equation (in the sense that they are both linear and the constant term is zero). Then that means the non-homogeneous equation is like the linear equation .  How did we obtain from ? The answer is vertical translation by ! That is, we can think of the solution to the non-homogeneous equation as the solution to the corresponding homogeneous equation shifted a bit by a particular solution to the non-homogeneous equation.  Geometrically, let's think about as a solution to and as a particular solution to . Then we know that is also a solution to ! The diagram below shows the relationship between the two solutions to :    Adding to translates to   In addition, we can grab a vector from the span of and add it to to get another solution to . To keep things simple, let's just imagine there is only one free variable in the homogeneous solution set. That is, the span of is a line through the origin. Then the solution set of is a line parallel to the span of that goes through the particular solution .    Parallel solution sets of and with one free variable   Similarly, if there are two free variables in the homogeneous solution set, then the solution set of is a plane parallel to the span of the two basis vectors that goes through the particular solution . And the list goes on if there are more free variables!    Parallel solution sets of and with two free variables    "
+},
+{
+  "id": "sec15-SolutionSets-2-2",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#sec15-SolutionSets-2-2",
+  "type": "Objectives",
+  "number": "",
+  "title": "",
+  "body": "  After this section, students will be able to:     identify a homogeneous system of linear equations.    describe the solution set by identifying the basis vector(s).    describe the solution set of a non-homogeneous system by modifying the solution set of the corresponding homogeneous system.    "
+},
+{
+  "id": "sec15-SolutionSets-3",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#sec15-SolutionSets-3",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "homogeneous system non-homogeneous system "
+},
+{
+  "id": "subsec-HomogeneousSystem-5",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-HomogeneousSystem-5",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "homogeneous system "
+},
+{
+  "id": "def-HomogeneousSystem",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#def-HomogeneousSystem",
+  "type": "Definition",
+  "number": "1.5.1",
+  "title": "",
+  "body": "  A homogeneous system of equations (or a system of homogeneous equations) is a system of linear equations where all of the constants to the right of the equal sign are zero.   "
+},
+{
+  "id": "subsec-HomogeneousSystem-9",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-HomogeneousSystem-9",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "trivial solution "
+},
+{
+  "id": "subsec-HomogeneousSystem-13",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-HomogeneousSystem-13",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "basis basic "
+},
+{
+  "id": "subsec-HomogeneousSystem-14",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-HomogeneousSystem-14",
+  "type": "Example",
+  "number": "1.5.2",
+  "title": "",
+  "body": " Pretend that we had a (homogeneous) system of 4 linear equations in 5 variables and we put the augmented matrix into row echelon form and got: The leading variables are , , and , so our free variables are and . That is, we should be able to solve for the other three variables in terms of and .  Let's convert it to a system of linear equations: We know that and we can back substitute into the second equation to get as well.  Back substituting into the first equation, we get Now we can write an arbitrary point in the solution set as Now we can split this up into two vectors, one with only 's and one with only 's: This means that every solution is a linear combination of the \"basic\" solutions and . Hence, the solution set is .  Just to be clear, the two basis vectors and are solutions as well! That is one reason why they called the basic solutions (it explains the \"solution\" part). You can also imagine that we can construct infinitely many solutions using these two vectors as building blocks, so they are the \"basis vectors\" for the solution set!  "
+},
+{
+  "id": "subsec-HomogeneousSystem-15",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-HomogeneousSystem-15",
+  "type": "Checkpoint",
+  "number": "1.5.3",
+  "title": "",
+  "body": " Solve the following homogeneous system of linear equations and write an arbitrary solution as a linear combination of basic solutions (written as column vectors):    Let's start by writing the augmented matrix for the system: We will solve the system using the Gaussian elimination algorithm.  Step 1: Swap Row 1 and Row 2 so that we get a leading without using any fractions:   Step 2: Add times Row 1 to Row 2 (and replace Row 2), add times Row 1 to Row 3 (and replace Row 3), and add times Row 1 to Row 4 (and replace Row 4) to get:   Step 3: Multiply Row 2, Row 3, and Row 4 by (observe the last three rows are exactly the same!) to get:   Step 4: Add times Row 2 to Row 3 (and replace Row 3) and add times Row 2 to Row 4 (and replace Row 4) to get:   We can see from the leading s that and are the leading variables and and are the free variables. We can also see this from converting back to a system of linear equations: We can solve for in terms of , , and to get: We can also solve for in terms of and to get: Then we can back substitute this expression for into the first equation to get: Now let's write our general solution as a column vector! Every solution looks like    If you want to turn the augmented matrix into reduced row echelon form...  To get the augmented matrix into reduced row echelon form, we will just need to do one more step after Step 4.  Step 5: Add times Row 2 to Row 1 (and replace Row 1) to get:   Converting it back to the system of linear equations, we get: Similarly, we see that and are the free variables, and hence we will represent and in terms of and :   Then we can write our general solution as a column vector! Every solution looks like     "
+},
+{
+  "id": "subsec-HomogeneousSystem-16",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-HomogeneousSystem-16",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "parametric form "
+},
+{
+  "id": "subsec-HomogeneousSystem-17",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-HomogeneousSystem-17",
+  "type": "Note",
+  "number": "1.5.5",
+  "title": "But Richard... Are there only one set of basis vectors for a solution set?",
+  "body": " But Richard... Are there only one set of basis vectors for a solution set?  The short answer is NO! There are many different ways to represent the basis vectors for a solution set. Sometimes we pick \"nice\" basis vectors to make the answer look pretty.  For example, in the checkpoint problem earlier, the solution in parametric form is But the two basis vectors look messy because of the fractions.  We can actually represent these two basis vectors differently. If , then the first basis vector becomes If , then the second basis vector becomes So we can also write the solution, in parametric form, as Look how much nicer this representation of the solution set is!  In the next section, we will talk about a concept called \"independence\". Basically, the idea here is that we swap two messy linearly independent basis vectors for two nice linearly independent vectors that span the same solution set.  "
+},
+{
+  "id": "subsec-NonHomogeneousSystem-2",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-NonHomogeneousSystem-2",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "non-homogeneous system of equations "
+},
+{
+  "id": "thm-HomogeneousSolutionSet",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#thm-HomogeneousSolutionSet",
+  "type": "Theorem",
+  "number": "1.5.6",
+  "title": "",
+  "body": "  Suppose the equation is consistent for some given , and let be a solution to this equation. Then the solution set of is the set of all vectors of the form , where is a parameter and is a solution to the homogeneous equation .   "
+},
+{
+  "id": "subsec-NonHomogeneousSystem-7",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-NonHomogeneousSystem-7",
+  "type": "Checkpoint",
+  "number": "1.5.7",
+  "title": "",
+  "body": " Describe all the solutions to the Matrix Equation where in parametric form.       "
+},
+{
+  "id": "subsec-NonHomogeneousSystem-11",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-NonHomogeneousSystem-11",
+  "type": "Figure",
+  "number": "1.5.8",
+  "title": "",
+  "body": "  Adding to translates to  "
+},
+{
+  "id": "subsec-NonHomogeneousSystem-13",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-NonHomogeneousSystem-13",
+  "type": "Figure",
+  "number": "1.5.9",
+  "title": "",
+  "body": "  Parallel solution sets of and with one free variable  "
+},
+{
+  "id": "subsec-NonHomogeneousSystem-15",
+  "level": "2",
+  "url": "sec15-SolutionSets.html#subsec-NonHomogeneousSystem-15",
+  "type": "Figure",
+  "number": "1.5.10",
+  "title": "",
+  "body": "  Parallel solution sets of and with two free variables  "
+},
+{
+  "id": "sec17-LinearIndependence",
+  "level": "1",
+  "url": "sec17-LinearIndependence.html",
+  "type": "Section",
+  "number": "1.6",
+  "title": "Linear Independence",
+  "body": " Linear Independence   When building a span, are all the vectors actually necessary? Often, a set contains \"redundant\" vectors that can be constructed entirely from the others. In this section, we will formalize this idea through the concepts of linear independence and dependence.    After this section, students will be able to:     define linear independence and dependence in terms of the trivial and nontrivial solutions to a homogeneous vector equation.    determine whether a given set of vectors is linearly independent or dependent.    identify \"redundant\" vectors within a linearly dependent set and express them as a linear combination of the other vectors.        An indexed set of vectors , , is linearly independent if the vector equation has only the trivial solution.  If the trivial solution is not unique, we call the set linear dependent .  That is, if a set , , is linearly dependent, then there exists some scalars , not all zero, such that     But how does the vector equation even related to the idea of independence? We will demonstrate the relation in the following example.   Suppose we have a set of three vectors , where Is this set of vectors linearly independent?  Let's follow the definition! That is, we want to determine if the solution to the following vector equation is unique.  We know how to solve this equation! We will first convert it to an augmented matrix: Now let's row reduce this augmented matrix!   Step 1: Adding times Row 1 to Row 2 (and replacing Row 2), we obtain     Step 2: Adding times Row 1 to Row 3 (and replacing Row 3), we obtain    We immediately know that is a free variable since there is no pivot position in the third column. Hence, this vector equation has infinitely many solutions.  By the definition, we know that is linearly dependent .  But what does it mean? Why do we call these three vectors linearly dependent ? Well let's finish solving this vector equation!  Since is a free variable, then we let , where . Then we obtain Okay. This is a general solution to the vector equation. Recall we can obtain a particular solution by assigning a value to our parameter, .  Let's make . Then our particular solution is Then plugging in the solution to the vector equation will make the equation true. That is, we have the following equation: We can isolate one of the three vectors! Just for demonstration purposes, let's isolate ! Then we have Observe that is a linear combination of and ! That is, is dependent on and .   The practical meaning of a linearly dependent set of vectors is that a vector can be expressed as a linear combination of the other vectors in the set. That is, this vector is dependent of other vectors. This specific relation is called the linear dependence relation .  In the above example, a linear dependence relation is since this relation allows us to express a vector, , as a linear combination of the other vectors, and .   Is the set linearly independent?   Yes, this set of vectors is linearly independent .  To justify this, we set up the homogeneous vector equation:   We can solve this by row reducing the corresponding augmented matrix:   Notice that every column in the coefficient matrix contains a pivot position, which means there are no free variables. Therefore, the vector equation has only the trivial solution ( ). Because no vector can be built from the others, the set is linearly independent.    You may notice that the procedure to determine whether a set of column vectors are linearly independent is essentially the same as row reducing an augmented matrix representing a homogeneous system of linear equations. That is, we are essentially solving the homogeneous matrix equation , where consists of the vectors of interest.   If has only the trivial solution, then the columns of are linearly independent;    If has infinitely many solutions, then the columns of are linearly dependent.      Suppose we are given the coefficient matrix . Observe that consists of three column vectors: Are they linearly independent?  We can answer this question by solving the homogeneous matrix equation . The augmented matrix is Of course we know how to row reduce it! Notice that the constant column of zeros will stay unchanged after all the elementary row operations. So we can only row reduce the coefficient matrix part! Recall the constant column will consist of all zeros.  Observe that every column of the coefficient matrix has a pivot position, which implies that there is no free variable. Then this homogeneous matrix equation has only the trivial solution. That is, the only \"linearly dependent relation\" is Well we can't isolate any of the three vectors since all the above relation tells us is that . Hence, it makes sense to call the vectors making up the columns of  linearly independent , in the sense that none of the vector is dependent of other vectors.   It turns out that there are some special theorems to determine whether a set of vectors are linearly independent. Let's look at the following example and see if we can generalize the theorems!   Is linearly independent?  Think about it first and see if you can figure it out. Then expand the following solution to check your answer!   These two vectors are linearly dependent since there is a way to write a vector as a linear combination of the other vector.  Clearly, . That is, the vector is a linear combination of the vector . So is dependent of .    Using the similar argument, we can make sense of the following theorem:    Consider . If for some nonzero constant , then and are linearly dependent.    Now let's look at the next example! Remember the goal is to generalize it!   Is linearly independent?  Think about it first and see if you can figure it out. Then expand the following solution to check your answer!   These three vectors are linearly dependent since there is a way to write a vector as a linear combination of the other vectors.  Clearly, we can represent the zero vector as a linear combination of the other two vectors with both scalars being zero. That is, Hence, these three vectors are linearly dependent.    Using the similar argument, we can make sense of the following theorem:    Any set containing is linearly dependent.     When is the set of a single vector linearly independent?   A set containing a single vector is linearly independent if and only if .  By definition, we are looking at the vector equation . If is the zero vector, then the scalar can be any real number (yielding infinitely many solutions), making it a dependent set. If is any non-zero vector, the only way for the equation to hold true is if the scalar (the trivial solution), making it an independent set.    Now let's look at the next example! Remember the goal is to generalize it!   Is linearly independent?  Think about it first and see if you can figure it out. Then expand the following solution to check your answer!   These three vectors are linearly dependent since the homogeneous matrix equation is guaranteed to have infinitely many solutions.  Let . What does the (reduced) row echelon look like after row reductions?  Well there are only two row so there can be at most two pivot positions.  Yet there are three variables in this equation since each vector gets a mystery scalars. That is, at least one variable is a free variable, and hence the homogeneous equation must have infinitely many solutions.  Therefore, these three vectors are linearly dependent.    Using the similar argument, we can make sense of the following theorem:    A set of vectors with more vectors than there are entries in those vectors are linearly dependent.    They are the linear dependence tests we can use to quickly determine if a set of vectors is linearly dependent. If you can apply one of the three tests immediately, great! We can conclude that the set is linearly dependent. But the failure to apply any of these tests doesn't mean the set is linearly independent . It just means we will have to go back to the definition to determine it.  Usually, we want more than just knowing that a set is linearly dependent. We want to pick out the \"redundant\" vectors. This brings us to our big theorem for this section!   Characterization of Linearly Dependent Sets   An indexed set , is linearly dependent if and only if at least one vector iin is a linear combination of the others. Moreover, if is linearly dependent and , then some is a linear combination of .     Proof of the big theorem  First, assume some is a linear combination of the other vectors, then where are not all zero.  Then so is linearly dependent.  On the other hand, assume is linearly dependent. If , then it is a trivial linear combination of the other vectors.  Suppose . Then there exist not all zero such that   Let be the largest subscript such that . Since ,    What this theorem says is that a linearly dependent set always have at least one \"redundant\" vector, and we can find such \"redundant\" vectors by going over the list one by one.   Let's revisit the set of three vectors , where We have shown that this is a linearly dependent set.  What the big theorem tells us is that at least one vector in this set is \"redundant\", and we can find this \"redundant\" vector by examining the vectors one by one.  Let's start with . This is not a zero vector, so it won't be a \"redundant\" vector in the set.  Now let's look at ! Obviously, is not a scalar multiple of , so it isn't a \"redundant\" vector.  Now it's ! We know that our linear dependence relation is Then we can express as a linear combination of the other two vectors to show that this is our \"redundant\" vector!   But why do we call \"redundant\"?  That is because we can build the span of the set without the need to include this \"redundant\" vector of . So we have because since it is a linear combination of the other two vectors. Hence, is redundant in the sense that it does not contribute to the span.    Consider the set of five vectors in , , where Describe .   Does the set look linearly dependent? If so, how can we pick out all the \"redundant\" vectors, since they don't contribute to the span.    We can quickly determine that is linearly dependent using some of the linear dependence tests (you can actually apply all three of them!). Let's pick out the \"redundant\" vectors!  Let's start with . Since , then it is not redundant.  Next is . Notice that is the zero vector! We can build it using a scalar of on our previous vector: . Therefore, is our first redundant vector.  Now let's look at . We need to see if is a linear combination of the valid vectors before it (just ). Clearly, there is no scalar such that . So, introduces a new direction. It is not redundant.  Moving on to . Can we build using and ? Yes! Observe that is exactly twice . Since it doesn't give us anything new, is our second redundant vector.  Finally, let's examine . Can we express as a linear combination of our core independent vectors, and ? If we scale by and by , we get: Because can be perfectly constructed from vectors already in our set, is our third redundant vector.  Since , , and are redundant, they do not contribute anything new to the coordinate space. We can build the exact same span using only the linearly independent vectors and .    If you really want to describe this span precisely...  We haven't learned enough to describe this span precisely, especially geometrically. And I don't think we will in this class (so let me know if someone wants to turn this into a class project)!  Long story short, the span is a plane in with the equation of .     "
+},
+{
+  "id": "sec17-LinearIndependence-2-2",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-2-2",
+  "type": "Objectives",
+  "number": "",
+  "title": "",
+  "body": "  After this section, students will be able to:     define linear independence and dependence in terms of the trivial and nontrivial solutions to a homogeneous vector equation.    determine whether a given set of vectors is linearly independent or dependent.    identify \"redundant\" vectors within a linearly dependent set and express them as a linear combination of the other vectors.    "
+},
+{
+  "id": "def-LinearIndependence",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#def-LinearIndependence",
+  "type": "Definition",
+  "number": "1.6.1",
+  "title": "",
+  "body": "  An indexed set of vectors , , is linearly independent if the vector equation has only the trivial solution.  If the trivial solution is not unique, we call the set linear dependent .  That is, if a set , , is linearly dependent, then there exists some scalars , not all zero, such that    "
+},
+{
+  "id": "sec17-LinearIndependence-5",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-5",
+  "type": "Example",
+  "number": "1.6.2",
+  "title": "",
+  "body": " Suppose we have a set of three vectors , where Is this set of vectors linearly independent?  Let's follow the definition! That is, we want to determine if the solution to the following vector equation is unique.  We know how to solve this equation! We will first convert it to an augmented matrix: Now let's row reduce this augmented matrix!   Step 1: Adding times Row 1 to Row 2 (and replacing Row 2), we obtain     Step 2: Adding times Row 1 to Row 3 (and replacing Row 3), we obtain    We immediately know that is a free variable since there is no pivot position in the third column. Hence, this vector equation has infinitely many solutions.  By the definition, we know that is linearly dependent .  But what does it mean? Why do we call these three vectors linearly dependent ? Well let's finish solving this vector equation!  Since is a free variable, then we let , where . Then we obtain Okay. This is a general solution to the vector equation. Recall we can obtain a particular solution by assigning a value to our parameter, .  Let's make . Then our particular solution is Then plugging in the solution to the vector equation will make the equation true. That is, we have the following equation: We can isolate one of the three vectors! Just for demonstration purposes, let's isolate ! Then we have Observe that is a linear combination of and ! That is, is dependent on and .  "
+},
+{
+  "id": "sec17-LinearIndependence-6",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-6",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "linear dependence relation "
+},
+{
+  "id": "sec17-LinearIndependence-8",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-8",
+  "type": "Checkpoint",
+  "number": "1.6.3",
+  "title": "",
+  "body": " Is the set linearly independent?   Yes, this set of vectors is linearly independent .  To justify this, we set up the homogeneous vector equation:   We can solve this by row reducing the corresponding augmented matrix:   Notice that every column in the coefficient matrix contains a pivot position, which means there are no free variables. Therefore, the vector equation has only the trivial solution ( ). Because no vector can be built from the others, the set is linearly independent.   "
+},
+{
+  "id": "sec17-LinearIndependence-10",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-10",
+  "type": "Example",
+  "number": "1.6.4",
+  "title": "",
+  "body": " Suppose we are given the coefficient matrix . Observe that consists of three column vectors: Are they linearly independent?  We can answer this question by solving the homogeneous matrix equation . The augmented matrix is Of course we know how to row reduce it! Notice that the constant column of zeros will stay unchanged after all the elementary row operations. So we can only row reduce the coefficient matrix part! Recall the constant column will consist of all zeros.  Observe that every column of the coefficient matrix has a pivot position, which implies that there is no free variable. Then this homogeneous matrix equation has only the trivial solution. That is, the only \"linearly dependent relation\" is Well we can't isolate any of the three vectors since all the above relation tells us is that . Hence, it makes sense to call the vectors making up the columns of  linearly independent , in the sense that none of the vector is dependent of other vectors.  "
+},
+{
+  "id": "sec17-LinearIndependence-12",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-12",
+  "type": "Example",
+  "number": "1.6.5",
+  "title": "",
+  "body": " Is linearly independent?  Think about it first and see if you can figure it out. Then expand the following solution to check your answer!   These two vectors are linearly dependent since there is a way to write a vector as a linear combination of the other vector.  Clearly, . That is, the vector is a linear combination of the vector . So is dependent of .   "
+},
+{
+  "id": "thm-LinearlyDependent-SetTwoVectors",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#thm-LinearlyDependent-SetTwoVectors",
+  "type": "Theorem",
+  "number": "1.6.6",
+  "title": "",
+  "body": "  Consider . If for some nonzero constant , then and are linearly dependent.   "
+},
+{
+  "id": "sec17-LinearIndependence-16",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-16",
+  "type": "Example",
+  "number": "1.6.7",
+  "title": "",
+  "body": " Is linearly independent?  Think about it first and see if you can figure it out. Then expand the following solution to check your answer!   These three vectors are linearly dependent since there is a way to write a vector as a linear combination of the other vectors.  Clearly, we can represent the zero vector as a linear combination of the other two vectors with both scalars being zero. That is, Hence, these three vectors are linearly dependent.   "
+},
+{
+  "id": "thm-LinearDependence-ZeroVector",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#thm-LinearDependence-ZeroVector",
+  "type": "Theorem",
+  "number": "1.6.8",
+  "title": "",
+  "body": "  Any set containing is linearly dependent.   "
+},
+{
+  "id": "sec17-LinearIndependence-19",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-19",
+  "type": "Checkpoint",
+  "number": "1.6.9",
+  "title": "",
+  "body": " When is the set of a single vector linearly independent?   A set containing a single vector is linearly independent if and only if .  By definition, we are looking at the vector equation . If is the zero vector, then the scalar can be any real number (yielding infinitely many solutions), making it a dependent set. If is any non-zero vector, the only way for the equation to hold true is if the scalar (the trivial solution), making it an independent set.   "
+},
+{
+  "id": "sec17-LinearIndependence-21",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-21",
+  "type": "Example",
+  "number": "1.6.10",
+  "title": "",
+  "body": " Is linearly independent?  Think about it first and see if you can figure it out. Then expand the following solution to check your answer!   These three vectors are linearly dependent since the homogeneous matrix equation is guaranteed to have infinitely many solutions.  Let . What does the (reduced) row echelon look like after row reductions?  Well there are only two row so there can be at most two pivot positions.  Yet there are three variables in this equation since each vector gets a mystery scalars. That is, at least one variable is a free variable, and hence the homogeneous equation must have infinitely many solutions.  Therefore, these three vectors are linearly dependent.   "
+},
+{
+  "id": "thm-LinearDependence-MoreVectors",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#thm-LinearDependence-MoreVectors",
+  "type": "Theorem",
+  "number": "1.6.11",
+  "title": "",
+  "body": "  A set of vectors with more vectors than there are entries in those vectors are linearly dependent.   "
+},
+{
+  "id": "thm-CharacterizationLinearlyDependentSets",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#thm-CharacterizationLinearlyDependentSets",
+  "type": "Theorem",
+  "number": "1.6.12",
+  "title": "Characterization of Linearly Dependent Sets.",
+  "body": " Characterization of Linearly Dependent Sets   An indexed set , is linearly dependent if and only if at least one vector iin is a linear combination of the others. Moreover, if is linearly dependent and , then some is a linear combination of .   "
+},
+{
+  "id": "sec17-LinearIndependence-27",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-27",
+  "type": "Proof",
+  "number": "1.6.1",
+  "title": "Proof of the big theorem.",
+  "body": " Proof of the big theorem  First, assume some is a linear combination of the other vectors, then where are not all zero.  Then so is linearly dependent.  On the other hand, assume is linearly dependent. If , then it is a trivial linear combination of the other vectors.  Suppose . Then there exist not all zero such that   Let be the largest subscript such that . Since ,   "
+},
+{
+  "id": "sec17-LinearIndependence-29",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-29",
+  "type": "Example",
+  "number": "1.6.13",
+  "title": "",
+  "body": " Let's revisit the set of three vectors , where We have shown that this is a linearly dependent set.  What the big theorem tells us is that at least one vector in this set is \"redundant\", and we can find this \"redundant\" vector by examining the vectors one by one.  Let's start with . This is not a zero vector, so it won't be a \"redundant\" vector in the set.  Now let's look at ! Obviously, is not a scalar multiple of , so it isn't a \"redundant\" vector.  Now it's ! We know that our linear dependence relation is Then we can express as a linear combination of the other two vectors to show that this is our \"redundant\" vector!   But why do we call \"redundant\"?  That is because we can build the span of the set without the need to include this \"redundant\" vector of . So we have because since it is a linear combination of the other two vectors. Hence, is redundant in the sense that it does not contribute to the span.  "
+},
+{
+  "id": "sec17-LinearIndependence-30",
+  "level": "2",
+  "url": "sec17-LinearIndependence.html#sec17-LinearIndependence-30",
+  "type": "Checkpoint",
+  "number": "1.6.14",
+  "title": "",
+  "body": " Consider the set of five vectors in , , where Describe .   Does the set look linearly dependent? If so, how can we pick out all the \"redundant\" vectors, since they don't contribute to the span.    We can quickly determine that is linearly dependent using some of the linear dependence tests (you can actually apply all three of them!). Let's pick out the \"redundant\" vectors!  Let's start with . Since , then it is not redundant.  Next is . Notice that is the zero vector! We can build it using a scalar of on our previous vector: . Therefore, is our first redundant vector.  Now let's look at . We need to see if is a linear combination of the valid vectors before it (just ). Clearly, there is no scalar such that . So, introduces a new direction. It is not redundant.  Moving on to . Can we build using and ? Yes! Observe that is exactly twice . Since it doesn't give us anything new, is our second redundant vector.  Finally, let's examine . Can we express as a linear combination of our core independent vectors, and ? If we scale by and by , we get: Because can be perfectly constructed from vectors already in our set, is our third redundant vector.  Since , , and are redundant, they do not contribute anything new to the coordinate space. We can build the exact same span using only the linearly independent vectors and .    If you really want to describe this span precisely...  We haven't learned enough to describe this span precisely, especially geometrically. And I don't think we will in this class (so let me know if someone wants to turn this into a class project)!  Long story short, the span is a plane in with the equation of .    "
+},
+{
+  "id": "sec18-IntroLinearTransformations",
+  "level": "1",
+  "url": "sec18-IntroLinearTransformations.html",
+  "type": "Section",
+  "number": "1.7",
+  "title": "Linear Transformations",
+  "body": " Linear Transformations   Up to this point, we have largely viewed matrix equations and matrix-vector multiplication through an algebraic and numerical lens. In this section, we shift our perspective to explore the graphical and geometric representations of these operations.  We will introduce the concept of a linear transformation, which allows us to think of matrices as dynamic functions that map vectors from one space to another.    After this section, students will be able to:     verify whether a given mapping satisfies the properties of a linear transformation.    evaluate the image of a linear transformation and solve the pre-image of a linear transformation.    evaluate linear transformations using the principles of linearity and linear combinations.       Transformations are pretty much the same thing as functions you have learned in the past. Given that we are in MTH 261 linear algebra, the things we care about are vectors. Hence, a transformation in linear algebra is a function that takes vectors from one place and assign it to other vectors in another place.    A linear transformation from to via Matrix Multiplication   Recall we learned that functions have three components: domain, range, and the rule. Similarly, transformations also have these three components. In addition, we will define a new concept (related to the range of a function), called the codomain .  Formally speaking, the codomain of a linear transformation is the set that includes all the possible values of a given transformation, which are called images . While this definition sounds a lot like the range of a function, there is a key difference: not everything in the codomain needs to be an image of the transformation , while everything in the range has to be some images from the transformation. Immediately, we can see that codomain should be a larger set that capture the range.    Domain, Codomain, and Range of the Linear Transformation    But Richard... Why bother defining this special set of codomain?  This is because in practice, we want a place to capture all the images but doesn't necessarily need to know what the range is.  Here is a quick example: consider the function . We all know that the domain is and the range is instantly because we know that all number squared cannot be negative. Then we don't need to define its codomain, another set to tell us where all possible outputs are going to live.  But what if my function is more complicated, like .  Of course, the domain remains to be but we can't quickly identify the range... All we knew, by just skimming through the function, is that outputs should also be in . Yet we can't say that all real numbers can be an output. Hence, rather than calling the range (which is not true), we say that is the codomain.   It is totally possible for a function to have the codomain exactly the same as the range! This type of functions are called surjection (or onto transformation).   The word \"linear\" means that the transformation must satisfy some special property. This special property is called the linearity , captured in the following definition.    If is a function with the following two properties:   For any scalar and any vector ,     For any two vectors ,    then is a linear transformation .    The two properties in the definition are called the linearity . Of course, it makes sense to call a transformation \"linear\" if the linearity property is satisfied.   Note: Sometimes these two properties are combined to form one rule that looks like this: This basically tells us that we can figure out the output for a linear combination of vectors by taking the same linear combination of the outputs of those vectors.   Determine if the following transformations are linear transformation.    defined by      defined by      defined by      defined by           No. It fails the scalar multiplication property. For instance, let and . However, Since , it is not linear.     Yes. Let's verify both properties. First, for any scalar : Second, for vector addition:      No. It fails vector addition. Let and . But evaluating them separately gives:      Yes. Similar to part (b), we test the properties. For scalar multiplication: For vector addition:         What are some linear transformations you have learned in the past?  What are some non-linear transformations you have learned in the past?   Just some more examples of linear and non-linear transformation   Linear Transformations:   Proportional relationships like .  Taking the derivative of a function (Calculus!). The derivative of a sum is the sum of the derivatives, and constants pull out to the front.  Evaluating definite integrals.     Non-linear Transformations:   Quadratic functions like .  Exponential functions like .  Absolute value functions like .  Functions in the form where . This is a huge trap! In high school algebra, we call these \"linear equations,\" but in linear algebra, they do NOT pass the test for linear transformations because . We actually call these affine transformations.      It turns out that every matrix defines a linear transformation in a way that In the next chapter, we will learn about matrix operations. Just a preview, by the Matrix Multiplication rules, we know that            Hence, we have the linearity in the definition of linear transformations.   A non-example  The function given by is NOT a linear transformation.   Proof: Notice that If this were a linear transformation, then property (ii) would mean that But in fact, Oopsie!    An example  The function given by IS indeed a linear transformation!   Proof: We will verify the two properties in the definition of linear transformations.   Suppose is a scalar and is a vector in . Then     Suppose and are two vectors in . Then    Since both properties hold, we can conclude that IS indeed a linear transformation!   Note: In this example, observe that the coefficients do not contribute to the proof at all (so the proof would work exactly the same even if we had different coefficients). Using the same proof, we can show that the function given by is a linear transformation for any choice of scalars .   Using linearity, we can quickly obtain the following theorem:    If is a linear transformation, then      Very quick proof of this theorem      This is an important observation later when we investigate the idea of subspaces (spoiler: the kernel is a subspace and one of the reasons is because of this!)  The linearity property of linear transformations makes it possible to \"plug in\" a vector even if we don't know the rule. That is, we can evaluate linear transformations using linear combinations .   Suppose is a linear transformation (but we don't know the rule) and we do know that Let's say we want to evaluate .   How do we do that?   Notice that So property (i) and (ii) of linear transformations tell us that    This is a very important kind of problem! Not only does it show up on exams commonly, it will also be the key to finding the matrix for a linear transformation which is one of the most important things in linear algebra!   Suppose is a linear transformation and we know that Find .   First, we need to express as a linear combination of the two input vectors we know. We are looking for scalars and such that:   Looking at the third row, we immediately see that , which means .  Substituting into the second row gives us , which means . Let's quickly verify with the first row: . It works!  Now we can use the linearity properties to evaluate the transformation:     What about the other way around? What if we are given the image of some linear transformation and we are trying to find the input?  Then instead of \"evaluating\", we will be \"solving\" the matrix equation. We are all experts in row reduction so this shouldn't be a problem!   Let . We define by . Now we want to find such that .  If we plug in everything we know into the transformation, then we will get the following matrix equation: Converting this into an augmented matrix, we obtain   Let's apply our Gaussian Elimination skills to solve for :   Translating the reduced row echelon form back into an equation, we get and . Therefore, the input vector we were looking for is:    "
+},
+{
+  "id": "sec18-IntroLinearTransformations-2-3",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-2-3",
+  "type": "Objectives",
+  "number": "",
+  "title": "",
+  "body": "  After this section, students will be able to:     verify whether a given mapping satisfies the properties of a linear transformation.    evaluate the image of a linear transformation and solve the pre-image of a linear transformation.    evaluate linear transformations using the principles of linearity and linear combinations.    "
+},
+{
+  "id": "sec18-IntroLinearTransformations-3",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-3",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "Transformations "
+},
+{
+  "id": "sec18-IntroLinearTransformations-4",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-4",
+  "type": "Figure",
+  "number": "1.7.1",
+  "title": "",
+  "body": "  A linear transformation from to via Matrix Multiplication  "
+},
+{
+  "id": "sec18-IntroLinearTransformations-6",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-6",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "codomain images "
+},
+{
+  "id": "sec18-IntroLinearTransformations-7",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-7",
+  "type": "Figure",
+  "number": "1.7.2",
+  "title": "",
+  "body": "  Domain, Codomain, and Range of the Linear Transformation  "
+},
+{
+  "id": "sec18-IntroLinearTransformations-8",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-8",
+  "type": "Note",
+  "number": "1.7.3",
+  "title": "But Richard... Why bother defining this special set of codomain?",
+  "body": " But Richard... Why bother defining this special set of codomain?  This is because in practice, we want a place to capture all the images but doesn't necessarily need to know what the range is.  Here is a quick example: consider the function . We all know that the domain is and the range is instantly because we know that all number squared cannot be negative. Then we don't need to define its codomain, another set to tell us where all possible outputs are going to live.  But what if my function is more complicated, like .  Of course, the domain remains to be but we can't quickly identify the range... All we knew, by just skimming through the function, is that outputs should also be in . Yet we can't say that all real numbers can be an output. Hence, rather than calling the range (which is not true), we say that is the codomain.   It is totally possible for a function to have the codomain exactly the same as the range! This type of functions are called surjection (or onto transformation).  "
+},
+{
+  "id": "def-LinearTransformation-Operator",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#def-LinearTransformation-Operator",
+  "type": "Definition",
+  "number": "1.7.4",
+  "title": "",
+  "body": "  If is a function with the following two properties:   For any scalar and any vector ,     For any two vectors ,    then is a linear transformation .   "
+},
+{
+  "id": "sec18-IntroLinearTransformations-11",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-11",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "linearity "
+},
+{
+  "id": "sec18-IntroLinearTransformations-13",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-13",
+  "type": "Example",
+  "number": "1.7.5",
+  "title": "",
+  "body": " Determine if the following transformations are linear transformation.    defined by      defined by      defined by      defined by           No. It fails the scalar multiplication property. For instance, let and . However, Since , it is not linear.     Yes. Let's verify both properties. First, for any scalar : Second, for vector addition:      No. It fails vector addition. Let and . But evaluating them separately gives:      Yes. Similar to part (b), we test the properties. For scalar multiplication: For vector addition:       "
+},
+{
+  "id": "sec18-IntroLinearTransformations-14",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-14",
+  "type": "Checkpoint",
+  "number": "1.7.6",
+  "title": "",
+  "body": " What are some linear transformations you have learned in the past?  What are some non-linear transformations you have learned in the past?   Just some more examples of linear and non-linear transformation   Linear Transformations:   Proportional relationships like .  Taking the derivative of a function (Calculus!). The derivative of a sum is the sum of the derivatives, and constants pull out to the front.  Evaluating definite integrals.     Non-linear Transformations:   Quadratic functions like .  Exponential functions like .  Absolute value functions like .  Functions in the form where . This is a huge trap! In high school algebra, we call these \"linear equations,\" but in linear algebra, they do NOT pass the test for linear transformations because . We actually call these affine transformations.     "
+},
+{
+  "id": "sec18-IntroLinearTransformations-16",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-16",
+  "type": "Example",
+  "number": "1.7.7",
+  "title": "A non-example.",
+  "body": " A non-example  The function given by is NOT a linear transformation.   Proof: Notice that If this were a linear transformation, then property (ii) would mean that But in fact, Oopsie!  "
+},
+{
+  "id": "sec18-IntroLinearTransformations-17",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-17",
+  "type": "Example",
+  "number": "1.7.8",
+  "title": "An example.",
+  "body": " An example  The function given by IS indeed a linear transformation!   Proof: We will verify the two properties in the definition of linear transformations.   Suppose is a scalar and is a vector in . Then     Suppose and are two vectors in . Then    Since both properties hold, we can conclude that IS indeed a linear transformation!   Note: In this example, observe that the coefficients do not contribute to the proof at all (so the proof would work exactly the same even if we had different coefficients). Using the same proof, we can show that the function given by is a linear transformation for any choice of scalars .  "
+},
+{
+  "id": "thm-LinearTransformation-Zero",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#thm-LinearTransformation-Zero",
+  "type": "Theorem",
+  "number": "1.7.9",
+  "title": "",
+  "body": "  If is a linear transformation, then    "
+},
+{
+  "id": "sec18-IntroLinearTransformations-20",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-20",
+  "type": "Proof",
+  "number": "1.7.1",
+  "title": "Very quick proof of this theorem.",
+  "body": " Very quick proof of this theorem     "
+},
+{
+  "id": "sec18-IntroLinearTransformations-23",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-23",
+  "type": "Example",
+  "number": "1.7.10",
+  "title": "",
+  "body": " Suppose is a linear transformation (but we don't know the rule) and we do know that Let's say we want to evaluate .   How do we do that?   Notice that So property (i) and (ii) of linear transformations tell us that   "
+},
+{
+  "id": "sec18-IntroLinearTransformations-25",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-25",
+  "type": "Checkpoint",
+  "number": "1.7.11",
+  "title": "",
+  "body": " Suppose is a linear transformation and we know that Find .   First, we need to express as a linear combination of the two input vectors we know. We are looking for scalars and such that:   Looking at the third row, we immediately see that , which means .  Substituting into the second row gives us , which means . Let's quickly verify with the first row: . It works!  Now we can use the linearity properties to evaluate the transformation:    "
+},
+{
+  "id": "sec18-IntroLinearTransformations-28",
+  "level": "2",
+  "url": "sec18-IntroLinearTransformations.html#sec18-IntroLinearTransformations-28",
+  "type": "Example",
+  "number": "1.7.12",
+  "title": "",
+  "body": " Let . We define by . Now we want to find such that .  If we plug in everything we know into the transformation, then we will get the following matrix equation: Converting this into an augmented matrix, we obtain   Let's apply our Gaussian Elimination skills to solve for :   Translating the reduced row echelon form back into an equation, we get and . Therefore, the input vector we were looking for is:   "
+},
+{
+  "id": "sec19-MatrixLinearTransformation",
+  "level": "1",
+  "url": "sec19-MatrixLinearTransformation.html",
+  "type": "Section",
+  "number": "1.8",
+  "title": "The Matrix of a Linear Transformations",
+  "body": " The Matrix of a Linear Transformations   UNDER CONSTRUCTION...   Notice that any vector in can be written as a linear combination of and .   Quick proof of this claim  Let be an arbitrary vector in . Then Proved!    is called the standard basis of .  For , the standard basis consists of the vectors where the -th entry of is a and all of the rest are zeros. Clearly these are all -dimensional vectors. That means the is actually a different vector depending on which you are working with.  For example, in is , but in is . They are NOT the same vectors!  Combining this fact with the two properties that every linear transformation satisfies, we can see that every linear combination defined on (this works for as well, but let's start small!) is actually determined by what it does to the standard basis vectors and .   Quick proof of this claim  Let be a vector in . Then there exist scalars such that Then for any linear transformation defined on , we have So the output of at is completely determined by the output of at and .   We can use this fact to figure out how to find the matrix for a linear transformation (and in doing so, we really prove that such a matrix will always exist for any linear transformation)!   Suppose that is a linear transformation such that What is the matrix such that for all ?  Consider any vector in . We know that Notice that the output is what we would get if we multiplied the matrix by the vector ! So We found the matrix that goes with this linear transformation!   Notice that in the above example, the columns of our matrix were the outputs of the standard basis vectors . That tells us exactly how to find a matrix for any linear transformation!  Suppose is a linear transformation. To find the matrix such that is given by the rule , we...   Figure out     Write the matrix that has columns :     Pat yourself on the back   Special terminology! This matrix that we found is called the standard matrix for the linear transformation .   Let be a linear transformation given by Let's find the matrix such that for all .  Step 1: In this case, and . So   Step 2:   Let's check to see if really works! Woo!    Find the matrix that corresponds to the linear transformation given by    Step 1: In this case, since the domain is , our standard basis vectors are , , and . Evaluating the transformation at each gives:     Step 2: We form the matrix by placing these resulting vectors into the columns.   Let's check to see if really works! Yay!    It turns out that rotations and reflections are also linear transformations!   Let's find a matrix for a rotation in ! We need to figure out what such a rotation does to the vectors and .  Let's suppose that the vector is the result of rotating counterclockwise by the angle . This vector can be represented as an arrow starting at the origin and ending at the point . We can draw a triangle to figure out the exact coordinates of the vector .   The -coordinate will be and the -coordinate will be . So the rotation takes to .  If we also draw the vector and rotate it (counterclockwise) by an angle of , we get a picture like this:   This time, the -coordinate will be and the -coordinate will be . So the rotation takes to .   Note: These pictures make it easy to see this is true when is between and , To see that this is true regardless of how big is, you can either look at cases in all of the four quadrants or you can use trig identities.  This means that you can find any rotation matrix by plugging into    Now let's find a matrix for the reflection across the line ! We need fo figure out what happens to and when we reflect them across the line .  From analytic geometry, we know that the slope of any line perpendicular to will have slope . We want to find the line through that has slope . That is because we need to find the intersection of that line with to get the midpoint of the segment between and the point we get after reflecting .   That perpendicular line is given by , which simplifies to .  Now let's find the point of intersection! Substituting into this equation, we get This means that . Then substituting again, we get . So the midpoint between and the result of reflecting across the line is .  The midpoint formula tells us that the midpoint of a segment between points and is . So where is the point we are looking for. This gives us the equations Solving these equations, we get So the reflection takes to .  A similar method can be used to find out that the reflection takes the point to the point .  Converting these to column vectors, the matrix for reflecting across the line is given by Pulling out the common factor, we can rewrite this as    Now let's help out Richard with his research! (yes, this is actually something Richard worked on in a research project before, but minus the part with heavy abstract algebra theory part)  Suppose we want to construct a regular hexagon centered at the origin. What are the coordinates of the vertices?  Let's start by pinning down one of the six vertices at . Then what are the other five coordinates for this regular hexagon?   Another fantastic way to find these coordinates is by using a linear transformation! Since the hexagon is regular, each vertex is a counterclockwise rotation from the previous one around the origin.  The standard matrix for a rotation by an angle in is:   For , our rotation matrix becomes:   We start with our pinned vertex as a column vector, . To find each subsequent vertex, we multiply the previous vector by :                             Translating these column vectors back into coordinate points yields the same five remaining vertices!    There are some special linear transformations, and we will focus on surjection and injection :    A mapping is a surjection (or onto  ) if each is the image of at least one .  That is, every element in the codomain of is an image of the mapping.      A mapping is an injection (or one-to-one ) if each is the image of at most one .  That is, a mapping is injective if implies .    Notice how parallel each of these definitions is. Moreover, these definitions have everything to do with the existence and uniqueness of pre-images:    Existence: Does each have a pre-image? If is surjective, then Yes.     Uniqueness: Is each solution to unique? If is injective, then Yes!     An immediate (and famous) result about injection is the following theorem:    Let be a linear transformation. Then is injective if and only if has only the trivial solution.     This is a biconditional statement. Proving this statement comes in to parts:   Forward direction ( ): Assume that is injective. We want to show that the equation has only the trivial solution.  Because is a linear transformation, we know that it maps the zero vector to the zero vector, meaning . Suppose there is some vector in such that . Then we have: Since we assumed is injective, the outputs being equal guarantees that the inputs must also be equal. Therefore, . This shows that the trivial solution is the only solution.   Backward direction ( ): Assume that has only the trivial solution. We want to show that is injective.  Suppose there are vectors and in such that . Subtracting from both sides, we have By the linearity properties, this implies that By our initial assumption, the only vector that maps to the zero vector is the zero vector itself. This forces the input to be zero. That is, This shows that , and hence is injective.  What we have established that these two claims are either both true or both false (we assume one of them is true, and show the other one is also true). Another way of calling biconditional statements are equivalence statement.   Last but not least, let's make a connection between these two types of the special transformations and what we have learned in the past through the following two statements!    Let be a linear transformation with standard matrix . Then is surjective if and only if the columns of span the codomain, .     Observe that the theorem is a biconditional statement. But instead of proving both directions, let's do a slick trick!  Notation clarification! The symbol means implication!  Let's consider the forward direction. The chain of implication looks like this: Okay. And this is supposed to be impressive how?  Observe that the statements here are all equivalent! That is, to prove the other direction, we can just reverse all the implication arrows and the argument stays true! So the proof of this theorem is to change all the implication arrow to a biconditional arrow!      Let be a linear transformation with standard matrix . Then is injective if and only if the columns of are linearly independent.     We can prove this theorem using the same slick trick!     Let defined by Is a linear transformation? Is it injective? Is it surjective?  First, we determine if is a linear transformation. We can \"factor out\" the variables to rewrite the transformation as a matrix-vector product: Let be this matrix. Because , it is a matrix transformation. Every matrix transformation is a linear transformation, so yes, is a linear transformation.  Next, we check if is injective. By our previous theorem, is injective if and only if the homogeneous equation has only the trivial solution. To determine this, we find the reduced row echelon form of the standard matrix : Because there is a pivot in every column, there are no free variables. The equation has only the trivial solution, . Therefore, is injective.  Finally, we determine if is surjective. The transformation is surjective if and only if its columns span the codomain, . This occurs if and only if there is a pivot position in every row of . Looking at the reduced row echelon form of , the third row does not contain a pivot. Consequently, the columns of do not span , meaning there are vectors in the codomain that cannot be reached. Thus, is not surjective.   "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-4",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-4",
+  "type": "Proof",
+  "number": "1.8.1",
+  "title": "Quick proof of this claim.",
+  "body": " Quick proof of this claim  Let be an arbitrary vector in . Then Proved!  "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-5",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-5",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "standard basis "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-9",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-9",
+  "type": "Proof",
+  "number": "1.8.2",
+  "title": "Quick proof of this claim.",
+  "body": " Quick proof of this claim  Let be a vector in . Then there exist scalars such that Then for any linear transformation defined on , we have So the output of at is completely determined by the output of at and .  "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-11",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-11",
+  "type": "Example",
+  "number": "1.8.1",
+  "title": "",
+  "body": " Suppose that is a linear transformation such that What is the matrix such that for all ?  Consider any vector in . We know that Notice that the output is what we would get if we multiplied the matrix by the vector ! So We found the matrix that goes with this linear transformation!  "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-13",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-13",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "standard matrix "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-14",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-14",
+  "type": "Example",
+  "number": "1.8.2",
+  "title": "",
+  "body": " Let be a linear transformation given by Let's find the matrix such that for all .  Step 1: In this case, and . So   Step 2:   Let's check to see if really works! Woo!  "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-15",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-15",
+  "type": "Checkpoint",
+  "number": "1.8.3",
+  "title": "",
+  "body": " Find the matrix that corresponds to the linear transformation given by    Step 1: In this case, since the domain is , our standard basis vectors are , , and . Evaluating the transformation at each gives:     Step 2: We form the matrix by placing these resulting vectors into the columns.   Let's check to see if really works! Yay!   "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-34",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-34",
+  "type": "Checkpoint",
+  "number": "1.8.4",
+  "title": "",
+  "body": " Now let's help out Richard with his research! (yes, this is actually something Richard worked on in a research project before, but minus the part with heavy abstract algebra theory part)  Suppose we want to construct a regular hexagon centered at the origin. What are the coordinates of the vertices?  Let's start by pinning down one of the six vertices at . Then what are the other five coordinates for this regular hexagon?   Another fantastic way to find these coordinates is by using a linear transformation! Since the hexagon is regular, each vertex is a counterclockwise rotation from the previous one around the origin.  The standard matrix for a rotation by an angle in is:   For , our rotation matrix becomes:   We start with our pinned vertex as a column vector, . To find each subsequent vertex, we multiply the previous vector by :                             Translating these column vectors back into coordinate points yields the same five remaining vertices!   "
+},
+{
+  "id": "def-SurjectiveTransformation",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#def-SurjectiveTransformation",
+  "type": "Definition",
+  "number": "1.8.5",
+  "title": "",
+  "body": "  A mapping is a surjection (or onto  ) if each is the image of at least one .  That is, every element in the codomain of is an image of the mapping.   "
+},
+{
+  "id": "def-InjectiveTransformation",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#def-InjectiveTransformation",
+  "type": "Definition",
+  "number": "1.8.6",
+  "title": "",
+  "body": "  A mapping is an injection (or one-to-one ) if each is the image of at most one .  That is, a mapping is injective if implies .   "
+},
+{
+  "id": "thm-Injection-TrivialKernel",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#thm-Injection-TrivialKernel",
+  "type": "Theorem",
+  "number": "1.8.7",
+  "title": "",
+  "body": "  Let be a linear transformation. Then is injective if and only if has only the trivial solution.   "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-41",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-41",
+  "type": "Proof",
+  "number": "1.8.3",
+  "title": "",
+  "body": " This is a biconditional statement. Proving this statement comes in to parts:   Forward direction ( ): Assume that is injective. We want to show that the equation has only the trivial solution.  Because is a linear transformation, we know that it maps the zero vector to the zero vector, meaning . Suppose there is some vector in such that . Then we have: Since we assumed is injective, the outputs being equal guarantees that the inputs must also be equal. Therefore, . This shows that the trivial solution is the only solution.   Backward direction ( ): Assume that has only the trivial solution. We want to show that is injective.  Suppose there are vectors and in such that . Subtracting from both sides, we have By the linearity properties, this implies that By our initial assumption, the only vector that maps to the zero vector is the zero vector itself. This forces the input to be zero. That is, This shows that , and hence is injective.  What we have established that these two claims are either both true or both false (we assume one of them is true, and show the other one is also true). Another way of calling biconditional statements are equivalence statement.  "
+},
+{
+  "id": "thm-Surjection-SpanCodomain",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#thm-Surjection-SpanCodomain",
+  "type": "Theorem",
+  "number": "1.8.8",
+  "title": "",
+  "body": "  Let be a linear transformation with standard matrix . Then is surjective if and only if the columns of span the codomain, .   "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-44",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-44",
+  "type": "Proof",
+  "number": "1.8.4",
+  "title": "",
+  "body": " Observe that the theorem is a biconditional statement. But instead of proving both directions, let's do a slick trick!  Notation clarification! The symbol means implication!  Let's consider the forward direction. The chain of implication looks like this: Okay. And this is supposed to be impressive how?  Observe that the statements here are all equivalent! That is, to prove the other direction, we can just reverse all the implication arrows and the argument stays true! So the proof of this theorem is to change all the implication arrow to a biconditional arrow!   "
+},
+{
+  "id": "thm-Injection-LinearIndependence",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#thm-Injection-LinearIndependence",
+  "type": "Theorem",
+  "number": "1.8.9",
+  "title": "",
+  "body": "  Let be a linear transformation with standard matrix . Then is injective if and only if the columns of are linearly independent.   "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-46",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-46",
+  "type": "Proof",
+  "number": "1.8.5",
+  "title": "",
+  "body": " We can prove this theorem using the same slick trick!   "
+},
+{
+  "id": "sec19-MatrixLinearTransformation-47",
+  "level": "2",
+  "url": "sec19-MatrixLinearTransformation.html#sec19-MatrixLinearTransformation-47",
+  "type": "Example",
+  "number": "1.8.10",
+  "title": "",
+  "body": " Let defined by Is a linear transformation? Is it injective? Is it surjective?  First, we determine if is a linear transformation. We can \"factor out\" the variables to rewrite the transformation as a matrix-vector product: Let be this matrix. Because , it is a matrix transformation. Every matrix transformation is a linear transformation, so yes, is a linear transformation.  Next, we check if is injective. By our previous theorem, is injective if and only if the homogeneous equation has only the trivial solution. To determine this, we find the reduced row echelon form of the standard matrix : Because there is a pivot in every column, there are no free variables. The equation has only the trivial solution, . Therefore, is injective.  Finally, we determine if is surjective. The transformation is surjective if and only if its columns span the codomain, . This occurs if and only if there is a pivot position in every row of . Looking at the reduced row echelon form of , the third row does not contain a pivot. Consequently, the columns of do not span , meaning there are vectors in the codomain that cannot be reached. Thus, is not surjective.  "
 },
 {
   "id": "backmatter-2",

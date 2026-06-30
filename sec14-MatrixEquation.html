@@ -58,15 +58,15 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.13.7';
+eBookConfig.runestone_version = '8.1.6';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.52176322e2c1dde5.bundle.js"></script><script src="_static/prefix-713.de0ab26248766350.bundle.js"></script><script src="_static/prefix-runestone.2f713d2360adcee7.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-713.f43ced6a6134ea74.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="_static/prefix-runtime.53a23d1b65c1dce2.bundle.js"></script><script src="_static/prefix-713.de0ab26248766350.bundle.js"></script><script src="_static/prefix-runestone.4787412a251795e3.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-713.f43ced6a6134ea74.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.87414d180ebeebd6.css">
 <script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script>
 </head>
@@ -85,7 +85,7 @@ eBookConfig.enable_chatcodes =  false;
 <div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
 <ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
 </div>
-<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec13-VectorEquations.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch1-LinearEquations.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="backmatter.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec13-VectorEquations.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch1-LinearEquations.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec15-SolutionSets.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
 </div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N} 
 \newcommand{\Z}{\mathbb Z} 
 \newcommand{\Q}{\mathbb Q} 
@@ -100,6 +100,8 @@ eBookConfig.enable_chatcodes =  false;
 \newcommand{\rp}{\right)}
 \newcommand{\la}{\left\langle}
 \newcommand{\ra}{\right\rangle}
+
+\newcommand{\set}[1]{\left\{{ #1}\right\}}
 
 \newcommand{\proj}{\text{proj}}
 \newcommand{\comp}{\text{comp}}
@@ -154,8 +156,19 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-VectorEquations" class="internal"><span class="title">Vector Equations</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DotProduct-Intro" class="internal"><span class="title">Intro to the Dot Product</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ZeroMatrix-IdentityMatrix" class="internal"><span class="title">Two Special Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ExistenceSolutions" class="internal"><span class="title">Existence of Solutions</span></a></div></li>
 </ul>
 </li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec15-SolutionSets.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Solution Sets of Linear Systems</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-HomogeneousSystem" class="internal"><span class="title">Homogeneous Linear System</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-NonHomogeneousSystem" class="internal"><span class="title">Non-Homogeneous Linear System</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec17-LinearIndependence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Linear Transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec19-MatrixLinearTransformation.html" class="internal"><span class="codenumber">1.8</span> <span class="title">The Matrix of a Linear Transformations</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-backmatter"><div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div></li>
@@ -781,11 +794,98 @@ I_3 = \begin{bmatrix} 1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \end
 <div class="autopermalink" data-description="Paragraph"><a href="#subsec-ZeroMatrix-IdentityMatrix-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" data-description="Subsection: Two Special Matrices"><a href="#subsec-ZeroMatrix-IdentityMatrix" title="Copy heading and permalink for Subsection: Two Special Matrices" aria-label="Copy heading and permalink for Subsection: Two Special Matrices">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-ExistenceSolutions">
+<h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Existence of Solutions</span>
+</h3>
+<div class="para" id="subsec-ExistenceSolutions-2">Recall we have spent a lot of time to discuss whether a system of linear equations is consistent or not. The following theorem establishes equivalent statements to connect the idea of consistent system and linear combinations (and span) together.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="thm-Equivalent-Consistent-Span"><h4 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="thm-Equivalent-Consistent-Span-1-1">
+<div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m \times n\)</span> matrix. Then the following statements are logically equivalent. That is, for a particular <span class="process-math">\(A\text{,}\)</span> either they are all true statements or they are all false.</div>
+<ol class="lower-alpha ol-marker-5" id="thm-Equivalent-Consistent-Span-1-1-4">
+<li id="thm-Equivalent-Consistent-Span-1-1-4-1">
+<div class="para" id="thm-Equivalent-Consistent-Span-1-1-4-1-1">For each <span class="process-math">\(\v{b}\)</span> in <span class="process-math">\(\R^m\text{,}\)</span> the equation <span class="process-math">\(A\v{x} = \v{b}\)</span> has a solution.<div class="autopermalink" data-description="Paragraph"><a href="#thm-Equivalent-Consistent-Span-1-1-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item a"><a href="#thm-Equivalent-Consistent-Span-1-1-4-1" title="Copy heading and permalink for Item a" aria-label="Copy heading and permalink for Item a">🔗</a></div>
+</li>
+<li id="thm-Equivalent-Consistent-Span-1-1-4-2">
+<div class="para" id="thm-Equivalent-Consistent-Span-1-1-4-2-1">Each <span class="process-math">\(\v{b}\)</span> in <span class="process-math">\(\R^m\)</span> is a linear combination of the columns of <span class="process-math">\(A\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-Equivalent-Consistent-Span-1-1-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item b"><a href="#thm-Equivalent-Consistent-Span-1-1-4-2" title="Copy heading and permalink for Item b" aria-label="Copy heading and permalink for Item b">🔗</a></div>
+</li>
+<li id="thm-Equivalent-Consistent-Span-1-1-4-3">
+<div class="para" id="thm-Equivalent-Consistent-Span-1-1-4-3-1">The columns of <span class="process-math">\(A\)</span> span <span class="process-math">\(\R^m\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-Equivalent-Consistent-Span-1-1-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item c"><a href="#thm-Equivalent-Consistent-Span-1-1-4-3" title="Copy heading and permalink for Item c" aria-label="Copy heading and permalink for Item c">🔗</a></div>
+</li>
+<li id="thm-Equivalent-Consistent-Span-1-1-4-4">
+<div class="para" id="thm-Equivalent-Consistent-Span-1-1-4-4-1">
+<span class="process-math">\(A\)</span> has a pivot position in every row.<div class="autopermalink" data-description="Paragraph"><a href="#thm-Equivalent-Consistent-Span-1-1-4-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item d"><a href="#thm-Equivalent-Consistent-Span-1-1-4-4" title="Copy heading and permalink for Item d" aria-label="Copy heading and permalink for Item d">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#thm-Equivalent-Consistent-Span-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Theorem 1.4.7"><a href="#thm-Equivalent-Consistent-Span" title="Copy heading and permalink for Theorem 1.4.7" aria-label="Copy heading and permalink for Theorem 1.4.7">🔗</a></div>
+</article>
+<div class="para" id="subsec-ExistenceSolutions-4">This theorem is not hard to prove. Observe that part (b) and part (c) are essentially the same thing (they are!) said in two different ways. Also, if the matrix equation <span class="process-math">\(A\v{x} = \v{b}\)</span> is consistent (i.e., we can find a solution), we can convert it to a vector equation, suggesting that <span class="process-math">\(\v{b}\)</span> is a linear combination of the columns of <span class="process-math">\(A\)</span> (and vice versa!). To make it happen, there <em class="alert">cannot</em> be a pivot position in the constant column. That is, we need to max out the pivot position in the coefficient matrix <span class="process-math">\(A\text{,}\)</span> and hence, each row in <span class="process-math">\(A\)</span> must have a pivot position.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceSolutions-5">In practice, we can determine part (d) of the theorem easily (just row reduce the matrix and observe the pivot positions!). If we can establish part (d) is true, then the rest of the other three statements must be true as well!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="subsec-ExistenceSolutions-6"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-ExistenceSolutions-6-1">Let <span class="process-math">\(A = \begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \\ 1 \amp -1 \amp 2 \amp 3 \\ 0 \amp 5 \amp 1 \amp -1 \end{bmatrix}\text{.}\)</span> And we want to determine if the columns of <span class="process-math">\(A\)</span> spans <span class="process-math">\(\R^3\text{.}\)</span> That is, can any vectors in <span class="process-math">\(\R^3\)</span> be written as a linear combination of the columns of <span class="process-math">\(A\text{...}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceSolutions-6-2">Well this is super difficult to tackle since we can’t possibly check every single vector in <span class="process-math">\(\R^3\text{...}\)</span> Alternatively, it is a lot easy to check the <em class="alert">pivot positions</em> of <span class="process-math">\(A\text{!}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-6-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-ExistenceSolutions-6-3">
+<div class="para">Converting the matrix <span class="process-math">\(A\)</span> to the reduced row echelon form, we obtain</div>
+<div class="displaymath process-math" id="subsec-ExistenceSolutions-6-3-2">
+\begin{equation*}
+\begin{bmatrix} 1 \amp 0 \amp 0 \amp -\frac{37}{8} \\ 0 \amp 1 \amp 0 \amp -\frac{7}{8} \\ 0 \amp 0 \amp 1 \amp \frac{27}{8} \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">There are three pivot positions, so each row contains a pivot position. That is, part (d) of the above theorem is true.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-6-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceSolutions-6-4">By this theorem, we know that the other three statements are also true, and hence, the columns of <span class="process-math">\(A\)</span> spans <span class="process-math">\(\R^3\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-6-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceSolutions-6-5">But what if we do want to solve this problem without relying on this cool theorem... How can we check every single vectors in <span class="process-math">\(\R^3\)</span> to make sure they can be written as a linear combination of the columns of <span class="process-math">\(A\text{...}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-6-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceSolutions-6-6">While it is impossible to check <em class="emphasis">every</em> single vectors in <span class="process-math">\(\R^3\text{,}\)</span> it is totally possible to check an <em class="alert">arbitrary</em> vector in <span class="process-math">\(\R^3\text{.}\)</span> So let’s assume <span class="process-math">\(\v{b}\)</span> is an arbitrary vector in <span class="process-math">\(\R^3\text{.}\)</span> That is, <span class="process-math">\(\v{v} = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-6-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-ExistenceSolutions-6-7">
+<div class="para">We know that <span class="process-math">\(\v{b}\)</span> can be written as a linear combination of the columns of <span class="process-math">\(A\)</span> if <span class="process-math">\(A\v{x} = \v{b}\)</span> is consistent. So we want to row reduce the augmented matrix <span class="process-math">\(\begin{bmatrix} A \mid \v{b} \end{bmatrix}\)</span> and observe whether we can get a solution out of it. The augmented matrix looks something like this:</div>
+<div class="displaymath process-math" id="subsec-ExistenceSolutions-6-7-5">
+\begin{equation*}
+\begin{bmatrix} 3 \amp 5 \amp 6 \amp 2 \amp \mid \amp b_1\\ 1 \amp -1 \amp 2 \amp 3 \amp \mid \amp b_2\\ 0 \amp 5 \amp 1 \amp -1 \amp \mid \amp b_3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">When we row reduce this matrix, the reduced row echelon form of <span class="process-math">\(A\)</span> will be the same, and we just attach a constant column to the right of it (something like this:)</div>
+<div class="displaymath process-math" id="subsec-ExistenceSolutions-6-7-7">
+\begin{equation*}
+\begin{bmatrix} 1 \amp 0 \amp 0 \amp -\frac{37}{8} \amp \mid \amp \widetilde{b_1} \\ 0 \amp 1 \amp 0 \amp -\frac{7}{8} \amp \mid \amp \widetilde{b_2} \\ 0 \amp 0 \amp 1 \amp \frac{27}{8} \amp \mid \amp \widetilde{b_3}\end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(\widetilde{b_1}\text{,}\)</span> <span class="process-math">\(\widetilde{b_2}\text{,}\)</span> and <span class="process-math">\(\widetilde{b_3}\)</span> are just the numbers obtained by applying the elementary row operations to <span class="process-math">\(b_1\text{,}\)</span> <span class="process-math">\(b_2\text{,}\)</span> and <span class="process-math">\(b_3\text{,}\)</span> respectively. But the system is always consistent regardless of these values, since there is no pivot position in the rightmost column. Hence, an arbitrary vector in <span class="process-math">\(\R^3\)</span> can be written as a linear combination of the columns of <span class="process-math">\(A\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-6-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ExistenceSolutions-6-8">Well an arbitrary vector can be any vector in <span class="process-math">\(\R^3\text{.}\)</span> We essentially just established that <em class="alert">every</em> vector can be written as a linear combination of the columns of <span class="process-math">\(A\text{,}\)</span> and hence the columns of <span class="process-math">\(A\)</span> spans <span class="process-math">\(\R^3\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ExistenceSolutions-6-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 1.4.8"><a href="#subsec-ExistenceSolutions-6" title="Copy heading and permalink for Example 1.4.8" aria-label="Copy heading and permalink for Example 1.4.8">🔗</a></div>
+</article><div class="autopermalink" data-description="Subsection: Existence of Solutions"><a href="#subsec-ExistenceSolutions" title="Copy heading and permalink for Subsection: Existence of Solutions" aria-label="Copy heading and permalink for Subsection: Existence of Solutions">🔗</a></div>
 </section><div class="autopermalink" data-description="Section 1.4: The Matrix Equation A\v{x} = \v{b}"><a href="#sec14-MatrixEquation" title="Copy heading and permalink for Section 1.4: The Matrix Equation A\v{x} = \v{b}" aria-label="Copy heading and permalink for Section 1.4: The Matrix Equation A\v{x} = \v{b}">🔗</a></div>
 </section>
 </div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<a class="previous-button button" href="sec13-VectorEquations.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="backmatter.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="sec13-VectorEquations.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec15-SolutionSets.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
