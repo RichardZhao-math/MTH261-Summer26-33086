@@ -287,7 +287,7 @@
     
     <p>
       Remember how we worked so hard to solve systems of linear equations in week 1? 
-      And remember that every system of linear equations can be written as a Matrix Equation <m>A \v{x} = \v{b}</m> in week 2? 
+      And remember that every system of linear equations can be written as a Matrix Equation <m>A \v{x} = \v{b}</m> in <xref ref="sec14-MatrixEquation"/>? 
       Well, if the coefficient matrix <m>A</m> is invertible, then we can solve this equation using <m>A^{-1}</m> just like back in Algebra 1! 
     </p>
 
@@ -1095,130 +1095,5 @@
       </solution>
     </exercise>
   </subsection>
-
-  <worksheet xml:id="ws-sec22">
-    <title>Some Exercises for This Section</title>
-    
-    <introduction>
-      <p>
-        Richard included some practice problems that cover some main concepts in this section. 
-        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
-        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
-        Reach out to Richard for help if you get stuck or have any questions. 
-      </p>
-
-      <p>
-        Only the final answers are included to some of the problems for you to check your result. 
-        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
-      </p>
-    </introduction>
-
-    <exercisegroup>
-        <introduction>
-            <p>Find the inverses of the matrices.</p>
-        </introduction>
-        
-        <exercise number="2.2.1">
-            <me>\begin{bmatrix} 8 \amp 3 \\ 5 \amp 2 \end{bmatrix}</me>
-        </exercise>
-
-        <exercise number="2.2.3">
-            <me>\begin{bmatrix} 8 \amp 3 \\ -7 \amp -3 \end{bmatrix}</me>
-        </exercise>
-    </exercisegroup>
-
-    <exercise number="2.2.5">
-        <statement>
-            <p>Verify that the inverse you found in Exercise 1 is correct.</p>
-        </statement>
-    </exercise>
-
-    <exercise number="2.2.9">
-        <statement>
-            <p>Let <m>A=\begin{bmatrix} 1 \amp 2 \\ 5 \amp 12 \end{bmatrix}</m>, <m>\v{b}_{1}=\begin{bmatrix} -1 \\ 3 \end{bmatrix}</m>, <m>\v{b}_{2}=\begin{bmatrix} 1 \\ -5 \end{bmatrix}</m>, <m>\v{b}_{3}=\begin{bmatrix} 2 \\ 6 \end{bmatrix}</m>, and <m>\v{b}_{4}=\begin{bmatrix} 3 \\ 5 \end{bmatrix}</m>.</p>
-            <ol marke="(a)">
-              <li>
-                <p>(a) Find <m>A^{-1}</m> and use it to solve the four equations <m>A\v{x}=\v{b}_{1}</m>, <m>A\v{x}=\v{b}_{2}</m>, <m>A\v{x}=\v{b}_{3}</m>, <m>A\v{x}=\v{b}_{4}</m>.</p>
-              </li>
-              <li>
-                <p>(b) The four equations in part (a) can be solved by the same set of row operations, since the coefficient matrix is the same in each case. Solve the four equations in part (a) by row reducing the augmented matrix <m>[A \quad \v{b}_1 \quad \v{b}_2 \quad \v{b}_3 \quad \v{b}_4]</m>.</p>
-              </li>
-            </ol>
-        </statement>
-    </exercise>
-
-    <exercisegroup>
-        <introduction>
-            <p>Mark each statement True or False (T/F). Justify each answer.</p>
-        </introduction>
-
-        <exercise number="2.2.11">
-            <p>(T/F) In order for a matrix <m>B</m> to be the inverse of <m>A</m>, both equations <m>AB=I</m> and <m>BA=I</m> must be true.</p>
-        </exercise>
-
-        <exercise number="2.2.13">
-            <p>(T/F) If <m>A</m> and <m>B</m> are <m>n \times n</m> and invertible, then <m>A^{-1}B^{-1}</m> is the inverse of <m>AB</m>.</p>
-        </exercise>
-
-        <exercise number="2.2.15">
-            <p>(T/F) If <m>A=\begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m> and <m>ab-cd \neq 0</m>, then <m>A</m> is invertible.</p>
-        </exercise>
-
-        <exercise number="2.2.17">
-            <p>(T/F) If <m>A</m> is an invertible <m>n \times n</m> matrix, then the equation <m>A\v{x}=\v{b}</m> is consistent for each <m>\v{b}</m> in <m>\mathbb{R}^{n}</m>.</p>
-        </exercise>
-
-        <exercise number="2.2.19">
-            <p>(T/F) Each elementary matrix is invertible.</p>
-        </exercise>
-    </exercisegroup>
-
-    <exercise number="2.2.21">
-        <statement>
-            <p>Let <m>A</m> be an invertible <m>n \times n</m> matrix, and let <m>B</m> be an <m>n \times p</m> matrix. Show that the equation <m>AX=B</m> has a unique solution <m>A^{-1}B</m>.</p>
-        </statement>
-    </exercise>
-
-    <exercise number="2.2.23">
-        <statement>
-            <p>Suppose <m>AB=AC</m> where <m>B</m> and <m>C</m> are <m>n \times p</m> matrices and <m>A</m> is invertible. Show that <m>B=C</m>. Is this true, in general, when <m>A</m> is not invertible?</p>
-        </statement>
-    </exercise>
-
-    <exercise number="2.2.27">
-        <statement>
-            <p>Solve the equation <m>AB=BC</m> for <m>A</m>, assuming that <m>A</m>, <m>B</m>, and <m>C</m> are square and <m>B</m> is invertible.</p>
-        </statement>
-    </exercise>
-
-    <exercise number="2.2.31">
-        <statement>
-            <p>Explain why the columns of an <m>n \times n</m> matrix <m>A</m> are linearly independent when <m>A</m> is invertible.</p>
-        </statement>
-    </exercise>
-
-    <exercise number="2.2.33">
-        <statement>
-            <p>Suppose <m>A</m> is <m>n \times n</m> and the equation <m>A\v{x}=\v{0}</m> has only the trivial solution. 
-              Explain why <m>A</m> has <m>n</m> pivot columns and <m>A</m> is row equivalent to <m>I_{n}</m>. 
-              This shows that <m>A</m> must be invertible. </p>
-        </statement>
-    </exercise>
-
-    <exercisegroup>
-        <introduction>
-            <p>Find the inverses of the matrices, if they exist. Use the algorithm introduced in this section.</p>
-        </introduction>
-        
-        <exercise number="2.2.39">
-            <me>\begin{bmatrix} 1 \amp 2 \\ 4 \amp 7 \end{bmatrix}</me>
-        </exercise>
-
-        <exercise number="2.2.41">
-            <me>\begin{bmatrix} 1 \amp 0 \amp -2 \\ -3 \amp 1 \amp 4 \\ 2 \amp -3 \amp 4 \end{bmatrix}</me>
-        </exercise>
-    </exercisegroup>
-
-  </worksheet>
 
 </section>

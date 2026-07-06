@@ -7,7 +7,10 @@
   <xi:include href="sec21-MatrixOperations.ptx" />
   <xi:include href="sec22-InverseMatrix.ptx" />
   <xi:include href="sec23-InvertibleMatrix.ptx" />
+
+  <!--
   <xi:include href="sec28-Subspaces.ptx" />
   <xi:include href="sec29-DimensionRank.ptx" />
+  -->
 
 </chapter>

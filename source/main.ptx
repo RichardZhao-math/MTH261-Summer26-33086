@@ -13,9 +13,9 @@
 
     <!-- Include chapters -->
     <xi:include href="./ch1-LinearEquations.ptx" />
+    <xi:include href="./ch2-MatrixAlgebra.ptx" />
 
     <!--
-    <xi:include href="./ch2-MatrixAlgebra.ptx" />
     <xi:include href="./ch3-Determinants.ptx" />
 
     <xi:include href="./ch5-EigenvaluesEigenvectors.ptx" />
