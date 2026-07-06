@@ -1333,6 +1333,501 @@ var ptx_lunr_docs = [
   "body": " Let defined by Is a linear transformation? Is it injective? Is it surjective?  First, we determine if is a linear transformation. We can \"factor out\" the variables to rewrite the transformation as a matrix-vector product: Let be this matrix. Because , it is a matrix transformation. Every matrix transformation is a linear transformation, so yes, is a linear transformation.  Next, we check if is injective. By our previous theorem, is injective if and only if the homogeneous equation has only the trivial solution. To determine this, we find the reduced row echelon form of the standard matrix : Because there is a pivot in every column, there are no free variables. The equation has only the trivial solution, . Therefore, is injective.  Finally, we determine if is surjective. The transformation is surjective if and only if its columns span the codomain, . This occurs if and only if there is a pivot position in every row of . Looking at the reduced row echelon form of , the third row does not contain a pivot. Consequently, the columns of do not span , meaning there are vectors in the codomain that cannot be reached. Thus, is not surjective.  "
 },
 {
+  "id": "sec21-MatrixOperations",
+  "level": "1",
+  "url": "sec21-MatrixOperations.html",
+  "type": "Section",
+  "number": "2.1",
+  "title": "Matrix Operations",
+  "body": " Matrix Operations   So far, we have seen matrices popping up as we tackled systems of linear equations. Now, it is time to build our understanding from the ground up and formally define what a matrix is.  In this section, we will establish the core operations for matrices: addition, scalar multiplication, transposition, and matrix multiplication, as well as their properties!    After this section, students will be able to:     determine the size of a matrix and identify specific entries using subscript notation.    compute the sum, scalar multiple, and transpose of given matrices.    determine if two matrices can be multiplied based on their sizes and compute their product.    apply algebraic properties to simplify matrix expressions and demonstrate why matrix multiplication is generally non-commutative.      We actually have learned (or at least heard of) most of the matrix operations in class before. Let's formally introduce the operations!   What exactly is a matrix?  We have dealt with matrices in the last section. Let's formally define what a matrix is since this chapter is all about matrices!  A matrix is a rectangular array of entries (typically numbers). The size of a matrix is determined by the number of rows and columns it has, and it is usually given in the form of , where is the number of rows and is the number of columns.  For example, the following matrix has 2 rows and 3 columns, so its size is .   What are the sizes of each of the following matrices?        Basic Matrix Operations  We will learn three operations on matrices: matrix addition, scalar multiplication, and transposition. Let's introduce all of these operations using examples!  Suppose we have the matrices and .  To add two matrices together, we add all corresponding entries (those would be the things inside the brackets) and the sum is the corresponding entry in the answer.   To multiply a scalar by a matrix , we multiply the scalar by every entry of the matrix and that product is the corresponding entry in the answer.   The transpose of a matrix , denoted , is obtained by flipping it across the main diagonal. That is, every row of the original matrix becomes the corresponding column of the transpose and every column of the original matrix becomes the corresponding row of the transpose.   And we can combine all of these operations in lots of ways!   Let's say we want to compute . Then we have     Let and . Compute the following (if impossible, explain why):                              1.   2. Observe that we can just subtract the corresponding entries of from the corresponding entries of to get the answer. Once we have addition and scalar multiplication, we can define subtraction as adding the negatives.  3. Observe that is a matrix but is a matrix. We cannot add these two matrices together because not every entry of has a corresponding entry in and vice versa.  4.   5.     We can make some observations about these operations:   We can ONLY add two matrices when they are the exact same size . This makes sense because we do it by adding corresponding entries, so if they are different sizes, we won't have those for all of the entries!    If is an matrix, then is an matrix. This makes sense because every row of becomes a column of which also forces every column of to become a row of .     is called a square matrix if it has the same number of rows as columns. Notice that the only way can be the same size as is if is a square matrix.    When we transpose a matrix twice, we get back to the original matrix (you can \"see\" this if you imagine flipping it over the main diagonal twice).  Terminology: the main diagonal of a matrix is the one going down from left to right.       Subscript Notation for Matrices  We can identify the location of any entry of a matrix by saying which row and column it lives in. For example, in our matrix The entry in the second row and third column is . We can say this in symbol as: The entry is .  We can also use subscript notation to denote the entries of a matrix. We indicate the row first and then the column using subscripts. For example, the in matrix can be denoted as .  A generic matrix would be denoted by   And any matrix can be denoted in shorthand by . If your matrix is named you would use to denote the entry in the th row and the th column.   Note: We always identify the row first and then the column when describing an entry of a matrix.  Now we can describe the operations we learned using the subscript notation!  Suppose and , and let be a scalar (you can just think of a scalar as a number since in this this class they always will be). Then since we add two matrices by adding corresponding entries.  Similarly, since we multiply a scalar by a matrix by multiplying it by every entry of a matrix, and since we transpose a matrix by turning every row into a column (and every column into a row).    Rules for Matrix Addition and Scalar Multiplication  Let , , and be matrices ( and fixed), and let and be real numbers (scalars). Then the following properties hold:   Matrix Addition is commutative . That is,     Matrix Addition is associative . That is,     There exists a zero matrix  such that where is the matrix in which every entry is .    For every matrix , there exists a matrix such that where is called the additive inverse of and is obtained by multiplying every entry of by .    Scalar Multiplication distributes over Matrix Addition. That is,     Scalar Multiplication distributes over Scalar Addition. That is,     Scalar Multiplication by a Product of Two Scalars is the Same as Scalar Multiplication by One Scalar Followed by Scalar Multiplication by the Other Scalar. That is,     Scalar Multiplication by leaves a matrix unchanged. That is,      Let's prove them all but only in the case for matrices. These proofs can easily be generalized using and variables for subscripts to make the matrices completely general .   Proof of these Rules for Matrices  Let , , and be arbitrary matrices. And ket and be arbitrary real numbers (scalars).  1. (Communitivity):   2. (Associativity):   3. (Zero Matrix):   4. (Additive Inverse): Then apply commutativity to get (Or just do a similar proof. Either way works!)  5. (Distributive Part 1):   6. (Distributive Part 2):   7. (Multiplication by Product of Scalars):   8. (Scalar Multiplication by 1):   Now try convincing yourself that these properties hold for matrices of any size by generalizing the above proofs!     Rules for Transposes  Let and be matrices. (Note that this notation doesn't mean the matrices aren't square. It just means we aren't assuming that they are). Then the following properties hold:    will be an matrix.  If you turn every row into a column then the number of columns of the new matrix is the same as the number of rows in the original (similar with columns and rows). You can also see this by imagining flipping the matrix across its main diagonal.       If you turn every row into a column and then do that again, you put the matrix right back where you started. It is even more clear if you imagine reflecting the matrix across its main diagonal twice.       It doesn't matter whether you (1) multiply every entry by and then flip across the main diagonal OR (2) flip across the main diagonal and then multiply every entry by . In either case you turn into .       It doesn't matter whether you (1) add all the corresponding entries and then flip across the main diagonal OR (2) flip each matrix across the main diagonal and then add all the corresponding entries. In either case the entry is .     Last but not least, we call a matrix symmetric if it equals its own transpose. That is, is symmetric if . They are called symmetric because if you flip the matrix over the main diagonal it doesn't change it!  One immediate consequence of this property is that if is symmetric, then must be a square matrix (or else, the two matrices won't even be the same size, let alone equal).  For example, the matrix is symmetric because     Matrix Multiplication  Recall when you multiply a column vector by a matrix, you just compute the dot product of that vector by each row vector of the matrix. Then you get a nice column vector.  If you want to multiply a matrix by another matrix, you just do that for every column of the matrix on the right and you get all of the columns in your answer matrix. And that is how you multiply matrices!   Let's multiply the following two matrices   Oberve that the matrix on the right consists of two columns. We know how to multiply the column (aka a column vector) by the matrix. Let's do that! and Then the first column vector we get is the first column in the answer matrix and the second column vector we get is the second column in the answer matrix. That is,    Writing out the general formula for matrix multiplication using all the little subscripts would be horrible. But there is a clever way to write matrices that makes it a bit easier.  Suppose you want to multiply a matrix by the matrix . Instead of writing down all the entries of using double subscripts, we can write the matrix as a collection of columns using single subscripts. So the matrix looks like this: Then where each column of the answer is a product of with the corresponding column vector of . And each of those products are computed by taking the dot product of each row of with that column vector.  Summary: the entry of the matrix is computed by taking the dot product of the th row of with the -th column of (rows times columns).   Multiply! If it is impossible, say why!               1.   2. This is impossible. You can't multiply a matrix by a matrix. None of the dot products work!  For example, if you want to find the entry in the answer matrix, then you would find the dot product of the first row of the matrix to the left and the first column of the matrix to the right. But... there are three entries in the first row vector and four entries in the column vector... The sizes don't work out... (there is nothing we can multiply by the )...    To make sure the dot products work out for matrix multiplication, we want to make sure the number of columns in the first matrix matches up with the number of rows in the second matrix. That is, to multiply two matrices and with the size of being , the size of must be . The answer matrix is of the size of .  New operation means more rules! Here is a theorem that collects some rules about matrix multiplication.   Matrix Multiplication Rules   Suppose , , and are matrices that are the right size for the products to be defined. And suppose is the identity matrix that is the right size as well. The following properties hold:    Identity Property : and      Associativity :     (Left) Distributive Property :     (Right) Distributive Property :      Regrouping with Scalar Multiplication ; For any scalar ,      Transpose of a Product :        The first five rules should not be surprising. Spend some time to convince yourself why they are true!   Proof Ideas and Sketches Using Smaller Matrices     The first equation follows from multiplying the identify matrix by a column vector. You get that same column vector as the answer. Since that would happen for every column of , you will get as your answer.  The second equation is true because when you multiply by the th column of , the single in the th row of that column will reproduce the th column of the matrix.    This one gets messy when the matrices start getting bigger, so let's verify it in the case. The proof in general works the same just with a lot more subscripts to juggle! and Comparing the results, we can see that the matrix multiplication is associative because multiplication of numbers is!    This one isn't quite as messy as the previous one, but still warrants limiting to case:     The verification of this one works just like the previous one with the obvious changes. Again it comes down to the fact that we have the distributive property in basic arithmetic.    I encourage you to verify this for the case. This one is much less messy than the ones we have done!      You may find the last rule a bit surprising. Why isn't equal to ?  This surprise should tell you that matrix multiplication is not commutative!  Let's verify this one for the case! If you computed and compare it to this you would find you would NOT get this result! But if we commute all of the products inside this matrix... This is what you would get for !   Observe that commutativity is not included in the theorem. That is because matrix multiplication is NOT commutative, which means in general it is NOT true that . Sometimes it happens that way but often it does not!  A quick counter-example can show that matrix multiplication is non-commutative. Let and . Observe that but Hence ...   "
+},
+{
+  "id": "sec21-MatrixOperations-2-3",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#sec21-MatrixOperations-2-3",
+  "type": "Objectives",
+  "number": "",
+  "title": "",
+  "body": "  After this section, students will be able to:     determine the size of a matrix and identify specific entries using subscript notation.    compute the sum, scalar multiple, and transpose of given matrices.    determine if two matrices can be multiplied based on their sizes and compute their product.    apply algebraic properties to simplify matrix expressions and demonstrate why matrix multiplication is generally non-commutative.    "
+},
+{
+  "id": "subsec-MatrixIntro-3",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-MatrixIntro-3",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "matrix size "
+},
+{
+  "id": "subsec-MatrixIntro-5",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-MatrixIntro-5",
+  "type": "Checkpoint",
+  "number": "2.1.1",
+  "title": "",
+  "body": " What are the sizes of each of the following matrices?     "
+},
+{
+  "id": "subsec-BasicMatrixOperations-8",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-BasicMatrixOperations-8",
+  "type": "Example",
+  "number": "2.1.2",
+  "title": "",
+  "body": " Let's say we want to compute . Then we have   "
+},
+{
+  "id": "subsec-BasicMatrixOperations-9",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-BasicMatrixOperations-9",
+  "type": "Checkpoint",
+  "number": "2.1.3",
+  "title": "",
+  "body": " Let and . Compute the following (if impossible, explain why):                              1.   2. Observe that we can just subtract the corresponding entries of from the corresponding entries of to get the answer. Once we have addition and scalar multiplication, we can define subtraction as adding the negatives.  3. Observe that is a matrix but is a matrix. We cannot add these two matrices together because not every entry of has a corresponding entry in and vice versa.  4.   5.    "
+},
+{
+  "id": "subsec-BasicMatrixOperations-10",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-BasicMatrixOperations-10",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "square matrix main diagonal "
+},
+{
+  "id": "subsec-Rules-MatrixAdditionScalarMultiplication-2",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-Rules-MatrixAdditionScalarMultiplication-2",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "commutative associative zero matrix additive inverse "
+},
+{
+  "id": "subsec-Rules-MatrixAdditionScalarMultiplication-4",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-Rules-MatrixAdditionScalarMultiplication-4",
+  "type": "Proof",
+  "number": "1",
+  "title": "Proof of these Rules for <span class=\"process-math\">\\(2 \\times 3\\)<\/span> Matrices.",
+  "body": " Proof of these Rules for Matrices  Let , , and be arbitrary matrices. And ket and be arbitrary real numbers (scalars).  1. (Communitivity):   2. (Associativity):   3. (Zero Matrix):   4. (Additive Inverse): Then apply commutativity to get (Or just do a similar proof. Either way works!)  5. (Distributive Part 1):   6. (Distributive Part 2):   7. (Multiplication by Product of Scalars):   8. (Scalar Multiplication by 1):   Now try convincing yourself that these properties hold for matrices of any size by generalizing the above proofs!  "
+},
+{
+  "id": "subsec-Rules-TransposeMatrices-3",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-Rules-TransposeMatrices-3",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "symmetric "
+},
+{
+  "id": "subsec-MatrixMultiplication-4",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-MatrixMultiplication-4",
+  "type": "Example",
+  "number": "2.1.4",
+  "title": "",
+  "body": " Let's multiply the following two matrices   Oberve that the matrix on the right consists of two columns. We know how to multiply the column (aka a column vector) by the matrix. Let's do that! and Then the first column vector we get is the first column in the answer matrix and the second column vector we get is the second column in the answer matrix. That is,   "
+},
+{
+  "id": "subsec-MatrixMultiplication-8",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-MatrixMultiplication-8",
+  "type": "Checkpoint",
+  "number": "2.1.5",
+  "title": "",
+  "body": " Multiply! If it is impossible, say why!               1.   2. This is impossible. You can't multiply a matrix by a matrix. None of the dot products work!  For example, if you want to find the entry in the answer matrix, then you would find the dot product of the first row of the matrix to the left and the first column of the matrix to the right. But... there are three entries in the first row vector and four entries in the column vector... The sizes don't work out... (there is nothing we can multiply by the )...   "
+},
+{
+  "id": "thm-RulesMatrixMultiplication",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#thm-RulesMatrixMultiplication",
+  "type": "Theorem",
+  "number": "2.1.6",
+  "title": "Matrix Multiplication Rules.",
+  "body": " Matrix Multiplication Rules   Suppose , , and are matrices that are the right size for the products to be defined. And suppose is the identity matrix that is the right size as well. The following properties hold:    Identity Property : and      Associativity :     (Left) Distributive Property :     (Right) Distributive Property :      Regrouping with Scalar Multiplication ; For any scalar ,      Transpose of a Product :       "
+},
+{
+  "id": "subsec-MatrixMultiplication-13",
+  "level": "2",
+  "url": "sec21-MatrixOperations.html#subsec-MatrixMultiplication-13",
+  "type": "Proof",
+  "number": "1",
+  "title": "Proof Ideas and Sketches Using Smaller Matrices.",
+  "body": " Proof Ideas and Sketches Using Smaller Matrices     The first equation follows from multiplying the identify matrix by a column vector. You get that same column vector as the answer. Since that would happen for every column of , you will get as your answer.  The second equation is true because when you multiply by the th column of , the single in the th row of that column will reproduce the th column of the matrix.    This one gets messy when the matrices start getting bigger, so let's verify it in the case. The proof in general works the same just with a lot more subscripts to juggle! and Comparing the results, we can see that the matrix multiplication is associative because multiplication of numbers is!    This one isn't quite as messy as the previous one, but still warrants limiting to case:     The verification of this one works just like the previous one with the obvious changes. Again it comes down to the fact that we have the distributive property in basic arithmetic.    I encourage you to verify this for the case. This one is much less messy than the ones we have done!     "
+},
+{
+  "id": "sec22-InverseMatrix",
+  "level": "1",
+  "url": "sec22-InverseMatrix.html",
+  "type": "Section",
+  "number": "2.2",
+  "title": "The Inverse of a Matrix",
+  "body": " The Inverse of a Matrix   In our journey through linear algebra, we have explored how to multiply matrices and how to represent systems of equations as the matrix equation . A natural mathematical question arises: can we \"undo\" matrix multiplication? In the realm of real numbers, we solve algebraic equations like by multiplying by the reciprocal (or inverse) of . In this section, we investigate whether a similar structural concept exists for matrices.    After this section, students will be able to:     find the inverse of a invertible matrix using a formula;    find the inverse of an invertible matrix using the Gaussian Elimination algorithm;    solve systems of linear equations using matrix inverses;    construct elementary matrices and its inverse for each elementary row operation;    express any invertible matrix, and its inverse, as a product of elementary matrices.       Let . Find a matrix such that where is the identity matrix.   There are two possible strategies:   Strategy #1: Guess and check! This strategy is doable for a matrix but usually quite tedious. The matrix is made special so that it isn't too bad at all.   Strategy #2: Remember how matrix multiplication works: When we multiply by , each column of the answer is found by multiplying the corresponding column of by .  So we know that if is the first column of , then we will need to be since that is the first column of the identity matrix. If we call the entries of that column and , then we can solve a system of equations to figure out what and are!  Then we can do a similar process to figure out what the second column of is!    Using Strategy #1...  You probably discovered that the only way to get the in the top left of the answer is to put a in the bottom left of . Then you can figure out that you need a in the top left of to get the in the bottom left of the answer.  Now you need a in the top right of the answer. because of the in , your answer for this spot will be times whatever you put in the bottom right of . So that has to be a .  Finally that in the bottom right of means that you need a in your top right spot in order to get the you need in the bottom right of the identity matrix. So the matrix     Using Strategy #2...  If we call our first column of  , then we know that we need We can solve this using the substitution method easily since the top equation tells us and substituting this into the second equation gives us So the first column of will have to be .  Now if we call our second column of  , then we know that we need This one is even quicker to solve because the top equation tells us and substituting this into the second equation gives us . So the second column of will have to be .  Therefore, the matrix .  And we can quickly verify that :    Now that you found , take a minute and compute .    is also !    This matrix is a special buddy of . This is called the inverse of !   Inverse of a Matrix   Inverse of a Matrix   If is a square matrix, a matrix is called an inverse of if and only if . A matrix that has an inverse is called an invertible matrix .      An exmaple:  is invertible and since...    A non-example:  is NOT invertible because no matter what matrix you try you will get a row of zeros:      A matrix can only have one inverse.     Suppose and are both inverses of . Then This means .  Multiplying both sides of equation (on the left) by , we get Using the associative property, we get Since we also know that , then .  So by the identity property, .   In the case, there is a quick way to find out if a matrix is invertible and there is a nice formula for the inverse. We just have to define two terms:   Determinant of Matrices   Let be a matrix. The determinant of the matrix is defined by      Adjugate of Matrices   Let be a matrix. The adjugate of the matrix is The adjugate of can be obtained by (1) swapping the elements in the main diagonal, and (2) changing the sign of the elements not on the main diagonal.    The matrix is invertible if and only if . And is    Let . Notice that Since , we know that exists.  We can also find . We know that . Then   If you want to verify that is indeed the inverse of , try multiplying them together and you should get back .   Remember how we worked so hard to solve systems of linear equations in week 1? And remember that every system of linear equations can be written as a Matrix Equation in ? Well, if the coefficient matrix is invertible, then we can solve this equation using just like back in Algebra 1!  Let's assume that is invertible, then . Say we have a Matrix Equation . We certainly can multiply the same thing (say ) on two sides of the equation. We get So the solution to this equation must be .  If you want to verify that this is indeed a solution, then we can plug in into the left side of our equation. We see that So this really is a solution to the equation! Let's make it a theorem!    If is an invertible matrix, then the Matrix Equation has exactly one solution. The solution is .     Consider the following system of linear equations: The Matrix Equation version of this system is , where   Notice that So is invertible! We can find the solution using the little theorem we just came up with!  Since , then we get By our theorem, the solution to the system is     Solve the following system of linear equation by   writing the system as a Matrix Equation;    finding the inverse of the coefficient matrix;    using the inverse to solve the system.      1. The matrix equation is   2. The determinant is and the adjugate matrix is , so the inverse is   3. The solution is     There is another way to compute inverse matrices efficiently, which is using the Gaussian Elimination algorithm we learned back in .  Suppose we want to find the inverse of a matrix . That is, we are looking for a matrix such that Since we multiply these matrices by multiplying the by each of the column vectors and , the first matrix-vector product needs to give us the first column of and the second matrix-vector product needs to give us the second column of . That means that finding the inverse boils down to solving two systems of equations given by the matrix equations: Observe that these two systems of linear equations have the same coefficient matrix. So if we used augmented matrices, we would end up doing the same steps to put the matrices into reduced row echelon form.  The technique based on this idea is to put these two equations into ONE giant augmented matrix: But it gets even better! Let's do an example...   Let's say we want to find the inverse of the matrix . We will first make our big augmented matrix: Now we will put this thing into reduced row echelon form!  Step 1: Swap Row 1 and Row 2, we get We have our first leading and it already has a zero beneath it.  Step 2: Multiply Row 2 by , we get Now the matrix is in row echelon form. Let's get it into reduced row echelon form by getting a zero above the second leading .  Step 3: Multiply times Row 2 to Row 1 (and replace Row 1), we get Notice that the part on the left is the identity matrix. And, notice that the part on the right is the inverse!   That is basically the technique:   Step 1: Make a big augmented matrix with on the left side and on the right side.    Step 2: Put the augmented matrix into reduced row echelon form.   If the matrix is invertible, then the reduced row-echelon form will have on the left side and on the right side.   Use the Gaussian Elimination algorithm to find the inverse of the matrix    The big augmented matrix is   First let's get zeros beneath our first leading :   Now we need to get our second leading by multiplying Row 2 by :   Now we need a zero beneath our second leading . We can multiply Row 2 by and adding it to Row 3:   Now to get our last leading , we need to multiply Row 3 by :   Then we need to get zeros above this third leading . So, let's add times Row 3 to Row 2 and -3 times Row 3 to Row 1:   So the inverse is       Important Theorems and Facts about Inverses   Cancellation Law for Matrices   Suppose and are matrices and is an invertible matrix. Then the following holds:   If , then .    If , then .        Part 1: Suppose . Then Therefore,   The proof of Part 2 would be similar.     Suppose is invertible. Then the inverse of is the transpose of . That is,      Suppose is invertible. Then But and . Substituting these into the above equation, we get So the inverse of is the transpose of .     If and are invertible matrices and is defined, then     This is also called \"shoes and socks\" because you take off your shoes and socks in the reverse order in which you put them on. That is what this theorem says about matrix inverses.       There are also a collection of a bunch of facts about inverses (including some of the ones we have just mentioned).  Suppose the following matrices are all square and the same size.    is invertible and .    If is invertible, so is and .    If and are invertible, so is , and .    If are all invertible, so is their product , and .    If is invertible, then so is , and .    If is invertible and is a number, then is invertible and .    If is invertible, so is its transpose , and .       Elementary Matrices  There is an another way of finding the inverse of a matrix using elementary matrices . This is essentially the same as our Gaussian Elimination Algorithm but in another presentation using matrix multiplication.  We've learned how to solve systems of equations and find matrix inverses by using the Gaussian Elimination algorithm. And we learned how to multiply matrices. It turns out that these two things are related!  Each of the three elementary row operations can be performed by multiplying by an elementary matrix .  Let's see this by looking at an example!   Consider the system: The augmented matrix is   Recall there are three elementary row operations we can perform to an augmented matrix.   We could swap the two rows by multiplying by the matrix :     We could multiply Row 2 by by multiplying by the matrix :     We could add times Row 1 to Row 2 (and replace Row 2) by multiplying by the matrix :    Notice that in each case, the matrix that we used to do the elementary operation is exactly the matrix you would get by doing that same elementary operation to the identity matrix. WHAT!??   If we swap the two rows of , we get     If we multiply Row 2 of by , we get     If we add times Row 1 of to Row 2 (and replace Row 2), we get        Summary: Every elementary row operation corresponds to an elementary matrix , , that can be created by performing that operation on the identity matrix. We can perform that operation on any matrix by computing the product .   Consider the matrix . Suppose we did the following two steps:   Swap Row 1 and Row 2;    Add times Row 1 to Row 2 (and replace Row 2).   That would look like this:   The first step corresponds to the elementary matrix and the second step corresponds to the elementary matrix ( Note: When we made , we started with a brand new identity matrix rather than using .)  Now notice that    The inverse of an elementary matrix , is also an elementary matrix and can be used to perform the inverse of the elementary operation (the operation that would undo the original row operation).   If corresponds to adding times Row 1 to Row 3, then the elementary matrix is Then and this corresponds to adding times Row 1 to Row 3.   Here is the claim: A matrix is invertible if and only if it is the product of elementary matrices .  Let's think about our method for finding inverses using Gaussian Elimination algorithm. We create a big augmented matrix and then do elementary operations until we get to .  Now we know that we could do this by multiplying the augmented matrix by the corresponding elementary matrices. Let's call those elementary matrices . Then if we just look at the right side of the big augmented matrix, we would see that Take the inverse of both sides, and we get   We can use what we just learned to describe a process that will always work to write any invertible matrix as a product of elementary matrices:   Put the matrix into reduced row echelon form. If it is invertible, then this form will be the identity matrix.    For each step, write down the corresponding elementary matrix (writing them from right to left). Remember that each time we need to start with a brand new identity matrix to make our elementary matrix!  If you multiply the elementary matrices, you will get the inverse of the original matrix.    Take the inverse of each of the elementary matrices and then write them down in the reverse order. Then we are done!      Consider this matrix and we want to find .  First, let's multiply the top row by to get our leading : This first step corresponds to the elementary matrix   Second, let's add times Row 1 to Row 2 (and replace Row 2) to get a zero below the first leading : This second step corresponds to the elementary matrix   Third, let's multiply the second row by to get our second leading : This third step corresponds to the elementary matrix   Fourth, let's add times Row 2 to Row 1 (and replace Row 1) to put the matrix into reduced row echelon form: This fourth step corresponds to the elementary matrix   So   We can write all of the inverses of the elementary matrices by using the reverse operation on the identity matrix:   The inverse of is .    The inverse of is .    The inverse of is .    The inverse of is .   So     Write the following matrix AND its inverse as a product of elementary matrices.    Step 1: Swap Row 1 and Row 2 to get This corresponds to the elementary matrix   Step 2: Add times Row 1 to Row 3 (and replace Row 3) to get This corresponds to the elementary matrix   Step 3: Multiply Row 2 by to get This corresponds to the elementary matrix   Step 4: Multiply Row 3 by to get This corresponds to the elementary matrix   Step 5: Add times Row 2 to Row 1 (and replace Row 1) to get This corresponds to the elementary matrix   Step 6: Add times Row 3 to Row 1 (and replace Row 1) to get This corresponds to the elementary matrix   Step 7: Add times Row 3 to Row 2 (and replace Row 2) to get This corresponds to the elementary matrix   This tells us that If we multiply those out we see that   And taking the inverse of both sides of the giant product (and using the \"shoes and socks\" rule), we see that So let's find the inverses of each of these matrices by performing the inverse operation on the identity matrix:    swaps Row 1 and Row 2 and that operation is its own inverse (do it twice and you get right back where you started), so .     adds Row 1 to Row 3, and the inverse of that is adding times Row 1 to Row 2, so .     multiplies Row 2 by , and the inverse of that is multiplying Row 2 by , so .     multiplies Row 3 by , and that operation is its own inverse, so .     adds times Row 2 to Row 1, and the inverse of that is adding times Row 2 to Row 1, so .     adds times Row 3 to Row 1, and the inverse of that is adding times Row 3 to Row 1, so .     adds times Row 3 to Row 2, and the inverse of that is adding times Row 3 to Row 2, so .   This means...      "
+},
+{
+  "id": "sec22-InverseMatrix-2-2",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#sec22-InverseMatrix-2-2",
+  "type": "Objectives",
+  "number": "",
+  "title": "",
+  "body": "  After this section, students will be able to:     find the inverse of a invertible matrix using a formula;    find the inverse of an invertible matrix using the Gaussian Elimination algorithm;    solve systems of linear equations using matrix inverses;    construct elementary matrices and its inverse for each elementary row operation;    express any invertible matrix, and its inverse, as a product of elementary matrices.    "
+},
+{
+  "id": "sec22-InverseMatrix-3",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#sec22-InverseMatrix-3",
+  "type": "Investigation",
+  "number": "2.2.1",
+  "title": "",
+  "body": " Let . Find a matrix such that where is the identity matrix.   There are two possible strategies:   Strategy #1: Guess and check! This strategy is doable for a matrix but usually quite tedious. The matrix is made special so that it isn't too bad at all.   Strategy #2: Remember how matrix multiplication works: When we multiply by , each column of the answer is found by multiplying the corresponding column of by .  So we know that if is the first column of , then we will need to be since that is the first column of the identity matrix. If we call the entries of that column and , then we can solve a system of equations to figure out what and are!  Then we can do a similar process to figure out what the second column of is!    Using Strategy #1...  You probably discovered that the only way to get the in the top left of the answer is to put a in the bottom left of . Then you can figure out that you need a in the top left of to get the in the bottom left of the answer.  Now you need a in the top right of the answer. because of the in , your answer for this spot will be times whatever you put in the bottom right of . So that has to be a .  Finally that in the bottom right of means that you need a in your top right spot in order to get the you need in the bottom right of the identity matrix. So the matrix     Using Strategy #2...  If we call our first column of  , then we know that we need We can solve this using the substitution method easily since the top equation tells us and substituting this into the second equation gives us So the first column of will have to be .  Now if we call our second column of  , then we know that we need This one is even quicker to solve because the top equation tells us and substituting this into the second equation gives us . So the second column of will have to be .  Therefore, the matrix .  And we can quickly verify that :    Now that you found , take a minute and compute .    is also !   "
+},
+{
+  "id": "sec22-InverseMatrix-4",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#sec22-InverseMatrix-4",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "inverse "
+},
+{
+  "id": "def-inverse-matrix",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#def-inverse-matrix",
+  "type": "Definition",
+  "number": "2.2.1",
+  "title": "Inverse of a Matrix.",
+  "body": " Inverse of a Matrix   If is a square matrix, a matrix is called an inverse of if and only if . A matrix that has an inverse is called an invertible matrix .   "
+},
+{
+  "id": "subsec-InverseMatrices-3",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-InverseMatrices-3",
+  "type": "Example",
+  "number": "2.2.2",
+  "title": "",
+  "body": "  An exmaple:  is invertible and since...    A non-example:  is NOT invertible because no matter what matrix you try you will get a row of zeros:   "
+},
+{
+  "id": "thm-Uniqueness_Inverses",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#thm-Uniqueness_Inverses",
+  "type": "Theorem",
+  "number": "2.2.3",
+  "title": "",
+  "body": "  A matrix can only have one inverse.   "
+},
+{
+  "id": "subsec-InverseMatrices-5",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-InverseMatrices-5",
+  "type": "Proof",
+  "number": "1",
+  "title": "",
+  "body": " Suppose and are both inverses of . Then This means .  Multiplying both sides of equation (on the left) by , we get Using the associative property, we get Since we also know that , then .  So by the identity property, .  "
+},
+{
+  "id": "def-Determinant-2x2Matrices",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#def-Determinant-2x2Matrices",
+  "type": "Definition",
+  "number": "2.2.4",
+  "title": "Determinant of <span class=\"process-math\">\\(2\\times 2\\)<\/span> Matrices.",
+  "body": " Determinant of Matrices   Let be a matrix. The determinant of the matrix is defined by    "
+},
+{
+  "id": "def-Adjugate-2x2Matrices",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#def-Adjugate-2x2Matrices",
+  "type": "Definition",
+  "number": "2.2.5",
+  "title": "Adjugate of <span class=\"process-math\">\\(2\\times 2\\)<\/span> Matrices.",
+  "body": " Adjugate of Matrices   Let be a matrix. The adjugate of the matrix is The adjugate of can be obtained by (1) swapping the elements in the main diagonal, and (2) changing the sign of the elements not on the main diagonal.   "
+},
+{
+  "id": "subsec-InverseMatrices-10",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-InverseMatrices-10",
+  "type": "Example",
+  "number": "2.2.6",
+  "title": "",
+  "body": " Let . Notice that Since , we know that exists.  We can also find . We know that . Then   If you want to verify that is indeed the inverse of , try multiplying them together and you should get back .  "
+},
+{
+  "id": "thm-UniqueSolution-InvertibleMatrix",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#thm-UniqueSolution-InvertibleMatrix",
+  "type": "Theorem",
+  "number": "2.2.7",
+  "title": "",
+  "body": "  If is an invertible matrix, then the Matrix Equation has exactly one solution. The solution is .   "
+},
+{
+  "id": "subsec-InverseMatrices-15",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-InverseMatrices-15",
+  "type": "Example",
+  "number": "2.2.8",
+  "title": "",
+  "body": " Consider the following system of linear equations: The Matrix Equation version of this system is , where   Notice that So is invertible! We can find the solution using the little theorem we just came up with!  Since , then we get By our theorem, the solution to the system is   "
+},
+{
+  "id": "subsec-InverseMatrices-16",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-InverseMatrices-16",
+  "type": "Checkpoint",
+  "number": "2.2.9",
+  "title": "",
+  "body": " Solve the following system of linear equation by   writing the system as a Matrix Equation;    finding the inverse of the coefficient matrix;    using the inverse to solve the system.      1. The matrix equation is   2. The determinant is and the adjugate matrix is , so the inverse is   3. The solution is    "
+},
+{
+  "id": "subsec-InverseMatrices-20",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-InverseMatrices-20",
+  "type": "Example",
+  "number": "2.2.10",
+  "title": "",
+  "body": " Let's say we want to find the inverse of the matrix . We will first make our big augmented matrix: Now we will put this thing into reduced row echelon form!  Step 1: Swap Row 1 and Row 2, we get We have our first leading and it already has a zero beneath it.  Step 2: Multiply Row 2 by , we get Now the matrix is in row echelon form. Let's get it into reduced row echelon form by getting a zero above the second leading .  Step 3: Multiply times Row 2 to Row 1 (and replace Row 1), we get Notice that the part on the left is the identity matrix. And, notice that the part on the right is the inverse!  "
+},
+{
+  "id": "subsec-InverseMatrices-22",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-InverseMatrices-22",
+  "type": "Checkpoint",
+  "number": "2.2.11",
+  "title": "",
+  "body": " Use the Gaussian Elimination algorithm to find the inverse of the matrix    The big augmented matrix is   First let's get zeros beneath our first leading :   Now we need to get our second leading by multiplying Row 2 by :   Now we need a zero beneath our second leading . We can multiply Row 2 by and adding it to Row 3:   Now to get our last leading , we need to multiply Row 3 by :   Then we need to get zeros above this third leading . So, let's add times Row 3 to Row 2 and -3 times Row 3 to Row 1:   So the inverse is    "
+},
+{
+  "id": "thm-CancellationLaw-Matrices",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#thm-CancellationLaw-Matrices",
+  "type": "Theorem",
+  "number": "2.2.12",
+  "title": "Cancellation Law for Matrices.",
+  "body": " Cancellation Law for Matrices   Suppose and are matrices and is an invertible matrix. Then the following holds:   If , then .    If , then .      "
+},
+{
+  "id": "subsec-ImportantTheorems-Inverses-3",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ImportantTheorems-Inverses-3",
+  "type": "Proof",
+  "number": "1",
+  "title": "",
+  "body": " Part 1: Suppose . Then Therefore,   The proof of Part 2 would be similar.  "
+},
+{
+  "id": "thm-Transpose-Inverse",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#thm-Transpose-Inverse",
+  "type": "Theorem",
+  "number": "2.2.13",
+  "title": "",
+  "body": "  Suppose is invertible. Then the inverse of is the transpose of . That is,    "
+},
+{
+  "id": "subsec-ImportantTheorems-Inverses-5",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ImportantTheorems-Inverses-5",
+  "type": "Proof",
+  "number": "2",
+  "title": "",
+  "body": " Suppose is invertible. Then But and . Substituting these into the above equation, we get So the inverse of is the transpose of .  "
+},
+{
+  "id": "thm-Product-Inverse",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#thm-Product-Inverse",
+  "type": "Theorem",
+  "number": "2.2.14",
+  "title": "",
+  "body": "  If and are invertible matrices and is defined, then    "
+},
+{
+  "id": "subsec-ImportantTheorems-Inverses-8",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ImportantTheorems-Inverses-8",
+  "type": "Proof",
+  "number": "3",
+  "title": "",
+  "body": "    "
+},
+{
+  "id": "subsec-ElementaryMatrices-4",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ElementaryMatrices-4",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "elementary matrix "
+},
+{
+  "id": "subsec-ElementaryMatrices-6",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ElementaryMatrices-6",
+  "type": "Example",
+  "number": "2.2.15",
+  "title": "",
+  "body": " Consider the system: The augmented matrix is   Recall there are three elementary row operations we can perform to an augmented matrix.   We could swap the two rows by multiplying by the matrix :     We could multiply Row 2 by by multiplying by the matrix :     We could add times Row 1 to Row 2 (and replace Row 2) by multiplying by the matrix :    Notice that in each case, the matrix that we used to do the elementary operation is exactly the matrix you would get by doing that same elementary operation to the identity matrix. WHAT!??   If we swap the two rows of , we get     If we multiply Row 2 of by , we get     If we add times Row 1 of to Row 2 (and replace Row 2), we get      "
+},
+{
+  "id": "subsec-ElementaryMatrices-7",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ElementaryMatrices-7",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "elementary matrix "
+},
+{
+  "id": "subsec-ElementaryMatrices-8",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ElementaryMatrices-8",
+  "type": "Example",
+  "number": "2.2.16",
+  "title": "",
+  "body": " Consider the matrix . Suppose we did the following two steps:   Swap Row 1 and Row 2;    Add times Row 1 to Row 2 (and replace Row 2).   That would look like this:   The first step corresponds to the elementary matrix and the second step corresponds to the elementary matrix ( Note: When we made , we started with a brand new identity matrix rather than using .)  Now notice that   "
+},
+{
+  "id": "subsec-ElementaryMatrices-10",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ElementaryMatrices-10",
+  "type": "Example",
+  "number": "2.2.17",
+  "title": "",
+  "body": " If corresponds to adding times Row 1 to Row 3, then the elementary matrix is Then and this corresponds to adding times Row 1 to Row 3.  "
+},
+{
+  "id": "subsec-ElementaryMatrices-15",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ElementaryMatrices-15",
+  "type": "Example",
+  "number": "2.2.18",
+  "title": "",
+  "body": " Consider this matrix and we want to find .  First, let's multiply the top row by to get our leading : This first step corresponds to the elementary matrix   Second, let's add times Row 1 to Row 2 (and replace Row 2) to get a zero below the first leading : This second step corresponds to the elementary matrix   Third, let's multiply the second row by to get our second leading : This third step corresponds to the elementary matrix   Fourth, let's add times Row 2 to Row 1 (and replace Row 1) to put the matrix into reduced row echelon form: This fourth step corresponds to the elementary matrix   So   We can write all of the inverses of the elementary matrices by using the reverse operation on the identity matrix:   The inverse of is .    The inverse of is .    The inverse of is .    The inverse of is .   So   "
+},
+{
+  "id": "subsec-ElementaryMatrices-16",
+  "level": "2",
+  "url": "sec22-InverseMatrix.html#subsec-ElementaryMatrices-16",
+  "type": "Checkpoint",
+  "number": "2.2.19",
+  "title": "",
+  "body": " Write the following matrix AND its inverse as a product of elementary matrices.    Step 1: Swap Row 1 and Row 2 to get This corresponds to the elementary matrix   Step 2: Add times Row 1 to Row 3 (and replace Row 3) to get This corresponds to the elementary matrix   Step 3: Multiply Row 2 by to get This corresponds to the elementary matrix   Step 4: Multiply Row 3 by to get This corresponds to the elementary matrix   Step 5: Add times Row 2 to Row 1 (and replace Row 1) to get This corresponds to the elementary matrix   Step 6: Add times Row 3 to Row 1 (and replace Row 1) to get This corresponds to the elementary matrix   Step 7: Add times Row 3 to Row 2 (and replace Row 2) to get This corresponds to the elementary matrix   This tells us that If we multiply those out we see that   And taking the inverse of both sides of the giant product (and using the \"shoes and socks\" rule), we see that So let's find the inverses of each of these matrices by performing the inverse operation on the identity matrix:    swaps Row 1 and Row 2 and that operation is its own inverse (do it twice and you get right back where you started), so .     adds Row 1 to Row 3, and the inverse of that is adding times Row 1 to Row 2, so .     multiplies Row 2 by , and the inverse of that is multiplying Row 2 by , so .     multiplies Row 3 by , and that operation is its own inverse, so .     adds times Row 2 to Row 1, and the inverse of that is adding times Row 2 to Row 1, so .     adds times Row 3 to Row 1, and the inverse of that is adding times Row 3 to Row 1, so .     adds times Row 3 to Row 2, and the inverse of that is adding times Row 3 to Row 2, so .   This means...    "
+},
+{
+  "id": "sec23-InvertibleMatrix",
+  "level": "1",
+  "url": "sec23-InvertibleMatrix.html",
+  "type": "Section",
+  "number": "2.3",
+  "title": "Characterizations of Invertible Matrices",
+  "body": " Characterizations of Invertible Matrices   Up to this point, we have explored various concepts seemingly in isolation: pivot positions, linear independence, span, one-to-one and onto transformations, and matrix equations. In this section, we will bring all of these ideas together under one unified framework: the Invertible Matrix Theorem. Instead of treating these as a list of separate rules to memorize, we will build connections between them from the ground up. You will see how discovering just one piece of information about a square matrix instantly unlocks a wealth of knowledge about its fundamental structure and the linear transformation it defines.    After this section, students will be able to:     relate the core properties of square matrices (such as pivot positions, linear independence, span, and trivial solutions) directly to the concept of invertibility.    construct logical chains of equivalence to justify and prove various components of the Invertible Matrix Theorem.    apply the Invertible Matrix Theorem to quickly deduce the characteristics of a matrix or a system of equations without performing exhaustive row operations.    define an invertible linear transformation and formally link it to the inverse of its standard matrix.      It is super important to be able to tell whether a matrix is invertible. One of the most important theorems in linear algebra is the Invertible Matrix Theorem , which identifies several conditions that are equivalent to a matrix being invertible.   Invertible Matrix Theorem   Let be an matrix. The following statements are equivalent.    is invertible.     is row equivalent to , the identity matrix.     has pivot positions.     has only the trivial solution.    The columns of are linearly independent.    The linear transformation is one-to-one.     is consistent for all .    The columns of span .    The linear transformation maps onto .    There is an matrix such that .    There is an matrix such that .     is invertible.       This big theorem that ties everything we have learned together! If you Google the Invertible Matrix Theorem, there are a lot more equivalent conditions than what we have listed here. Some of them are just rephrasing the conditions using other terminology and some of them requires a bit more linear algebra concepts that we are building towards. We will certainly circle back to this theorem and add more conditions when we learn more!  Your textbook includes a blurb to prove this theorem (by directing us back to various places to find the proofs). Instead of proving them (they are super straightforward!), let's discuss the method to prove such a big theorem!  Proving two statements are equivalent is the same thing as proving a biconditional statement. Let's say we have two statements, and , then \"they are equivalent\" means both \"if then \" and \"if then \". Symbolically, we use the notation \" \" for implication and \" \" for equivalence. So we are proving both and   To prove the invertible matrix theorem, we want to establish a chain of equivalence . That is, we want to link all the statements together using the equivalence notation .  Let's start small! Let's say we have three statements , , and . To prove that they are all equivalent, we need to prove that . One way to do so is to prove (1) , (2) , and (3) . This creates a continuous logical loop! If we assume any one of these statements is true, we can follow the chain of implications to guarantee that the others are also true. Because we can travel from any single statement to every other statement in this cycle, they must all share the exact same truth value.  As an exercise, try proving the invertible matrix theorem and see if you can construct such a chain of implication with these 12 statements!   Let . We can actually learn a lot by the invertible matrix theorem.  One can very quickly determine that is invertible (because the ). Alternatively, we can solve the homogeneous equation quickly that has only the trivial solution.  And we can draw so many conclusions by the fact that is invertible using the invertible matrix theorem! A couple examples are:    can be row reduced to a identity matrix;     has pivot positions;    The columns of are linearly independent;    The columns of spans ;    The equation is always consistent for every ;    The linear transformation is injective,   And the list goes on!  Recall these are the things that would have taken us hours to figure out before when we didn't know about the invertible matrix theorem!   Recall all the linear transformations we learn from this class can be represented using matrix transformations. That is, we can define the linear transformation by .  If is invertible, then what linear transformation does define?    transforms back to   We see that multiplication of undoes the linear transformation , so the inverse matrix defines the inverse of a linear transformation!    A linear transformation is invertible if there exists a function such that and       Let be a linear transformation with the standard matrix . Then is invertible if and only if is an invertible matrix.  In this case, the linear transformation given by is the unique function satisfying the invertible definition for and is called the inverse of .     Let's say is an injective linear transformation. What can we say about ?   being injective means that the columns of , the standard matrix that defines this linear transformation, are linearly independent . This implies that has pivot positions.  By the invertible matrix theorem, we know that is invertible, and hence, is an invertible linear transformation !  Also by the invertible matrix theorem, the columns of spans the codomain, , and hence must be surjective .  See how powerful the invertible matrix theorem is! Once we know just a bit of information about the matrix\/linear transformation, the invertible matrix theorem will do the rest!    Let be a surjective linear transformation. What can we say about ?   Fancy terminology! A transformation that are both injective and surjective is called a bijection . An immediate result we can get is that a transformation is invertible if and only if it is a bijection !  "
+},
+{
+  "id": "sec23-InvertibleMatrix-2-2",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#sec23-InvertibleMatrix-2-2",
+  "type": "Objectives",
+  "number": "",
+  "title": "",
+  "body": "  After this section, students will be able to:     relate the core properties of square matrices (such as pivot positions, linear independence, span, and trivial solutions) directly to the concept of invertibility.    construct logical chains of equivalence to justify and prove various components of the Invertible Matrix Theorem.    apply the Invertible Matrix Theorem to quickly deduce the characteristics of a matrix or a system of equations without performing exhaustive row operations.    define an invertible linear transformation and formally link it to the inverse of its standard matrix.    "
+},
+{
+  "id": "sec23-InvertibleMatrix-3",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#sec23-InvertibleMatrix-3",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "Invertible Matrix Theorem "
+},
+{
+  "id": "thm-InvertibleMatrixTheorem",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#thm-InvertibleMatrixTheorem",
+  "type": "Theorem",
+  "number": "2.3.1",
+  "title": "Invertible Matrix Theorem.",
+  "body": " Invertible Matrix Theorem   Let be an matrix. The following statements are equivalent.    is invertible.     is row equivalent to , the identity matrix.     has pivot positions.     has only the trivial solution.    The columns of are linearly independent.    The linear transformation is one-to-one.     is consistent for all .    The columns of span .    The linear transformation maps onto .    There is an matrix such that .    There is an matrix such that .     is invertible.      "
+},
+{
+  "id": "sec23-InvertibleMatrix-11",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#sec23-InvertibleMatrix-11",
+  "type": "Example",
+  "number": "2.3.2",
+  "title": "",
+  "body": " Let . We can actually learn a lot by the invertible matrix theorem.  One can very quickly determine that is invertible (because the ). Alternatively, we can solve the homogeneous equation quickly that has only the trivial solution.  And we can draw so many conclusions by the fact that is invertible using the invertible matrix theorem! A couple examples are:    can be row reduced to a identity matrix;     has pivot positions;    The columns of are linearly independent;    The columns of spans ;    The equation is always consistent for every ;    The linear transformation is injective,   And the list goes on!  Recall these are the things that would have taken us hours to figure out before when we didn't know about the invertible matrix theorem!  "
+},
+{
+  "id": "sec23-InvertibleMatrix-14",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#sec23-InvertibleMatrix-14",
+  "type": "Figure",
+  "number": "2.3.3",
+  "title": "",
+  "body": "  transforms back to  "
+},
+{
+  "id": "sec23-InvertibleMatrix-15",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#sec23-InvertibleMatrix-15",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "inverse "
+},
+{
+  "id": "def-InvertibleLinearTransformation",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#def-InvertibleLinearTransformation",
+  "type": "Definition",
+  "number": "2.3.4",
+  "title": "",
+  "body": "  A linear transformation is invertible if there exists a function such that and    "
+},
+{
+  "id": "thm-InvertibleLinearTransformationMatrix",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#thm-InvertibleLinearTransformationMatrix",
+  "type": "Theorem",
+  "number": "2.3.5",
+  "title": "",
+  "body": "  Let be a linear transformation with the standard matrix . Then is invertible if and only if is an invertible matrix.  In this case, the linear transformation given by is the unique function satisfying the invertible definition for and is called the inverse of .   "
+},
+{
+  "id": "sec23-InvertibleMatrix-18",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#sec23-InvertibleMatrix-18",
+  "type": "Example",
+  "number": "2.3.6",
+  "title": "",
+  "body": " Let's say is an injective linear transformation. What can we say about ?   being injective means that the columns of , the standard matrix that defines this linear transformation, are linearly independent . This implies that has pivot positions.  By the invertible matrix theorem, we know that is invertible, and hence, is an invertible linear transformation !  Also by the invertible matrix theorem, the columns of spans the codomain, , and hence must be surjective .  See how powerful the invertible matrix theorem is! Once we know just a bit of information about the matrix\/linear transformation, the invertible matrix theorem will do the rest!  "
+},
+{
+  "id": "sec23-InvertibleMatrix-19",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#sec23-InvertibleMatrix-19",
+  "type": "Checkpoint",
+  "number": "2.3.7",
+  "title": "",
+  "body": " Let be a surjective linear transformation. What can we say about ?  "
+},
+{
+  "id": "sec23-InvertibleMatrix-20",
+  "level": "2",
+  "url": "sec23-InvertibleMatrix.html#sec23-InvertibleMatrix-20",
+  "type": "Paragraph (with a defined term)",
+  "number": "",
+  "title": "",
+  "body": "bijection "
+},
+{
   "id": "backmatter-2",
   "level": "1",
   "url": "backmatter-2.html",
