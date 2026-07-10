@@ -1122,8 +1122,8 @@ var ptx_lunr_docs = [
   "url": "sec19-MatrixLinearTransformation.html",
   "type": "Section",
   "number": "1.8",
-  "title": "The Matrix of a Linear Transformations",
-  "body": " The Matrix of a Linear Transformations   So far, we have explored linear transformations by observing how they map inputs to outputs using the properties of linearity. While doing this step-by-step gives us a great feel for the mechanics, it would be highly efficient to capture the entire behavior of a transformation within a single, organized structure.  In this section, we will bridge the gap between abstract mappings and concrete computations. By noticing patterns in how transformations affect our simplest structural building blocks—the standard basis vectors—we will learn how to construct a standard matrix for any linear transformation. We will also use structural reasoning to translate geometric actions, like rotations and reflections, directly into matrix form, and determine if a transformation is an injection or surjection simply by analyzing the columns of its matrix.     construct the standard matrix for a linear transformation.    connect geometric actions to their corresponding matrix representations.    determine if a linear transformation is injective (one-to-one) or surjective (onto).       To find the Standard Matrix...  In the previous section, we left with an example where we find the image of the linear transformation using the linearity property without knowing the matrix. But it would be so nice to actually know the special matrix that defines the transformation. In this section, we will figure out a method to find this matrix.  Notice that any vector in can be written as a linear combination of and .   Quick proof of this claim  Let be an arbitrary vector in . Then Proved!    is called the standard basis of .  For , the standard basis consists of the vectors where the -th entry of is a and all of the rest are zeros. Clearly these are all -dimensional vectors. That means the is actually a different vector depending on which you are working with.  For example, in is , but in is . They are NOT the same vectors!  Combining this fact with the two properties that every linear transformation satisfies, we can see that every linear combination defined on (this works for as well, but let's start small!) is actually determined by what it does to the standard basis vectors and .   Quick proof of this claim  Let be a vector in . Then there exist scalars such that Then for any linear transformation defined on , we have So the output of at is completely determined by the output of at and .   We can use this fact to figure out how to find the matrix for a linear transformation (and in doing so, we really prove that such a matrix will always exist for any linear transformation)!   Suppose that is a linear transformation such that What is the matrix such that for all ?  Consider any vector in . We know that Notice that the output is what we would get if we multiplied the matrix by the vector ! So We found the matrix that goes with this linear transformation!   Notice that in the above example, the columns of our matrix were the outputs of the standard basis vectors . That tells us exactly how to find a matrix for any linear transformation!  Suppose is a linear transformation. To find the matrix such that is given by the rule , we...   Figure out     Write the matrix that has columns :     Pat yourself on the back   Special terminology! This matrix that we found is called the standard matrix for the linear transformation . We can find the standard matrix by figuring out where the transformation takes the standard basis vectors to.   Let be a linear transformation given by Let's find the matrix such that for all .  Step 1: In this case, and . So   Step 2:   Let's check to see if really works! Woo!    Find the matrix that corresponds to the linear transformation given by    Step 1: In this case, since the domain is , our standard basis vectors are , , and . Evaluating the transformation at each gives:     Step 2: We form the matrix by placing these resulting vectors into the columns.   Let's check to see if really works! Yay!      Transformation... What are we transforming?  Have you wondered why we call the linear transformation rather than just using the term \"function\" that we are more familiar with... Well for starter, \"linear function\" is not quite the same as linear transformation. Linear function is defined as but this isn't a linear transformation if is not . So using the term linear function in linear algebra may introduce ambiguity.  Moreover, each linear transformation can be interpreted as some sort of transformation in our usual geometry sense. So the term \"transformation\" here really means we are transforming some sort of objects. Let's start by looking at an example!   Suppose that and we define the linear transformation by . So maps points on the plane to points on the plane.  Let's figure out what this transformation does geometrically by doing the following:   Draw a rectangle centered at and label the four vertices. This is your \"before\" picture.    Plug in each of the four vertices using the rule (write the points as column vectors and multiply!)    Plot the four outputs and connect the dots.    Describe what happened to your rectangle.      I will start with a rectangle with vertices , , , and   First, let's connect the dots to draw our rectangle. This is our \"before\" picture.   Plugging in each of the vertices to our transformation, we get Let's graph the outputs and connect the dots. This is our \"after\" picture.   So what does the transformation do? It is a flip (across the line ) and a stretch (by a factor of )!    Your textbook includes the standard matrices for each type of transformation (page 102-104). For the completeness of this awesome notes, let's include them below as well:    Standard Matrices for Reflections     Standard Matrices for Contractions and Expansions     Standard Matrices for Shears     Standard Matrices for Projection   You may want to do a series of transformations (e.g., expand the object and flip it over). This can be achieved by composing multiple transformations . Matrix-wise, composing transformations means multiplying the corresponding standard matrix to the left . We will not be diving into composition in this class so feel free to explore more (and you may turn this into the class project if interest!).  There is one more type of the transformation that these tables did not include. That is the rotation . We can also do rotation using a linear transformation!   Let's find the standard matrix for a rotation in ! We need to figure out what such a rotation does to the vectors and .  Let's suppose that the vector is the result of rotating counterclockwise by the angle . This vector can be represented as an arrow starting at the origin and ending at the point . We can draw a triangle to figure out the exact coordinates of the vector .   The -coordinate will be and the -coordinate will be . So the rotation takes to .  If we also draw the vector and rotate it (counterclockwise) by an angle of , we get a picture like this:   This time, the -coordinate will be and the -coordinate will be . So the rotation takes to .   Note: These pictures make it easy to see this is true when is between and , To see that this is true regardless of how big is, you can either look at cases in all of the four quadrants or you can use trig identities.  This means that you can find any rotation matrix by plugging into   Using this idea, we can figure out the standard matrices for more transformations! For example, you may be wondering how to reflect the object across an arbitrary line than the ones stated in the tables. Next, let's find a matrix for the reflection across the line ! That is, we need fo figure out what happens to and when we reflect them across the line .  From analytic geometry, we know that the slope of any line perpendicular to will have slope . We want to find the line through that has slope . That is because we need to find the intersection of that line with to get the midpoint of the segment between and the point we get after reflecting .   That perpendicular line is given by , which simplifies to .  Now let's find the point of intersection! Substituting into this equation, we get This means that . Then substituting again, we get . So the midpoint between and the result of reflecting across the line is .  The midpoint formula tells us that the midpoint of a segment between points and is . So where is the point we are looking for. This gives us the equations Solving these equations, we get So the reflection takes to .  A similar method can be used to find out that the reflection takes the point to the point .  Converting these to column vectors, the matrix for reflecting across the line is given by Pulling out the common factor, we can rewrite this as     Special Types of Linear Transformations  There are some special linear transformations, and we will focus on surjection and injection :    A mapping is a surjection (or onto  ) if each is the image of at least one .  That is, every element in the codomain of is an image of the mapping.      A mapping is an injection (or one-to-one ) if each is the image of at most one .  That is, a mapping is injective if implies .    Notice how parallel each of these definitions is. Moreover, these definitions have everything to do with the existence and uniqueness of pre-images:    Existence: Does each have a pre-image? If is surjective, then Yes.     Uniqueness: Is each solution to unique? If is injective, then Yes!     An immediate (and famous) result about injection is the following theorem:    Let be a linear transformation. Then is injective if and only if has only the trivial solution.     This is a biconditional statement. Proving this statement comes in to parts:   Forward direction ( ): Assume that is injective. We want to show that the equation has only the trivial solution.  Because is a linear transformation, we know that it maps the zero vector to the zero vector, meaning . Suppose there is some vector in such that . Then we have: Since we assumed is injective, the outputs being equal guarantees that the inputs must also be equal. Therefore, . This shows that the trivial solution is the only solution.   Backward direction ( ): Assume that has only the trivial solution. We want to show that is injective.  Suppose there are vectors and in such that . Subtracting from both sides, we have By the linearity properties, this implies that By our initial assumption, the only vector that maps to the zero vector is the zero vector itself. This forces the input to be zero. That is, This shows that , and hence is injective.  What we have established that these two claims are either both true or both false (we assume one of them is true, and show the other one is also true). Another way of calling biconditional statements are equivalence statement.   Last but not least, let's make a connection between these two types of the special transformations and what we have learned in the past through the following two statements!    Let be a linear transformation with standard matrix . Then is surjective if and only if the columns of span the codomain, .     Observe that the theorem is a biconditional statement. But instead of proving both directions, let's do a slick trick!  Notation clarification! The symbol means implication!  Let's consider the forward direction. The chain of implication looks like this: Okay. And this is supposed to be impressive how?  Observe that the statements here are all equivalent! That is, to prove the other direction, we can just reverse all the implication arrows and the argument stays true! So the proof of this theorem is to change all the implication arrow to a biconditional arrow!      Let be a linear transformation with standard matrix . Then is injective if and only if the columns of are linearly independent.     We can prove this theorem using the same slick trick!     Let defined by Is a linear transformation? Is it injective? Is it surjective?  First, we determine if is a linear transformation. We can \"factor out\" the variables to rewrite the transformation as a matrix-vector product: Let be this matrix. Because , it is a matrix transformation. Every matrix transformation is a linear transformation, so yes, is a linear transformation.  Next, we check if is injective. By our previous theorem, is injective if and only if the homogeneous equation has only the trivial solution. To determine this, we find the reduced row echelon form of the standard matrix : Because there is a pivot in every column, there are no free variables. The equation has only the trivial solution, . Therefore, is injective.  Finally, we determine if is surjective. The transformation is surjective if and only if its columns span the codomain, . This occurs if and only if there is a pivot position in every row of . Looking at the reduced row echelon form of , the third row does not contain a pivot. Consequently, the columns of do not span , meaning there are vectors in the codomain that cannot be reached. Thus, is not surjective.    "
+  "title": "The Matrix of a Linear Transformation",
+  "body": " The Matrix of a Linear Transformation   So far, we have explored linear transformations by observing how they map inputs to outputs using the properties of linearity. While doing this step-by-step gives us a great feel for the mechanics, it would be highly efficient to capture the entire behavior of a transformation within a single, organized structure.  In this section, we will bridge the gap between abstract mappings and concrete computations. By noticing patterns in how transformations affect our simplest structural building blocks—the standard basis vectors—we will learn how to construct a standard matrix for any linear transformation. We will also use structural reasoning to translate geometric actions, like rotations and reflections, directly into matrix form, and determine if a transformation is an injection or surjection simply by analyzing the columns of its matrix.     construct the standard matrix for a linear transformation.    connect geometric actions to their corresponding matrix representations.    determine if a linear transformation is injective (one-to-one) or surjective (onto).       To find the Standard Matrix...  In the previous section, we left with an example where we find the image of the linear transformation using the linearity property without knowing the matrix. But it would be so nice to actually know the special matrix that defines the transformation. In this section, we will figure out a method to find this matrix.  Notice that any vector in can be written as a linear combination of and .   Quick proof of this claim  Let be an arbitrary vector in . Then Proved!    is called the standard basis of .  For , the standard basis consists of the vectors where the -th entry of is a and all of the rest are zeros. Clearly these are all -dimensional vectors. That means the is actually a different vector depending on which you are working with.  For example, in is , but in is . They are NOT the same vectors!  Combining this fact with the two properties that every linear transformation satisfies, we can see that every linear combination defined on (this works for as well, but let's start small!) is actually determined by what it does to the standard basis vectors and .   Quick proof of this claim  Let be a vector in . Then there exist scalars such that Then for any linear transformation defined on , we have So the output of at is completely determined by the output of at and .   We can use this fact to figure out how to find the matrix for a linear transformation (and in doing so, we really prove that such a matrix will always exist for any linear transformation)!   Suppose that is a linear transformation such that What is the matrix such that for all ?  Consider any vector in . We know that Notice that the output is what we would get if we multiplied the matrix by the vector ! So We found the matrix that goes with this linear transformation!   Notice that in the above example, the columns of our matrix were the outputs of the standard basis vectors . That tells us exactly how to find a matrix for any linear transformation!  Suppose is a linear transformation. To find the matrix such that is given by the rule , we...   Figure out     Write the matrix that has columns :     Pat yourself on the back   Special terminology! This matrix that we found is called the standard matrix for the linear transformation . We can find the standard matrix by figuring out where the transformation takes the standard basis vectors to.   Let be a linear transformation given by Let's find the matrix such that for all .  Step 1: In this case, and . So   Step 2:   Let's check to see if really works! Woo!    Find the matrix that corresponds to the linear transformation given by    Step 1: In this case, since the domain is , our standard basis vectors are , , and . Evaluating the transformation at each gives:     Step 2: We form the matrix by placing these resulting vectors into the columns.   Let's check to see if really works! Yay!      Transformation... What are we transforming?  Have you wondered why we call the linear transformation rather than just using the term \"function\" that we are more familiar with... Well for starter, \"linear function\" is not quite the same as linear transformation. Linear function is defined as but this isn't a linear transformation if is not . So using the term linear function in linear algebra may introduce ambiguity.  Moreover, each linear transformation can be interpreted as some sort of transformation in our usual geometry sense. So the term \"transformation\" here really means we are transforming some sort of objects. Let's start by looking at an example!   Suppose that and we define the linear transformation by . So maps points on the plane to points on the plane.  Let's figure out what this transformation does geometrically by doing the following:   Draw a rectangle centered at and label the four vertices. This is your \"before\" picture.    Plug in each of the four vertices using the rule (write the points as column vectors and multiply!)    Plot the four outputs and connect the dots.    Describe what happened to your rectangle.      I will start with a rectangle with vertices , , , and   First, let's connect the dots to draw our rectangle. This is our \"before\" picture.   Plugging in each of the vertices to our transformation, we get Let's graph the outputs and connect the dots. This is our \"after\" picture.   So what does the transformation do? It is a flip (across the line ) and a stretch (by a factor of )!    Your textbook includes the standard matrices for each type of transformation (page 102-104). For the completeness of this awesome notes, let's include them below as well:    Standard Matrices for Reflections     Standard Matrices for Contractions and Expansions     Standard Matrices for Shears     Standard Matrices for Projection   You may want to do a series of transformations (e.g., expand the object and flip it over). This can be achieved by composing multiple transformations . Matrix-wise, composing transformations means multiplying the corresponding standard matrix to the left . We will not be diving into composition in this class so feel free to explore more (and you may turn this into the class project if interest!).  There is one more type of the transformation that these tables did not include. That is the rotation . We can also do rotation using a linear transformation!   Let's find the standard matrix for a rotation in ! We need to figure out what such a rotation does to the vectors and .  Let's suppose that the vector is the result of rotating counterclockwise by the angle . This vector can be represented as an arrow starting at the origin and ending at the point . We can draw a triangle to figure out the exact coordinates of the vector .   The -coordinate will be and the -coordinate will be . So the rotation takes to .  If we also draw the vector and rotate it (counterclockwise) by an angle of , we get a picture like this:   This time, the -coordinate will be and the -coordinate will be . So the rotation takes to .   Note: These pictures make it easy to see this is true when is between and , To see that this is true regardless of how big is, you can either look at cases in all of the four quadrants or you can use trig identities.  This means that you can find any rotation matrix by plugging into   Using this idea, we can figure out the standard matrices for more transformations! For example, you may be wondering how to reflect the object across an arbitrary line than the ones stated in the tables. Next, let's find a matrix for the reflection across the line ! That is, we need fo figure out what happens to and when we reflect them across the line .  From analytic geometry, we know that the slope of any line perpendicular to will have slope . We want to find the line through that has slope . That is because we need to find the intersection of that line with to get the midpoint of the segment between and the point we get after reflecting .   That perpendicular line is given by , which simplifies to .  Now let's find the point of intersection! Substituting into this equation, we get This means that . Then substituting again, we get . So the midpoint between and the result of reflecting across the line is .  The midpoint formula tells us that the midpoint of a segment between points and is . So where is the point we are looking for. This gives us the equations Solving these equations, we get So the reflection takes to .  A similar method can be used to find out that the reflection takes the point to the point .  Converting these to column vectors, the matrix for reflecting across the line is given by Pulling out the common factor, we can rewrite this as     Special Types of Linear Transformations  There are some special linear transformations, and we will focus on surjection and injection :    A mapping is a surjection (or onto  ) if each is the image of at least one .  That is, every element in the codomain of is an image of the mapping.      A mapping is an injection (or one-to-one ) if each is the image of at most one .  That is, a mapping is injective if implies .    Notice how parallel each of these definitions is. Moreover, these definitions have everything to do with the existence and uniqueness of pre-images:    Existence: Does each have a pre-image? If is surjective, then Yes.     Uniqueness: Is each solution to unique? If is injective, then Yes!     An immediate (and famous) result about injection is the following theorem:    Let be a linear transformation. Then is injective if and only if has only the trivial solution.     This is a biconditional statement. Proving this statement comes in to parts:   Forward direction ( ): Assume that is injective. We want to show that the equation has only the trivial solution.  Because is a linear transformation, we know that it maps the zero vector to the zero vector, meaning . Suppose there is some vector in such that . Then we have: Since we assumed is injective, the outputs being equal guarantees that the inputs must also be equal. Therefore, . This shows that the trivial solution is the only solution.   Backward direction ( ): Assume that has only the trivial solution. We want to show that is injective.  Suppose there are vectors and in such that . Subtracting from both sides, we have By the linearity properties, this implies that By our initial assumption, the only vector that maps to the zero vector is the zero vector itself. This forces the input to be zero. That is, This shows that , and hence is injective.  What we have established that these two claims are either both true or both false (we assume one of them is true, and show the other one is also true). Another way of calling biconditional statements are equivalence statement.   Last but not least, let's make a connection between these two types of the special transformations and what we have learned in the past through the following two statements!    Let be a linear transformation with standard matrix . Then is surjective if and only if the columns of span the codomain, .     Observe that the theorem is a biconditional statement. But instead of proving both directions, let's do a slick trick!  Notation clarification! The symbol means implication!  Let's consider the forward direction. The chain of implication looks like this: Okay. And this is supposed to be impressive how?  Observe that the statements here are all equivalent! That is, to prove the other direction, we can just reverse all the implication arrows and the argument stays true! So the proof of this theorem is to change all the implication arrow to a biconditional arrow!      Let be a linear transformation with standard matrix . Then is injective if and only if the columns of are linearly independent.     We can prove this theorem using the same slick trick!     Let defined by Is a linear transformation? Is it injective? Is it surjective?  First, we determine if is a linear transformation. We can \"factor out\" the variables to rewrite the transformation as a matrix-vector product: Let be this matrix. Because , it is a matrix transformation. Every matrix transformation is a linear transformation, so yes, is a linear transformation.  Next, we check if is injective. By our previous theorem, is injective if and only if the homogeneous equation has only the trivial solution. To determine this, we find the reduced row echelon form of the standard matrix : Because there is a pivot in every column, there are no free variables. The equation has only the trivial solution, . Therefore, is injective.  Finally, we determine if is surjective. The transformation is surjective if and only if its columns span the codomain, . This occurs if and only if there is a pivot position in every row of . Looking at the reduced row echelon form of , the third row does not contain a pivot. Consequently, the columns of do not span , meaning there are vectors in the codomain that cannot be reached. Thus, is not surjective.    "
 },
 {
   "id": "sec19-MatrixLinearTransformation-2-2",
@@ -1826,6 +1826,339 @@ var ptx_lunr_docs = [
   "number": "",
   "title": "",
   "body": "bijection "
+},
+{
+  "id": "secA1-MidtermReview",
+  "level": "1",
+  "url": "secA1-MidtermReview.html",
+  "type": "Section",
+  "number": "A.1",
+  "title": "Midterm Review",
+  "body": " Midterm Review   The midterm exam will cover material from Week 1 Day 1 of the class through Week 3 Day 2. That is, it covers material in the following sections:   Systems of Linear Equations    Row Reduction and Echelon Forms     Vector Equations     The Matrix Equation      Solution Sets of Linear Systems     Linear Independence     Introduction to Linear Transformations     The Matrix of a Linear Transformation     Matrix Operations     The Inverse of a Matrix     Characterizations of Invertible Matrices   On this page, you will find review problems for the midterm exam. The final answers are included for each problem. Make sure you spend some time working through these problems and understanding how things work!   A quick reminder: Some class time during the class session before the midterm exam will be a review session. Usually this will be a work day for you to work through some problems together to prepare for the exam. This is also a great opportunity for you to ask questions about anything that is not clear to you!    Systems of Linear Equations   Solve the following system of equations: If the system is consistent, write the solution set as a column vector If the system is inconsistent, explain how you know it.   The solutions are of the form where and are arbitrary constants.     Solve the following system of linear equations: If the system is consistent, write the solution set as a column vector If the system is inconsistent, explain how you know it.   The solution is      Solve the following system of linear equations: If the system is consistent, write the solution set as a column vector If the system is inconsistent, explain how you know it.   The solution is      Solve the following system of equations: If the system is consistent, write the solution set as a linear combination of basic vectors. If the system is inconsistent, explain how you know it.   This one has only the trivial solution      Solve the following system of equations: If the system is consistent, write the solution set as a linear combination of basic vectors. If the system is inconsistent, explain how you know it.   The solutions are of the form , where is an arbitrary constant.     Solve the following system of equations: If the system is consistent, write the solution set as a linear combination of basic vectors. If the system is inconsistent, explain how you know it.   The solutions are of the form , where and are arbitrary constants.      Given the following matrix equivalent to some coefficient matrix , describe all solutions of in parametric vector form.      The solution set in parametric vector form is , where and are arbitrary constants.       The solution set in parametric vector form is , where and are arbitrary constants.       The solution set in parametric vector form is , where , , and are arbitrary constants.       (Reduced) Row Echelon Form   Row reduce the following matrix to reduced row echelon form. Circle the pivot positions (aka the leading s) in the final matrix and in the original matrix, and list the pivot columns (aka columns that contain a leading ).    The reduced row echelon form is . The pivot positions are at and entries. The pivot columns are Column 1 and Column 2.      In the following exercises, find the solutions of the systems whose augmented matrices are given.      The solution in parametric form is , where is an arbitrary constant.       The solution in parametric form is , where and are arbitrary constants.       The solution in parametric vector form is , where and are arbitrary constants.       Vector Equations and Matrix Equation   Solve the following vector equation:   If the system is consistent, write the solution set as a linear combination of the basis vectors. If the system is inconsistent, explain how you know it.         Solve the following matrix equation:   If the system is consistent, write the solution set as a linear combination of the basis vectors. If the system is inconsistent, explain how you know it.    The system is inconsistent.     Linear Independence   Let be a set of vectors in such that   Is this set of vectors linearly independent? Remember to justify your conclusion.   No     Let be a set of vectors in such that   Is this set of vectors linearly independent? Remember to justify your conclusion.   Yes     Let be a set of vectors in such that   Is this set of vectors linearly independent? If not, find the smallest set that spans the same plane.   No.  The smallest set is .      Linear Transformations   Let be a linear transformation defined by , where    Find the value of     Is an image of this linear transformation? Justify your reasoning.              No it is not.        Let be a linear transformation defined by , where Is an image of this transformation? Justify your reasoning.   Yes, since      Let be a linear transformation such that Find          Let be a linear transformation such that Find a matrix such that is defined by the formula          Suppose is a linear transformation such that is a rotation by counterclockwise. Find the standard matrix that defines this transformation. That is, find the matrix such that .         Suppose is a linear transformation such that is a reflection across the line by . Find the standard matrix that defines this transformation. That is, find the matrix such that .          Matrix Operations   Let . Compute          Let , , , , and . Compute the following if possible, and if not possible, explain why.                                                     Impossible. is and is ; addition\/subtraction requires identical dimensions.              Impossible. is and is .                   Impossible. is and is .             Compute the following matrix-vector products:                  Impossible. The number of columns in the matrix (2) does not match the number of entries in the vector (3).             Let , , and . Compute                                                    Let , , and . Compute the following if possible, and if not possible, explain why.                       Impossible. is not a square matrix ( ), so it cannot be multiplied by itself.    Impossible. The number of columns in (3) does not match the number of rows in (2).              Inverses of Matrices (and Related Stuff)   Find the inverse of the following matrix if possible. If not possible, explain why.                                  is not invertible.     is not invertible.             Let and . Solve the equation using .    .     Find the inverse of the following matrix if possible. If not possible, explain why.                       is not invertible.          is not invertible.       Let . Answer the following questions. Remember to justify your conclusions.    What is the size of ?    How many pivot positions does have?    How many solution does the homogeneous equation have?    Is the matrix equation  always consistent for all ?    Do the columns of span ?    Are the columns of linearly independent?    Is invertible?    Is defined by an injection?    Is defined by a surjection?                 Exactly one solution (the trivial solution).    Yes    Yes    Yes    Yes    Yes    Yes       Let . Answer the following questions. Remember to justify your conclusions.    What is the size of ?    How many pivot positions does have?    How many solution does the homogeneous equation have?    Is the matrix equation  always consistent for all ?    Do the columns of span ?    Are the columns of linearly independent?    Is invertible?    Is defined by an injection?    Is defined by a surjection?                 Exactly one solution (the trivial solution).    Yes    Yes    Yes    Yes    Yes    Yes       Let . Answer the following questions. Remember to justify your conclusions.    What is the size of ?    How many pivot positions does have?    How many solution does the homogeneous equation have?    Is the matrix equation  always consistent for all ?    Do the columns of span ?    Are the columns of linearly independent?    Is invertible?    Is defined by an injection?    Is defined by a surjection?                 Infinitely many solutions.    No    No    No    No    No    No       Last but not least, to give you an idea of what the exam will be like, you can find the midterm exam Richard gave to his MTH 261 last term. Feel free to use it as a practice run!   Richard's MTH 261 Midterm Exam on Spring 2026    "
+},
+{
+  "id": "ws-MidtermReview-SystemEquations-2",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-SystemEquations-2",
+  "type": "Worksheet Exercise",
+  "number": "A.1.1",
+  "title": "",
+  "body": " Solve the following system of equations: If the system is consistent, write the solution set as a column vector If the system is inconsistent, explain how you know it.   The solutions are of the form where and are arbitrary constants.   "
+},
+{
+  "id": "ws-MidtermReview-SystemEquations-3",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-SystemEquations-3",
+  "type": "Worksheet Exercise",
+  "number": "A.1.2",
+  "title": "",
+  "body": " Solve the following system of linear equations: If the system is consistent, write the solution set as a column vector If the system is inconsistent, explain how you know it.   The solution is    "
+},
+{
+  "id": "ws-MidtermReview-SystemEquations-4",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-SystemEquations-4",
+  "type": "Worksheet Exercise",
+  "number": "A.1.3",
+  "title": "",
+  "body": " Solve the following system of linear equations: If the system is consistent, write the solution set as a column vector If the system is inconsistent, explain how you know it.   The solution is    "
+},
+{
+  "id": "ws-MidtermReview-SystemEquations-5",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-SystemEquations-5",
+  "type": "Worksheet Exercise",
+  "number": "A.1.4",
+  "title": "",
+  "body": " Solve the following system of equations: If the system is consistent, write the solution set as a linear combination of basic vectors. If the system is inconsistent, explain how you know it.   This one has only the trivial solution    "
+},
+{
+  "id": "ws-MidtermReview-SystemEquations-6",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-SystemEquations-6",
+  "type": "Worksheet Exercise",
+  "number": "A.1.5",
+  "title": "",
+  "body": " Solve the following system of equations: If the system is consistent, write the solution set as a linear combination of basic vectors. If the system is inconsistent, explain how you know it.   The solutions are of the form , where is an arbitrary constant.   "
+},
+{
+  "id": "ws-MidtermReview-SystemEquations-7",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-SystemEquations-7",
+  "type": "Worksheet Exercise",
+  "number": "A.1.6",
+  "title": "",
+  "body": " Solve the following system of equations: If the system is consistent, write the solution set as a linear combination of basic vectors. If the system is inconsistent, explain how you know it.   The solutions are of the form , where and are arbitrary constants.   "
+},
+{
+  "id": "ws-MidtermReview-SystemEquations-8-2",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-SystemEquations-8-2",
+  "type": "Worksheet Exercise",
+  "number": "A.1.7",
+  "title": "",
+  "body": "   The solution set in parametric vector form is , where and are arbitrary constants.   "
+},
+{
+  "id": "ws-MidtermReview-SystemEquations-8-3",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-SystemEquations-8-3",
+  "type": "Worksheet Exercise",
+  "number": "A.1.8",
+  "title": "",
+  "body": "   The solution set in parametric vector form is , where and are arbitrary constants.   "
+},
+{
+  "id": "ws-MidtermReview-SystemEquations-8-4",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-SystemEquations-8-4",
+  "type": "Worksheet Exercise",
+  "number": "A.1.9",
+  "title": "",
+  "body": "   The solution set in parametric vector form is , where , , and are arbitrary constants.   "
+},
+{
+  "id": "ws-MidtermReview-RowEchelonForm-2",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-RowEchelonForm-2",
+  "type": "Worksheet Exercise",
+  "number": "A.1.1",
+  "title": "",
+  "body": " Row reduce the following matrix to reduced row echelon form. Circle the pivot positions (aka the leading s) in the final matrix and in the original matrix, and list the pivot columns (aka columns that contain a leading ).    The reduced row echelon form is . The pivot positions are at and entries. The pivot columns are Column 1 and Column 2.   "
+},
+{
+  "id": "ws-MidtermReview-RowEchelonForm-3-2",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-RowEchelonForm-3-2",
+  "type": "Worksheet Exercise",
+  "number": "A.1.2",
+  "title": "",
+  "body": "   The solution in parametric form is , where is an arbitrary constant.   "
+},
+{
+  "id": "ws-MidtermReview-RowEchelonForm-3-3",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-RowEchelonForm-3-3",
+  "type": "Worksheet Exercise",
+  "number": "A.1.3",
+  "title": "",
+  "body": "   The solution in parametric form is , where and are arbitrary constants.   "
+},
+{
+  "id": "ws-MidtermReview-RowEchelonForm-3-4",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-RowEchelonForm-3-4",
+  "type": "Worksheet Exercise",
+  "number": "A.1.4",
+  "title": "",
+  "body": "   The solution in parametric vector form is , where and are arbitrary constants.   "
+},
+{
+  "id": "ws-MidtermReview-TypesEquations-2",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-TypesEquations-2",
+  "type": "Worksheet Exercise",
+  "number": "A.1.1",
+  "title": "",
+  "body": " Solve the following vector equation:   If the system is consistent, write the solution set as a linear combination of the basis vectors. If the system is inconsistent, explain how you know it.       "
+},
+{
+  "id": "ws-MidtermReview-TypesEquations-3",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-TypesEquations-3",
+  "type": "Worksheet Exercise",
+  "number": "A.1.2",
+  "title": "",
+  "body": " Solve the following matrix equation:   If the system is consistent, write the solution set as a linear combination of the basis vectors. If the system is inconsistent, explain how you know it.  "
+},
+{
+  "id": "ws-MidtermReview-LinearIndependence-2",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-LinearIndependence-2",
+  "type": "Worksheet Exercise",
+  "number": "A.1.1",
+  "title": "",
+  "body": " Let be a set of vectors in such that   Is this set of vectors linearly independent? Remember to justify your conclusion.   No   "
+},
+{
+  "id": "ws-MidtermReview-LinearIndependence-3",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-LinearIndependence-3",
+  "type": "Worksheet Exercise",
+  "number": "A.1.2",
+  "title": "",
+  "body": " Let be a set of vectors in such that   Is this set of vectors linearly independent? Remember to justify your conclusion.   Yes   "
+},
+{
+  "id": "ws-MidtermReview-LinearIndependence-4",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-LinearIndependence-4",
+  "type": "Worksheet Exercise",
+  "number": "A.1.3",
+  "title": "",
+  "body": " Let be a set of vectors in such that   Is this set of vectors linearly independent? If not, find the smallest set that spans the same plane.   No.  The smallest set is .   "
+},
+{
+  "id": "ws-MidtermReview-LinearTransformations-2",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-LinearTransformations-2",
+  "type": "Worksheet Exercise",
+  "number": "A.1.1",
+  "title": "",
+  "body": " Let be a linear transformation defined by , where    Find the value of     Is an image of this linear transformation? Justify your reasoning.              No it is not.      "
+},
+{
+  "id": "ws-MidtermReview-LinearTransformations-3",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-LinearTransformations-3",
+  "type": "Worksheet Exercise",
+  "number": "A.1.2",
+  "title": "",
+  "body": " Let be a linear transformation defined by , where Is an image of this transformation? Justify your reasoning.   Yes, since    "
+},
+{
+  "id": "ws-MidtermReview-LinearTransformations-4",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-LinearTransformations-4",
+  "type": "Worksheet Exercise",
+  "number": "A.1.3",
+  "title": "",
+  "body": " Let be a linear transformation such that Find        "
+},
+{
+  "id": "ws-MidtermReview-LinearTransformations-5",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-LinearTransformations-5",
+  "type": "Worksheet Exercise",
+  "number": "A.1.4",
+  "title": "",
+  "body": " Let be a linear transformation such that Find a matrix such that is defined by the formula        "
+},
+{
+  "id": "ws-MidtermReview-LinearTransformations-6",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-LinearTransformations-6",
+  "type": "Worksheet Exercise",
+  "number": "A.1.5",
+  "title": "",
+  "body": " Suppose is a linear transformation such that is a rotation by counterclockwise. Find the standard matrix that defines this transformation. That is, find the matrix such that .       "
+},
+{
+  "id": "ws-MidtermReview-LinearTransformations-7",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-LinearTransformations-7",
+  "type": "Worksheet Exercise",
+  "number": "A.1.6",
+  "title": "",
+  "body": " Suppose is a linear transformation such that is a reflection across the line by . Find the standard matrix that defines this transformation. That is, find the matrix such that .       "
+},
+{
+  "id": "ws-MidtermReview-MatrixOperations-2",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-MatrixOperations-2",
+  "type": "Worksheet Exercise",
+  "number": "A.1.1",
+  "title": "",
+  "body": " Let . Compute        "
+},
+{
+  "id": "ws-MidtermReview-MatrixOperations-3",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-MatrixOperations-3",
+  "type": "Worksheet Exercise",
+  "number": "A.1.2",
+  "title": "",
+  "body": " Let , , , , and . Compute the following if possible, and if not possible, explain why.                                                     Impossible. is and is ; addition\/subtraction requires identical dimensions.              Impossible. is and is .                   Impossible. is and is .           "
+},
+{
+  "id": "ws-MidtermReview-MatrixOperations-4",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-MatrixOperations-4",
+  "type": "Worksheet Exercise",
+  "number": "A.1.3",
+  "title": "",
+  "body": " Compute the following matrix-vector products:                  Impossible. The number of columns in the matrix (2) does not match the number of entries in the vector (3).           "
+},
+{
+  "id": "ws-MidtermReview-MatrixOperations-5",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-MatrixOperations-5",
+  "type": "Worksheet Exercise",
+  "number": "A.1.4",
+  "title": "",
+  "body": " Let , , and . Compute                                                  "
+},
+{
+  "id": "ws-MidtermReview-MatrixOperations-6",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-MatrixOperations-6",
+  "type": "Worksheet Exercise",
+  "number": "A.1.5",
+  "title": "",
+  "body": " Let , , and . Compute the following if possible, and if not possible, explain why.                       Impossible. is not a square matrix ( ), so it cannot be multiplied by itself.    Impossible. The number of columns in (3) does not match the number of rows in (2).           "
+},
+{
+  "id": "ws-MidtermReview-Inverses-2",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-Inverses-2",
+  "type": "Worksheet Exercise",
+  "number": "A.1.1",
+  "title": "",
+  "body": " Find the inverse of the following matrix if possible. If not possible, explain why.                                  is not invertible.     is not invertible.           "
+},
+{
+  "id": "ws-MidtermReview-Inverses-3",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-Inverses-3",
+  "type": "Worksheet Exercise",
+  "number": "A.1.2",
+  "title": "",
+  "body": " Let and . Solve the equation using .    .   "
+},
+{
+  "id": "ws-MidtermReview-Inverses-4",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-Inverses-4",
+  "type": "Worksheet Exercise",
+  "number": "A.1.3",
+  "title": "",
+  "body": " Find the inverse of the following matrix if possible. If not possible, explain why.                       is not invertible.          is not invertible.     "
+},
+{
+  "id": "ws-MidtermReview-Inverses-5",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-Inverses-5",
+  "type": "Worksheet Exercise",
+  "number": "A.1.4",
+  "title": "",
+  "body": " Let . Answer the following questions. Remember to justify your conclusions.    What is the size of ?    How many pivot positions does have?    How many solution does the homogeneous equation have?    Is the matrix equation  always consistent for all ?    Do the columns of span ?    Are the columns of linearly independent?    Is invertible?    Is defined by an injection?    Is defined by a surjection?                 Exactly one solution (the trivial solution).    Yes    Yes    Yes    Yes    Yes    Yes     "
+},
+{
+  "id": "ws-MidtermReview-Inverses-6",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-Inverses-6",
+  "type": "Worksheet Exercise",
+  "number": "A.1.5",
+  "title": "",
+  "body": " Let . Answer the following questions. Remember to justify your conclusions.    What is the size of ?    How many pivot positions does have?    How many solution does the homogeneous equation have?    Is the matrix equation  always consistent for all ?    Do the columns of span ?    Are the columns of linearly independent?    Is invertible?    Is defined by an injection?    Is defined by a surjection?                 Exactly one solution (the trivial solution).    Yes    Yes    Yes    Yes    Yes    Yes     "
+},
+{
+  "id": "ws-MidtermReview-Inverses-7",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#ws-MidtermReview-Inverses-7",
+  "type": "Worksheet Exercise",
+  "number": "A.1.6",
+  "title": "",
+  "body": " Let . Answer the following questions. Remember to justify your conclusions.    What is the size of ?    How many pivot positions does have?    How many solution does the homogeneous equation have?    Is the matrix equation  always consistent for all ?    Do the columns of span ?    Are the columns of linearly independent?    Is invertible?    Is defined by an injection?    Is defined by a surjection?                 Infinitely many solutions.    No    No    No    No    No    No     "
+},
+{
+  "id": "secA1-MidtermReview-11",
+  "level": "2",
+  "url": "secA1-MidtermReview.html#secA1-MidtermReview-11",
+  "type": "Figure",
+  "number": "A.1.1",
+  "title": "",
+  "body": " Richard's MTH 261 Midterm Exam on Spring 2026   "
 },
 {
   "id": "backmatter-2",
