@@ -11,13 +11,15 @@
     <assemblage>
         <title>Exam Dates</title>
         <p>
-            Midterm Exam will be in class on <alert>Tuesday, May 12</alert>, from 9:00am to 10:50am. 
+            Midterm Exam will be in class on the <alert> second class meeting in week 4</alert>.
+            For the specific date, check the D2L page.   
             This will cover <alert>Chapter 1, section 2.1, section 2.2, and section 2.3</alert>. 
         </p>
 
         <p>
-            Final Exam will be in class on <alert>Tuesday, June 9</alert>, from 9:00am to 10:50am. 
-            This exam is <alert>cumulative</alert>. 
+            Final Exam will be in class on the <alert> first class meeting in week 8</alert>.
+            For the specific date, check the D2L page.  
+            This exam is <alert>cumulative</alert>, with the emphasis on the material covered after the midterm exam. 
         </p>
 
         <p>
@@ -42,8 +44,8 @@
         <ul>
             <li>
                 <p>
-                    Remember we have done a lot of problems in class, in your portfolio, and in your homework problems. 
-                    Make sure you know how to solve the problems we went through in class, in your portfolio, and in your homework problems. 
+                    Remember we have done a lot of problems in class and in your homework problems. 
+                    Make sure you know how to solve the problems we went through in class and in your homework problems. 
                 </p>
             </li>
             <li>
@@ -155,18 +157,13 @@
         <title>How many problems can I expect on the exam?</title>
         
         <p>
-            No clue... 
-            This is the first time Richard is teaching linear algebra and he hasn't started to think about the exam stuff yet.
+            Usually, there will be 7 to 8 questions plus a bonus question on the exam, depending on the complexity and the level of difficulty of the questions. 
+            The questions will all be (big) free-response questions (like the ones we did on the worksheet). 
+            So there won’t be any multiple choices or fill-in-the-blank questions.
         </p>
 
         <p>
-            For reference, Richard has taught MTH 251, MTH 252(Z), and MTH 253 a lot before, and usually he would put about 7 to 8 problems plus a bonus question on a 1-hour-and-50-minute exam, depending on the level of difficulty of each problem. 
-            The questions were all (big) free-response questions, so there wasn't any multiple choices or fill-in-the-blank questions. 
-        </p>
-
-        <p>
-            Instead of giving you a precise number of questions on the exam, let's do a range! 
-            Let's say the number of questions on the exam, <m>N</m>, is in the interval <m>[7,10]</m>. 
+            Check out the exams Richard gave last term to get a sense of the length of them!
         </p>
     </remark>
 
@@ -204,20 +201,12 @@
     </remark>
 
     <p>
-        To give you an idea of what the exam(s) will be like, you can find the exams Richard gave to his MTH 261 last term. 
-        Feel free to use it as a practice run. 
+        Below are some review materials for the exams. 
+        Feel free to check them out and use them for your review! 
     </p>
-
-    <figure>
-      <caption>Richard's MTH 261 Midterm Exam in Spring 2026</caption>
-      <interactive iframe="MTH261_Spring26_Midterm.pdf" width="100%" aspect="8.5:11" />
-    </figure>
-
-    <figure>
-      <caption>Richard's MTH 261 Final Exam in Spring 2026</caption>
-      <interactive iframe="MTH261_Spring26_Final.pdf" width="100%" aspect="8.5:11" />
-    </figure>
-
   </introduction>
+
+  <!-- include sections -->
+  <xi:include href="secA1-MidtermReview.ptx" />
 
 </appendix>

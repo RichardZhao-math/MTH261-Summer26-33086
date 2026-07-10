@@ -21,9 +21,10 @@
     <xi:include href="./ch5-EigenvaluesEigenvectors.ptx" />
     <xi:include href="./ch6-Orthogonality.ptx" />
 
-    <xi:include href="./appendixA-ExamReviews.ptx" />
-
     -->
+
+    <!-- Include Appendices -->
+    <xi:include href="./appendixA-ExamReviews.ptx" />
 
     <!-- Include backmatter -->
     <xi:include href="./backmatter.ptx" />

@@ -1,0 +1,1246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="secA1-MidtermReview" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Midterm Review</title>
+
+    <introduction>
+        <p>
+            The midterm exam will cover material from Week 1 Day 1 of the class through Week 3 Day 2. 
+            That is, it covers material in the following sections: 
+            <ul marker="">
+                <li>
+                    <xref ref="sec11-SystemLinearEquations"/> Systems of Linear Equations
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec12-RowReduction"/> Row Reduction and Echelon Forms
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec13-VectorEquations"/> Vector Equations
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec14-MatrixEquation"/> The Matrix Equation <m>A\v{x} = \v{b}</m>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec15-SolutionSets"/> Solution Sets of Linear Systems
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec17-LinearIndependence"/> Linear Independence
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec18-IntroLinearTransformations"/> Introduction to Linear Transformations
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec19-MatrixLinearTransformation"/> The Matrix of a Linear Transformation
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec21-MatrixOperations"/> Matrix Operations
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec22-InverseMatrix"/> The Inverse of a Matrix
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <xref ref="sec23-InvertibleMatrix"/> Characterizations of Invertible Matrices
+                    </p>
+                </li>
+            </ul>
+            On this page, you will find review problems for the midterm exam. 
+            The final answers are included for each problem.
+            Make sure you spend some time working through these problems and understanding how things work! 
+        </p>
+
+        <p>
+            <alert>A quick reminder:</alert> Some class time during the class session before the midterm exam will be a review session. 
+            Usually this will be a work day for you to work through some problems together to prepare for the exam. 
+            This is also a great opportunity for you to ask questions about anything that is not clear to you! 
+        </p>
+    </introduction>
+
+    <worksheet xml:id="ws-MidtermReview-SystemEquations">
+        <title>Systems of Linear Equations</title>
+        
+        <exercise>
+            <p>
+                Solve the following system of equations: 
+                <md>
+                    \begin{cases}
+                        x_1 + 3x_2 - 5x_3 + x_4 = 4 \\
+                        2x_1 + 5x_2 - 2x_3 + 4x_4 = 6 \\
+                    \end{cases}
+                </md>
+                If the system is consistent, write the solution set as a column vector 
+                If the system is inconsistent, explain how you know it.
+            </p>
+
+            <answer>
+                <p>
+                    The solutions are of the form 
+                    <m>
+                        \begin{bmatrix} -2 - 19s - 7t \\ 2 + 8s + 2t \\ s \\ t \end{bmatrix}
+                    </m>
+                    where <m>s</m> and <m>t</m> are arbitrary constants.
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Solve the following system of linear equations: 
+                <md>
+                    <mrow>x_2 + 4x_3 \amp = -4</mrow>
+                    <mrow>x_1 + 3x_2 + 3x_3 \amp = -2</mrow>
+                    <mrow>3x_1 + 7x_2 + 5x_3 \amp = 6</mrow>
+                </md>
+                If the system is consistent, write the solution set as a column vector 
+                If the system is inconsistent, explain how you know it.
+            </p>
+
+            <answer>
+                <p>
+                    The solution is <m>\begin{bmatrix} 19 \\ -8 \\ 1 \end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Solve the following system of linear equations:
+                <md>
+                    <mrow>x_1 - 3x_3 \amp = 8</mrow>
+                    <mrow>2x_1 + 2x_2 + 9x_3 \amp = 7</mrow>
+                    <mrow>x_2 + 5x_3 \amp = -2</mrow>
+                </md>
+                If the system is consistent, write the solution set as a column vector
+                If the system is inconsistent, explain how you know it.
+            </p>
+
+            <answer>
+                <p>
+                    The solution is <m>\begin{bmatrix} 5 \\ 3 \\ -1 \end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Solve the following system of equations: 
+                <md>
+                    \begin{cases}
+                        2x_1 + 4x_2 + 6x_3 = 0 \\
+                        4x_1 + 5x_2 + 6x_3 = 0 \\
+                        3x_1 + x_2 - 2x_3 = 0
+                    \end{cases}
+                </md>
+                If the system is consistent, write the solution set as a linear combination of basic vectors. 
+                If the system is inconsistent, explain how you know it. 
+            </p>
+
+            <answer>
+                <p>
+                    This one has only the trivial solution <m>\begin{bmatrix} 0 \\ 0 \\ 0\end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Solve the following system of equations: 
+                <md>
+                    \begin{cases}
+                        x_1 + 2x_2 - x_3 = 0 \\
+                        3x_1 - 3x_2 + 2x_3 = 0 \\
+                        -x_1 - 11x_2 + 6x_3 = 0
+                    \end{cases}
+                </md>
+                If the system is consistent, write the solution set as a linear combination of basic vectors. 
+                If the system is inconsistent, explain how you know it.
+            </p>
+
+            <answer>
+                <p>
+                    The solutions are of the form <m>t\begin{bmatrix} -\frac{1}{9} \\ \frac{5}{9} \\ 1 \end{bmatrix}</m>, where <m>t</m> is an arbitrary constant.
+                </p>
+            </answer>
+        </exercise>
+        
+        <exercise>
+            <p>
+                Solve the following system of equations: 
+                <md>
+                    \begin{cases}
+                        3x + 3y + 2w = 0 \\
+                        y - z = 0 \\
+                        3x + 5y - 2z + 2w = 0
+                    \end{cases}
+                </md>
+                If the system is consistent, write the solution set as a linear combination of basic vectors. 
+                If the system is inconsistent, explain how you know it. 
+            </p>
+
+            <answer>
+                <p>
+                    The solutions are of the form <m>z\begin{bmatrix} -1 \\ 1 \\ 1 \\ 0\end{bmatrix} + w\begin{bmatrix}-\frac{2}{3} \\ 0 \\ 0 \\ 1 \end{bmatrix}</m>, where <m>z</m> and <m>w</m> are arbitrary constants.
+                </p>
+            </answer>
+        </exercise>
+
+        <exercisegroup>
+            <introduction>
+                <p>
+                Given the following matrix equivalent to some coefficient matrix <m>A</m>, describe all solutions of <m>A\v{x}= \v{0}</m> in parametric vector form. 
+                </p>
+            </introduction>
+            <exercise>
+                <md>
+                    \begin{bmatrix} 
+                    1 \amp 3 \amp -3 \amp 7 \\ 
+                    0 \amp 1 \amp -4 \amp 5 
+                    \end{bmatrix}
+                </md>
+
+                <answer>
+                    <p>
+                        The solution set in parametric vector form is 
+                        <m>\mathbf{x} = s \begin{bmatrix} -9 \\ 4 \\ 1 \\ 0 \end{bmatrix} + t\begin{bmatrix} 8 \\ -5 \\ 0 \\ 1 \end{bmatrix}</m>, where <m>s</m> and <m>t</m> are arbitrary constants.
+                    </p>
+                </answer>
+            </exercise>
+
+            <exercise>
+                <md>
+                    \begin{bmatrix} 
+                    3 \amp -9 \amp 6 \\ 
+                    -1 \amp 3 \amp -2 
+                    \end{bmatrix}
+                </md>
+
+                <answer>
+                    <p>
+                        The solution set in parametric vector form is 
+                        <m>\mathbf{x} = s \begin{bmatrix} 3 \\ 1 \\ 0 \end{bmatrix} + t \begin{bmatrix} -2 \\ 0 \\ 1 \end{bmatrix}</m>, where <m>s</m> and <m>t</m> are arbitrary constants.
+                    </p>
+                </answer>
+            </exercise>
+
+            <exercise>
+                <md>
+                    \begin{bmatrix} 
+                    1 \amp -4 \amp -2 \amp 0 \amp 3 \amp -5 \\ 
+                    0 \amp 0 \amp 1 \amp 0 \amp 0 \amp -1 \\ 
+                    0 \amp 0 \amp 0 \amp 0 \amp 1 \amp -4 \\ 
+                    0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 
+                    \end{bmatrix}
+                </md>
+
+                <answer>
+                    <p>
+                        The solution set in parametric vector form is 
+                        <m>\mathbf{x} = s \begin{bmatrix} 4 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{bmatrix} + t \begin{bmatrix} 0 \\ 0 \\ 0 \\ 1 \\ 0 \\ 0 \end{bmatrix} + u \begin{bmatrix} -5 \\ 0 \\ 1 \\ 0 \\ 4 \\ 1 \end{bmatrix}</m>, where <m>s</m>, <m>t</m>, and <m>u</m> are arbitrary constants.
+                    </p>
+                </answer>
+            </exercise>
+        </exercisegroup>
+    </worksheet>
+
+    <worksheet xml:id="ws-MidtermReview-RowEchelonForm">
+        <title>(Reduced) Row Echelon Form</title>
+
+        <exercise>
+            <p>
+                Row reduce the following matrix to reduced row echelon form. 
+                Circle the pivot positions (aka the leading <m>1</m>s) in the final matrix and in the original matrix, and list the pivot columns (aka columns that contain a leading <m>1</m>). 
+                <md>
+                    \begin{bmatrix}
+                    1 \amp 2 \amp 3 \amp 4 \\
+                    4 \amp 5 \amp 6 \amp 7 \\
+                    6 \amp 7 \amp 8 \amp 9
+                    \end{bmatrix}
+                </md>
+            </p>
+
+            <answer>
+                <p>
+                    The reduced row echelon form is 
+                    <m>
+                        \begin{bmatrix}
+                        1 \amp 0 \amp -1 \amp -2 \\
+                        0 \amp 1 \amp 2 \amp 3 \\
+                        0 \amp 0 \amp 0 \amp 0
+                        \end{bmatrix}
+                    </m>.
+                    The pivot positions are at <m>(1,1)</m> and <m>(2,2)</m> entries. 
+                    The pivot columns are Column 1 and Column 2.
+                </p>
+            </answer>
+        </exercise>
+
+        <exercisegroup>
+            <introduction>
+                <p>
+                In the following exercises, find the solutions of the systems whose augmented matrices are given. 
+                </p>
+            </introduction>
+
+            <exercise>
+                <md>
+                \begin{bmatrix}
+                    0 \amp 1 \amp -6 \amp \mid \amp 5 \\
+                    1 \amp -2 \amp 7 \amp \mid \amp -4
+                \end{bmatrix}
+                </md>
+
+                <answer>
+                    <p>
+                        The solution in parametric form is 
+                        <m>\mathbf{x} = \begin{bmatrix} 6 \\ 5 \\ 0 \end{bmatrix} + t \begin{bmatrix} 5 \\ 6 \\ 1 \end{bmatrix}</m>, where <m>t</m> is an arbitrary constant.
+                    </p>
+                </answer>
+            </exercise>
+
+            <exercise>
+                <md>
+                \begin{bmatrix}
+                    3 \amp -4 \amp 2 \amp \mid \amp 0 \\
+                    -9 \amp 12 \amp -6 \amp \mid \amp 0 \\
+                    -6 \amp 8 \amp -4 \amp \mid \amp 0
+                \end{bmatrix}
+                </md>
+
+                <answer>
+                    <p>
+                        The solution in parametric form is 
+                        <m>\mathbf{x} = s \begin{bmatrix} \frac{4}{3} \\ 1 \\ 0 \end{bmatrix} + t \begin{bmatrix} -\frac{2}{3} \\ 0 \\ 1 \end{bmatrix}</m>, where <m>s</m> and <m>t</m> are arbitrary constants.
+                    </p>
+                </answer>
+            </exercise>
+
+            <exercise>
+                <md>
+                    \begin{bmatrix}
+                    1 \amp -3 \amp 0 \amp -1 \amp 0 \amp \mid \amp -2 \\
+                    0 \amp 1 \amp 0 \amp 0 \amp -4 \amp \mid \amp 1 \\
+                    0 \amp 0 \amp 0 \amp 1 \amp 9 \amp \mid \amp -4 \\
+                    0 \amp 0 \amp 0 \amp 0 \amp 0 \amp \mid \amp 0
+                \end{bmatrix}
+                </md>
+
+                <answer>
+                    <p>
+                        The solution in parametric vector form is 
+                        <m>\mathbf{x} = \begin{bmatrix} -3 \\ 1 \\ 0 \\ -4 \\ 0 \end{bmatrix} + s \begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \\ 0 \end{bmatrix} + t \begin{bmatrix} 3 \\ 4 \\ 0 \\ -9 \\ 1 \end{bmatrix}</m>, where <m>s</m> and <m>t</m> are arbitrary constants.
+                    </p>
+                </answer>
+            </exercise>
+        </exercisegroup>
+    </worksheet>
+
+    <worksheet xml:id="ws-MidtermReview-TypesEquations">
+        <title>Vector Equations and Matrix Equation</title>
+        
+        <exercise>
+            <p>
+                Solve the following vector equation: 
+            </p>
+            <me>
+                x_1 \begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix} + 
+                x_2 \begin{bmatrix} 2 \\ 1 \\ -2 \end{bmatrix} + 
+                x_3 \begin{bmatrix} 2 \\ 1 \\ -1 \end{bmatrix} + 
+                x_4 \begin{bmatrix} 2 \\ 0 \\ -1 \end{bmatrix} = 
+                \begin{bmatrix} 3 \\ 1 \\ -5 \end{bmatrix}
+            </me>
+            <p>
+                If the system is consistent, write the solution set as a linear combination of the basis vectors. 
+                If the system is inconsistent, explain how you know it. 
+            </p>
+
+            <answer>
+                <p>
+                    <m>\v{x} = \begin{bmatrix} 1 \\ 3 \\ -2 \\ 0 \end{bmatrix} + t \begin{bmatrix} -2 \\ 1 \\ -1 \\ 1 \end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Solve the following matrix equation: 
+            </p>
+            <me>
+                \begin{bmatrix} 1 \amp 2 \amp 1 \\ 0 \amp 1 \amp 3 \\ 1 \amp 3 \amp 4 \end{bmatrix} \v{x} = \begin{bmatrix} 2 \\ 5 \\ 10 \end{bmatrix}
+            </me>
+            <p>
+                If the system is consistent, write the solution set as a linear combination of the basis vectors. 
+                If the system is inconsistent, explain how you know it. 
+            </p>
+
+            <answer>
+                <p>
+                    The system is inconsistent. 
+                </p>
+            </answer>
+        </exercise>
+    </worksheet>
+
+    <worksheet xml:id="ws-MidtermReview-LinearIndependence">
+        <title>Linear Independence</title>
+
+        <exercise>
+            <p>
+                Let <m>\set{\v{v}_1, \v{v}_2, \v{v}_3}</m> be a set of vectors in <m>\R^3</m> such that
+            </p>
+            <me>
+                \v{v}_1 = \begin{bmatrix} 2 \\ -1 \\ 4 \end{bmatrix} \quad , \quad
+                \v{v}_2 = \begin{bmatrix} 1 \\ 0 \\ -3 \end{bmatrix} \quad , \quad 
+                \v{v}_3 = \begin{bmatrix} 4 \\ -1 \\ -2 \end{bmatrix}
+            </me>
+            <p>
+                Is this set of vectors linearly independent? Remember to justify your conclusion.
+            </p>
+
+            <answer>
+                <p>
+                    No
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>\set{\v{v}_1, \v{v}_2, \v{v}_3}</m> be a set of vectors in <m>\R^4</m> such that
+            </p>
+            <me>
+                \v{v}_1 = \begin{bmatrix} 1 \\ 2 \\ 0 \\ -1 \end{bmatrix} \quad , \quad
+                \v{v}_2 = \begin{bmatrix} -1 \\ 1 \\ 1 \\ 0 \end{bmatrix} \quad , \quad 
+                \v{v}_3 = \begin{bmatrix} 3 \\ 0 \\ -1 \\ 2 \end{bmatrix}
+            </me>
+            <p>
+                Is this set of vectors linearly independent? Remember to justify your conclusion.
+            </p>
+
+            <answer>
+                <p>
+                    Yes
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>\set{\v{v}_1, \v{v}_2, \v{v}_3, \v{v}_4}</m> be a set of vectors in <m>\R^4</m> such that
+            </p>
+            <me>
+                \v{v}_1 = \begin{bmatrix} 1 \\ 0 \\ 1 \\ 0 \end{bmatrix} \quad , \quad
+                \v{v}_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \\ 1 \end{bmatrix} \quad , \quad 
+                \v{v}_3 = \begin{bmatrix} 2 \\ 1 \\ 2 \\ 1 \end{bmatrix} \quad , \quad
+                \v{v}_4 = \begin{bmatrix} -1 \\ 3 \\ -1 \\ 3 \end{bmatrix}
+            </me>
+            <p>
+                Is this set of vectors linearly independent? 
+                If not, find the <em>smallest</em> set that spans the same plane. 
+            </p>
+
+            <answer>
+                <p>
+                    No. 
+                </p>
+
+                <p>
+                    The smallest set is <m>\set{\v{v}_1, \v{v}_2}</m>. 
+                </p>
+            </answer>
+        </exercise>
+    </worksheet>
+
+    <worksheet xml:id="ws-MidtermReview-LinearTransformations">
+        <title>Linear Transformations</title>
+        
+        <exercise>
+            <p>
+                Let <m>T: \R^4 \to \R^3</m> be a linear transformation defined by <m>T(\v{x}) = A\v{x}</m>, where
+                <md>
+                    A = \begin{bmatrix} 1 \amp -4 \amp 7 \amp -5 \\ 0 \amp 1 \amp -4 \amp 3 \\ 2 \amp -6 \amp 6 \amp -4 \end{bmatrix}
+                </md>
+                <ol marker="(a)">
+                    <li>
+                        <p>
+                            Find the value of <m>T\lp \begin{bmatrix} 1 \\ 0 \\ 3 \\ -2 \end{bmatrix} \rp</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Is <m>\v{b} = \begin{bmatrix} 3 \\ -5 \\ 7 \end{bmatrix}</m> an image of this linear transformation? 
+                            Justify your reasoning. 
+                        </p>
+                    </li>
+                </ol>
+            </p>
+
+            <answer>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>
+                                <m>T\lp \begin{bmatrix} 1 \\ 0 \\ 3 \\ -2 \end{bmatrix} \rp = \begin{bmatrix} 32 \\ -18 \\ 28 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                No it is not. 
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>T: \R^3 \to \R^4</m> be a linear transformation defined by <m>T(\v{x}) = A\v{x}</m>, where
+                <md>
+                    A = \begin{bmatrix} 1 \amp 2 \amp 1 \\ 0 \amp 1 \amp 3 \\ 2 \amp 3 \amp 0 \\ 1 \amp 1 \amp 1 \end{bmatrix}
+                </md>
+                Is <m>\v{b} = \begin{bmatrix} 1 \\ 5 \\ -1 \\ 2 \end{bmatrix}</m> an image of this transformation? 
+                Justify your reasoning. 
+            </p>
+
+            <answer>
+                <p>
+                    Yes, since <m>T\lp \begin{bmatrix} 1 \\ -1 \\ 2 \end{bmatrix} \rp = \begin{bmatrix} 1 \\ 5 \\ -1 \\ 2 \end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>T: \R^4 \to \R^3</m> be a linear transformation such that
+                <md>
+                    T\lp \begin{bmatrix} 1 \\ 1 \\ 0 \\ -1 \end{bmatrix} \rp = \begin{bmatrix} 2 \\ 3 \\ -1 \end{bmatrix}
+                    \qquad \text{ and } \qquad
+                    T\lp \begin{bmatrix} 0 \\ -1 \\ 1 \\ 1 \end{bmatrix} \rp = \begin{bmatrix} 5 \\ 0 \\ 1 \end{bmatrix}
+                </md>
+                Find <m>T\lp \begin{bmatrix} 1 \\ 3 \\ -2 \\ -3 \end{bmatrix} \rp</m>
+            </p>
+
+            <answer>
+                <p>
+                    <m>T\lp \begin{bmatrix} 1 \\ 3 \\ -2 \\ -3 \end{bmatrix} \rp = \begin{bmatrix} -8 \\ 3 \\ -3 \end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>T: \R^3 \to \R^2</m> be a linear transformation such that
+                <md>
+                    T \lp \begin{bmatrix} 5 \\ -3 \\ 0 \end{bmatrix} \rp = \begin{bmatrix}2 \\ 1 \end{bmatrix}
+                    \, , \quad
+                    T \lp \begin{bmatrix} 2 \\ -1 \\ 0 \end{bmatrix} \rp = \begin{bmatrix}0 \\ -2 \end{bmatrix}
+                    \, , \, \text{ and } \quad
+                    T \lp \begin{bmatrix} 3 \\ 3 \\ 1 \end{bmatrix} \rp = \begin{bmatrix}1 \\ 2 \end{bmatrix}
+                </md>
+                Find a matrix <m>A</m> such that <m>T</m> is defined by the formula <m>T(\v{x}) = A\v{x}</m>
+            </p>
+
+            <answer>
+                <p>
+                    <m>A = \begin{bmatrix} -2 \amp -4 \amp 19 \\ -7 \amp -12 \amp 59 \end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Suppose <m>T:\R^2 \to \R^2</m> is a linear transformation such that <m>T</m> is a rotation by <m>\dfrac{11\pi}{2}</m> counterclockwise. 
+                Find the standard matrix <m>A</m> that defines this transformation. 
+                That is, find the matrix <m>A</m> such that <m>T(\v{x}) = A\v{x}</m>. 
+            </p>
+
+            <answer>
+                <p>
+                    <m>A = \begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Suppose <m>T:\R^2 \to \R^2</m> is a linear transformation such that <m>T</m> is a reflection across the line by <m>y = 3x</m>. 
+                Find the standard matrix <m>A</m> that defines this transformation. 
+                That is, find the matrix <m>A</m> such that <m>T(\v{x}) = A\v{x}</m>. 
+            </p>
+
+            <answer>
+                <p>
+                    <m>A = \begin{bmatrix} -\frac{4}{5} \amp \frac{3}{5} \\ \frac{3}{5} \amp \frac{4}{5} \end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+    </worksheet>
+
+    <worksheet xml:id="ws-MidtermReview-MatrixOperations">
+        <title>Matrix Operations</title>
+        
+        <exercise>
+            <p>
+                Let <m>A = \begin{bmatrix} 1 \amp -1 \\ 2 \amp 0 \\ 1 \amp 3 \end{bmatrix}</m>. 
+                Compute <m>\lp A^T A\rp^2</m>
+            </p>
+
+            <answer>
+                <p>
+                    <m>\lp A^T A\rp^2 = \begin{bmatrix} 40 \amp 32 \\ 32 \amp 104 \end{bmatrix}</m>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>A = \begin{bmatrix} 2 \amp 1 \\ 0 \amp -1\end{bmatrix}</m>, <m>B = \begin{bmatrix} 3 \amp -1 \amp 2 \\ 0 \amp 1 \amp 4 \end{bmatrix}</m>, <m>C = \begin{bmatrix} 3 \amp -1 \\ 2 \amp 0 \end{bmatrix}</m>, <m>D = \begin{bmatrix} 1 \amp 3 \\ -1 \amp 0 \\ 1 \amp 4 \end{bmatrix}</m>, and <m>E = \begin{bmatrix} 1 \amp 0 \amp 1 \\ 0 \amp 1 \amp 0 \end{bmatrix}</m>. 
+                Compute the following if possible, and if not possible, explain why. 
+                <ol marker="a. ">
+                    <li>
+                        <p>
+                            <m>3A - 2B</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>5C</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>3E^T</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>B + D</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>4A^T - 3C</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>(A + C)^T</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>2B- 3E</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>A - D</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>(B - 2E)^T</m>
+                        </p>
+                    </li>
+                </ol>
+            </p>
+
+            <answer>
+                <p>
+                    <ol marker="a. ">
+                        <li>
+                            <p>
+                                Impossible. <m>A</m> is <m>2 \times 2</m> and <m>B</m> is <m>2 \times 3</m>; addition/subtraction requires identical dimensions.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>\begin{bmatrix} 15 \amp -5 \\ 10 \amp 0 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>\begin{bmatrix} 3 \amp 0 \\ 0 \amp 3 \\ 3 \amp 0 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Impossible. <m>B</m> is <m>2 \times 3</m> and <m>D</m> is <m>3 \times 2</m>.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>\begin{bmatrix} -1 \amp 3 \\ -2 \amp -4 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>\begin{bmatrix} 5 \amp 2 \\ 0 \amp -1 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>\begin{bmatrix} 3 \amp -2 \amp 1 \\ 0 \amp -1 \amp 8 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Impossible. <m>A</m> is <m>2 \times 2</m> and <m>D</m> is <m>3 \times 2</m>.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>\begin{bmatrix} 1 \amp 0 \\ -1 \amp -1 \\ 0 \amp 4 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Compute the following matrix-vector products: 
+                <ol marker="a. ">
+                    <li>
+                        <p>
+                            <m>\begin{bmatrix} -4 \amp 2 \\ 1 \amp 6 \\ 0 \amp 1 \end{bmatrix} \begin{bmatrix} 3 \\ 1\\ 7 \end{bmatrix}</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\begin{bmatrix} 6 \amp 5 \\ -4 \amp -3 \\ 7 \amp 6 \end{bmatrix} \begin{bmatrix} 1 \\ -3 \end{bmatrix}</m>
+                        </p>
+                    </li>
+                </ol>
+            </p>
+
+            <answer>
+                <p>
+                    <ol marker="a. ">
+                        <li>
+                            <p>
+                                Impossible. The number of columns in the matrix (2) does not match the number of entries in the vector (3).
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>\begin{bmatrix} -9 \\ 5 \\ -11 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </answer>
+        </exercise>
+        
+        <exercise>
+            <p>
+                Let <m>A = \begin{bmatrix} 3 \amp 2 \amp 1 \\ 5 \amp -8 \amp 1 \\ 1 \amp 2 \amp 3\end{bmatrix}</m>, <m>B = \begin{bmatrix} -1 \amp 2 \amp 1 \\ 5 \amp 0 \amp 1 \\ 1 \amp 2 \amp 1\end{bmatrix}</m>, and <m>\v{v} = \begin{bmatrix} 2 \\ -1 \\ 3 \end{bmatrix}</m>. 
+                Compute 
+                <ol marker="a. ">
+                    <li>
+                        <p>
+                            <m>AB</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>BA</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>A\v{v}</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>B\v{v}</m>
+                        </p>
+                    </li>
+                </ol>
+            </p>
+
+            <answer>
+                <p>
+                    <ol marker="a. ">
+                        <li>
+                            <p>
+                                <m>AB = \begin{bmatrix} 8 \amp 8 \amp 6 \\ -44 \amp 12 \amp -2 \\ 12 \amp 8 \amp 6 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>BA = \begin{bmatrix} 8 \amp -16 \amp 4 \\ 16 \amp 12 \amp 8 \\ 14 \amp -12 \amp 6 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>A\v{v} = \begin{bmatrix} 7 \\ 21 \\ 9 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>B\v{v} = \begin{bmatrix} -1 \\ 13 \\ 3 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>A = \begin{bmatrix} 1 \amp 2 \amp 3 \\ -1 \amp 0 \amp 0 \end{bmatrix}</m>, <m>B = \begin{bmatrix} 1 \amp -2 \\ \frac{1}{2} \amp 3 \end{bmatrix}</m>, and <m>C = \begin{bmatrix} -1 \amp 0 \\ 2 \amp 5 \\ 0 \amp 3 \end{bmatrix}</m>. 
+                Compute the following if possible, and if not possible, explain why.
+                <ol marker="a. ">
+                    <li>
+                        <p>
+                            <m>A^2</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>AB</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>AC</m>
+                        </p>
+                    </li>
+                </ol>
+            </p>
+
+            <answer>
+                <p>
+                    <ol marker="a. ">
+                        <li>
+                            <p>
+                                Impossible. <m>A</m> is not a square matrix (<m>2 \times 3</m>), so it cannot be multiplied by itself.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Impossible. The number of columns in <m>A</m> (3) does not match the number of rows in <m>B</m> (2).
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>AC = \begin{bmatrix} 3 \amp 19 \\ 1 \amp 0 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </answer>
+        </exercise>
+    </worksheet>
+
+    <worksheet xml:id="ws-MidtermReview-Inverses">
+        <title>Inverses of Matrices (and Related Stuff)</title>
+        
+        <exercise>
+            <p>
+                Find the inverse of the following matrix if possible. 
+                If not possible, explain why.  
+                <ol marker="a. ">
+                    <li>
+                        <p>
+                            <m>A = \begin{bmatrix} 5 \amp -2 \\ -9 \amp 4 \end{bmatrix}</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>B = \begin{bmatrix} 2 \amp -4 \\ -1 \amp 2 \end{bmatrix}</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>C = \begin{bmatrix} 3 \amp 5 \\ 0 \amp 0 \end{bmatrix}</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>D = \begin{bmatrix} 1 \amp -7 \\ 0 \amp 1 \end{bmatrix}</m>
+                        </p>
+                    </li>
+                </ol>
+            </p>
+
+            <answer>
+                <p>
+                    <ol marker="a.">
+                        <li>
+                            <p>
+                                <m>A^{-1} = \begin{bmatrix} 2 \amp 1 \\ \frac{9}{2} \amp \frac{5}{2} \end{bmatrix}</m>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>B</m> is not invertible. 
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>B</m> is not invertible. 
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <m>D^{-1} = \begin{bmatrix} 1 \amp 7 \\ 0 \amp 1 \end{bmatrix}</m>
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>A = \begin{bmatrix} 1 \amp 2 \\ 5 \amp 12 \end{bmatrix}</m> and <m>\v{b} = \begin{bmatrix} -1 \\ 3 \end{bmatrix}</m>. 
+                Solve the equation <m>A\v{x} = \v{b}</m> using <m>A^{-1}</m>. 
+            </p>
+
+            <answer>
+                <p>
+                    <m>\v{x} = \begin{bmatrix} -9 \\ 4 \end{bmatrix}</m>.
+                </p>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Find the inverse of the following matrix if possible. 
+                If not possible, explain why.  
+                <ol marker="a.">
+                    <li>
+                        <p>
+                            <m>A = \begin{bmatrix} 1 \amp 4 \amp -2 \\ 0 \amp 0 \amp 0 \\ 3 \amp 1 \amp 5 \end{bmatrix}</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>B = \begin{bmatrix} 1 \amp 0 \amp -2 \\ -3 \amp 1 \amp 4 \\ 2 \amp -3 \amp 4 \end{bmatrix}</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>C = \begin{bmatrix} 1 \amp 2 \amp 3 \\ -1 \amp 1 \amp 0 \\ 4 \amp 5 \amp 9 \end{bmatrix}</m>
+                        </p>
+                    </li>
+                </ol>
+            </p>
+
+            <answer>
+                <ol marker="a.">
+                    <li>
+                        <p>
+                            <m>A</m> is not invertible. 
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>B^{-1} = \begin{bmatrix} 8 \amp 3 \amp 1 \\ 10 \amp 4 \amp 1 \\ \frac{7}{2} \amp \frac{3}{2} \amp \frac{1}{2} \end{bmatrix}</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>C</m> is not invertible. 
+                        </p>
+                    </li>
+                </ol>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>A = \begin{bmatrix} 2 \amp 0 \amp -1 \amp 3 \\ 1 \amp -1 \amp 2 \amp 0 \\ 0 \amp 1 \amp 1 \amp -2 \\ 3 \amp 2 \amp 0 \amp 1 \end{bmatrix}</m>. 
+                Answer the following questions. 
+                Remember to justify your conclusions.
+            </p>
+            
+            <ol>
+                <li>
+                    <p>What is the size of <m>A</m>?</p>
+                </li>
+                <li>
+                    <p>How many pivot positions does <m>A</m> have?</p>
+                </li>
+                <li>
+                    <p>How many solution does the homogeneous equation <m>A\v{x} = \v{0}</m> have?</p>
+                </li>
+                <li>
+                    <p>Is the matrix equation <m>A\v{x} = \v{b}</m> <em>always</em> consistent for all <m>\v{b} \in \R^4</m>?</p>
+                </li>
+                <li>
+                    <p>Do the columns of <m>A</m> span <m>\R^4</m>?</p>
+                </li>
+                <li>
+                    <p>Are the columns of <m>A</m> linearly independent?</p>
+                </li>
+                <li>
+                    <p>Is <m>A</m> invertible?</p>
+                </li>
+                <li>
+                    <p>Is <m>T: \R^4 \to \R^4</m> defined by <m>T(\v{x}) = A\v{x}</m> an injection?</p>
+                </li>
+                <li>
+                    <p>Is <m>T: \R^4 \to \R^4</m> defined by <m>T(\v{x}) = A\v{x}</m> a surjection?</p>
+                </li>
+            </ol>
+
+            <answer>
+                <ol>
+                    <li>
+                        <p>
+                            <m>4 \times 4</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>4</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Exactly one solution (the trivial solution). 
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                </ol>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>B = \begin{bmatrix} 1 \amp 1 \amp 1 \\ 0 \amp 2 \amp 1 \\ 1 \amp 0 \amp 2 \end{bmatrix}</m>. 
+                Answer the following questions. Remember to justify your conclusions.
+            </p>
+            
+            <ol>
+                <li>
+                    <p>What is the size of <m>B</m>?</p>
+                </li>
+                <li>
+                    <p>How many pivot positions does <m>A</m> have?</p>
+                </li>
+                <li>
+                    <p>How many solution does the homogeneous equation <m>B\v{x} = \v{0}</m> have?</p>
+                </li>
+                <li>
+                    <p>Is the matrix equation <m>B\v{x} = \v{b}</m> <em>always</em> consistent for all <m>\v{b} \in \R^3</m>?</p>
+                </li>
+                <li>
+                    <p>Do the columns of <m>B</m> span <m>\R^3</m>?</p>
+                </li>
+                <li>
+                    <p>Are the columns of <m>B</m> linearly independent?</p>
+                </li>
+                <li>
+                    <p>Is <m>A</m> invertible?</p>
+                </li>
+                <li>
+                    <p>Is <m>T: \R^3 \to \R^3</m> defined by <m>T(\v{x}) = B\v{x}</m> an injection?</p>
+                </li>
+                <li>
+                    <p>Is <m>T: \R^3 \to \R^3</m> defined by <m>T(\v{x}) = B\v{x}</m> a surjection?</p>
+                </li>
+            </ol>
+
+            <answer>
+                <ol>
+                    <li>
+                        <p>
+                            <m>3 \times 3</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>3</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Exactly one solution (the trivial solution). 
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Yes
+                        </p>
+                    </li>
+                </ol>
+            </answer>
+        </exercise>
+
+        <exercise>
+            <p>
+                Let <m>C = \begin{bmatrix} 1 \amp 2 \amp 0 \amp 1 \amp 3 \\ 0 \amp 1 \amp 1 \amp 2 \amp 0 \\ 0 \amp 0 \amp 1 \amp -1 \amp 1 \\ 0 \amp 0 \amp 0 \amp 2 \amp 4 \\ 1 \amp 3 \amp 1 \amp 3 \amp 3 \end{bmatrix}</m>. 
+                Answer the following questions. Remember to justify your conclusions.
+            </p>
+            
+            <ol>
+                <li>
+                    <p>What is the size of <m>C</m>?</p>
+                </li>
+                <li>
+                    <p>How many pivot positions does <m>C</m> have?</p>
+                </li>
+                <li>
+                    <p>How many solution does the homogeneous equation <m>C\v{x} = \v{0}</m> have?</p>
+                </li>
+                <li>
+                    <p>Is the matrix equation <m>C\v{x} = \v{b}</m> <em>always</em> consistent for all <m>\v{b} \in \R^5</m>?</p>
+                </li>
+                <li>
+                    <p>Do the columns of <m>C</m> span <m>\R^5</m>?</p>
+                </li>
+                <li>
+                    <p>Are the columns of <m>C</m> linearly independent?</p>
+                </li>
+                <li>
+                    <p>Is <m>C</m> invertible?</p>
+                </li>
+                <li>
+                    <p>Is <m>T: \R^5 \to \R^5</m> defined by <m>T(\v{x}) = C\v{x}</m> an injection?</p>
+                </li>
+                <li>
+                    <p>Is <m>T: \R^5 \to \R^5</m> defined by <m>T(\v{x}) = C\v{x}</m> a surjection?</p>
+                </li>
+            </ol>
+
+            <answer>
+                <ol>
+                    <li>
+                        <p>
+                            <m>5 \times 5</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>4</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Infinitely many solutions. 
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            No
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            No
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            No
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            No
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            No
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            No
+                        </p>
+                    </li>
+                </ol>
+            </answer>
+        </exercise>
+    </worksheet>
+
+    <p>
+        Last but not least, to give you an idea of what the exam will be like, you can find the midterm exam Richard gave to his MTH 261 last term. 
+        Feel free to use it as a practice run! 
+    </p>
+
+    <figure>
+      <caption>Richard's MTH 261 Midterm Exam on Spring 2026</caption>
+      <interactive iframe="MTH261_Spring26_Midterm.pdf" width="100%" aspect="8.5:11" />
+    </figure>
+
+</section>
