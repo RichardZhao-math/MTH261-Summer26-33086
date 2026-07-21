@@ -39,7 +39,7 @@
         <title>Dimensions</title>
         
         <p>
-            Recall that the number of vectors in a basis is a fixed number for a given subspace, and we can generate the whole subspace by taking linear combinations of the vectors in the basis. 
+            Recall that the number of vectors in a basis is a finite number for a given subspace, and we can generate the whole subspace by taking linear combinations of the vectors in the basis. 
             Then we define the <term>dimension</term> of a subspace as the number of vectors in a basis for that subspace. 
         </p>
 
@@ -82,24 +82,13 @@
 
        <p>
             Recall we talked about two fundamental subspaces associated with a matrix in the last section: the null space and the column space. 
-            What about their basis and dimension? 
+            We learned how to find a basis for these two subspaces in the last section. 
+            Now we can find the dimension of them as well!  
        </p>
 
        <p>
-            Good news! 
-            The technique we use to find a spanning set for the null space of a matrix will automatically give us a basis! 
-            So we can find a basis of a null space by just doing what we have been doing: solving the homogeneous equation <m>A\v{x} = \v{0}</m> and writing the solution in parametric form. 
-            The vectors corresponding to the free variables will form a basis for the null space. 
-       </p>
-
-       <p>
-            <em>NOTE:</em> The reason why the vectors corresponding to the free variables will automatically form a basis for the null space is because of the nature of the free variables (talk to Richard if you are super interested in it!). 
-            So the only way to end up with the wrong number of vectors in the basis is to have the wrong number of free variables. 
-       </p>
-
-       <p>
-            Yet the basis for the column space is a bit more tricky to find, as there is no guarantee that the columns of a matrix will be linearly independent. 
-            However, we can find a basis for the column space by <alert>only including the pivot columns</alert>, as these column vectors are guaranteed to be linearly independent (so we essentially take out the free variables to make sure <m>A\v{x} = \v{0}</m> only has the trivial solution). 
+            To find the dimension, we need to first find a basis for the subspace (specific instruction is in the last section!). 
+            Then we can just count the number of vectors in the basis to find the dimension. 
        </p>
 
        <example>
@@ -108,50 +97,18 @@
             </p>
 
             <p>
-                In the last section, we solved the homogeneous equation <m>A\v{x} = \v{0}</m>. 
-                For our convenience, let's copy down the reduced row echelon form of the augmented matrix: 
+                In the last section, we found the null space and the column space of the matrix <m>A</m>. 
                 <md>
-                    \begin{bmatrix} 1 \amp -2 \amp 0 \amp -1 \amp 0 \amp \mid \amp 0  \\ 0 \amp 0 \amp 1 \amp 2 \amp 0 \amp \mid \amp 0\\ 0 \amp 0 \amp 0 \amp 0 \amp 1 \amp \mid \amp 0 \end{bmatrix}
+                    <mrow>\Nul A \amp= \span\left\{\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}\right\} </mrow>
+                    <mrow>\Col A \amp= \span\left\{\begin{bmatrix} -3 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -1 \\ 2 \\ 5 \end{bmatrix}, \begin{bmatrix} 7 \\ -1 \\ -4 \end{bmatrix}\right\} </mrow>
                 </md>
-                <em>P.S.: </em> Row echelon form is enough as well since all we need to identify are the pivot columns (or not the pivot columns).
-            </p>
-
-            <p>
-                Lets' start with the null space first! 
-                The solution to the homogeneous equation <m>A\v{x} = \v{0}</m>, in parametric form, looks like this:  
+                Observe that there are two vectors in the basis for the null space and three vectors in the basis for the column space. 
+                Hence, 
                 <md>
-                \v{x} = \begin{bmatrix} 2x_2 + x_4 \\ x_2 \\ -2x_4 \\ x_4 \\ 0 \end{bmatrix} = x_2\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + x_4 \begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}
+                    \dim\Nul A = 2
+                    \qquad \text{ and } \qquad 
+                    \dim\Col A = 3
                 </md>
-                where <m>x_2, x_4 \in \R</m>. 
-                Hence, the null space of <m>A</m> is
-                <md>          
-                    \Nul A = \span\left\{\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}\right\}
-                </md>
-                Since these vectors are linearly independent, then a basis for the null space is <m>\left\{\begin{bmatrix} 2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ -2 \\ 1 \\ 0\end{bmatrix}\right\}</m> and hence the null space has dimension <m>2</m>. 
-            </p>
-
-            <p>
-                What about a basis for the column space? 
-                Let's stare at the reduced row echelon form of the coefficient matrix part again! 
-            </p>
-
-            <p>
-                Notice that a pivot position appears in the first, third, and fifth columns. 
-                So they do NOT correspond to free variables. 
-                Imagine if we remove column 2 and column 4 from the coefficient matrix in the beginning, then we will end up with a homogeneous equation that has no free variable, and hence the columns are linearly independent. 
-                Therefore, we can span the column space by just including the first, third, and fifth columns. 
-                That is, 
-                <md>          
-                    \Col A = \span\left\{\begin{bmatrix} -3 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -1 \\ 2 \\ 5 \end{bmatrix}, \begin{bmatrix} 7 \\ -1 \\ -4 \end{bmatrix}\right\}
-                </md>
-                A basis for the column space is <m>\left\{\begin{bmatrix} -3 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -1 \\ 2 \\ 5 \end{bmatrix}, \begin{bmatrix} 7 \\ -1 \\ -4 \end{bmatrix}\right\}</m> and hence the column space has dimension <m>3</m>. 
-            </p>
-
-            <p>
-                <alert>Spoiler:</alert> You may have noticed that the dimension of the null space and the dimension of the column space add up to the number of columns in the matrix. 
-                This is a BIG theorem in linear algebra! 
-                We can sense that this is true because we take the columns with pivot positions to form a basis for the column space and use the columns without pivot positions to figure out a basis for the null space. 
-                We will focus on this theorem in section 5.4 (and this theorem is a fundamental theorem of linear algebra!) .
             </p>
        </example>
 
@@ -161,8 +118,54 @@
             </p>
 
             <p>
-                Find a basis and the dimension for <m>\Nul A</m> and <m>\Col A</m>. 
+                Find a basis and the dimension for <m>\Nul B</m> and <m>\Col B</m>. 
             </p>
+
+            <solution>
+                <p>
+                    We will need to determine whether the columns of <m>B</m> contains a pivot position or not, so a good first step is to row reduce the matrix. 
+                    <md>
+                        B = \begin{bmatrix} -1 \amp -1 \amp -1 \amp -2 \amp -4 \\ 2 \amp 1 \amp 0 \amp 0 \amp 3 \\ 2 \amp 1 \amp 1 \amp 1 \amp 6 \end{bmatrix}
+                        \sim 
+                        \begin{bmatrix} 1 \amp 0 \amp 0 \amp -1 \amp 2 \\ 0 \amp 1 \amp 0 \amp 2 \amp -1 \\ 0 \amp 0 \amp 1 \amp 1 \amp 3 \end{bmatrix}
+                    </md>
+                    Observe that the first three columns contains pivot positions, so we can span the whole column space using these three columns.
+                    That is, 
+                    <md>
+                        \Col B = \span \left\{ \begin{bmatrix} -1 \\ 2 \\ 2 \end{bmatrix}, \begin{bmatrix} -1 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\right\}
+                    </md>
+                    Observe that there are three vectors in the basis, so <m>\dim \Col B = 3</m>. 
+                </p>
+
+                <p>
+                    To find a basis for the null space, we essentially need to solve the homogeneous equation <m>B\v{x} = \v{0}</m>. 
+                    Since the constant column of zeros is not affected by row operations, we can use the row reduced form of <m>B</m> to solve the homogeneous equation. 
+                </p>
+
+                <p>
+                    Since there is no pivot position in the last two columns, <m>x_4</m> and <m>x_5</m> are free variables. 
+                    Hence, we can express <m>x_1</m>, <m>x_2</m>, and <m>x_3</m> in terms of <m>x_4</m> and <m>x_5</m> as follows: 
+                    <md>
+                        \begin{cases}
+                            x_1 = s - 2t \\
+                            x_2 = -2s + t \\
+                            x_3 = -s - 3t \\
+                            x_4 = s \\
+                            x_5 = t
+                        \end{cases}
+                    </md>
+                    So we can describe the solution in the parametric form as follows:
+                    <md>
+                        \v{x} = s\begin{bmatrix} 1 \\ -2 \\ -1 \\ 1 \\ 0 \end{bmatrix} + t\begin{bmatrix} -2 \\ 1 \\ -3 \\ 0 \\ 1 \end{bmatrix}
+                    </md>
+                    Hence, the null space is spanned by the above two basis vectors. 
+                    That is, 
+                    <md>
+                        \Nul B = \span\left\{ \begin{bmatrix} 1 \\ -2 \\ -1 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -2 \\ 1 \\ -3 \\ 0 \\ 1 \end{bmatrix} \right\}
+                    </md>
+                    Observe that there are two vectors in the basis, so <m>\dim \Nul B = 2</m>. 
+                </p>
+            </solution>
        </exercise>
     </subsection>
 
@@ -207,21 +210,21 @@
       </theorem>
 
       <p>
-        Feel free to explore the other fundamental theorems of linear algebra as there are two more fundamental subspaces we did not discussed in class! 
-        A huge spoiler to explore the other fundamental theorem of linear algebra relies on the fact that the dimension of the row space is also called the rank!
+        <alert>
+            You will explore in your last lab report the other fundamental theorems of linear algebra as there are two more fundamental subspaces (the row space and the left null space) that we have not discussed yet, and there are other interesting relationships between them in addition to the dimensions!
+        </alert>
       </p>
-      
     </subsection>
 
     <subsection xml:id="subsec-ExtendedInvertibleMatrixTheorem">
         <title>Extending Our Invertible Matrix Theorem!</title>
         
         <p>
-            Back in <xref ref="sec23-InvertibleMatrix"/> we saw our first version of the <xref ref="thm-InvertibleMatrixTheorem"/>. 
+            Back in <xref ref="sec23-InvertibleMatrix"/> we saw our first version of the Invertible Matrix Theorem (<xref ref="thm-InvertibleMatrixTheorem"/>). 
         </p>
 
         <p>
-            Now that we learn more fancy things in linear algebra, we can add a couple more conditions that are equivalent to invertibility:
+            Now that we learn more fancy things in linear algebra, we can add a couple more statements that are equivalent to the twelve statements in the theorem so far:
             <ul marker="">
                 <li>
                     <p>
@@ -250,6 +253,151 @@
                 </li>
             </ul> 
             They should be immediate results from the Invertible Matrix Theorem, but rephrasing it using all the fancy concepts we learned in this chapter. 
+        </p>
+
+        <p>
+            We will continue building on this theorem as we learn more concepts in linear algebra, so stay tuned! 
+        </p>
+    </subsection>
+
+    <subsection xml:id="subsec-CoordinatesSystem">
+        <title>Coordinates System</title>
+        
+        <p>
+            In <m>\R^2</m>, the <alert>standard basis</alert> is <m>\set{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}}</m>. 
+            But what makes this the STANDARD basis? 
+        </p>
+
+        <p>
+            That is because we build our <m>\R^2</m> coordinate system using this basis (so this is like our default setting in <m>\R^2</m> coordinate system). 
+        </p>
+
+        <figure>
+            <image source="sec29-StandardCoordinateR2-Diagram.png" width="60%"></image>
+            <caption>Standard Coordinate System in <m>\R^2</m> using the standard basis <m>\v{e}_1</m> and <m>\v{e}_2</m></caption>
+        </figure>
+
+        <p>
+            Observe that the two standard basis vectors <m>\v{e}_1</m> and <m>\v{e}_2</m> not only define the two <alert>directions</alert> of the coordinate system (so they can't be parallel!) but also what the <alert>unit length</alert> looks like in both directions. 
+            Then we can represent any vector in <m>\R^2</m> as a linear combination of these two standard basis vectors, and the coordinates are the <alert>scalars</alert> in such a linear combination. 
+        </p>
+
+        <example>
+            <p>
+                Consider our standard basis <m>\set{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}}</m> in <m>\R^2</m>. 
+                How can we represent the vector <m>\v{x} = \begin{bmatrix} 3 \\ 5 \end{bmatrix}</m> using this basis? 
+            </p>
+
+            <p>
+                We can write <m>\v{x}</m> as a linear combination of the two standard basis vectors as follows: 
+                <md>
+                    \v{x} = 3\begin{bmatrix} 1 \\ 0 \end{bmatrix} + 5\begin{bmatrix} 0 \\ 1 \end{bmatrix}
+                </md>
+                That is, we can graph this vector <m>\v{x}</m> by moving 3 units in the direction of <m>\v{e}_1</m> and 5 units in the direction of <m>\v{e}_2</m> (then add these two vectors together). 
+            </p>
+
+            <figure>
+                <image source="sec29-StandardCoordinateR2-Example.png" width="60%"></image>
+                <caption>Graphing <m>\v{x} = \begin{bmatrix} 3 \\ 5 \end{bmatrix}</m> using the standard basis <m>\v{e}_1</m> and <m>\v{e}_2</m></caption>
+            </figure>
+
+            <p>
+                So it makes sense to say that the <alert>coordinate</alert> of the vector <m>\v{x}</m> <em>relative to</em> the standard basis is <m>\begin{bmatrix} 3 \\ 5 \end{bmatrix}</m>.
+            </p>
+        </example>
+
+        <p>
+            Since we can find a different basis for a subspace, then we can also build a different coordinate system using a different basis. 
+            Once you do that, then the coordinates of a vector will change as well. 
+            That is, the coordinate of a vector depends on the basis we choose to build the coordinate system. 
+        </p>
+
+        <example>
+            <p>
+                Let's use a different basis to build the coordinate system in <m>\R^2</m>. 
+                Now let's pick the set <m>\mathcal{B} = \set{\begin{bmatrix} 1 \\ -2 \end{bmatrix}, \begin{bmatrix} 2 \\ -1 \end{bmatrix}}</m> to be a basis for <m>\R^2</m>. 
+            </p>
+
+            <p>
+                <em>We can quickly verify that these two vectors are linearly independent and spans <m>\R^2</m>, so they form a basis for <m>\R^2</m></em>. 
+            </p>
+
+            <p>
+                Then we can create a new coordinate system using this basis! 
+                Just for notational briefness, let's call the first basis vector <m>\v{b}_1</m> and the second basis vector <m>\v{b}_2</m>. 
+                Then our new coordinate system looks like this below: 
+            </p>
+
+            <figure>
+                <image source="sec29-NewCoordinateR2-CompareStandard.png" width="60%"></image>
+                <caption>Building a new coordinate system using the basis <m>\mathcal{B}</m></caption>
+            </figure>
+
+            <p>
+                To give you a better idea of what the new coordinate system looks like, Richard removed the standard coordinate system and also added the grid lines to help you visualize the new coordinate system. 
+            </p>
+
+            <figure>
+                <image source="sec29-NewCoordinateR2-Grid.png" width="60%"></image>
+                <caption>The new coordinate system using the basis <m>\mathcal{B}</m> with grid lines</caption>
+            </figure>
+
+            <p>
+                Next, let's say we want to find the new coordinate of the vector <m>\v{x} = \begin{bmatrix} 0 \\ 3 \end{bmatrix}</m> using this new coordinate system. 
+                First, let's take a look at the graph of the vector <m>\v{x}</m> in the new coordinate system: 
+            </p>
+
+            <figure>
+                <image source="sec29-NewCoordinateR2-Example.png" width="60%"></image>
+                <caption>Vector <m>\v{x}</m> in the new coordinate system</caption>
+            </figure>
+
+            <p>
+                Observe that the vector <m>\v{x}</m> can be obtained in the new coordinate system by moving 2 units backwards in the direction of <m>\v{b}_1</m> and 1 unit forward in the direction of <m>\v{b}_2</m>.
+                So the new coordinate of the vector <m>\v{x}</m> relative to the basis <m>\mathcal{B}</m> is <m>\begin{bmatrix} -2 \\ 1 \end{bmatrix}</m>. 
+            </p>
+
+            <p>
+                We can also find the scalars by figuring out the linear combination of the two basis vectors that gives us the vector <m>\v{x}</m>. 
+                That is, 
+                <md>
+                    \v{x} = -2\begin{bmatrix} 1 \\ -2 \end{bmatrix} + 1\begin{bmatrix} 2 \\ -1 \end{bmatrix}
+                </md>
+                So the new coordinate of the vector <m>\v{x}</m> relative to the basis <m>\mathcal{B}</m> is <m>\begin{bmatrix} -2 \\ 1 \end{bmatrix}</m>. 
+            </p>
+
+            <p>
+                <alert>Fancy Notation!</alert> The notation of the new coordinate is <m>[\v{x}]_\mathcal{B} = \begin{bmatrix} - 2 \\ 1 \end{bmatrix}</m>
+            </p>
+        </example>
+
+        <p>
+            Of course, this idea can be extended to any subspace of <m>\R^n</m>! 
+            Let's wrap up this section by summarizing this idea into a fancy definition!
+        </p>
+
+        <definition xml:id="def-CoordinatesRelative">
+            <statement>
+                <p>
+                    Let <m>\mathcal{B} = \set{\v{b}_1, \v{b}_2, \ldots, \v{b}_p}</m> be a subspace <m>H</m> of <m>\R^n</m>. 
+                    For each <m>\v{x} \in H</m>, the <term>coordinate of <m>\v{x}</m> relative to <m>\mathcal{B}</m></term> are the scalars <m>c_1, c_2, \ldots, c_p</m> such that
+                    <md>
+                        \v{x} = c_1\v{b}_1 + c_2\v{b}_2 + \cdots + c_p\v{b}_p
+                    </md>
+                    The vector of those scalars, denoted as <m>[\v{x}]_\mathcal{B}</m>, is given by
+                    <md>
+                        [\v{x}]_\mathcal{B} = \begin{bmatrix} c_1 \\ c_2 \\ \vdots \\ c_p \end{bmatrix}
+                    </md>
+                    and is called the <term>coordinate vector of <m>\v{x}</m> relative to <m>\mathcal{B}</m></term>, or the <term><m>\mathcal{B}</m>-coordinate vector of <m>\v{x}</m></term>. 
+                </p>
+            </statement>
+        </definition>
+
+        <p>
+            You may be wondering why we can <alert>uniquely</alert> determine the coordinates of a vector relative to a given basis. 
+            That is because the scalars are unique for a given vector and a given basis. 
+            Feel free to explore this idea if you are interested! 
+            The whole point of the proof is based on the fact that basis vectors are linearly independent! 
         </p>
     </subsection>
 

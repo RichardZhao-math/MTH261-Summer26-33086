@@ -29,193 +29,200 @@
     </objectives>
   </introduction>
 
-  <p>
-    The most important theorem about determinants is this one: 
-  </p>
-
-  <theorem xml:id="thm-DeterminantsProducts">
-    <title>Determinants and Products</title>
-    <statement>
-        <p>
-            Suppose <m>A</m> and <m>B</m> are <m>n \times n</m> matrices. 
-            Then
-            <md>
-                \det (AB) = \det A \det B
-            </md>
-            That is, the determinant of the product is the product of the determinants. 
-        </p>
-    </statement>
-  </theorem>
-  
-  <p>
-    And one consequence of this is the following Lemma: 
-  </p>
-
-  <lemma xml:id="lem-DeterminantsInverses">
-    <statement>
-        <p>
-            Let <m>A</m> be an <m>n \times n</m> matrix, then <m>\det A = 0</m> if and only if <m>A</m> has <alert>no</alert> inverse (hence <m>A</m> is not invertible). 
-        </p>
-    </statement>
-  </lemma>
-
-  <example>
     <p>
-        We know that
-        <md>
-            \begin{bmatrix} 5 \amp -2 \\ -9 \amp 5 \end{bmatrix} = \begin{bmatrix} 5 \amp 0 \\ -9 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp \frac{-2}{5} \\ 0 \amp \frac{7}{5} \end{bmatrix}
-        </md>
-        We can calculate the determinant of all three matrices and quickly verify that
-        <md>
-            \begin{vmatrix} 5 \amp -2 \\ -9 \amp 5 \end{vmatrix} = \begin{vmatrix} 5 \amp 0 \\ -9 \amp 1 \end{vmatrix} \begin{vmatrix} 1 \amp \frac{-2}{5} \\ 0 \amp \frac{7}{5} \end{vmatrix}
-        </md>
+      The most important theorem about determinants is this one: 
     </p>
-  </example>
 
-  <p>
-    If we know that <m>A</m> is invertible, then we can use the above theorem to compute the determinant of the inverse of <m>A</m>. 
-    Since <m>AA^{-1} = I</m>, we have
-    <md>
-    <mrow> \det (AA^{-1}) \amp= \det I </mrow>
-      <mrow> \implies \qquad \det A \det A^{-1} \amp= 1 </mrow>
-        <mrow>\implies \qquad  \det A^{-1} \amp= \frac{1}{\det A} </mrow>
-    </md>
-    Hence, <m>\det\lp A^{-1} \rp = \dfrac{1}{\det A}</m>
-  </p>
-
-  <p>
-    The last theorem in this section is about the determinant of a transpose. 
-    Long story short, the determinant of a matrix is the same as the determinant of its transpose. 
-    That is, 
-    <md>
-      \det \lp A^T \rp = \det A
-    </md>
-  </p>
-
-  <worksheet xml:id="ws-sec32">
-    <title>Some Exercises for This Section</title>
+    <theorem xml:id="thm-DeterminantsProducts">
+      <title>Determinants and Products</title>
+      <statement>
+          <p>
+              Suppose <m>A</m> and <m>B</m> are <m>n \times n</m> matrices. 
+              Then
+              <md>
+                  \det (AB) = \det A \det B
+              </md>
+              That is, the determinant of the product is the product of the determinants. 
+          </p>
+      </statement>
+    </theorem>
     
-    <introduction>
+    <p>
+      And one consequence of this is the following Lemma: 
+    </p>
+
+    <lemma xml:id="lem-DeterminantsInverses">
+      <statement>
+          <p>
+              Let <m>A</m> be an <m>n \times n</m> matrix, then <m>\det A = 0</m> if and only if <m>A</m> has <alert>no</alert> inverse (hence <m>A</m> is not invertible). 
+          </p>
+      </statement>
+    </lemma>
+
+    <example>
       <p>
-        Richard included some practice problems that cover some main concepts in this section. 
-        You don't need to turn it in, but you are highly encouraged to work on this with your classmates. 
-        The problems here may end up being in-class practice problems, homework problems, and/or exam problems. 
-        Reach out to Richard for help if you get stuck or have any questions. 
+          We know that
+          <md>
+              \begin{bmatrix} 5 \amp -2 \\ -9 \amp 5 \end{bmatrix} = \begin{bmatrix} 5 \amp 0 \\ -9 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp \frac{-2}{5} \\ 0 \amp \frac{7}{5} \end{bmatrix}
+          </md>
+          We can calculate the determinant of all three matrices and quickly verify that
+          <md>
+              \begin{vmatrix} 5 \amp -2 \\ -9 \amp 5 \end{vmatrix} = \begin{vmatrix} 5 \amp 0 \\ -9 \amp 1 \end{vmatrix} \begin{vmatrix} 1 \amp \frac{-2}{5} \\ 0 \amp \frac{7}{5} \end{vmatrix}
+          </md>
+      </p>
+    </example>
+
+    <p>
+      If we know that <m>A</m> is invertible, then we can use the above theorem to compute the determinant of the inverse of <m>A</m>. 
+      Since <m>AA^{-1} = I</m>, we have
+      <md>
+      <mrow> \det (AA^{-1}) \amp= \det I </mrow>
+        <mrow> \implies \qquad \det A \det A^{-1} \amp= 1 </mrow>
+          <mrow>\implies\qquad \qquad  \det A^{-1} \amp= \frac{1}{\det A} </mrow>
+      </md>
+      Hence, <m>\det\lp A^{-1} \rp = \dfrac{1}{\det A}</m>. 
+      We can make it a theorem!
+    </p>
+
+    <theorem xml:id="thm-InverseDeterminant">
+      <title>Determinants and Inverses</title>
+      <statement>
+        <p>
+          Let <m>A</m> be an <m>n \times n</m> <alert>invertible</alert> matrix. 
+          Then
+          <md>
+            \det A^{-1} = \frac{1}{\det A}
+          </md>
+        </p>
+      </statement>
+    </theorem>
+    
+    <p>
+      The next theorem tells us about the determinants and transpose. 
+    </p>
+
+    <theorem xml:id="thm-TransposeDeterminant">
+      <title>Determinants and Transpose</title>
+      <statement>
+        <p>
+          Let <m>A</m> be an <m>n \times n</m> matrix. 
+          Then
+          <md>
+            \det A^T = \det A
+          </md>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      What the theorem tells us is that the determinant of any square matrix is the same as the determinant of its transpose. 
+    </p>
+
+    <proof>
+      <title>Proof using Elementary Matrices... </title>
+      <p>
+        First, let's make sure this is true for elementary matrices. 
+        <ol marker="Type 1">
+          <li>
+            <p>
+              If <m>E</m> is obtained by swapping two rows on <m>I</m>, then <m>E^T</m> is obtained by swapping the corresponding columns of <m>I</m>. 
+              In each case, the determinant is <m>-1</m>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>E</m> is obtained by multiplying a row of <m>I</m> by a constant, then notice that <m>E^T = E</m>. 
+              So certainly <m>E^T</m> and <m>E</m> have the same determinant in this case (it is whatever the constant is). 
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>E</m> is obtained by adding a multiple of a row of <m>I</m> to another row of <m>I</m>. 
+              The transpose could be obtained the same way (reversing the two rows). 
+              Or we we could do it by doing the same operation on the corresponding columns of <m>I</m>. 
+              In any case, the determinant of <m>E</m> and <m>E^T</m> are both <m>1</m> because those operations do not change the determinant of <m>I</m>. 
+            </p>
+          </li>
+        </ol>
+        So the result holds for elementary matrices. 
       </p>
 
       <p>
-        Only the final answers are included to some of the problems for you to check your result. 
-        If you want to check your work, talk to Richard and he is happy to discuss the process with you. 
+        Now let's do the proof for any <m>n \times n</m> matrix <m>A</m>. 
       </p>
-    </introduction>
 
-    <exercisegroup>
-        <introduction>
+      <p>
+        If <m>A</m> is not invertible, then neither is <m>A^T</m>. 
+        <note>
+          <title>Hmm why is that? </title> 
+          
+          <p>
+            If <m>A^T B = I</m>, then <m>B^T A = I^T = I</m>. 
+            So we would have an inverse for <m>A</m> if we had one for <m>A^T</m>. 
+          </p>
+        </note>
+
+        So if <m>\det A = 0</m>, then <m>\det A^T = 0</m> as well. 
+      </p>
+
+      <p>
+        Suppose <m>\det A \neq 0</m>, then <m>A</m> is invertible and can be written as a product of elementary matrices. 
+        Let's say
+        <md>
+          A = E_1 E_2 \ldots E_k
+        </md>
+        Then by this theorem <xref ref="thm-RulesMatrixMultiplication"/>, we know that
+        <md>
+          A^T = E_K^T \ldots E_2^T E_1^T
+        </md>
+        Therefore, 
+        <md>
+          <mrow>\det A^T \amp= \det \lp E_K^T \ldots E_2^T E_1^T \rp </mrow>
+          <mrow> \amp= \det E_k^T \, \ldots \, \det E_2^T \, \det E_1^T </mrow>
+          <mrow> \amp= \det E_k \, \ldots \, \det E_2 \, \det E_1 </mrow>
+          <mrow> \amp= \det E_1 \, \det E_2 \, \ldots \, \det E_K </mrow>
+          <mrow> \amp= \det \lp E_1 E_2 \ldots E_k \rp </mrow>
+          <mrow> \amp= \det A </mrow>
+        </md>
+      </p>
+    </proof>
+
+    <proof>
+      <title>Proof Idea using Mathematical Induction... </title>
+      <p>
+        This proof (idea) is easier but uses a proof technique most MTH 261 students would not be familiar with called <alert>Mathematical Induction</alert>. 
+      </p>
+
+      <p>
+        The idea in this case is that the theory is easily verified for <m>2 \times 2</m> matrices: 
+        <ul marker="">
+          <li>
             <p>
-              Find the determinants in the following exercises by row reduction to echelon form.
+              If <m>A = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>, we can see that 
+              <md>
+                \det A = ad - bc
+              </md>
+              Since <m>A^T = \begin{bmatrix} a \amp c \\ b \amp d \end{bmatrix}</m>, we can verify that
+              <md>
+                \det A^T = ad - bc
+              </md>
+              Same thing. 
             </p>
-        </introduction>
-        
-        <exercise number="3.2.5">
-            <statement>
-                <me>\begin{vmatrix} 1 \amp 5 \amp -4 \\ -1 \amp -4 \amp 5 \\ -2 \amp -8 \amp 7 \end{vmatrix}</me>
-            </statement>
-        </exercise>
+          </li>
+        </ul>
+        Now suppose we were working with a <m>3 \times 3</m> matrix. 
+        Then the first row of <m>A</m> becomes the first column of <m>A^T</m>. 
+        So if we calculate the determinant using the cofactor method and expand on the first row of <m>A</m> and the first column of <m>A^T</m>, we will see that we get the same thing <em>except</em> each of the little <m>2 \times 2</m> determinants has been transposed when we are working with <m>A^T</m>. 
+        And since we know from the <m>2 \times 2</m> case that these are the same, it follows that we get the same answer for <m>\det A</m> and <m>\det A^T</m> in the <m>3 \times 3</m> case as well. 
+      </p>
 
-        <exercise number="3.2.9">
-            <statement>
-                <me>\begin{vmatrix} 1 \amp -1 \amp -3 \amp 0 \\ 0 \amp 1 \amp 5 \amp 4 \\ -1 \amp 0 \amp 5 \amp 3 \\ 3 \amp -3 \amp -2 \amp 3 \end{vmatrix}</me>
-            </statement>
-        </exercise>
-    </exercisegroup>
+      <p>
+        Then we can repeat that same strategy for <m>4 \times 4</m> and so on and so on forever and ever... 
+      </p>
+    </proof>
 
-        <exercise number="3.2.13">
-            <statement>
-              <p>
-                Combine the methods of row reduction and cofactor expansion to compute the following determinant:
-                <me>\begin{vmatrix} 2 \amp 5 \amp 4 \amp 1 \\ 4 \amp 7 \amp 6 \amp 2 \\ 6 \amp -2 \amp -4 \amp 0 \\ -6 \amp 7 \amp 7 \amp 0 \end{vmatrix}</me>
-              </p>
-            </statement>
-        </exercise>
-
-        <exercise number="3.2.17">
-            <statement>
-              <p>
-                Find the determinant of the following matrix, where <m>\begin{vmatrix}a \amp b \amp c\\ d \amp e \amp f\\ g \amp h \amp i\end{vmatrix}=7</m>
-                <me>\begin{bmatrix} a+d \amp b+e \amp c+f \\ d \amp e \amp f \\ g \amp h \amp i \end{bmatrix}</me>
-              </p>
-            </statement>
-        </exercise>
-
-    <exercisegroup>
-        <introduction>
-            <p>
-              In the following exercises, use determinants to find out if the matrix is invertible.
-            </p>
-        </introduction>
-
-        <exercise number="3.2.21">
-            <statement>
-                <me>\begin{bmatrix} 2 \amp 6 \amp 0 \\ 1 \amp 3 \amp 2 \\ 3 \amp 9 \amp 2 \end{bmatrix}</me>
-            </statement>
-        </exercise>
-
-        <exercise number="3.2.23">
-            <statement>
-                <me>\begin{bmatrix} 2 \amp 0 \amp 0 \amp 6 \\ 1 \amp -7 \amp -5 \amp 0 \\ 3 \amp 8 \amp 6 \amp 0 \\ 0 \amp 7 \amp 5 \amp 4 \end{bmatrix}</me>
-            </statement>
-        </exercise>
-    </exercisegroup>
-
-        <exercise number="3.2.25">
-            <statement>
-              <p>
-                Use determinants to decide if the following set of vectors is linearly independent. 
-                <me>\begin{bmatrix} 7 \\ -4 \\ -6 \end{bmatrix}, \begin{bmatrix} -8 \\ 5 \\ 7 \end{bmatrix}, \begin{bmatrix} 7 \\ 0 \\ -5 \end{bmatrix}</me>
-              </p>
-            </statement>
-        </exercise>
-
-    <exercisegroup>
-        <introduction>
-            <p>
-              In the following exercises, <m>A</m> and <m>B</m> are <m>n \times n</m> matrices. 
-              Mark each statement True or False (T/F). Justify each answer.
-            </p>
-        </introduction>
-
-        <exercise number="3.2.27">
-            <statement>
-                <p>
-                  (T/F) A row replacement operation does not affect the determinant of a matrix.
-                </p>
-            </statement>
-        </exercise>
-
-        <exercise number="3.2.29">
-            <statement>
-                <p>
-                  (T/F) If the columns of <m>A</m> are linearly dependent, then <m>\det A=0</m>.
-                </p>
-            </statement>
-        </exercise>
-
-        <exercise number="3.2.31">
-            <statement>
-                <p>
-                  (T/F) If three row interchanges are made in succession, then the new determinant equals the old determinant.
-                </p>
-            </statement>
-        </exercise>
-
-        <exercise number="3.2.33">
-            <statement>
-                <p>
-                  (T/F) <m>\det(A+B) = \det A + \det B</m>
-                </p>
-            </statement>
-        </exercise>
-    </exercisegroup>
-  </worksheet>
+    <p>
+      <alert>In the 4th lab report, you will explore an application of the determinant, which is to extend the inverse formula back in <xref ref="sec22-InverseMatrix"/>using determinants and adjugates. </alert>
+    </p>
 
 </section>
