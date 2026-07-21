@@ -30,9 +30,9 @@ htmlPresentation: false,
 </script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
-<meta name="twitter:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
-<meta property="og:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
-<meta property="book:title" content="MTH 261 Applied Linear Algebra I: Spring 2026">
+<meta name="twitter:title" content="MTH 261 Applied Linear Algebra I: Summer 2026">
+<meta property="og:title" content="MTH 261 Applied Linear Algebra I: Summer 2026">
+<meta property="book:title" content="MTH 261 Applied Linear Algebra I: Summer 2026">
 <meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
 <meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
 <meta name="twitter:card" content="summary">
@@ -58,21 +58,21 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.13.7';
+eBookConfig.runestone_version = '8.1.14';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.52176322e2c1dde5.bundle.js"></script><script src="_static/prefix-713.de0ab26248766350.bundle.js"></script><script src="_static/prefix-runestone.2f713d2360adcee7.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-713.f43ced6a6134ea74.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.b12a7b3f0773ebcd.css">
+<script src="_static/prefix-runtime.cb5af2e851de3574.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.f51cd4153b45055d.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.66fa8a682a32c0ac.css">
 <script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script>
 </head>
 <body id="changeme" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
-<h1 class="heading"><a href="my-great-book.html"><span class="title">MTH 261 Applied Linear Algebra I</span> <span class="subtitle">Spring 2026</span></a></h1>
+<h1 class="heading"><a href="MTH261_Summer26_33086.html"><span class="title">MTH 261 Applied Linear Algebra I</span> <span class="subtitle">Summer 2026</span></a></h1>
 <p class="byline">Richard Zhao</p>
 </div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
 <button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="ptx-search-box">
@@ -100,6 +100,8 @@ eBookConfig.enable_chatcodes =  false;
 \newcommand{\rp}{\right)}
 \newcommand{\la}{\left\langle}
 \newcommand{\ra}{\right\rangle}
+
+\newcommand{\set}[1]{\left\{{ #1}\right\}}
 
 \newcommand{\proj}{\text{proj}}
 \newcommand{\comp}{\text{comp}}
@@ -143,7 +145,6 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-VectorsNotation" class="internal"><span class="title">What is a vector?</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-LinearCombinations" class="internal"><span class="title">Linear Combinations</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec13-VectorEquations.html#subsec-Span" class="internal"><span class="title">Span</span></a></div></li>
-<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec13-VectorEquations.html#ws-sec13" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-section">
@@ -153,10 +154,9 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-MultiplyingMatrixVector" class="internal"><span class="title">Multiplying a Matrix by a Vector</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ExistenceUniqueness-Rank" class="internal"><span class="title">Existence and Uniqueness Questions</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-VectorEquations" class="internal"><span class="title">Vector Equations</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-LinearTransformations-Intro" class="internal"><span class="title">Intro to Linear Transformations</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-DotProduct-Intro" class="internal"><span class="title">Intro to the Dot Product</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ZeroMatrix-IdentityMatrix" class="internal"><span class="title">Two Special Matrices</span></a></div></li>
-<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#ws-sec14" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec14-MatrixEquation.html#subsec-ExistenceSolutions" class="internal"><span class="title">Existence of Solutions</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-section">
@@ -164,16 +164,17 @@ eBookConfig.enable_chatcodes =  false;
 <ul class="structural toc-item-list">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-HomogeneousSystem" class="internal"><span class="title">Homogeneous Linear System</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec15-SolutionSets.html#subsec-NonHomogeneousSystem" class="internal"><span class="title">Non-Homogeneous Linear System</span></a></div></li>
-<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec15-SolutionSets.html#ws-sec15" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
 </ul>
 </li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec17-LinearIndependence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Introduction to Linear Transformations</span></a></div></li>
 <li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec17-LinearIndependence.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Linear Independence</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec17-LinearIndependence.html#ws-sec17" class="internal"><span class="codenumber">1.6</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
-</li>
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html" class="internal"><span class="codenumber">1.7</span> <span class="title">Linear Transformations</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec18-IntroLinearTransformations.html#ws-sec18" class="internal"><span class="codenumber">1.7</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
+<div class="toc-title-box"><a href="sec19-MatrixLinearTransformation.html" class="internal"><span class="codenumber">1.8</span> <span class="title">The Matrix of a Linear Transformation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec19-MatrixLinearTransformation.html#subsec-FindingStandardMatrices" class="internal"><span class="title">To find the Standard Matrix...</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec19-MatrixLinearTransformation.html#subsec-TransformationGeometry" class="internal"><span class="title">Transformation... What are we transforming?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec19-MatrixLinearTransformation.html#subsec-SpecialLinearTransformations" class="internal"><span class="title">Special Types of Linear Transformations</span></a></div></li>
+</ul>
 </li>
 </ul>
 </li>
@@ -189,7 +190,6 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-MatrixAdditionScalarMultiplication" class="internal"><span class="title">Rules for Matrix Addition and Scalar Multiplication</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-Rules-TransposeMatrices" class="internal"><span class="title">Rules for Transposes</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#subsec-MatrixMultiplication" class="internal"><span class="title">Matrix Multiplication</span></a></div></li>
-<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec21-MatrixOperations.html#ws-sec21" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-section">
@@ -198,30 +198,25 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-InverseMatrices" class="internal"><span class="title">Inverse of a Matrix</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ImportantTheorems-Inverses" class="internal"><span class="title">Important Theorems and Facts about Inverses</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#subsec-ElementaryMatrices" class="internal"><span class="title">Elementary Matrices</span></a></div></li>
-<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec22-InverseMatrix.html#ws-sec22" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec23-InvertibleMatrix.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Characterizations of Invertible Matrices</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec23-InvertibleMatrix.html#ws-sec23" class="internal"><span class="codenumber">2.3</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
-</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec23-InvertibleMatrix.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Characterizations of Invertible Matrices</span></a></div></li>
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec28-Subspaces.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Subspaces of <span class="process-math">\(\R^n\)</span></span></a></div>
 <ul class="structural toc-item-list">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-SubspaceIntro" class="internal"><span class="title">What is a Subspace?</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-FundamentalSubspaces" class="internal"><span class="title">Fundamental Subspaces</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-Span" class="internal"><span class="title">Span and Spanning Sets</span></a></div></li>
-<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec28-Subspaces.html#ws-sec28" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-SpanningSet" class="internal"><span class="title">Span and Spanning Sets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec28-Subspaces.html#subsec-Basis" class="internal"><span class="title">Basis</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec29-DimensionRank.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Dimension and Rank</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Basis" class="internal"><span class="title">Basis</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Dimensions" class="internal"><span class="title">Dimensions</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-Rank-NullityTheorem" class="internal"><span class="title">A Fundamental Theorem of Linear Algebra: Rank-Nullity Theorem</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-ExtendedInvertibleMatrixTheorem" class="internal"><span class="title">Extending Our Invertible Matrix Theorem!</span></a></div></li>
-<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec29-DimensionRank.html#ws-sec29" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec29-DimensionRank.html#subsec-CoordinatesSystem" class="internal"><span class="title">Coordinates System</span></a></div></li>
 </ul>
 </li>
 </ul>
@@ -229,14 +224,8 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-chapter contains-active">
 <div class="toc-title-box"><a href="ch3-Determinants.html" class="internal"><span class="codenumber">3</span> <span class="title">Determinants</span></a></div>
 <ul class="structural toc-item-list contains-active">
-<li class="toc-item toc-section contains-active">
-<div class="toc-title-box"><a href="sec31-IntroDeterminants.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Determinants</span></a></div>
-<ul class="structural toc-item-list active"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec31-IntroDeterminants.html#ws-sec31" class="internal"><span class="codenumber">3.1</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
-</li>
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Properties of Determinants</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html#ws-sec32" class="internal"><span class="codenumber">3.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
-</li>
+<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec31-IntroDeterminants.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Introduction to Determinants</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec32-PropertiesDeterminants.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Properties of Determinants</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-chapter">
@@ -256,64 +245,24 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 </ul>
 </li>
-<li class="toc-item toc-chapter">
-<div class="toc-title-box"><a href="ch6-Orthogonality.html" class="internal"><span class="codenumber">5</span> <span class="title">Orthogonality</span></a></div>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="appendixA-ExamReviews.html" class="internal"><span class="codenumber">A</span> <span class="title">Exam Reviews Page</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-section">
+<div class="toc-title-box"><a href="secA1-MidtermReview.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Midterm Review</span></a></div>
 <ul class="structural toc-item-list">
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec61-InnerProduct.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Inner Product, Length, and Orthogonality</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Length" class="internal"><span class="title">Length of a Vector</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-InnerProduct" class="internal"><span class="title">Inner Product</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec61-InnerProduct.html#subsec-Orthogonality-Intro" class="internal"><span class="title">Orthogonality</span></a></div></li>
-<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec61-InnerProduct.html#ws-sec61" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="secA1-MidtermReview.html#ws-MidtermReview-SystemEquations" class="internal"><span class="codenumber">A.1</span> <span class="title">Systems of Linear Equations</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="secA1-MidtermReview.html#ws-MidtermReview-RowEchelonForm" class="internal"><span class="codenumber">A.1</span> <span class="title">(Reduced) Row Echelon Form</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="secA1-MidtermReview.html#ws-MidtermReview-TypesEquations" class="internal"><span class="codenumber">A.1</span> <span class="title">Vector Equations and Matrix Equation</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="secA1-MidtermReview.html#ws-MidtermReview-LinearIndependence" class="internal"><span class="codenumber">A.1</span> <span class="title">Linear Independence</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="secA1-MidtermReview.html#ws-MidtermReview-LinearTransformations" class="internal"><span class="codenumber">A.1</span> <span class="title">Linear Transformations</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="secA1-MidtermReview.html#ws-MidtermReview-MatrixOperations" class="internal"><span class="codenumber">A.1</span> <span class="title">Matrix Operations</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="secA1-MidtermReview.html#ws-MidtermReview-Inverses" class="internal"><span class="codenumber">A.1</span> <span class="title">Inverses of Matrices (and Related Stuff)</span></a></div></li>
 </ul>
+</li></ul>
 </li>
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec62-OrthogonalSets.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Orthogonal Sets</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec62-OrthogonalSets.html#ws-sec62" class="internal"><span class="codenumber">5.2</span> <span class="title">Some Exercises for This Section</span></a></div></li></ul>
-</li>
-<li class="toc-item toc-section">
-<div class="toc-title-box"><a href="sec63-OrthogonalProjection.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Orthogonal Projection</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-InnerProduct-Angles" class="internal"><span class="title">Angle between Two Vectors</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#subsec-OrthogonalProjection" class="internal"><span class="title">Orthogonal Projection</span></a></div></li>
-<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="sec63-OrthogonalProjection.html#ws-sec63" class="internal"><span class="title">Some Exercises for This Section</span></a></div></li>
-</ul>
-</li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec64-GramSchmit.html" class="internal"><span class="codenumber">5.4</span> <span class="title">The Gram-Schmidt Process</span></a></div></li>
-</ul>
-</li>
-<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendixA-ExamReviews.html" class="internal"><span class="codenumber">A</span> <span class="title">Exam Reviews Page</span></a></div></li>
 <li class="toc-item toc-backmatter"><div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div></li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<div class="print-preview-header">
-<h2 class="print-preview">Print preview</h2>
-<div class="print-controls">
-<div class="print-controls-toggles">
-<form class="papersize-select" id="papersize-select">
-<span class="name">Paper size</span><label><input type="radio" name="papersize" value="a4">A4
-        </label><label><input type="radio" name="papersize" value="letter">Letter
-        </label>
-</form>
-<details class="print-options"><summary>Additional printing options</summary><div class="hide-solutions-options"><div class="hide-option">
-<label for="hide-solution-checkbox">Hide solutions</label><input type="checkbox" id="hide-solution-checkbox">
-</div></div>
-<div class="header-footer-options">
-<div class="header-option">
-<span class="title">Print headers</span><label>First page<input type="checkbox" id="print-first-page-header-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-header-checkbox" checked></label>
-</div>
-<div class="footer-option">
-<span class="title">Print footers</span><label>First page<input type="checkbox" id="print-first-page-footer-checkbox" checked></label><label>Running<input type="checkbox" id="print-running-footer-checkbox" checked></label>
-</div>
-</div>
-<div class="highlight-workspace-option">
-<label for="highlight-workspace-checkbox">Highlight workspace</label><input type="checkbox" id="highlight-workspace-checkbox">
-</div></details>
-</div>
-<button class="print-button" title="Print" onClick="window.print()"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span><span class="name">Print</span></button>
-</div>
-</div>
 <section class="section" id="sec31-IntroDeterminants">
 <h2 class="heading hide-type">
 <span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Introduction to Determinants</span>
@@ -445,7 +394,29 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <details id="sec31-IntroDeterminants-12-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
 <div class="solution solution-like knowl__content">
-<div class="para" id="sec31-IntroDeterminants-12-2-1">The answer!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-12-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para logical" id="sec31-IntroDeterminants-12-2-1">
+<div class="para">First expand on Row 2:</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-12-2-1-1">
+\begin{align*}
+\begin{vmatrix} 1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 2 \\ 5 \amp -5 \amp 5 \end{vmatrix} \amp= -1 \begin{vmatrix} 2 \amp 3 \\ -5 \amp 5 \end{vmatrix} + 0 (\text{stuff}) + -2 \begin{vmatrix} 1 \amp 2 \\ 5 \amp -5 \end{vmatrix} \\
+\amp= -1 (25) + 0(\text{stuff}) + -2(-15) \\
+\amp= 5 
+\end{align*}
+</div>
+<div class="para">
+<em class="emphasis">Note:</em> It doesn’t hurt anything if you calculate the part where it says "stuff", but it isn’t necessary since that gets multiplied by zero.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-12-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec31-IntroDeterminants-12-2-2">
+<div class="para">Second expand on Column 3:</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-12-2-2-1">
+\begin{align*}
+\begin{vmatrix} 1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 2 \\ 5 \amp -5 \amp 5 \end{vmatrix} \amp= 3 \begin{vmatrix} 1 \amp 0 \\ 5 \amp -5 \end{vmatrix} - 2 \begin{vmatrix} 1 \amp 2 \\ 5 \amp -5 \end{vmatrix} + 5 \begin{vmatrix} 1 \amp 2 \\ 1 \amp 0 \end{vmatrix} \\
+\amp= 3 (-5) - 2(-15) + 5(-2) \\
+\amp= 5 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-12-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" data-description="Solution 3.1.3.1"><a href="#sec31-IntroDeterminants-12-2" title="Copy heading and permalink for Solution 3.1.3.1" aria-label="Copy heading and permalink for Solution 3.1.3.1">🔗</a></div>
 </div></details><div class="autopermalink" data-description="Checkpoint 3.1.3"><a href="#sec31-IntroDeterminants-12" title="Copy heading and permalink for Checkpoint 3.1.3" aria-label="Copy heading and permalink for Checkpoint 3.1.3">🔗</a></div>
@@ -498,27 +469,90 @@ c_{ij} = (-1)^{i + j} |A_{ij}|
 </div>
 <div class="para" id="sec31-IntroDeterminants-18">Then the determinant of a matrix can be calculated by multiplying each entry of a row (or column) of the matrix by its cofactor and then summing the results.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-18" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<article class="example example-like" id="sec31-IntroDeterminants-19"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+<details id="sec31-IntroDeterminants-19" class="note remark-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Note</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Some special Formulas to Find the Determinants.</span>
+</h3></summary>
+<article class="note remark-like knowl__content">
+<div class="para" id="sec31-IntroDeterminants-19-2">While the cofactor expansion is the "formal’ way to compute the determinant of a matrix, there are some special formulas that can be used to compute the determinants.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec31-IntroDeterminants-19-3">
+<div class="para">We have been using the special formula to find the determinant of a <span class="process-math">\(2 \times 2\)</span> matrix all the time. That is,</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-19-3-2">
+\begin{equation*}
+\begin{vmatrix} a \amp b \\ c \amp d \end{vmatrix} = ad - bc
+\end{equation*}
+</div>
+<div class="para">You can verify this formula by using the cofactor expansion method to compute the determinant of a <span class="process-math">\(2 \times 2\)</span> matrix.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec31-IntroDeterminants-19-4">
+<div class="para">There is also a special formula for the determinant of a <span class="process-math">\(3 \times 3\)</span> matrix. That is, let <span class="process-math">\(A = \begin{bmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{bmatrix}\text{.}\)</span> Then</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-19-4-3">
+\begin{equation*}
+\det A = \lp a_{11} a_{22} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{32}\rp - \lp a_{13} a_{22} a_{31} + a_{11} a_{23} a_{32} + a_{12} a_{21} a_{33}\rp
+\end{equation*}
+</div>
+<div class="para">Hmm but how can we memorize such a complicated formula...</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec31-IntroDeterminants-19-5">There is a procedure that leads to this formula. This is usually the way Richard recommended his MTH 254 students (as opposed to memorizing the complicated formula).<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec31-IntroDeterminants-19-6">
+<div class="para">Here are the steps to compute the determinant of a 3x3 matrix using the lattice method:</div>
+<ol class="decimal" id="sec31-IntroDeterminants-19-6-1">
+<li id="sec31-IntroDeterminants-19-6-1-1">
+<div class="para" id="sec31-IntroDeterminants-19-6-1-1-1">Write down the 3x3 matrix and then duplicate the first two columns to the right of the matrix.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-6-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1"><a href="#sec31-IntroDeterminants-19-6-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="sec31-IntroDeterminants-19-6-1-2">
+<div class="para" id="sec31-IntroDeterminants-19-6-1-2-1">Draw diagonals from the top left to bottom right and multiply the three numbers on each diagonal. Then add these products together.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-6-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2"><a href="#sec31-IntroDeterminants-19-6-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="sec31-IntroDeterminants-19-6-1-3">
+<div class="para" id="sec31-IntroDeterminants-19-6-1-3-1">Next, draw diagonals from the top right to bottom left and multiply the three numbers on each diagonal. Then add these products together.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-6-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 3"><a href="#sec31-IntroDeterminants-19-6-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li id="sec31-IntroDeterminants-19-6-1-4">
+<div class="para" id="sec31-IntroDeterminants-19-6-1-4-1">Finally, subtract the sum from step 3 from the sum from step 2 to get the determinant.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-6-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 4"><a href="#sec31-IntroDeterminants-19-6-1-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec31-IntroDeterminants-19-7">Below is a more visual representation of the steps above:<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="sec31-IntroDeterminants-19-8"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/LatticeMethod_Determinant.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Lattice Method to calculate the determinant of a 3x3 matrix<div class="autopermalink" data-description="Figure 3.1.6"><a href="#sec31-IntroDeterminants-19-8" title="Copy heading and permalink for Figure 3.1.6" aria-label="Copy heading and permalink for Figure 3.1.6">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="sec31-IntroDeterminants-19-9">Again, this procedure is <em class="alert">only for <span class="process-math">\(3 \times 3\)</span> matrices</em>!!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Note 3.1.5: Some special Formulas to Find the Determinants"><a href="#sec31-IntroDeterminants-19" title="Copy heading and permalink for Note 3.1.5: Some special Formulas to Find the Determinants" aria-label="Copy heading and permalink for Note 3.1.5: Some special Formulas to Find the Determinants">🔗</a></div>
+</article></details>
+<article class="example example-like" id="sec31-IntroDeterminants-20"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h3>
-<div class="para logical" id="sec31-IntroDeterminants-19-1">
+<div class="para logical" id="sec31-IntroDeterminants-20-1">
 <div class="para">Let’s compute the determinant of a <span class="process-math">\(4 \times 4\)</span> matrix</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-19-1-2">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-20-1-2">
 \begin{equation*}
 A = \begin{bmatrix} 1 \amp 2 \amp 3 \amp 4 \\ -1 \amp 0 \amp 3 \amp 4 \\ 4 \amp 0 \amp -2 \amp 3 \\ 1 \amp 1 \amp 0 \amp 3 \end{bmatrix}
 \end{equation*}
 </div>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-20-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para logical" id="sec31-IntroDeterminants-19-2">
+<div class="para logical" id="sec31-IntroDeterminants-20-2">
 <div class="para">We will need to pick a row/column to begin. Observe that Column 2 has the most zeros in it, so let’s pick that one!</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-19-2-1">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-20-2-1">
 \begin{equation*}
 \det A = -2 \begin{vmatrix} -1 \amp 3 \amp 4 \\ 4 \amp -2 \amp 3 \\ 1 \amp 0 \amp 3 \end{vmatrix} + 1 \begin{vmatrix} 1 \amp 3 \amp 4 \\ -1 \amp 3 \amp 4 \\ 4 \amp -2 \amp 3 \end{vmatrix}
 \end{equation*}
 </div>
 <div class="para">So we need to compute these two <span class="process-math">\(3 \times 3\)</span> determinants:</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-19-2-3">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-20-2-3">
 \begin{align*}
 \begin{vmatrix} -1 \amp 3 \amp 4 \\ 4 \amp -2 \amp 3 \\ 1 \amp 0 \amp 3 \end{vmatrix} \amp= 1 \begin{vmatrix} 3 \amp 4 \\ -2 \amp 3 \end{vmatrix} + 3 \begin{vmatrix} -1 \amp 3 \\ 4 \amp -2 \end{vmatrix} \\
 \amp= 17 + 3(-10) \\
@@ -526,7 +560,7 @@ A = \begin{bmatrix} 1 \amp 2 \amp 3 \amp 4 \\ -1 \amp 0 \amp 3 \amp 4 \\ 4 \amp 
 \end{align*}
 </div>
 <div class="para">by picking Row 3 to expand on, and</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-19-2-4">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-20-2-4">
 \begin{align*}
 \begin{vmatrix} 1 \amp 3 \amp 4 \\ -1 \amp 3 \amp 4 \\ 4 \amp -2 \amp 3 \end{vmatrix} \amp= 1 \begin{vmatrix} 3 \amp 4 \\ -2 \amp 3 \end{vmatrix} - 3 \begin{vmatrix} -1 \amp 4 \\ 4 \amp 3 \end{vmatrix} + 4 \begin{vmatrix} -1 \amp 3 \\ 4 \amp -2 \end{vmatrix}\\
 \amp= 17 - 3(-19) + 4(-10)\\
@@ -534,32 +568,49 @@ A = \begin{bmatrix} 1 \amp 2 \amp 3 \amp 4 \\ -1 \amp 0 \amp 3 \amp 4 \\ 4 \amp 
 \end{align*}
 </div>
 <div class="para">by picking Row 1 to expand on.</div>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-20-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="sec31-IntroDeterminants-19-3">So <span class="process-math">\(\det A = -2(-13) + 34 = 60\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-19-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-20-3">So <span class="process-math">\(\det A = -2(-13) + 34 = 60\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-20-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Example 3.1.5"><a href="#sec31-IntroDeterminants-19" title="Copy heading and permalink for Example 3.1.5" aria-label="Copy heading and permalink for Example 3.1.5">🔗</a></div>
+<div class="autopermalink" data-description="Example 3.1.7"><a href="#sec31-IntroDeterminants-20" title="Copy heading and permalink for Example 3.1.7" aria-label="Copy heading and permalink for Example 3.1.7">🔗</a></div>
 </article>
-<div class="para" id="sec31-IntroDeterminants-20">If you are asked to compute the matrix of a large matrix, you are REALLY hoping it has a row or column with a bunch of zeros otherwise you will be computing a bunch of determinants each of which requires you to compute a bunch of other determinants.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-20" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-21">If you are asked to compute the matrix of a large matrix, you are REALLY hoping it has a row or column with a bunch of zeros otherwise you will be computing a bunch of determinants each of which requires you to compute a bunch of other determinants.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-21" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<article class="exercise exercise-like" id="sec31-IntroDeterminants-21"><h3 class="heading">
-<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+<article class="exercise exercise-like" id="sec31-IntroDeterminants-22"><h3 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h3>
-<div class="para" id="sec31-IntroDeterminants-21-1">Compute the determinant of <span class="process-math">\(A = \begin{bmatrix} 1 \amp 2 \amp 0 \amp 4 \\ -1 \amp 0 \amp 3 \amp 4 \\ 4 \amp 0 \amp 0 \amp 3 \\ 1 \amp 1 \amp 0 \amp 3 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-21-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-22-1">Compute the determinant of <span class="process-math">\(A = \begin{bmatrix} 1 \amp 2 \amp 0 \amp 4 \\ -1 \amp 0 \amp 3 \amp 4 \\ 4 \amp 0 \amp 0 \amp 3 \\ 1 \amp 1 \amp 0 \amp 3 \end{bmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-22-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<details id="sec31-IntroDeterminants-21-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<details id="sec31-IntroDeterminants-22-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
 <div class="solution solution-like knowl__content">
-<div class="para" id="sec31-IntroDeterminants-21-2-1">The answer!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-21-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para logical" id="sec31-IntroDeterminants-22-2-1">
+<div class="para">Observe that Column 3 has <em class="alert">three</em> zeros! So let’s expand on it! So</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-22-2-1-2">
+\begin{equation*}
+|A| = -3 \begin{vmatrix} 1 \amp 2 \amp 4 \\ 4 \amp 0 \amp 3 \\ 1 \amp 1 \amp 3 \end{vmatrix}
+\end{equation*}
 </div>
-<div class="autopermalink" data-description="Solution 3.1.6.1"><a href="#sec31-IntroDeterminants-21-2" title="Copy heading and permalink for Solution 3.1.6.1" aria-label="Copy heading and permalink for Solution 3.1.6.1">🔗</a></div>
-</div></details><div class="autopermalink" data-description="Checkpoint 3.1.6"><a href="#sec31-IntroDeterminants-21" title="Copy heading and permalink for Checkpoint 3.1.6" aria-label="Copy heading and permalink for Checkpoint 3.1.6">🔗</a></div>
+<div class="para">Let’s use Row 2 to compute the <span class="process-math">\(3 \times 3\)</span> determinant we need:</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-22-2-1-4">
+\begin{align*}
+\begin{vmatrix} 1 \amp 2 \amp 4 \\ 4 \amp 0 \amp 3 \\ 1 \amp 1 \amp 3 \end{vmatrix} \amp= -4 \begin{vmatrix} 2 \amp 4 \\ 1 \amp 3 \end{vmatrix} + \, -3 \begin{vmatrix} 1 \amp 2 \\ 1 \amp 1 \end{vmatrix} \\
+\amp= -4 \times 2 + \, -3 \times -1 \\
+\amp= -5 
+\end{align*}
+</div>
+<div class="para">So <span class="process-math">\(|A| = -3 \times -5 = 15\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-22-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 3.1.8.1"><a href="#sec31-IntroDeterminants-22-2" title="Copy heading and permalink for Solution 3.1.8.1" aria-label="Copy heading and permalink for Solution 3.1.8.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Checkpoint 3.1.8"><a href="#sec31-IntroDeterminants-22" title="Copy heading and permalink for Checkpoint 3.1.8" aria-label="Copy heading and permalink for Checkpoint 3.1.8">🔗</a></div>
 </article>
-<div class="para" id="sec31-IntroDeterminants-22">You may get the sense that the cofactor method can require a lot of calculation and it is MUCH easier when there are a lot of zeros in the matrix. Recall elementary row operations can create zeros in a matrix. A natural question to ask is whether it is possible to use elementary row operations to make a determinant easier to calculate without changing the result.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-22" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-23">You may get the sense that the cofactor method can require a lot of calculation and it is MUCH easier when there are a lot of zeros in the matrix. Recall elementary row operations can create zeros in a matrix. A natural question to ask is whether it is possible to use elementary row operations to make a determinant easier to calculate without changing the result.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-23" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="sec31-IntroDeterminants-23">The answer is yes! And the following theorem tells us how:<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-23" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-24">The answer is yes! And the following theorem tells us how:<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-24" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="theorem theorem-like" id="thm-RowOperations-Determinants"><h3 class="heading">
-<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Row Operations and Determinants.</span>
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Row Operations and Determinants.</span>
 </h3>
 <div class="para logical" id="thm-RowOperations-Determinants-2-1">
 <div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(n \times n\)</span> matrix. Then</div>
@@ -592,381 +643,309 @@ A = \begin{bmatrix} 1 \amp 2 \amp 3 \amp 4 \\ -1 \amp 0 \amp 3 \amp 4 \\ 4 \amp 
 </ol>
 <div class="autopermalink" data-description="Paragraph"><a href="#thm-RowOperations-Determinants-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Theorem 3.1.7: Row Operations and Determinants"><a href="#thm-RowOperations-Determinants" title="Copy heading and permalink for Theorem 3.1.7: Row Operations and Determinants" aria-label="Copy heading and permalink for Theorem 3.1.7: Row Operations and Determinants">🔗</a></div>
+<div class="autopermalink" data-description="Theorem 3.1.9: Row Operations and Determinants"><a href="#thm-RowOperations-Determinants" title="Copy heading and permalink for Theorem 3.1.9: Row Operations and Determinants" aria-label="Copy heading and permalink for Theorem 3.1.9: Row Operations and Determinants">🔗</a></div>
 </article>
-<details id="sec31-IntroDeterminants-25" class="note remark-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
-<span class="type">Note</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">But Richard... Why is this true?</span>
+<details id="sec31-IntroDeterminants-26" class="note remark-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Note</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">But Richard... Why are these things true?</span>
 </h3></summary>
 <article class="note remark-like knowl__content">
-<div class="para logical" id="sec31-IntroDeterminants-25-2">
-<ol class="decimal" id="sec31-IntroDeterminants-25-2-1">
-<li id="sec31-IntroDeterminants-25-2-1-1">
-<div class="para" id="sec31-IntroDeterminants-25-2-1-1-1">If you used the cofactor method and expanded along the row or column that is all zero, then every cofactor would be multiplied by zero giving you the answer of zero.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-26-2">Below are the explanations for each of the statement. Some of them are straightforward and some are tricky. Feel free to click open the ones you are super curious about! You are under no obligation to memorize them or anything!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item 1"><a href="#sec31-IntroDeterminants-25-2-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+<details id="sec31-IntroDeterminants-26-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="title">Explaining the First Statement....</span></h4></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sec31-IntroDeterminants-26-3-2">If you used the cofactor method and expanded along the row or column that is all zero, then every cofactor would be multiplied by zero, giving you the answer of zero.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 3.1.10.1: Explaining the First Statement..."><a href="#sec31-IntroDeterminants-26-3" title="Copy heading and permalink for Proof 3.1.10.1: Explaining the First Statement..." aria-label="Copy heading and permalink for Proof 3.1.10.1: Explaining the First Statement...">🔗</a></div>
+</article></details>
+<details id="sec31-IntroDeterminants-26-4" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="title">Explaining the Second Statement....</span></h4></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sec31-IntroDeterminants-26-4-2">Let’s consider rows only (the argument is similar for columns).<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec31-IntroDeterminants-26-4-3">
+<div class="para">In the <span class="process-math">\(2 \times 2\)</span> cases, we can see that</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-4-3-2">
+\begin{equation*}
+\begin{vmatrix} a \amp b \\ c \amp d \end{vmatrix} = ad - bc
+\end{equation*}
+</div>
+<div class="para">while</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-4-3-3">
+\begin{equation*}
+\begin{vmatrix} c \amp d \\ a \amp b \end{vmatrix} = bd - ad
+\end{equation*}
+</div>
+<div class="para">so the answers have opposite sides.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-4-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec31-IntroDeterminants-26-4-4">
+<div class="para">Now if the matrix is bigger than <span class="process-math">\(2 \times 2\text{,}\)</span> we can calculate the determinant of both of them using the cofactor method and expanding on a row <em class="emphasis">other than the two that are swapped</em>.</div>
+<ul class="no-marker" id="sec31-IntroDeterminants-26-4-4-3">
+<li id="sec31-IntroDeterminants-26-4-4-3-1">
+<div class="para" id="sec31-IntroDeterminants-26-4-4-3-1-1">In both calculations, the number each cofactor is multiplied by is unchanged (since we are using the same row in each case).<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-4-4-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec31-IntroDeterminants-26-4-4-3-1-2">But for each cofactor calculation, we are computing a <span class="process-math">\(2 \times 2\)</span> determinants. When we compute the ones for the matrix with the swapped rows, we get opposite signs because the rows of each <span class="process-math">\(2 \times 2\)</span> matrix have been swapped.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-4-4-3-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#sec31-IntroDeterminants-26-4-4-3-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
-<li id="sec31-IntroDeterminants-25-2-1-2">
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-1">I’ll consider rows only (the argument is similar for columns).<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-2">In the <span class="process-math">\(2 \times 2\)</span> case, we can see that <span class="process-math">\(\begin{vmatrix} a \amp b \\ c \amp d \end{vmatrix} = ad - bc\)</span> while <span class="process-math">\(\begin{vmatrix} c \amp d \\ a \amp b \end{vmatrix} = bc - ad\)</span> so the answers have opposite signs.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-3">Now if the matrix is bigger than <span class="process-math">\(2 \times 2\)</span> you can calculate the determinant of both of them using the cofactor method and expanding on a row OTHER than the two that are swapped.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-4">In both calculations, the number each cofactor is multiplied by is unchanged (you are using the same row in each case).<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-5">But for each cofactor calculation you are computing a <span class="process-math">\(2 \times 2\)</span> determinants and when you compute the ones for the matrix with the swapped rows, you get opposite signs because the rows of each <span class="process-math">\(2 \times 2\)</span> matrix have been swapped.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-6">This is what it would look like when the 1st and 3rd rows are swapped. Check it out!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-2-7">
-\begin{equation*}
-\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} = 
-a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
-+ a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
-+ a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
-\end{equation*}
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-8">and<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-2-9">
-\begin{equation*}
-\begin{vmatrix} a_{31} \amp a_{32} \amp a_{33} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{11} \amp a_{12} \amp a_{13} \end{vmatrix} = 
-a_{21} \begin{vmatrix} a_{32} \amp a_{33} \\ a_{12} \amp a_{13} \end{vmatrix} 
-+ a_{22} \begin{vmatrix} a_{31} \amp a_{33} \\ a_{11} \amp a_{13} \end{vmatrix} 
-+ a_{23} \begin{vmatrix} a_{31} \amp a_{32} \\ a_{11} \amp a_{12} \end{vmatrix}
-\end{equation*}
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-10">Notice that all of the <span class="process-math">\(2 \times 2\)</span> determinants in the second version will have opposite signs of the ones in the first version.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-11">For a <span class="process-math">\(4 \times 4\)</span> matrix, you use the same trick. Again all of your cofactors will change sign (because of what I just showed about the <span class="process-math">\(3 \times 3\)</span> case). And so on....<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-2-12">This idea can be turned into a formal proof using the Principal of Mathematical Induction<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-2-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Item 2"><a href="#sec31-IntroDeterminants-25-2-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
-</li>
-<li id="sec31-IntroDeterminants-25-2-1-3">
-<div class="para" id="sec31-IntroDeterminants-25-2-1-3-1">This is straightforward. If you expand on the row/column that has been multiplied by the constant, none of the cofactors will change but in the calculation you will get an extra factor in each term since each entry of the row/column is multiplied by the constant. You can just factor out that constant to see that the determinant has been multiplied by that constant. Here is what it looks like in the <span class="process-math">\(3 \times 3\)</span> case if you multiply the middle row by <span class="process-math">\(c\text{:}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-3-2">
-\begin{equation*}
-\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} = 
-a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
-+ a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
-+ a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
-\end{equation*}
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-3-3">and<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-3-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-3-4">
-\begin{equation*}
-\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ c a_{21} \amp c a_{22} \amp c a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} = 
-c a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
-+ c a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
-+ c a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} =
-\end{equation*}
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-3-5">
-\begin{equation*}
-c \left( a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
-+ a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
-+ a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} \right)
-\end{equation*}
-</div>
-<div class="autopermalink" data-description="Item 3"><a href="#sec31-IntroDeterminants-25-2-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
-</li>
-<li id="sec31-IntroDeterminants-25-2-1-4">
-<div class="para" id="sec31-IntroDeterminants-25-2-1-4-1">This is a fun one! Imagine swapping the two rows (or columns) that are identical. By Rule 2 the determinant of the matrix will change signs if you do this.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-4-2">BUT since the two rows (or columns) were identical switching the rows (or columns) won’t change it at all. So the determinant can’t change!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-4-3">What’s the only number that you can multiply by <span class="process-math">\(-1\)</span> without changing it? ZERO!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-4-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Item 4"><a href="#sec31-IntroDeterminants-25-2-1-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
-</li>
-<li id="sec31-IntroDeterminants-25-2-1-5">
-<div class="para" id="sec31-IntroDeterminants-25-2-1-5-1">This is the trickiest AND the most important as we shall soon see. Let’s look at the general <span class="process-math">\(3 \times 3\)</span> case and try to figure out why doing this operation does not change the determinant.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-5-2">Here is the calculation of the "before" matrix expanding on Row 2:<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-5-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-5-3">
-\begin{equation*}
-\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} = 
-a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
-+ a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
-+ a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
-\end{equation*}
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-5-4">Now let’s see what happens if we multiply Row 1 by <span class="process-math">\(c\)</span> and add that to Row 2 (we’ll expand using Row 2 again):<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-5-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-5-5">
-\begin{equation*}
-\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} + c a_{11} \amp a_{22} + c a_{12} \amp a_{23} + c a_{13} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} =
-\end{equation*}
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-5-6">
-\begin{equation*}
-(a_{21} + c a_{11}) \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
-+ (a_{22} + c a_{12}) \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
-+ (a_{23} + c a_{13}) \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} =
-\end{equation*}
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-5-7">
-\begin{equation*}
-a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
-+ a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
-+ a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} 
-+ c a_{11} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
-+ c a_{12} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
-+ c a_{13} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} =
-\end{equation*}
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-5-8">
+</ul>
+<div class="para">This is what it would look like when the 1st and 3rd rows are swapped for a <span class="process-math">\(3 \times 3\)</span> matrix:</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-4-4-5">
 \begin{equation*}
 \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
-+ c \left( a_{11} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} 
-+ a_{12} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} 
-+ a_{13} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} \right)
+= a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
 \end{equation*}
 </div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-5-9">But <span class="process-math">\(a_{11} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + a_{12} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + a_{13} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}\)</span> is EXACTLY what we would get if we calculated a matrix that was just like our original matrix EXCEPT that Row 2 has been replaced with Row 1.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-5-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="para" id="sec31-IntroDeterminants-25-2-1-5-10">So it is a determinant of a matrix with two identical rows (Row 1 and Row 2), which means it is ZERO.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2-1-5-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-25-2-1-5-11">
+<div class="para">and</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-4-4-6">
 \begin{equation*}
-\text{So } \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} + c a_{11} \amp a_{22} + c a_{12} \amp a_{23} + c a_{13} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
-= \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix}
+\begin{vmatrix} a_{31} \amp a_{32} \amp a_{33} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{11} \amp a_{12} \amp a_{13} \end{vmatrix} 
+= a_{21} \begin{vmatrix} a_{32} \amp a_{33} \\ a_{12} \amp a_{13} \end{vmatrix} + a_{22} \begin{vmatrix} a_{31} \amp a_{33} \\ a_{11} \amp a_{13} \end{vmatrix} + a_{23} \begin{vmatrix} a_{31} \amp a_{32} \\ a_{11} \amp a_{12} \end{vmatrix}
 \end{equation*}
 </div>
-<div class="autopermalink" data-description="Item 5"><a href="#sec31-IntroDeterminants-25-2-1-5" title="Copy heading and permalink for Item 5" aria-label="Copy heading and permalink for Item 5">🔗</a></div>
-</li>
-</ol>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-25-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para">Notice that all of the <span class="process-math">\(2 \times 2\)</span> determinants in the second version will have opposite signs of the ones in the first version.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-4-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Note 3.1.8: But Richard... Why is this true?"><a href="#sec31-IntroDeterminants-25" title="Copy heading and permalink for Note 3.1.8: But Richard... Why is this true?" aria-label="Copy heading and permalink for Note 3.1.8: But Richard... Why is this true?">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-26-4-5">For a <span class="process-math">\(4 \times 4\)</span> matrix, we can use the same trick. Again, all of the cofactors will change sign. And so on...<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-4-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec31-IntroDeterminants-26-4-6">
+<em class="emphasis">Note:</em> This idea can be turned into a formal proof using the Principal of Mathematical Induction.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-4-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 3.1.10.2: Explaining the Second Statement..."><a href="#sec31-IntroDeterminants-26-4" title="Copy heading and permalink for Proof 3.1.10.2: Explaining the Second Statement..." aria-label="Copy heading and permalink for Proof 3.1.10.2: Explaining the Second Statement...">🔗</a></div>
 </article></details>
-<div class="para" id="sec31-IntroDeterminants-26">So what is this new method for computing determinants?<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<details id="sec31-IntroDeterminants-26-5" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="title">Explaining the Third Statement....</span></h4></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sec31-IntroDeterminants-26-5-2">This one is straightforward. If we expand on the row/column that has been multiplied by a constant, none of the cofactors will change. But in the calculation we will get an extra factor in each term since each entry of the row/column is multiplied by the constant. We can just factor out that constant to see that the determinant has been multiplied by that constant.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-5-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="sec31-IntroDeterminants-27">First, we know that if a matrix has a whole row (or column) of zeros or if it has two identical rows (or columns) the determinant is zero. Second, we know that if we can maximize the number of zeros we get in a row, we can minimize the number of cofactors we actually have to compute.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-27" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para logical" id="sec31-IntroDeterminants-26-5-3">
+<div class="para">Here is what it looks like in the <span class="process-math">\(3 \times 3\)</span> case if we multiply the middle row by <span class="process-math">\(c\text{:}\)</span>
 </div>
-<div class="para" id="sec31-IntroDeterminants-28">Actually there is one more even awesome-er fact that we can use to make determinant calculations fairly easy using row operations. We will do an example first and that will show us what that awesome-er fact is.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-28" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-5-3-3">
+\begin{equation*}
+\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
+= a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
+\end{equation*}
 </div>
-<article class="example example-like" id="sec31-IntroDeterminants-29"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+<div class="para">and</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-5-3-4">
+\begin{align*}
+\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ ca_{21} \amp ca_{22} \amp ca_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
+\amp= ca_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + ca_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + ca_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} \\
+\amp= c \lp a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} \rp 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-5-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 3.1.10.3: Explaining the Third Statement..."><a href="#sec31-IntroDeterminants-26-5" title="Copy heading and permalink for Proof 3.1.10.3: Explaining the Third Statement..." aria-label="Copy heading and permalink for Proof 3.1.10.3: Explaining the Third Statement...">🔗</a></div>
+</article></details>
+<details id="sec31-IntroDeterminants-26-6" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="title">Explaining the Fourth Statement....</span></h4></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sec31-IntroDeterminants-26-6-2">This is a fun one! Imagine swapping the two rows (or columns) that are identical. By the <em class="alert">second statement</em>, the determinant will change signs if we do this.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-6-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec31-IntroDeterminants-26-6-3">BUT since the two rows (or columns) are identical, switching the rows (or columns) won’t change the matrix at all. So the determinant can’t change!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-6-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec31-IntroDeterminants-26-6-4">What is the only number that we can multiplied by <span class="process-math">\(-1\)</span> without changing it? <em class="alert">ZERO!</em><div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-6-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 3.1.10.4: Explaining the Fourth Statement..."><a href="#sec31-IntroDeterminants-26-6" title="Copy heading and permalink for Proof 3.1.10.4: Explaining the Fourth Statement..." aria-label="Copy heading and permalink for Proof 3.1.10.4: Explaining the Fourth Statement...">🔗</a></div>
+</article></details>
+<details id="sec31-IntroDeterminants-26-7" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="title">Explaining the Fifth Statement....</span></h4></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sec31-IntroDeterminants-26-7-2">This is the trickiest and the most important statement! Let’s look at the general <span class="process-math">\(3 \times 3\)</span> case and try to figure out why doing this operation does not change the determinant.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-7-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec31-IntroDeterminants-26-7-3">
+<div class="para">Here is the calculation of the "before" matrix, expanding on Row 2:</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-7-3-1">
+\begin{equation*}
+\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
+= a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
+\end{equation*}
+</div>
+<div class="para">Now let’s see what happens if we multiply Row 1 by <span class="process-math">\(c\)</span> and add that to Row 2 (we will expand using Row 2 again):</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-7-3-3">
+\begin{align*}
+\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} + ca_{11} \amp a_{22} + ca_{12} \amp a_{23} + ca_{13} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
+\amp= \lp a_{21} + ca_{11} \rp \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + \lp a_{22} + ca_{12} \rp \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + \lp a_{23} + ca_{13} \rp \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} \\
+\amp=  a_{21} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + a_{22} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + a_{23} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} + ca_{11} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + ca_{12} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + ca_{13} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}\\
+\amp= \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix}  + c \lp a_{11} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + a_{12} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + a_{13} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix} \rp 
+\end{align*}
+</div>
+<div class="para">Observe that</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-7-3-4">
+\begin{equation*}
+\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{11} \amp a_{12} \amp a_{13} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} = a_{11} \begin{vmatrix} a_{12} \amp a_{13} \\ a_{32} \amp a_{33} \end{vmatrix} + a_{12} \begin{vmatrix} a_{11} \amp a_{13} \\ a_{31} \amp a_{33} \end{vmatrix} + a_{13} \begin{vmatrix} a_{11} \amp a_{12} \\ a_{31} \amp a_{32} \end{vmatrix}
+\end{equation*}
+</div>
+<div class="para">So this part will become <span class="process-math">\(0\)</span> since Row 1 and Row 2 are identical. This tells us that</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-26-7-3-6">
+\begin{align*}
+\begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} + ca_{11} \amp a_{22} + ca_{12} \amp a_{23} + ca_{13} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
+\amp= \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix}  + c \lp 0 \rp \\
+\amp= \begin{vmatrix} a_{11} \amp a_{12} \amp a_{13} \\ a_{21} \amp a_{22} \amp a_{23} \\ a_{31} \amp a_{32} \amp a_{33} \end{vmatrix} 
+\end{align*}
+</div>
+<div class="para">See the determinant is the same as the determinant of the general <span class="process-math">\(3 \times 3\)</span> matrix!</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-26-7-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 3.1.10.5: Explaining the Fifth Statement..."><a href="#sec31-IntroDeterminants-26-7" title="Copy heading and permalink for Proof 3.1.10.5: Explaining the Fifth Statement..." aria-label="Copy heading and permalink for Proof 3.1.10.5: Explaining the Fifth Statement...">🔗</a></div>
+</article></details><div class="autopermalink" data-description="Note 3.1.10: But Richard... Why are these things true?"><a href="#sec31-IntroDeterminants-26" title="Copy heading and permalink for Note 3.1.10: But Richard... Why are these things true?" aria-label="Copy heading and permalink for Note 3.1.10: But Richard... Why are these things true?">🔗</a></div>
+</article></details>
+<div class="para" id="sec31-IntroDeterminants-27">So what is this new method for computing determinants?<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-27" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec31-IntroDeterminants-28">First, we know that if a matrix has a whole row (or column) of zeros or if it has two identical rows (or columns) the determinant is zero. Second, we know that if we can maximize the number of zeros we get in a row, we can minimize the number of cofactors we actually have to compute.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-28" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec31-IntroDeterminants-29">Actually there is one more even awesome-er fact that we can use to make determinant calculations fairly easy using row operations. We will do an example first and that will show us what that awesome-er fact is.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-29" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="sec31-IntroDeterminants-30"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h3>
-<div class="para" id="sec31-IntroDeterminants-29-1">Let’s compute <span class="process-math">\(\begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 4 \amp -2 \amp 17 \amp 6 \\ -2 \amp 2 \amp -7 \amp -3 \\ 0 \amp -2 \amp -3 \amp 4 \end{vmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-29-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-30-1">Let’s compute <span class="process-math">\(\begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 4 \amp -2 \amp 17 \amp 6 \\ -2 \amp 2 \amp -7 \amp -3 \\ 0 \amp -2 \amp -3 \amp 4 \end{vmatrix}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para logical" id="sec31-IntroDeterminants-29-2">
+<div class="para logical" id="sec31-IntroDeterminants-30-2">
 <div class="para">Step 1: We can add <span class="process-math">\(-4\)</span> times Row 1 to Row 2 (and replace Row 2). This will not change the determinant.</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-29-2-2">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-30-2-2">
 \begin{equation*}
 = \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ -2 \amp 2 \amp -7 \amp -3 \\ 0 \amp -2 \amp -3 \amp 4 \end{vmatrix}
 \end{equation*}
 </div>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-29-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para logical" id="sec31-IntroDeterminants-29-3">
+<div class="para logical" id="sec31-IntroDeterminants-30-3">
 <div class="para">Step 2: We can add <span class="process-math">\(2\)</span> times Row 1 to Row 3 (and replace Row 3). And this again will not change the determinant.</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-29-3-2">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-30-3-2">
 \begin{equation*}
 = \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp -2 \amp -3 \amp 4 \end{vmatrix}
 \end{equation*}
 </div>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-29-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para logical" id="sec31-IntroDeterminants-29-4">
+<div class="para logical" id="sec31-IntroDeterminants-30-4">
 <div class="para">Step 3: We can add Row 2 to Row 4 (and replace Row 4), and the determinant is still unchanged.</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-29-4-1">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-30-4-1">
 \begin{equation*}
 = \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp -6 \amp 2 \end{vmatrix}
 \end{equation*}
 </div>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-29-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para logical" id="sec31-IntroDeterminants-29-5">
+<div class="para logical" id="sec31-IntroDeterminants-30-5">
 <div class="para">Step 4: We can add <span class="process-math">\(2\)</span> times Row 3 to Row 4 without changing the determinant!</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-29-5-2">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-30-5-2">
 \begin{equation*}
 = \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp 0 \amp 4 \end{vmatrix}
 \end{equation*}
 </div>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-29-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="sec31-IntroDeterminants-29-6">Notice that we now have all zeros below the main diagonal. At this point, Richard instantly knows that the determinant is going to be <span class="process-math">\(24\text{.}\)</span> How does he know that?<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-29-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-30-6">Notice that we now have all zeros below the main diagonal. At this point, Richard instantly knows that the determinant is going to be <span class="process-math">\(24\text{.}\)</span> How does he know that?<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para logical" id="sec31-IntroDeterminants-29-7">
+<div class="para logical" id="sec31-IntroDeterminants-30-7">
 <div class="para">Watch what happens when we expand along the last row to compute the determinant:</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-29-7-1">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-30-7-1">
 \begin{equation*}
 \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp 0 \amp 4 \end{vmatrix} = 4 \begin{vmatrix} 1 \amp -1 \amp 5 \\ 0 \amp 2 \amp -3 \\ 0 \amp 0 \amp 3 \end{vmatrix}
 \end{equation*}
 </div>
 <div class="para">Now we need to figure out the determinant of one <span class="process-math">\(3 \times 3\)</span> matrix that <em class="emphasis">also</em> has all zeros below the main diagonal. So...</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-29-7-4">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-30-7-4">
 \begin{equation*}
 \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp 0 \amp 4 \end{vmatrix} = 4 \begin{vmatrix} 1 \amp -1 \amp 5 \\ 0 \amp 2 \amp -3 \\ 0 \amp 0 \amp 3 \end{vmatrix} = 4 \times 3 \begin{vmatrix} 1 \amp -1 \\ 0 \amp 2 \end{vmatrix}
 \end{equation*}
 </div>
 <div class="para">And now we need to figure out the determinant of one <span class="process-math">\(2 \times 2\)</span> matrix that <em class="emphasis">also</em> has all zeros below the main diagonal (well there is only one spot there, but still!). Continuing then, we get...</div>
-<div class="displaymath process-math" id="sec31-IntroDeterminants-29-7-7">
+<div class="displaymath process-math" id="sec31-IntroDeterminants-30-7-7">
 \begin{equation*}
 \begin{vmatrix} 1 \amp -1 \amp 5 \amp 2 \\ 0 \amp 2 \amp -3 \amp -2 \\ 0 \amp 0 \amp 3 \amp 1 \\ 0 \amp 0 \amp 0 \amp 4 \end{vmatrix} = 4 \begin{vmatrix} 1 \amp -1 \amp 5 \\ 0 \amp 2 \amp -3 \\ 0 \amp 0 \amp 3 \end{vmatrix} = 4 \times 3 \begin{vmatrix} 1 \amp -1 \\ 0 \amp 2 \end{vmatrix} = 4 \times 3 \times 2 \times 1 = 24
 \end{equation*}
 </div>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-29-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="sec31-IntroDeterminants-29-8">So it turned out that the answer was just <em class="alert">the product of the entries on the diagonal</em>!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-29-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-30-8">So it turned out that the answer was just <em class="alert">the product of the entries on the diagonal</em>!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Example 3.1.9"><a href="#sec31-IntroDeterminants-29" title="Copy heading and permalink for Example 3.1.9" aria-label="Copy heading and permalink for Example 3.1.9">🔗</a></div>
+<div class="autopermalink" data-description="Example 3.1.11"><a href="#sec31-IntroDeterminants-30" title="Copy heading and permalink for Example 3.1.11" aria-label="Copy heading and permalink for Example 3.1.11">🔗</a></div>
 </article>
-<div class="para logical" id="sec31-IntroDeterminants-30">
+<div class="para logical" id="sec31-IntroDeterminants-31">
 <div class="para">If you think about how cofactor expansion works, the determinant of a matrix that has all zeros below the main diagonal should always be the product of the entries on the main diagonal! That means our new method (using row operations) is</div>
-<ol class="decimal ol-marker-10" id="sec31-IntroDeterminants-30-1">
-<li id="sec31-IntroDeterminants-30-1-1">
-<div class="para" id="sec31-IntroDeterminants-30-1-1-1">Use row operations to put the matrix in a form where it all of the entries below the main diagonal are zeros (this is called <em class="alert">upper triangular</em> form).<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<ol class="decimal ol-marker-9" id="sec31-IntroDeterminants-31-1">
+<li id="sec31-IntroDeterminants-31-1-1">
+<div class="para" id="sec31-IntroDeterminants-31-1-1-1">Use row operations to put the matrix in a form where it all of the entries below the main diagonal are zeros (this is called <em class="alert">upper triangular</em> form).<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-31-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="sec31-IntroDeterminants-30-1-1-2">
-<em class="alert">P.S.:</em> NEVER use the operation where you just multiply a row by a constant and keep track of how many times you swap rows.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-31-1-1-2">
+<em class="alert">P.S.:</em> NEVER use the operation where you just multiply a row by a constant and keep track of how many times you swap rows.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-31-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item 1"><a href="#sec31-IntroDeterminants-30-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+<div class="autopermalink" data-description="Item 1"><a href="#sec31-IntroDeterminants-31-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
 </li>
-<li id="sec31-IntroDeterminants-30-1-2">
-<div class="para logical" id="sec31-IntroDeterminants-30-1-2-1">
+<li id="sec31-IntroDeterminants-31-1-2">
+<div class="para logical" id="sec31-IntroDeterminants-31-1-2-1">
 <div class="para">Multiply all the entries on the diagonal.</div>
-<ul class="no-marker" id="sec31-IntroDeterminants-30-1-2-1-1">
-<li id="sec31-IntroDeterminants-30-1-2-1-1-1">
-<div class="para" id="sec31-IntroDeterminants-30-1-2-1-1-1-1">If the number of row swaps you did is even, then this is the answer;<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-1-2-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<ul class="no-marker" id="sec31-IntroDeterminants-31-1-2-1-1">
+<li id="sec31-IntroDeterminants-31-1-2-1-1-1">
+<div class="para" id="sec31-IntroDeterminants-31-1-2-1-1-1-1">If the number of row swaps you did is even, then this is the answer;<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-31-1-2-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#sec31-IntroDeterminants-30-1-2-1-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+<div class="autopermalink" data-description="Item"><a href="#sec31-IntroDeterminants-31-1-2-1-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
-<li id="sec31-IntroDeterminants-30-1-2-1-1-2">
-<div class="para" id="sec31-IntroDeterminants-30-1-2-1-1-2-1">If the number of row swaps you did is odd, multiply it by <span class="process-math">\(-1\)</span> to get the determinant.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-1-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<li id="sec31-IntroDeterminants-31-1-2-1-1-2">
+<div class="para" id="sec31-IntroDeterminants-31-1-2-1-1-2-1">If the number of row swaps you did is odd, multiply it by <span class="process-math">\(-1\)</span> to get the determinant.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-31-1-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#sec31-IntroDeterminants-30-1-2-1-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+<div class="autopermalink" data-description="Item"><a href="#sec31-IntroDeterminants-31-1-2-1-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 </ul>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-31-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item 2"><a href="#sec31-IntroDeterminants-30-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+<div class="autopermalink" data-description="Item 2"><a href="#sec31-IntroDeterminants-31-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
 </li>
 </ol>
-<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-30" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-31" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="sec31-IntroDeterminants-31">A matrix that only has zeros below the main diagonal is called an <dfn class="terminology">upper triangle</dfn> matrix, and a matrix that only has zeros above the main diagonal is called a <dfn class="terminology">lower triangular</dfn> matrix. We can <em class="alert">compute the determinant</em> of these matrices by <em class="emphasis">multiplying all of the entries on the diagonal together</em>.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-31" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-32">A matrix that only has zeros below the main diagonal is called an <dfn class="terminology">upper triangle</dfn> matrix, and a matrix that only has zeros above the main diagonal is called a <dfn class="terminology">lower triangular</dfn> matrix. We can <em class="alert">compute the determinant</em> of these matrices by <em class="emphasis">multiplying all of the entries on the diagonal together</em>.<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-32" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<article class="exercise exercise-like" id="sec31-IntroDeterminants-32"><h3 class="heading">
-<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+<article class="exercise exercise-like" id="sec31-IntroDeterminants-33"><h3 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h3>
-<div class="para" id="sec31-IntroDeterminants-32-1">What is the determinant of the identity matrix (of any size)?<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-32-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para logical" id="sec31-IntroDeterminants-33-1">
+<div class="para">Use this new row-reduction method to compute the determinant of</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-33-1-1">
+\begin{equation*}
+A = \begin{bmatrix} 1 \amp 2 \amp 3 \amp 4 \\ -1 \amp 0 \amp 3 \amp 4 \\ 4 \amp 0 \amp -2 \amp 3 \\ 1 \amp 1 \amp 0 \amp 3 \end{bmatrix}
+\end{equation*}
 </div>
-<div class="autopermalink" data-description="Checkpoint 3.1.10"><a href="#sec31-IntroDeterminants-32" title="Copy heading and permalink for Checkpoint 3.1.10" aria-label="Copy heading and permalink for Checkpoint 3.1.10">🔗</a></div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-33-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="sec31-IntroDeterminants-33-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sec31-IntroDeterminants-33-2-1">
+<div class="para">We will add Row 1 tp Row 2, <span class="process-math">\(-4\)</span> times Row 1 to Row 3, and <span class="process-math">\(-1\)</span> times Row 1 to Row 4. We get:</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-33-2-1-3">
+\begin{equation*}
+\begin{bmatrix} 1 \amp 2 \amp 3 \amp 4 \\ 0 \amp 2 \amp 6 \amp 8 \\ 0 \amp -8 \amp -14 \amp -13 \\ 0 \amp -1 \amp -3 \amp -1 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Now we will add <span class="process-math">\(4\)</span> times Row 2 to Row 3, and <span class="process-math">\(\frac{1}{2}\)</span> times Row 2 to Row 4. We get:</div>
+<div class="displaymath process-math" id="sec31-IntroDeterminants-33-2-1-6">
+\begin{equation*}
+\begin{bmatrix} 1 \amp 2 \amp 3 \amp 4 \\ 0 \amp 2 \amp 6 \amp 8 \\ 0 \amp 0 \amp 10 \amp 19 \\ 0 \amp 0 \amp 0 \amp 3 \end{bmatrix}
+\end{equation*}
+</div>
+<div class="para">Now we have an upper triangular matrix and can see that <span class="process-math">\(|A| = 60\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-33-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Solution 3.1.12.1"><a href="#sec31-IntroDeterminants-33-2" title="Copy heading and permalink for Solution 3.1.12.1" aria-label="Copy heading and permalink for Solution 3.1.12.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Checkpoint 3.1.12"><a href="#sec31-IntroDeterminants-33" title="Copy heading and permalink for Checkpoint 3.1.12" aria-label="Copy heading and permalink for Checkpoint 3.1.12">🔗</a></div>
 </article>
-<div class="para" id="sec31-IntroDeterminants-33">We will continue our investigation of determinants more about the properties and applications of determinants in the next section!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-33" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<section class="worksheet" id="ws-sec31" data-margins="0.75in 0.75in 0.75in 0.75in">
-<h3 class="heading hide-type">
-<span class="type">Worksheet</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Some Exercises for This Section</span><div class="print-links"><a href="?printpreview=ws-sec31" class="print-link" title="Print preview"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span></a></div>
+<article class="exercise exercise-like" id="sec31-IntroDeterminants-34"><h3 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.1.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h3>
-<section class="introduction" id="ws-sec31-2">
-<div class="para" id="ws-sec31-2-1">Richard included some practice problems that cover some main concepts in this section. You don’t need to turn it in, but you are highly encouraged to work on this with your classmates. The problems here may end up being in-class practice problems, homework problems, and/or exam problems. Reach out to Richard for help if you get stuck or have any questions.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec31-IntroDeterminants-34-1">What is the determinant of the identity matrix (of any size)?<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-34-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="ws-sec31-2-2">Only the final answers are included to some of the problems for you to check your result. If you want to check your work, talk to Richard and he is happy to discuss the process with you.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></section>
-<div class="exercisegroup" id="ws-sec31-3">
-<h4 class="heading"><span class="title">Exercise Group.</span></h4>
-<div class="introduction" id="ws-sec31-3-1">
-<div class="para" id="ws-sec31-3-1-1">Compute the determinants in the following exercises using a cofactor expansion across the first row.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<details id="sec31-IntroDeterminants-34-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec31-IntroDeterminants-34-2-1">Identity matrix (of any size) is an upper triangular matrix with <span class="process-math">\(1\)</span>’s on the main diagonal (It is also a lower triangular matrix!). Hence the determinant is <span class="process-math">\(1\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-34-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-</div>
-<div class="exercisegroup-exercises">
-<article class="exercise exercise-like" id="ws-sec31-3-2"><h5 class="heading"><span class="codenumber">3.1.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
-<div class="displaymath process-math" id="ws-sec31-3-2-1-1">
-\begin{equation*}
-\begin{vmatrix} 2 \amp 3 \amp -3 \\ 4 \amp 0 \amp 3 \\ 6 \amp 1 \amp 5 \end{vmatrix}
-\end{equation*}
-</div>
-<div class="autopermalink" data-description="Worksheet Exercise 3.1.3.1.5"><a href="#ws-sec31-3-2" title="Copy heading and permalink for Worksheet Exercise 3.1.3.1.5" aria-label="Copy heading and permalink for Worksheet Exercise 3.1.3.1.5">🔗</a></div>
+<div class="autopermalink" data-description="Solution 3.1.13.1"><a href="#sec31-IntroDeterminants-34-2" title="Copy heading and permalink for Solution 3.1.13.1" aria-label="Copy heading and permalink for Solution 3.1.13.1">🔗</a></div>
+</div></details><div class="autopermalink" data-description="Checkpoint 3.1.13"><a href="#sec31-IntroDeterminants-34" title="Copy heading and permalink for Checkpoint 3.1.13" aria-label="Copy heading and permalink for Checkpoint 3.1.13">🔗</a></div>
 </article>
-<article class="exercise exercise-like" id="ws-sec31-3-3"><h5 class="heading"><span class="codenumber">3.1.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
-<div class="displaymath process-math" id="ws-sec31-3-3-1-1">
-\begin{equation*}
-\begin{vmatrix} 4 \amp 3 \amp 0 \\ 6 \amp 5 \amp 2 \\ 9 \amp 7 \amp 3 \end{vmatrix}
-\end{equation*}
+<div class="para" id="sec31-IntroDeterminants-35">We will continue our investigation of determinants more about the properties and applications of determinants in the next section!<div class="autopermalink" data-description="Paragraph"><a href="#sec31-IntroDeterminants-35" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Worksheet Exercise 3.1.3.1.7"><a href="#ws-sec31-3-3" title="Copy heading and permalink for Worksheet Exercise 3.1.3.1.7" aria-label="Copy heading and permalink for Worksheet Exercise 3.1.3.1.7">🔗</a></div>
-</article>
-</div>
-<div class="autopermalink" data-description="Exercise Group 3.1.3.1.5–3.1.7"><a href="#ws-sec31-3" title="Copy heading and permalink for Exercise Group 3.1.3.1.5–3.1.7" aria-label="Copy heading and permalink for Exercise Group 3.1.3.1.5–3.1.7">🔗</a></div>
-</div>
-<div class="exercisegroup" id="ws-sec31-4">
-<h4 class="heading"><span class="title">Exercise Group.</span></h4>
-<div class="introduction" id="ws-sec31-4-1">
-<div class="para" id="ws-sec31-4-1-1">Compute the determinants in the following exercises by cofactor expansions. At each step, choose a row or column that involves the least amount of computation.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
-<div class="exercisegroup-exercises">
-<article class="exercise exercise-like" id="ws-sec31-4-2"><h5 class="heading"><span class="codenumber">3.1.9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
-<div class="displaymath process-math" id="ws-sec31-4-2-1-1">
-\begin{equation*}
-\begin{vmatrix} 4 \amp 0 \amp 0 \amp 5 \\ 1 \amp 7 \amp 2 \amp -5 \\ 3 \amp 0 \amp 0 \amp 0 \\ 8 \amp 3 \amp 1 \amp 7 \end{vmatrix}
-\end{equation*}
-</div>
-<div class="autopermalink" data-description="Worksheet Exercise 3.1.3.1.9"><a href="#ws-sec31-4-2" title="Copy heading and permalink for Worksheet Exercise 3.1.3.1.9" aria-label="Copy heading and permalink for Worksheet Exercise 3.1.3.1.9">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="ws-sec31-4-3"><h5 class="heading"><span class="codenumber">3.1.11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
-<div class="displaymath process-math" id="ws-sec31-4-3-1-1">
-\begin{equation*}
-\begin{vmatrix} 3 \amp 5 \amp -6 \amp 4 \\ 0 \amp -2 \amp 3 \amp -3 \\ 0 \amp 0 \amp 1 \amp 5 \\ 0 \amp 0 \amp 0 \amp 3 \end{vmatrix}
-\end{equation*}
-</div>
-<div class="autopermalink" data-description="Worksheet Exercise 3.1.3.1.11"><a href="#ws-sec31-4-3" title="Copy heading and permalink for Worksheet Exercise 3.1.3.1.11" aria-label="Copy heading and permalink for Worksheet Exercise 3.1.3.1.11">🔗</a></div>
-</article>
-</div>
-<div class="autopermalink" data-description="Exercise Group 3.1.3.1.9–3.1.11"><a href="#ws-sec31-4" title="Copy heading and permalink for Exercise Group 3.1.3.1.9–3.1.11" aria-label="Copy heading and permalink for Exercise Group 3.1.3.1.9–3.1.11">🔗</a></div>
-</div>
-<article class="exercise exercise-like" id="ws-sec31-5"><h4 class="heading"><span class="codenumber">3.1.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
-<div class="para logical" id="ws-sec31-5-1-1">
-<div class="para">Explore the effect of an elementary row operation on the determinant of a matrix. State the row operation and describe how it affects the determinant.</div>
-<div class="displaymath process-math" id="ws-sec31-5-1-1-1">
-\begin{equation*}
-\begin{bmatrix} 3 \amp 2 \\ 5 \amp 4 \end{bmatrix}, \begin{bmatrix} 3 \amp 2 \\ 5+3k \amp 4+2k \end{bmatrix}
-\end{equation*}
-</div>
-<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Worksheet Exercise 3.1.3.1.21"><a href="#ws-sec31-5" title="Copy heading and permalink for Worksheet Exercise 3.1.3.1.21" aria-label="Copy heading and permalink for Worksheet Exercise 3.1.3.1.21">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="ws-sec31-6"><h4 class="heading"><span class="codenumber">3.1.37<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
-<div class="para" id="ws-sec31-6-1-1">Let <span class="process-math">\(A = \begin{bmatrix} 3 \amp 1 \\ 4 \amp 2 \end{bmatrix}\text{.}\)</span> Write <span class="process-math">\(5A\text{.}\)</span> Is <span class="process-math">\(\det(5A) = 5\det(A)\text{?}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Worksheet Exercise 3.1.3.1.37"><a href="#ws-sec31-6" title="Copy heading and permalink for Worksheet Exercise 3.1.3.1.37" aria-label="Copy heading and permalink for Worksheet Exercise 3.1.3.1.37">🔗</a></div>
-</article>
-<div class="exercisegroup" id="ws-sec31-7">
-<h4 class="heading"><span class="title">Exercise Group.</span></h4>
-<div class="introduction" id="ws-sec31-7-1">
-<div class="para" id="ws-sec31-7-1-1">In the following exercises, <span class="process-math">\(A\)</span> is an <span class="process-math">\(n \times n\)</span> matrix. Mark each statement True or False (T/F). Justify each answer.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div>
-<div class="exercisegroup-exercises">
-<article class="exercise exercise-like" id="ws-sec31-7-2"><h5 class="heading"><span class="codenumber">3.1.39<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
-<div class="para" id="ws-sec31-7-2-1-1">(T/F) An <span class="process-math">\(n \times n\)</span> determinant is defined by determinants of <span class="process-math">\((n-1) \times (n-1)\)</span> submatrices.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-7-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Worksheet Exercise 3.1.3.1.39"><a href="#ws-sec31-7-2" title="Copy heading and permalink for Worksheet Exercise 3.1.3.1.39" aria-label="Copy heading and permalink for Worksheet Exercise 3.1.3.1.39">🔗</a></div>
-</article>
-<article class="exercise exercise-like" id="ws-sec31-7-3"><h5 class="heading"><span class="codenumber">3.1.41<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5>
-<div class="para" id="ws-sec31-7-3-1-1">(T/F) The cofactor expansion of <span class="process-math">\(\det A\)</span> down a column is equal to the cofactor expansion along a row.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-7-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Worksheet Exercise 3.1.3.1.41"><a href="#ws-sec31-7-3" title="Copy heading and permalink for Worksheet Exercise 3.1.3.1.41" aria-label="Copy heading and permalink for Worksheet Exercise 3.1.3.1.41">🔗</a></div>
-</article>
-</div>
-<div class="autopermalink" data-description="Exercise Group 3.1.3.1.39–3.1.41"><a href="#ws-sec31-7" title="Copy heading and permalink for Exercise Group 3.1.3.1.39–3.1.41" aria-label="Copy heading and permalink for Exercise Group 3.1.3.1.39–3.1.41">🔗</a></div>
-</div>
-<article class="exercise exercise-like" id="ws-sec31-8"><h4 class="heading"><span class="codenumber">3.1.43<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4>
-<div class="para" id="ws-sec31-8-1-1">Let <span class="process-math">\(\v{u} = \begin{bmatrix} 3 \\ 0 \end{bmatrix}\)</span> and <span class="process-math">\(\v{v} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}\text{.}\)</span> Compute the area of the parallelogram determined by <span class="process-math">\(\v{u}\text{,}\)</span> <span class="process-math">\(\v{v}\text{,}\)</span> <span class="process-math">\(\v{u}+\v{v}\text{,}\)</span> and <span class="process-math">\(\v{0}\text{,}\)</span> and compute the determinant of <span class="process-math">\(\begin{bmatrix} \v{u} \amp \v{v} \end{bmatrix}\text{.}\)</span> How do they compare? Draw a picture and explain what you find.<div class="autopermalink" data-description="Paragraph"><a href="#ws-sec31-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Worksheet Exercise 3.1.3.1.43"><a href="#ws-sec31-8" title="Copy heading and permalink for Worksheet Exercise 3.1.3.1.43" aria-label="Copy heading and permalink for Worksheet Exercise 3.1.3.1.43">🔗</a></div>
-</article><div class="autopermalink" data-description="Worksheet 3.1: Some Exercises for This Section"><a href="#ws-sec31" title="Copy heading and permalink for Worksheet 3.1: Some Exercises for This Section" aria-label="Copy heading and permalink for Worksheet 3.1: Some Exercises for This Section">🔗</a></div>
-</section><div class="autopermalink" data-description="Section 3.1: Introduction to Determinants"><a href="#sec31-IntroDeterminants" title="Copy heading and permalink for Section 3.1: Introduction to Determinants" aria-label="Copy heading and permalink for Section 3.1: Introduction to Determinants">🔗</a></div>
+<div class="autopermalink" data-description="Section 3.1: Introduction to Determinants"><a href="#sec31-IntroDeterminants" title="Copy heading and permalink for Section 3.1: Introduction to Determinants" aria-label="Copy heading and permalink for Section 3.1: Introduction to Determinants">🔗</a></div>
 </section>
 </div>
 <div id="ptx-content-footer" class="ptx-content-footer">
